@@ -6,54 +6,68 @@ import { siteConfig } from "@/config/site";
 import { useEffect, useState, useMemo } from "react";
 
 export default function Home() {
-  // 200個の粒子のインデックス配列を作成
+  // 演出中（true）か、終了後（false）かを管理
+  const [isAnimating, setIsAnimating] = useState(true);
   const items = useMemo(() => Array.from({ length: 200 }, (_, i) => i), []);
+
+  useEffect(() => {
+    // 3.5秒後に粒子の描画を停止（演出完了）
+    const timer = setTimeout(() => setIsAnimating(false), 3500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main className="relative w-full bg-[#0F172A]">
       <section className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
-        {/* 1. 背景画像レイヤー */}
+        {/* 1. 背景：じわっと明るくなる */}
         <div
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+          className="absolute inset-0 z-0 bg-cover bg-center animate-bg-fadein"
           style={{
             backgroundImage: `url(${siteConfig.placeholder?.hero || ""})`,
+            opacity: 0.4,
           }}
         />
 
-        {/* 2. 粒子レイヤー */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <div className="relative w-0 h-0">
-            {items.map((i) => {
-              const angle = i * 137.5;
-              const radius = Math.sqrt(i) * 35;
-              const sx = Math.cos(angle * (Math.PI / 180)) * radius;
-              const sy = Math.sin(angle * (Math.PI / 180)) * radius;
+        {/* 2. 粒子レイヤー：演出中だけ表示 */}
+        {isAnimating && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <div className="relative w-0 h-0">
+              {items.map((i) => {
+                const angle = i * 137.5;
+                const radius = Math.sqrt(i) * 35;
+                const sx = Math.cos(angle * (Math.PI / 180)) * radius;
+                const sy = Math.sin(angle * (Math.PI / 180)) * radius;
 
-              // i を使って固定の散らばり（終了地点）を作る
-              // これなら Math.random() なしで中心が塊になりません
-              const ex = ((i % 11) - 5) * 4;
-              const ey = ((i % 7) - 3) * 4;
-
-              const particleStyle = {
-                width: `${(i % 4) + 2}px`,
-                height: `${(i % 4) + 2}px`,
-                animationDelay: `${(i % 50) * 0.03}s`,
-                "--sx": `${sx}px`,
-                "--sy": `${sy}px`,
-                "--ex": `${ex}px`,
-                "--ey": `${ey}px`,
-              } as React.CSSProperties;
-              return <div key={i} className="particle" style={particleStyle} />;
-            })}
+                return (
+                  <div
+                    key={i}
+                    className="particle"
+                    style={
+                      {
+                        width: `${(i % 4) + 2}px`,
+                        height: `${(i % 4) + 2}px`,
+                        left: `${sx}px`,
+                        top: `${sy}px`,
+                        animationDelay: `${(i % 50) * 0.03}s`,
+                        "--sx": `${sx}px`,
+                        "--sy": `${sy}px`,
+                        "--ex": `${((i % 11) - 5) * 4}px`,
+                        "--ey": `${((i % 7) - 3) * 4}px`,
+                      } as any
+                    }
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* 3. テキストレイヤー */}
+        {/* 3. テキストレイヤー：粒子に呼応して現れる */}
         <div className="relative z-20 text-center px-6 pointer-events-none">
-          <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter drop-shadow-2xl">
+          <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter drop-shadow-2xl animate-title-appearance">
             {siteConfig.companyName}
           </h1>
-          <p className="text-cyan-400 mt-4 text-sm md:text-xl tracking-[0.3em] font-light">
+          <p className="text-cyan-400 mt-4 text-sm md:text-xl tracking-[0.3em] font-light animate-desc-appearance">
             {siteConfig.description}
           </p>
         </div>
