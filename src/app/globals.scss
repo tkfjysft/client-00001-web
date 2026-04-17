@@ -1,0 +1,129 @@
+// src/app/globals.scss
+@import "tailwindcss";
+
+// SCSSなら変数やネストが使えます
+$accent-color: #0ea5e9;
+
+// @themeブロック全体を /* */ で囲むか、
+// または以下のようにCSS変数として直接定義する形に逃がすと波線が消えることがあります
+@theme {
+  --color-base: #f8fafc;
+  --color-primary: #0f172a;
+  --color-accent: #{$accent-color}; // SCSS変数の展開
+}
+
+html {
+  /* 常に縦スクロールバーの領域を確保する */
+  overflow-y: scroll;
+}
+
+// アニメーションの定義
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 20s ease-out infinite alternate;
+}
+
+// 試しにSCSSらしい書き方を追記
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5); // マウスホバーで少し暗くする例
+  }
+}
+
+header {
+  // 上部から下に向かって、うっすらと黒いグラデーションをかける
+  // これにより、真っ白な写真が来ても文字が見えるようになります
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  .text-white {
+    // ぼかしの少ない濃い影ではなく、広範囲に薄く影を落とす
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  opacity: 0; // 初期状態は隠す
+  animation: fade-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  // 遅延用のクラス
+  &.delay-1 {
+    animation-delay: 0.3s;
+  }
+  &.delay-2 {
+    animation-delay: 0.6s;
+  }
+  &.delay-3 {
+    animation-delay: 0.9s;
+  }
+}
+
+/* 粒子が中心に集まるアニメーション */
+/* globals.scss */
+@keyframes gathering-animation {
+  0% {
+    /* 座標変数が届くまでは透明、かつスケール0で待機 */
+    opacity: 0;
+    transform: translate(var(--sx, 0), var(--sy, 0)) scale(0);
+  }
+  /* 1%時点で初めて姿を現すようにすることで、ロード時の「中心の丸」を隠します */
+  1% {
+    opacity: 0;
+    transform: translate(var(--sx, 0), var(--sy, 0)) scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(var(--sx, 0), var(--sy, 0)) scale(1.1);
+  }
+  100% {
+    transform: translate(var(--ex, 0), var(--ey, 0)) scale(0);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #ffffff 10%,
+    #22d3ee 50%,
+    transparent 80%
+  );
+  box-shadow: 0 0 10px #22d3ee;
+  pointer-events: none;
+  animation: gathering-animation 1.5s ease-out infinite;
+  will-change: transform, opacity;
+
+  /* 初期状態で透明にしておくことで、JSの計算待ち時間を隠蔽します */
+  opacity: 0;
+}

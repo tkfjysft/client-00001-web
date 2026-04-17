@@ -1,65 +1,104 @@
-import Image from "next/image";
+// src/app/page.tsx
+"use client";
+
+import { motion } from "framer-motion"; // ← これが必要です！
+import { siteConfig } from "@/config/site";
+import { useEffect, useState, useMemo } from "react";
 
 export default function Home() {
+  // 200個の粒子のインデックス配列を作成
+  const items = useMemo(() => Array.from({ length: 200 }, (_, i) => i), []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="relative w-full bg-[#0F172A]">
+      <section className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
+        {/* 1. 背景画像レイヤー */}
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+          style={{
+            backgroundImage: `url(${siteConfig.placeholder?.hero || ""})`,
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+
+        {/* 2. 粒子レイヤー */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+          <div className="relative w-0 h-0">
+            {items.map((i) => {
+              const angle = i * 137.5;
+              const radius = Math.sqrt(i) * 35;
+              const sx = Math.cos(angle * (Math.PI / 180)) * radius;
+              const sy = Math.sin(angle * (Math.PI / 180)) * radius;
+
+              // i を使って固定の散らばり（終了地点）を作る
+              // これなら Math.random() なしで中心が塊になりません
+              const ex = ((i % 11) - 5) * 4;
+              const ey = ((i % 7) - 3) * 4;
+
+              const particleStyle = {
+                width: `${(i % 4) + 2}px`,
+                height: `${(i % 4) + 2}px`,
+                animationDelay: `${(i % 50) * 0.03}s`,
+                "--sx": `${sx}px`,
+                "--sy": `${sy}px`,
+                "--ex": `${ex}px`,
+                "--ey": `${ey}px`,
+              } as React.CSSProperties;
+              return <div key={i} className="particle" style={particleStyle} />;
+            })}
+          </div>
+        </div>
+
+        {/* 3. テキストレイヤー */}
+        <div className="relative z-20 text-center px-6 pointer-events-none">
+          <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter drop-shadow-2xl">
+            {siteConfig.companyName}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-cyan-400 mt-4 text-sm md:text-xl tracking-[0.3em] font-light">
+            {siteConfig.description}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+      {/* 紹介セクション */}
+      <section className="py-24 px-6 max-w-5xl mx-auto text-center">
+        <h2 className="text-sm uppercase tracking-[0.3em] text-[#0EA5E9] font-bold mb-4">
+          About Us
+        </h2>
+        <p className="text-3xl md:text-4xl font-semibold leading-tight mb-8">
+          {siteConfig.englishName}
+        </p>
+        <div className="h-1 w-20 bg-[#0EA5E9] mx-auto mb-8"></div>
+        <p className="text-lg text-gray-600 leading-relaxed">
+          最新のテクノロジーと長年の経験を融合させ、
+          <br className="hidden md:block" />
+          お客様のビジネスに最適なソリューションを提供します。
+        </p>
+      </section>
+      {/* 代表メッセージセクション */}
+      <section className="py-24 bg-white px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-base p-10 md:p-16 rounded-3xl border border-gray-100 shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -mr-16 -mt-16"></div>
+
+            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
+              <span className="w-8 h-[2px] bg-accent"></span>
+              Message
+            </h2>
+
+            <p className="text-xl italic leading-relaxed text-primary/80 mb-10 relative z-10">
+              「{siteConfig.description}」
+            </p>
+
+            <div className="flex items-center justify-end gap-4">
+              <div className="text-right">
+                <p className="text-sm text-gray-500 mb-1">Representative</p>
+                <p className="text-xl font-bold tracking-wider">
+                  {siteConfig.ownerName}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
