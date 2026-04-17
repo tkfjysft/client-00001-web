@@ -32,41 +32,34 @@ export default function Home() {
         {isAnimating && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <div className="relative w-0 h-0">
-              {items.map((i) => (
-                <div
-                  key={i}
-                  className="particle"
-                  style={
-                    {
-                      width: `${(i % 4) + 2}px`,
-                      height: `${(i % 4) + 2}px`,
-                      left: `${
-                        Math.cos(i * 137.5 * (Math.PI / 180)) *
-                        Math.sqrt(i) *
-                        35
-                      }px`,
-                      top: `${
-                        Math.sin(i * 137.5 * (Math.PI / 180)) *
-                        Math.sqrt(i) *
-                        35
-                      }px`,
-                      animationDelay: `${(i % 50) * 0.03}s`,
-                      "--sx": `${
-                        Math.cos(i * 137.5 * (Math.PI / 180)) *
-                        Math.sqrt(i) *
-                        35
-                      }px`,
-                      "--sy": `${
-                        Math.sin(i * 137.5 * (Math.PI / 180)) *
-                        Math.sqrt(i) *
-                        35
-                      }px`,
-                      "--ex": `${((i % 11) - 5) * 4}px`,
-                      "--ey": `${((i % 7) - 3) * 4}px`,
-                    } as any
-                  }
-                />
-              ))}
+              {items.map((i) => {
+                // 1. ここで座標を計算（この中なら sx, sy が使えます）
+                const angle = i * 137.5;
+                const radius = Math.sqrt(i) * 35;
+                const sx = Math.cos(angle * (Math.PI / 180)) * radius;
+                const sy = Math.sin(angle * (Math.PI / 180)) * radius;
+
+                return (
+                  <div
+                    key={i}
+                    className="particle"
+                    style={
+                      {
+                        width: `${(i % 5) + 2}px`,
+                        height: `${(i % 5) + 2}px`,
+                        left: `${sx}px`,
+                        top: `${sy}px`,
+                        animationDelay: `${(i % 50) * 0.03}s`,
+                        // 2. カスタムプロパティにも sx, sy を渡す
+                        "--sx": `${sx}px`,
+                        "--sy": `${sy}px`,
+                        "--ex": `${((i % 11) - 5) * 4}px`,
+                        "--ey": `${((i % 7) - 3) * 4}px`,
+                      } as React.CSSProperties
+                    } // 型エラー除け
+                  />
+                );
+              })}{" "}
             </div>
           </div>
         )}

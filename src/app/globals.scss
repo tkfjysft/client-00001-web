@@ -103,17 +103,21 @@ header {
 }
 
 /* 2. 粒子の色の変化（白 → シアン） */
+/* 粒子：外側（大きく）から中心（小さく）へ */
 @keyframes gathering-animation {
   0% {
     opacity: 0;
-    transform: translate(var(--sx), var(--sy)) scale(0);
+    /* 発生時は scale(1.5) くらいで存在感を出す */
+    transform: translate(var(--sx), var(--sy)) scale(1.5);
     background: #ffffff;
   }
   15% {
     opacity: 1;
-    transform: translate(var(--sx), var(--sy)) scale(1.1);
+    /* 出現直後に少しだけ大きく（1.8倍）してキラッと見せる */
+    transform: translate(var(--sx), var(--sy)) scale(1.8);
   }
   100% {
+    /* 中心に向かって scale(0) まで絞り込む */
     transform: translate(var(--ex), var(--ey)) scale(0);
     opacity: 0;
     background: #22d3ee;
