@@ -8,40 +8,77 @@ import { useEffect, useState, useMemo } from "react";
 export default function Home() {
   // 演出中（true）か、終了後（false）かを管理
   const [isAnimating, setIsAnimating] = useState(true);
-  const items = useMemo(() => Array.from({ length: 200 }, (_, i) => i), []);
+  const items = Array.from({ length: 120 }, (_, i) => i);
+
+  // 背景に使う写真の配列（4〜6枚程度がおすすめ）
+  const backgroundImages = [
+    "/images/hero_cording.webp", // 会議風景
+    "/images/hero_meeting.webp", // コード画面
+    "/images/hero_office.webp", // オフィス
+    "/images/hero_ceo.webp", // PC操作
+    "/images/hero_whiteboard.webp", // ホワイトボード
+    "/images/hero_serverroom.webp", // デバイス
+  ];
 
   useEffect(() => {
     // 文字が全部出終わるまで（1.8s + 文字数分）待つように少し延長
-    const timer = setTimeout(() => setIsAnimating(false), 5000);
+    const timer = setTimeout(() => setIsAnimating(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <main className="relative w-full bg-[#0F172A]">
       <section className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
-        {/* 背景：クラス名が正しくついているかチェック */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center animate-bg-fadein"
-          style={{
-            backgroundImage: `url(${siteConfig.placeholder?.hero || ""})`,
-            // インラインの opacity を削除するか、CSSのアニメーションと競合しないようにします
-          }}
-        />
+        {/* --- 背景グリッドレイヤー --- */}
+        <div className="absolute inset-0 z-0 animate-bg-fadein">
+          {/* 写真のグリッド表示 */}
+          <div className="grid grid-cols-2 md:grid-cols-3 w-full h-full gap-0">
+            {backgroundImages.map((src, idx) => (
+              <div
+                key={idx}
+                className="relative w-full h-full overflow-hidden border-[0.5px] border-cyan-500/20"
+              >
+                <div
+                  className="w-full h-full bg-cover bg-center contrast-[1.1]"
+                  style={{
+                    backgroundImage: `url(${src})`,
+                    // grayscaleを削除し、青いフィルターを重ねる
+                    filter:
+                      "sepia(60%) hue-rotate(80deg) saturate(40%) brightness(0.6)",
+                    // "sepia(100%) hue-rotate(190deg) saturate(150%) brightness(0.7)",
+                  }}
+                />
+                {/* 写真の上に、さらに薄い青色の膜を張る */}
+                <div className="absolute inset-0 bg-[#1e3a8a]/30 mix-blend-overlay" />
+              </div>
+            ))}
+          </div>
 
+          {/* 下部のグラデーションも「黒」ではなく「深い青」へ */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/40 via-transparent to-[#0f172a]/80" />
+
+          {/* さらに質感を出すためのドットパターン（お好みで） */}
+          <div
+            className="absolute inset-0 opacity-[0.15]"
+            style={{
+              backgroundImage: `radial-gradient(#22d3ee 0.5px, transparent 0.5px)`,
+              backgroundSize: "20px 20px",
+            }}
+          />
+        </div>
         {/* 粒子レイヤー */}
-        {isAnimating && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          {/* --- 粒子（収束アニメーション） --- */}
+          {isAnimating && (
             <div className="relative w-0 h-0">
               {items.map((i) => {
-                // 1. ここで座標を計算（この中なら sx, sy が使えます）
                 const angle = i * 137.5;
                 const radius = Math.sqrt(i) * 35;
                 const sx = Math.cos(angle * (Math.PI / 180)) * radius;
                 const sy = Math.sin(angle * (Math.PI / 180)) * radius;
-
                 return (
                   <div
-                    key={i}
+                    key={`p-${i}`}
                     className="particle"
                     style={
                       {
@@ -49,41 +86,76 @@ export default function Home() {
                         height: `${(i % 5) + 2}px`,
                         left: `${sx}px`,
                         top: `${sy}px`,
-                        animationDelay: `${(i % 50) * 0.03}s`,
-                        // 2. カスタムプロパティにも sx, sy を渡す
+                        animationDelay: `${(i % 50) * 0.06}s`, // 少し速く
                         "--sx": `${sx}px`,
                         "--sy": `${sy}px`,
-                        "--ex": `${((i % 11) - 5) * 4}px`,
-                        "--ey": `${((i % 7) - 3) * 4}px`,
-                      } as React.CSSProperties
-                    } // 型エラー除け
+                      } as any
+                    }
                   />
                 );
-              })}{" "}
+              })}
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* テキストレイヤー */}
-        <div className="relative z-20 text-center px-6 pointer-events-none">
-          <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter drop-shadow-2xl animate-title-appearance">
-            {siteConfig.companyName}
+        {/* --- テキストレイヤー --- */}
+        <div
+          className="relative z-20 text-center px-6 pointer-events-none"
+          style={{ perspective: "1000px" }}
+        >
+          <h1 className="text-white text-5xl md:text-7xl font-extrabold tracking-tighter mb-10">
+            {siteConfig.heroTagline.split("").map((char, index) => {
+              const angle = Math.random() * Math.PI * 2;
+              const dist = 1200; // 飛来距離を少し伸ばしてスピード感を強調
+              const fx = Math.cos(angle) * dist;
+              const fy = Math.sin(angle) * dist;
+              return (
+                <span
+                  key={`ht-${index}`}
+                  className="animate-char-fly"
+                  style={
+                    {
+                      /* 1.0s 開始だったのを 0.3s に大幅前倒し。
+                       粒子が「パッ」と出た直後から文字が飛び込み始めます。
+                    */
+                      animationDelay: `${0.3 + index * 0.05}s`,
+                      "--fx": `${fx}px`,
+                      "--fy": `${fy}px`,
+                    } as any
+                  }
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              );
+            })}
           </h1>
 
-          <p className="text-cyan-400 mt-4 text-sm md:text-xl tracking-[0.3em] font-light">
-            {siteConfig.description.split("").map((char, index) => (
-              <span
-                key={index}
-                className="char-fade"
-                style={{
-                  // 文字が出るタイミングを調整
-                  animationDelay: `${1.8 + index * 0.05}s`,
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
-          </p>
+          <div className="space-y-4">
+            {/* 全体のテンポに合わせて日本語の出現も早めます */}
+            <p className="text-cyan-400 text-lg md:text-2xl tracking-[0.2em] font-medium">
+              {siteConfig.description1.split("").map((char, index) => (
+                <span
+                  key={`d1-${index}`}
+                  className="char-fade"
+                  style={{ animationDelay: `${2.2 + index * 0.04}s` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+            </p>
+            <p className="text-white/60 text-sm md:text-lg tracking-[0.1em] font-light">
+              {siteConfig.description2.split("").map((char, index) => (
+                <span
+                  key={`d2-${index}`}
+                  className="char-fade"
+                  style={{ animationDelay: `${3.2 + index * 0.04}s` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+            </p>
+          </div>
         </div>
       </section>
       {/* 紹介セクション */}
