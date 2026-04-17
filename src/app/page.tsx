@@ -11,64 +11,85 @@ export default function Home() {
   const items = useMemo(() => Array.from({ length: 200 }, (_, i) => i), []);
 
   useEffect(() => {
-    // 3.5秒後に粒子の描画を停止（演出完了）
-    const timer = setTimeout(() => setIsAnimating(false), 3500);
+    // 文字が全部出終わるまで（1.8s + 文字数分）待つように少し延長
+    const timer = setTimeout(() => setIsAnimating(false), 5000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <main className="relative w-full bg-[#0F172A]">
       <section className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
-        {/* 1. 背景：じわっと明るくなる */}
+        {/* 背景：クラス名が正しくついているかチェック */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center animate-bg-fadein"
           style={{
             backgroundImage: `url(${siteConfig.placeholder?.hero || ""})`,
-            opacity: 0.4,
+            // インラインの opacity を削除するか、CSSのアニメーションと競合しないようにします
           }}
         />
 
-        {/* 2. 粒子レイヤー：演出中だけ表示 */}
+        {/* 粒子レイヤー */}
         {isAnimating && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <div className="relative w-0 h-0">
-              {items.map((i) => {
-                const angle = i * 137.5;
-                const radius = Math.sqrt(i) * 35;
-                const sx = Math.cos(angle * (Math.PI / 180)) * radius;
-                const sy = Math.sin(angle * (Math.PI / 180)) * radius;
-
-                return (
-                  <div
-                    key={i}
-                    className="particle"
-                    style={
-                      {
-                        width: `${(i % 4) + 2}px`,
-                        height: `${(i % 4) + 2}px`,
-                        left: `${sx}px`,
-                        top: `${sy}px`,
-                        animationDelay: `${(i % 50) * 0.03}s`,
-                        "--sx": `${sx}px`,
-                        "--sy": `${sy}px`,
-                        "--ex": `${((i % 11) - 5) * 4}px`,
-                        "--ey": `${((i % 7) - 3) * 4}px`,
-                      } as any
-                    }
-                  />
-                );
-              })}
+              {items.map((i) => (
+                <div
+                  key={i}
+                  className="particle"
+                  style={
+                    {
+                      width: `${(i % 4) + 2}px`,
+                      height: `${(i % 4) + 2}px`,
+                      left: `${
+                        Math.cos(i * 137.5 * (Math.PI / 180)) *
+                        Math.sqrt(i) *
+                        35
+                      }px`,
+                      top: `${
+                        Math.sin(i * 137.5 * (Math.PI / 180)) *
+                        Math.sqrt(i) *
+                        35
+                      }px`,
+                      animationDelay: `${(i % 50) * 0.03}s`,
+                      "--sx": `${
+                        Math.cos(i * 137.5 * (Math.PI / 180)) *
+                        Math.sqrt(i) *
+                        35
+                      }px`,
+                      "--sy": `${
+                        Math.sin(i * 137.5 * (Math.PI / 180)) *
+                        Math.sqrt(i) *
+                        35
+                      }px`,
+                      "--ex": `${((i % 11) - 5) * 4}px`,
+                      "--ey": `${((i % 7) - 3) * 4}px`,
+                    } as any
+                  }
+                />
+              ))}
             </div>
           </div>
         )}
 
-        {/* 3. テキストレイヤー：粒子に呼応して現れる */}
+        {/* テキストレイヤー */}
         <div className="relative z-20 text-center px-6 pointer-events-none">
           <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter drop-shadow-2xl animate-title-appearance">
             {siteConfig.companyName}
           </h1>
-          <p className="text-cyan-400 mt-4 text-sm md:text-xl tracking-[0.3em] font-light animate-desc-appearance">
-            {siteConfig.description}
+
+          <p className="text-cyan-400 mt-4 text-sm md:text-xl tracking-[0.3em] font-light">
+            {siteConfig.description.split("").map((char, index) => (
+              <span
+                key={index}
+                className="char-fade"
+                style={{
+                  // 文字が出るタイミングを調整
+                  animationDelay: `${1.8 + index * 0.05}s`,
+                }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
           </p>
         </div>
       </section>
