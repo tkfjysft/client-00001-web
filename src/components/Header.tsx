@@ -21,21 +21,21 @@ export const Header = () => {
   }, []);
 
   return (
+	<>
     <header
-      className={`fixed top-0 w-full z-50 flex justify-center transition-all duration-500 ${
+	className={`fixed top-0 w-full z-50 flex justify-center transition-all duration-500 ${
         isScrolled
           ? "bg-primary/90 backdrop-blur-md py-4 shadow-lg" // スクロール後の色
-          : "bg-transparent py-8" // トップにいる時の透明
+          : "bg-transparent py-2" // トップにいる時の透明
       }`}
       style={{ height: "60px" }}
-    >
-      <div className="fixed top-0 w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15">
+	  >
+      <div className="fixed top-0 w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
         {/* ロゴ部分 */}
         <Link
           href="/"
-          className="h-12 md:h-14 flex items-center flex-col items-center justify-center overflow-visible"
+          className="h-12 md:h-14 flex flex-col items-center justify-center overflow-visible"
         >
-          {/* ロゴの高さを 60px に固定。これで今の「半分」くらいになるはずです */}
           <Logo style={{ height: "60px", width: "auto" }} className="block" />
         </Link>
 
@@ -65,32 +65,38 @@ export const Header = () => {
           >
             Contact
           </Link>
-        </div>
-
-        {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
-        <button
-          className="md:hidden p-2 text-white"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Menu"
-        >
-          <div className="w-6 h-4.5 relative flex flex-col justify-between">
-            <span
-              className={`w-full h-0.5 bg-current transition-all ${isOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`w-full h-0.5 bg-current transition-all ${isOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`w-full h-0.5 bg-current transition-all ${isOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </div>
-        </button>
       </div>
 
-      {/* スマホ用：スライドメニュー */}
+
+
+		</div>
+    </header>
+        {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
+		<div className="fixed left-[25%] w-[75%] px-8 py-4 flex justify-end z-10000">
+        	<button
+       			className="md:hidden text-white"
+       			onClick={() => setIsOpen(!isOpen)}
+       			aria-label="Menu"
+        >
+        		<div className="w-6 h-4.5 relative flex flex-col justify-between">
+        		  <span
+        		    className={`w-full h-0.5 bg-current transition-all ${isOpen ? "rotate-45 translate-y-2 text-black" : ""}`}
+        		  />
+        		  <span
+        		    className={`w-full h-0.5 bg-current transition-all ${isOpen ? "opacity-0 text-black" : ""}`}
+        		  />
+        		  <span
+        		    className={`w-full h-0.5 bg-current transition-all ${isOpen ? "-rotate-45 -translate-y-2 text-black" : ""}`}
+        		  />
+        		</div>
+        	</button>
+		</div>
+
+
+	      {/* スマホ用：スライドメニュー */}
       <div
         className={`
-        fixed inset-0 top-16 bg-black/95 z-40 transition-transform duration-300 md:hidden
+        fixed top-0 right-0 bottom-0 z-[100] w-[65%] bg-white/95 z-400 transition-transform duration-300 md:hidden
         ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
       >
@@ -100,13 +106,13 @@ export const Header = () => {
               key={item.label}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="text-xl text-white font-light tracking-widest"
+              className="text-xl text-black font-light tracking-widest"
             >
               {item.label}
             </Link>
           ))}
         </nav>
       </div>
-    </header>
+	  </>
   );
 };
