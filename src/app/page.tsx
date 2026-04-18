@@ -1,7 +1,7 @@
 // src/app/page.tsx
 "use client";
 
-import { motion } from "framer-motion"; // ← これが必要です！
+// import { motion } from "framer-motion"; // ← これが必要です！
 import { siteConfig } from "@/config/site";
 import { useEffect, useState, useMemo } from "react";
 
@@ -9,6 +9,9 @@ export default function Home() {
   // 演出中（true）か、終了後（false）かを管理
   const [isAnimating, setIsAnimating] = useState(true);
   const items = Array.from({ length: 120 }, (_, i) => i);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => setIsClient(true), []);
 
   // 背景に使う写真の配列（4〜6枚程度がおすすめ）
   const backgroundImages = [
@@ -66,11 +69,12 @@ export default function Home() {
             }}
           />
         </div>
+
         {/* 粒子レイヤー */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           {/* --- 粒子（収束アニメーション） --- */}
           {isAnimating && (
-            <div className="relative w-0 h-0">
+            <div className="relative w-0 h-0 suppressHydrationWarning">
               {items.map((i) => {
                 const angle = i * 137.5;
                 const radius = Math.sqrt(i) * 35;
@@ -80,6 +84,7 @@ export default function Home() {
                   <div
                     key={`p-${i}`}
                     className="particle"
+                    suppressHydrationWarning={true} // ← ここにも追加！
                     style={
                       {
                         width: `${(i % 5) + 2}px`,
@@ -104,8 +109,15 @@ export default function Home() {
           className="relative z-20 text-center px-6 pointer-events-none"
           style={{ perspective: "1000px" }}
         >
-          <h1 className="text-white text-5xl md:text-7xl font-extrabold tracking-tighter mb-10">
+          <h1 className="text-white text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 [word-break:keep-all]">
             {siteConfig.heroTagline.split("").map((char, index) => {
+				// 1. もし文字が「/」だったら、改行ポイントを返す
+  if (char === "/"|| char === "/ ") {
+    return <wbr key={`wbr-${index}`} />;
+  }
+
+  // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
+
               const angle = Math.random() * Math.PI * 2;
               const dist = 1200; // 飛来距離を少し伸ばしてスピード感を強調
               const fx = Math.cos(angle) * dist;
@@ -113,7 +125,8 @@ export default function Home() {
               return (
                 <span
                   key={`ht-${index}`}
-                  className="animate-char-fly"
+                  className="animate-char-fly inline-block"
+                  suppressHydrationWarning={true}
                   style={
                     {
                       /* 1.0s 開始だったのを 0.3s に大幅前倒し。
@@ -122,6 +135,7 @@ export default function Home() {
                       animationDelay: `${0.3 + index * 0.05}s`,
                       "--fx": `${fx}px`,
                       "--fy": `${fy}px`,
+				whiteSpace: 'normal'
                     } as any
                   }
                 >
@@ -133,27 +147,46 @@ export default function Home() {
 
           <div className="space-y-4">
             {/* 全体のテンポに合わせて日本語の出現も早めます */}
-            <p className="text-cyan-400 text-lg md:text-2xl tracking-[0.2em] font-medium">
-              {siteConfig.description1.split("").map((char, index) => (
-                <span
-                  key={`d1-${index}`}
-                  className="char-fade"
-                  style={{ animationDelay: `${2.2 + index * 0.04}s` }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+            {/* 背景だけを少し暗くし、ぼかすレイヤー */}
+            <p className="text-cyan-100 text-base md:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] [word-break:keep-all]">
+              {siteConfig.description1.split("").map((char, index) => {
+                // 1. もし文字が「/」だったら、改行ポイントを返す
+                if (char === "/") {
+                  return <wbr key={`wbr-${index}`} />;
+                }
+                // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
+                return (
+                  <span
+                    key={`d1-${index}`}
+                    className="char-fade inline-block"
+                    style={{ animationDelay: `${2.2 + index * 0.04}s`,
+				whiteSpace: 'normal'
+				 }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                );
+              })}
             </p>
-            <p className="text-white/60 text-sm md:text-lg tracking-[0.1em] font-light">
-              {siteConfig.description2.split("").map((char, index) => (
-                <span
-                  key={`d2-${index}`}
-                  className="char-fade"
-                  style={{ animationDelay: `${3.2 + index * 0.04}s` }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+            <p className="text-cyan-100 text-base md:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] [word-break:keep-all]">
+              {siteConfig.description2.split("").map((char, index) => {
+                // 1. もし文字が「/」だったら、改行ポイントを返す
+                if (char === "/") {
+                  return <wbr key={`wbr-${index}`} />;
+                }
+                // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
+                return (
+                  <span
+                    key={`d1-${index}`}
+                    className="char-fade inline-block"
+                    style={{ animationDelay: `${2.2 + index * 0.04}s`,
+				whiteSpace: 'normal'
+				}}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                );
+              })}
             </p>
           </div>
         </div>

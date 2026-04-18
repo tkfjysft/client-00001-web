@@ -17,7 +17,7 @@ $bg-darker: #0f172a;
 
 html {
   /* 常に縦スクロールバーの領域を確保する */
-  overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 // アニメーションの定義
@@ -175,7 +175,13 @@ header {
   display: inline-block;
   opacity: 0;
   animation: char-fade-in 0.8s ease-out forwards;
+	/* 1つ目の影で「光彩」を、2つ目の影で「文字の輪郭」を確保 */
+  text-shadow: 
+    0 0 10px rgba(34, 211, 238, 0.5), /* 外側の光 */
+    0 0 7px rgba(4, 97, 111, 1),   /* 文字のすぐ裏にある濃い影 */
+    0 0 4px rgba(4, 97, 111, 1);   /* 文字のすぐ裏にある濃い影 */
 }
+
 
 /* 粒子の色も、背景に合わせて少し「発光感」を強めます */
 .particle {
@@ -275,11 +281,8 @@ main {
   }
 }
 
-.char-fade {
-  display: inline-block;
-  opacity: 0;
-  animation: char-fade-in 0.8s ease-out forwards;
-}
+
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
