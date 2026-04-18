@@ -10,6 +10,34 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 const [isDarkBg, setIsDarkBg] = useState(false);
 
+	const lineColorTop = (() => {
+		if(isOpen){
+			// alert('o' + isDarkBg);
+			return "rotate-45 translate-y-2 text-[#1e293b]";
+		} else {
+			// alert('c' + isDarkBg);
+			return isDarkBg ? "text-white" : "text-[#1e293b]";
+		}
+	})();
+
+	const lineColorMiddle = (() => {
+		if(isOpen){
+			return "opacity-0";
+		} else {
+			return isDarkBg ? "text-white" : "text-[#1e293b]";
+		}
+	})();
+
+		const lineColorBottom = (() => {
+		if(isOpen){
+			// alert('o' + isDarkBg);
+			return "-rotate-45 -translate-y-2 text-[#1e293b]";
+		} else {
+			// alert('c' + isDarkBg);
+			return isDarkBg ? "text-white" : "text-[#1e293b]";
+		}
+	})();
+
   // ブラウザのスクロールを監視する
   useEffect(() => {
     const handleScroll = () => {
@@ -75,7 +103,7 @@ useEffect(() => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm hover:text-white transition-colors"
+                className="transition-colors hover:scale-105 transition-all active:scale-95"
               >
                 {item.label}
               </Link>
@@ -86,8 +114,8 @@ useEffect(() => {
           <Link
             href="/contact"
             className="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full 
-                   bg-gradient-to-r from-blue-600 via--[#1e293b] to-[#1e293b] 
-                   text-white text-sm font-bold shadow-lg shadow-purple-500/20 
+                   bg-[#0ea5e9]
+                   text-white font-bold shadow-lg shadow-purple-500/20 
                    hover:scale-105 transition-all active:scale-95"
           >
             Contact
@@ -107,13 +135,13 @@ useEffect(() => {
         >
         		<div className="w-6 h-4.5 relative flex flex-col justify-between">
         		  <span
-        		    className={`w-full h-0.5 bg-current transition-all ${isOpen ? "rotate-45 translate-y-2 text-black" : ""}`}
+        		    className={`w-full h-0.5 bg-current transition-all ${lineColorTop}`}
         		  />
         		  <span
-        		    className={`w-full h-0.5 bg-current transition-all ${isOpen ? "opacity-0 text-black" : ""}`}
+        		    className={`w-full h-0.5 bg-current transition-all ${lineColorMiddle}`}
         		  />
         		  <span
-        		    className={`w-full h-0.5 bg-current transition-all ${isOpen ? "-rotate-45 -translate-y-2 text-black" : ""}`}
+        		    className={`w-full h-0.5 bg-current transition-all ${lineColorBottom}`}
         		  />
         		</div>
         	</button>
@@ -133,7 +161,7 @@ useEffect(() => {
               key={item.label}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="text-xl text-black font-light tracking-widest"
+              className="text-xl text-black font-light tracking-widest hover:scale-105 transition-all active:scale-95"
             >
               {item.label}
             </Link>
