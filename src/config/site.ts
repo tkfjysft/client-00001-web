@@ -15,13 +15,10 @@ export const siteConfig = {
     address: "東京都〇〇区...",
   },
   navItems: [
-    { label: "gNaviMenu01", href: "#menu01" },
-    { label: "gNaviMenu02", href: "#menu02" },
-    { label: "gNaviMenu03", href: "#menu03" },
-    { label: "gNaviMenu04", href: "#menu04" },
-    { label: "gNaviMenu05", href: "#menu05" },
-    { label: "gNaviMenu06", href: "#menu06" },
-    { label: "gNaviMenu07", href: "#menu07" },
+    { label: "Service", href: "#service" },
+    { label: "Products", href: "#products" },
+    { label: "Company", href: "#company" },
+    { label: "Recruit", href: "#recruit" },
   ],
   theme: {
     baseColor: "#F8FAFC",

@@ -19,7 +19,7 @@ export const Logo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
         </linearGradient>
       </defs>
 
-      <g transform="translate(200, 20)">
+      <g transform="translate(200, 45)">
         {/* 1. シンボルマーク：サイズを適正化 */}
         <g fill={`url(#${gradientId})`} transform="translate(-45, 0)">
           <rect x="0" y="8" width="28" height="28" rx="6" />
