@@ -103,6 +103,8 @@ export default function Home() {
           )}
         </div>
 
+
+
         {/* テキストレイヤー */}
         {/* --- テキストレイヤー --- */}
         <div

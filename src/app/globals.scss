@@ -15,6 +15,16 @@ $bg-darker: #0f172a;
   --color-accent: #{$accent-color}; // SCSS変数の展開
 }
 
+
+
+@theme {
+  /* ここで md の定義を上書きします */
+  /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
+  --breakpoint-md: 960px;
+}
+
+
+
 html {
   /* 常に縦スクロールバーの領域を確保する */
 	overflow-y: scroll;
