@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       {/* classNameに "bg-primary" または直接色を指定 */}
-      <body className="bg-[#0F172A]">
+      <body>
         <Header /> {/* ここに追加 */}
         {children}
       </body>

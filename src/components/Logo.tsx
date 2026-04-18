@@ -1,7 +1,37 @@
 // src/components/Logo.tsx
+"use client";
+
+import { useState, useEffect } from "react";
 
 export const Logo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   const gradientId = "logo-gradient-balanced";
+const [isDarkBg, setIsDarkBg] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const x = window.innerWidth / 2;
+    const y = 100; 
+
+    const elements = document.elementsFromPoint(x, y);
+    const section = elements.find(el => el.closest('[data-bg]'))?.closest('[data-bg]');
+    
+    // trim() を追加して、余計な空白を消します
+    const bgType = section?.getAttribute('data-bg')?.trim();
+
+    // デバッグログをもう少し詳細にします
+    console.log(`判定中... bgType: "${bgType}" / 比較結果: ${bgType === 'dark'}`);
+
+    if (bgType === 'dark') {
+      setIsDarkBg(true);
+    } else {
+      setIsDarkBg(false);
+    }
+  };
+
+  handleScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
   return (
     <svg
@@ -38,7 +68,8 @@ export const Logo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
           fontFamily="Arial Black, Gadget, sans-serif"
           fontWeight="900"
           fontSize="70" 
-          fill="white"
+/* ここで直接色を切り替えます */
+  fill={isDarkBg ? "#ffffff" : "#1e293b"}
           textAnchor="middle"
           letterSpacing="-3"
         >

@@ -4,6 +4,11 @@
 // import { motion } from "framer-motion"; // ← これが必要です！
 import { siteConfig } from "@/config/site";
 import { useEffect, useState, useMemo } from "react";
+import  MessageSection  from "@/components/MessageSection";
+import  ServiceSection  from "@/components/ServiceSection";
+import  ProductsSection  from "@/components/ProductsSection";
+import  Footer  from "@/components/Footer";
+import  ScrollToTop  from "@/components/ScrollToTop";
 
 export default function Home() {
   // 演出中（true）か、終了後（false）かを管理
@@ -30,8 +35,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative w-full bg-[#0F172A]">
-      <section className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
+    <main className="relative w-full">
+      <section data-bg="dark" className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
         {/* --- 背景グリッドレイヤー --- */}
         <div className="absolute inset-0 z-0 animate-bg-fadein">
           {/* 写真のグリッド表示 */}
@@ -193,47 +198,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* 紹介セクション */}
-      <section className="py-24 px-6 max-w-5xl mx-auto text-center">
-        <h2 className="text-sm uppercase tracking-[0.3em] text-[#0EA5E9] font-bold mb-4">
-          About Us
-        </h2>
-        <p className="text-3xl md:text-4xl font-semibold leading-tight mb-8">
-          {siteConfig.englishName}
-        </p>
-        <div className="h-1 w-20 bg-[#0EA5E9] mx-auto mb-8"></div>
-        <p className="text-lg text-gray-600 leading-relaxed">
-          最新のテクノロジーと長年の経験を融合させ、
-          <br className="hidden md:block" />
-          お客様のビジネスに最適なソリューションを提供します。
-        </p>
-      </section>
-      {/* 代表メッセージセクション */}
-      <section className="py-24 bg-white px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-base p-10 md:p-16 rounded-3xl border border-gray-100 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -mr-16 -mt-16"></div>
 
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <span className="w-8 h-[2px] bg-accent"></span>
-              Message
-            </h2>
-
-            <p className="text-xl italic leading-relaxed text-primary/80 mb-10 relative z-10">
-              「{siteConfig.description}」
-            </p>
-
-            <div className="flex items-center justify-end gap-4">
-              <div className="text-right">
-                <p className="text-sm text-gray-500 mb-1">Representative</p>
-                <p className="text-xl font-bold tracking-wider">
-                  {siteConfig.ownerName}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+	  <MessageSection />
+    <ServiceSection />
+	    <ProductsSection />
+	    <Footer />
+{/* ページの最上部へのスムーススクロールボタン */}
+<ScrollToTop />
     </main>
   );
 }

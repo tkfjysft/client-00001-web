@@ -8,6 +8,7 @@ import { Logo } from "./Logo";
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+const [isDarkBg, setIsDarkBg] = useState(false);
 
   // ブラウザのスクロールを監視する
   useEffect(() => {
@@ -20,14 +21,40 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+useEffect(() => {
+  const handleScroll = () => {
+    const x = window.innerWidth / 2;
+    const y = 100; 
+
+    const elements = document.elementsFromPoint(x, y);
+    const section = elements.find(el => el.closest('[data-bg]'))?.closest('[data-bg]');
+    
+    // trim() を追加して、余計な空白を消します
+    const bgType = section?.getAttribute('data-bg')?.trim();
+
+    // デバッグログをもう少し詳細にします
+    console.log(`判定中... bgType: "${bgType}" / 比較結果: ${bgType === 'dark'}`);
+
+    if (bgType === 'dark') {
+      setIsDarkBg(true);
+    } else {
+      setIsDarkBg(false);
+    }
+  };
+
+  handleScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
   return (
 	<>
     <header
-	className={`fixed top-0 w-full z-50 flex justify-center transition-all duration-500 ${
+	className={`fixed top-0 w-full z-50 flex justify-center transition-all ${
         isScrolled
           ? "bg-primary/90 backdrop-blur-md py-4 shadow-lg" // スクロール後の色
           : "bg-transparent py-2" // トップにいる時の透明
-      }`}
+      } ${isDarkBg ? 'text-white' : 'text-[#1e293b]'}`}
       style={{ height: "60px" }}
 	  >
       <div className="fixed top-0 w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
@@ -48,7 +75,7 @@ export const Header = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm text-gray-300 hover:text-white transition-colors"
+                className="text-sm hover:text-white transition-colors"
               >
                 {item.label}
               </Link>
@@ -59,7 +86,7 @@ export const Header = () => {
           <Link
             href="/contact"
             className="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full 
-                   bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
+                   bg-gradient-to-r from-blue-600 via--[#1e293b] to-[#1e293b] 
                    text-white text-sm font-bold shadow-lg shadow-purple-500/20 
                    hover:scale-105 transition-all active:scale-95"
           >
