@@ -58,20 +58,12 @@ html {
   }
 }
 
-header {
-  // 上部から下に向かって、うっすらと黒いグラデーションをかける
-  // これにより、真っ白な写真が来ても文字が見えるようになります
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+
 
   .text-white {
     // ぼかしの少ない濃い影ではなく、広範囲に薄く影を落とす
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   }
-}
 
 @keyframes fade-up {
   from {

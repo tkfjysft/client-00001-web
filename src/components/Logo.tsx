@@ -21,9 +21,9 @@ export const Logo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
       const bgType = section?.getAttribute("data-bg")?.trim();
 
       // デバッグログをもう少し詳細にします
-      console.log(
-        `判定中... bgType: "${bgType}" / 比較結果: ${bgType === "dark"}`,
-      );
+    //   console.log(
+    //     `判定中... bgType: "${bgType}" / 比較結果: ${bgType === "dark"}`,
+    //   );
 
       if (bgType === "dark") {
         setIsDarkBg(true);
