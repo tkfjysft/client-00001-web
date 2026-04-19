@@ -97,17 +97,22 @@ export const Header = () => {
     };
   }, []);
 
+  //navの文字色、背景色の濃淡によって文字色を変える
+  const navTextColor = isDarkBg
+    ? "text-white [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+    : "text-[#1e293b] [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+
   return (
     <>
       <header
         className={`fixed top-0 w-full z-50 flex flex-col items-center justify-center transition-all
 		h-15 md:h-20
 		${
-      	isPosTop
+      isPosTop
         ? "bg-transparent py-2" // スクロールしていない、トップにいる時の透明
         : "backdrop-blur-md shadow-lg" // スクロールしている、背景をぼかしてドロップシャドウいれる
-		}`}
-		>
+    }`}
+      >
         <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
           {/* ロゴ部分 */}
           <Link
@@ -121,23 +126,37 @@ export const Header = () => {
           {/* gap-8 または gap-12 くらいにすると、ボタンとの距離が程よく保たれます */}
           <div className="flex px-4 h-16 items-center gap-8 md:gap-8">
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
-            <nav
-              className={`hidden md:flex items-center gap-6
-				${
-				isDarkBg
-				? "text-white [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-				: "text-[#1e293b] [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]"
-				}	
-				`}
-            >
+            <nav className={`hidden md:flex items-center gap-6`}>
               {siteConfig.navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="transition-colors hover:scale-105 transition-all active:scale-95"
-                >
-                  {item.label}
-                </Link>
+                <div key={item.label} className="relative group">
+                  {/* メインのリンク */}
+                  <Link
+                    href={item.href}
+                    className={`ext-black font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1 ${navTextColor}`}
+                  >
+                    {item.label}
+                    {/* 子要素がある場合に下矢印アイコンなどを出す（任意） */}
+                    {item.children && <span className="text-xs">▼</span>}
+                  </Link>
+
+                  {/* サブメニューがある場合のみレンダリング */}
+                  {item.children && (
+                    <div className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <ul className="bg-white border border-gray-100 shadow-xl py-2 min-w-[200px]">
+                        {item.children.map((child) => (
+                          <li key={child.label}>
+                            <Link
+                              href={child.href}
+                              className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
 
@@ -185,14 +204,35 @@ export const Header = () => {
       >
         <nav className="flex flex-col items-center pt-10 gap-8">
           {siteConfig.navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-xl text-black font-light tracking-widest hover:scale-105 transition-all active:scale-95"
-            >
-              {item.label}
-            </Link>
+            <div key={item.label} className="relative group">
+              {/* メインのリンク */}
+              <Link
+                href={item.href}
+                className={`ext-black font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1`}
+              >
+                {item.label}
+                {/* 子要素がある場合に下矢印アイコンなどを出す（任意） */}
+                {item.children && !isOpen && <span className="text-xs">▼</span>}
+              </Link>
+
+              {/* サブメニューがある場合のみレンダリング */}
+              {item.children && (
+                <div className="pt-2 group-hover:visible transition-all duration-300 z-50">
+                  <ul className="">
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <Link
+                          href={child.href}
+                          className="block py-1 text-sm text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           ))}
         </nav>
       </div>

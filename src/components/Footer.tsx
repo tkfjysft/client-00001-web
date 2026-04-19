@@ -1,6 +1,9 @@
 "use client";
 
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
 import { Container } from "./Container";
+import  SnsLinks  from "@/components/SnsLinks";
 
 export default function Footer() {
   return (
@@ -18,13 +21,13 @@ export default function Footer() {
         ></iframe>
 
         {/* マップの上に浮かぶ拠点カード (MessageSectionのデザインを継承) */}
-        <div className="absolute top-10 left-10 p-8 bg-[#1e293b] border-l-4 border-[#0ea5e9] hidden md:block">
-          <h3 className="text-xl font-bold mb-2">Head Office</h3>
-          <p className="text-[#f8fafc]/60 text-sm leading-relaxed">
-            〒100-0005 <br />
-            東京都千代田区丸の内1丁目
-            <br />
-            SERVICTYビル 8F
+        <div className="absolute top-10 left-10 p-7 bg-[#1e293b] border-l-4 border-[#0ea5e9] hidden md:block">
+          <h3 className="text-base font-bold mb-2">{siteConfig.companyName}</h3>
+          <p className="text-[#f8fafc]/80 text-sm leading-relaxed">
+            〒{siteConfig.contact.postcode}<br />
+            {siteConfig.contact.address}<br />
+			<span className="text-xs">tel</span>&nbsp;&nbsp;{siteConfig.contact.tel}<br />
+			fax&nbsp;:&nbsp;{siteConfig.contact.fax}
           </p>
         </div>
       </div>
@@ -38,57 +41,47 @@ export default function Footer() {
               <h2 className="text-2xl font-bold tracking-tighter">
                 SERVICTY<span className="text-[#0ea5e9]">.</span>
               </h2>
-              <p className="text-[#f8fafc]/40 text-sm leading-relaxed max-w-sm">
+				<ul className="text-[#f8fafc]/90 text-sm leading-relaxed max-w-sm">
+                <li>〒{siteConfig.contact.postcode}</li>
+                <li>{siteConfig.contact.address}</li>
+                <li>tel&nbsp;:&nbsp;{siteConfig.contact.tel}</li>
+                <li>fax&nbsp;:&nbsp;{siteConfig.contact.fax}</li>
+              	</ul>
+              <p className="text-[#f8fafc]/55 text-sm leading-relaxed max-w-sm">
                 多様な技術を駆使し、ビジネスの課題をシンプルな解決策へと導くデジタルパートナー。
                 確かな技術力と柔軟な思考で、次世代のスタンダードを共創します。
               </p>
+			  <SnsLinks />
             </div>
 
             {/* リンク集 (2列) */}
-            <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8 text-sm">
+            <div className="text-sm col-span-7">
               <div className="space-y-4">
                 <h4 className="font-bold text-[#0ea5e9]">Company</h4>
-                <ul className="space-y-2 text-[#f8fafc]/60">
-                  <li className="hover:text-white cursor-pointer">About Us</li>
-                  <li className="hover:text-white cursor-pointer">Service</li>
-                  <li className="hover:text-white cursor-pointer">Products</li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <h4 className="font-bold text-[#0ea5e9]">Support</h4>
-                <ul className="space-y-2 text-[#f8fafc]/60">
-                  <li className="hover:text-white cursor-pointer">
-                    Privacy Policy
-                  </li>
-                  <li className="hover:text-white cursor-pointer">
-                    Terms of Use
-                  </li>
-                  <li className="hover:text-white cursor-pointer">Contact</li>
-                </ul>
+					<nav className="flex flex-col items-center pt-10 gap-8">
+					{siteConfig.navItems.map((item) => (
+						<Link
+						key={item.label}
+						href={item.href}
+						className="text-xl text-black font-light tracking-widest hover:scale-105 transition-all active:scale-95"
+						>
+						{item.label}
+						</Link>
+					))}
+					</nav>
+
               </div>
             </div>
           </div>
 
           {/* コピーライトとSNSリンク */}
-          <div className="mt-20 pt-8 border-t border-[#f8fafc]/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[#f8fafc]/30 text-xs font-mono">
-            <p>© 2026 SERVICTY INC. ALL RIGHTS RESERVED.</p>
+          <div className="mt-20 pt-8 flex flex-start border-t border-[#f8fafc]/5 flex flex-col gap-6 text-[#f8fafc]/40 text-sm font-mono">
 
-            <div className="flex gap-8 items-center">
-              {/* 馴染みのあるSNSに最適化 */}
-              <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-                X (Twitter)
-              </a>
-              <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-                LINE
-              </a>
-              {/* もし技術力をアピールするならGitHubもおすすめですが、なくてもOKです */}
-              <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-                GitHub
-              </a>
-            </div>
+
+
+			            <small>© 2026 SERVICTY INC. ALL RIGHTS RESERVED.</small>
+
+
           </div>
         </div>
       </Container>

@@ -34,7 +34,7 @@ export default function ScrollToTop() {
         <button
           onClick={scrollToTop}
           /* 3. デザインとアニメーション（Tailwind） */
-          className="fixed bottom-8 right-8 z-50 p-4 bg-white border border-[#0ea5e9] border-[2px] text-[#0ea5e9] shadow-lg transition-all duration-300 ease-in-out hover:bg-white hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] focus:ring-offset-2 rounded-full"
+          className="fixed bottom-4 right-4 z-50 p-4 bg-white border border-[#0ea5e9] border-[2px] text-[#0ea5e9] shadow-lg transition-all duration-300 ease-in-out hover:bg-white hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] focus:ring-offset-2 rounded-full"
           aria-label="ページ最上部へ戻る"
         >
           {/* 4. 矢印アイコン（SVG） */}
