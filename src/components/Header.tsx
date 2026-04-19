@@ -147,7 +147,7 @@ export const Header = () => {
               className="hidden md:inline-flex items-center justify-center
 				   px-6 py-2.5 rounded-full 
                    bg-[#0ea5e9]
-                   text-white font-bold shadow-lg shadow-purple-500/20 
+                   text-white font-bold shadow-lg shadow-black-500/20 
                    hover:scale-105 transition-all active:scale-95"
             >
               Contact
@@ -158,7 +158,7 @@ export const Header = () => {
       {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
       <div className="fixed left-[25%] w-[75%] px-8 py-4.5 flex justify-end z-10000">
         <button
-          className="md:hidden text-white cursor-pointer"
+          className="md:hidden cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menu"
         >
