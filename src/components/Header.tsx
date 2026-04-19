@@ -78,18 +78,19 @@ useEffect(() => {
   return (
 	<>
     <header
-	className={`fixed top-0 w-full z-50 flex justify-center transition-all ${
+	className={`fixed top-0 w-full z-50 flex flex-col items-center justify-center transition-all
+		h-15 md:h-20
+		${
         isScrolled
-          ? "bg-primary/90 backdrop-blur-md py-4 shadow-lg" // スクロール後の色
+          ? "bg-primary/90 backdrop-blur-md shadow-lg" // スクロール後の色
           : "bg-transparent py-2" // トップにいる時の透明
       } ${isDarkBg ? 'text-white' : 'text-[#1e293b]'}`}
-      style={{ height: "60px" }}
 	  >
-      <div className="fixed top-0 w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
+      <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
         {/* ロゴ部分 */}
         <Link
           href="/"
-          className="h-12 md:h-14 flex flex-col items-center justify-center overflow-visible"
+          className="h-12 md:h-16 md:pl-2 flex flex-col items-center justify-center overflow-visible"
         >
           <Logo style={{ height: "60px", width: "auto" }} className="block" />
         </Link>
@@ -113,7 +114,8 @@ useEffect(() => {
           {/* --- 追加：お問い合わせボタン --- */}
           <Link
             href="/contact"
-            className="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full 
+            className="hidden md:inline-flex items-center justify-center
+				   px-6 py-2.5 rounded-full 
                    bg-[#0ea5e9]
                    text-white font-bold shadow-lg shadow-purple-500/20 
                    hover:scale-105 transition-all active:scale-95"
@@ -127,9 +129,9 @@ useEffect(() => {
 		</div>
     </header>
         {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
-		<div className="fixed left-[25%] w-[75%] px-8 py-4 flex justify-end z-10000">
+		<div className="fixed left-[25%] w-[75%] px-8 py-4.5 flex justify-end z-10000">
         	<button
-       			className="md:hidden text-white"
+       			className="md:hidden text-white cursor-pointer"
        			onClick={() => setIsOpen(!isOpen)}
        			aria-label="Menu"
         >

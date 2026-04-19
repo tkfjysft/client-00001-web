@@ -5,40 +5,44 @@ import { useState, useEffect } from "react";
 
 export const Logo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   const gradientId = "logo-gradient-balanced";
-const [isDarkBg, setIsDarkBg] = useState(false);
+  const [isDarkBg, setIsDarkBg] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    const x = window.innerWidth / 2;
-    const y = 100; 
+  useEffect(() => {
+    const handleScroll = () => {
+      const x = window.innerWidth / 2;
+      const y = 100;
 
-    const elements = document.elementsFromPoint(x, y);
-    const section = elements.find(el => el.closest('[data-bg]'))?.closest('[data-bg]');
-    
-    // trim() を追加して、余計な空白を消します
-    const bgType = section?.getAttribute('data-bg')?.trim();
+      const elements = document.elementsFromPoint(x, y);
+      const section = elements
+        .find((el) => el.closest("[data-bg]"))
+        ?.closest("[data-bg]");
 
-    // デバッグログをもう少し詳細にします
-    console.log(`判定中... bgType: "${bgType}" / 比較結果: ${bgType === 'dark'}`);
+      // trim() を追加して、余計な空白を消します
+      const bgType = section?.getAttribute("data-bg")?.trim();
 
-    if (bgType === 'dark') {
-      setIsDarkBg(true);
-    } else {
-      setIsDarkBg(false);
-    }
-  };
+      // デバッグログをもう少し詳細にします
+      console.log(
+        `判定中... bgType: "${bgType}" / 比較結果: ${bgType === "dark"}`,
+      );
 
-  handleScroll();
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+      if (bgType === "dark") {
+        setIsDarkBg(true);
+      } else {
+        setIsDarkBg(false);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 400 240" 
+      viewBox="0 0 400 240"
       // overflow-visibleは維持して、絶対に欠けないようにします
-      className={`overflow-visible ${props.className}`} 
+      className={`overflow-visible ${props.className}`}
       {...props}
     >
       <defs>
@@ -49,7 +53,7 @@ useEffect(() => {
         </linearGradient>
       </defs>
 
-      <g transform="translate(200, 45)">
+      <g transform="translate(200, 23)">
         {/* 1. シンボルマーク：サイズを適正化 */}
         <g fill={`url(#${gradientId})`} transform="translate(-45, 0)">
           <rect x="0" y="8" width="28" height="28" rx="6" />
@@ -67,9 +71,9 @@ useEffect(() => {
           y="160"
           fontFamily="Arial Black, Gadget, sans-serif"
           fontWeight="900"
-          fontSize="70" 
-/* ここで直接色を切り替えます */
-  fill={isDarkBg ? "#ffffff" : "#1e293b"}
+          fontSize="70"
+          /* ここで直接色を切り替えます */
+          fill={isDarkBg ? "#ffffff" : "#1e293b"}
           textAnchor="middle"
           letterSpacing="-3"
         >
@@ -77,7 +81,14 @@ useEffect(() => {
         </text>
 
         {/* 3. アクセントライン */}
-        <rect x="-100" y="175" width="200" height="6" fill={`url(#${gradientId})`} rx="3" />
+        <rect
+          x="-100"
+          y="175"
+          width="200"
+          height="6"
+          fill={`url(#${gradientId})`}
+          rx="3"
+        />
       </g>
     </svg>
   );

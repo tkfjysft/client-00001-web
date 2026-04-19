@@ -1,6 +1,21 @@
 // src/app/layout.tsx
-import { Header } from "@/components/Header"; // 追加
+import { Header } from "@/components/Header";
 import "./globals.scss";
+import { Jost, Noto_Sans_JP } from "next/font/google";
+
+// 1. 英字フォント：Jost (Futura系の幾何学的でモダンなフォント)
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // 標準、中太、太字
+  display: "swap",
+});
+
+// 2. 日本語フォント：Noto Sans JP (最も標準的で美しいゴシック体)
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -9,9 +24,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      {/* classNameに "bg-primary" または直接色を指定 */}
-      <body>
-        <Header /> {/* ここに追加 */}
+		{/* - className="antialiased" で文字を滑らかに。
+          - style属性で、英字(Jost)を先頭、日本語(Noto Sans)を次に指定。
+          - これにより、英数字はJost、日本語はNoto Sansが自動で適用されます。
+      	*/}
+		<body 
+			className="antialiased" 
+			style={{
+			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
+			}}>
+        <Header />
         {children}
       </body>
     </html>
