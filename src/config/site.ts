@@ -35,8 +35,17 @@ export const siteConfig = {
 			{label: "as a Service", href: "#products"},
 		]
 	 },
-    { label: "Products", href: "#products" },
-    { label: "Company", href: "#company" },
+    { label: "Products", href: "#products",
+		children: [
+			{label: "Integration", href: "#products"},
+			{label: "Oracle", href: "#products"},
+			{label: "各種ハードウェア", href: "#products"},
+		] },
+    { label: "Company", href: "#company",
+		children: [
+			{label: "Philosophy", href: "#products"},
+			{label: "overview", href: "#products"},
+		] },
     { label: "Recruit", href: "#recruit" },
   ]as NavItem[],
   theme: {

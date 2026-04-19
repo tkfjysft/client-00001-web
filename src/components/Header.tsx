@@ -211,8 +211,6 @@ export const Header = () => {
                 className={`ext-black font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1`}
               >
                 {item.label}
-                {/* 子要素がある場合に下矢印アイコンなどを出す（任意） */}
-                {item.children && !isOpen && <span className="text-xs">▼</span>}
               </Link>
 
               {/* サブメニューがある場合のみレンダリング */}
