@@ -21,10 +21,10 @@ export const siteConfig = {
     "私たちは、/止まらないシステムと、/終わらない進化を/追求し続けます。",
   url: "https://example.com",
   contact: {
-    postcode: "541-0041",
+    postcode: "*******",
     address: "大阪市中央区北浜1丁目1番9号",
-	    tel: "06-6232-3456",
-    	fax: "06-6232-3457",
+	    tel: "**-****-****",
+    	fax: "**-****-****",
     	email: "info@example.com",
   },
   navItems: [

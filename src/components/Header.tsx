@@ -203,22 +203,23 @@ export const Header = () => {
       `}
       >
         <nav className="flex flex-col items-center pt-10 gap-8">
+			<div>
           {siteConfig.navItems.map((item) => (
-            <div key={item.label} className="relative group">
+            <div key={item.label} className="mb-8">
               {/* メインのリンク */}
               <Link
                 href={item.href}
-                className={`ext-black font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1`}
+                className={`hover:scale-125 transition-all`}
               >
                 {item.label}
               </Link>
 
               {/* サブメニューがある場合のみレンダリング */}
               {item.children && (
-                <div className="pt-2 group-hover:visible transition-all duration-300 z-50">
+                <div className="pt-2 transition-all duration-300 z-50">
                   <ul className="">
                     {item.children.map((child) => (
-                      <li key={child.label}>
+                      <li key={child.label} className="ml-3">
                         <Link
                           href={child.href}
                           className="block py-1 text-sm text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
@@ -232,6 +233,7 @@ export const Header = () => {
               )}
             </div>
           ))}
+		  </div>
         </nav>
       </div>
     </>

@@ -17,6 +17,14 @@ const notoSansJP = Noto_Sans_JP({
   display: "swap",
 });
 
+export const metadata = {
+  // ...既存のメタデータ
+  formatDetection: {
+    telephone: false, // これでブラウザの勝手なリンク化を止めます
+  },
+};
+
+
 export default function RootLayout({
   children,
 }: {

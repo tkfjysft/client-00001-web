@@ -45,22 +45,37 @@ export default function ServiceSection() {
   return (
     <>
       {/* 背景: $bg-primary (#1e293b) */}
-      <section data-bg="dark" className="relative py-32 w-full bg-[#1e293b] text-[#f8fafc] overflow-hidden">
+      <section data-bg="dark" className="relative py-32 w-full bg-[#1e293b] text-[#f8fafc] overflow-hidden"
+	            style={{
+            clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
+          }}>
         <Container>
           {/* --- 背景写真エリア (台形の角度をさらに寝かせる) --- */}
-          <div
-            className="absolute top-0 right-0 w-[60%] h-full z-0 hidden lg:block"
-            style={{
-              // 角度を寝かせるために、左上のX座標を 40% くらいまで引き下げました
-              clipPath: "polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%)",
-              backgroundImage:
-                'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80")',
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1e293b] via-[#1e293b]/70 to-transparent" />
-          </div>
+
+{/* 2. 背景ユニット：画面に完全に固定（fixed） */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* 左側の紺色背景（画面の左60%くらいを占める） */}
+        <div 
+          className="absolute inset-0 bg-[#0f172a]" // 紺色
+          style={{
+            clipPath: "polygon(0 0, 70% 0, 20% 100%, 0 100%)",
+          }}
+        />
+
+        {/* 右側の画像背景（斜めに重なる） */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            clipPath: "polygon(70% 0%, 100% 0%, 100% 100%, 20% 100%)",
+          }}
+        />
+      </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0F1730] via-[#0f172a]/90 to-transparent" />
+
+          {/* </div> */}
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">
             {/* 見出しエリア：MessageSectionに近い、線を使ったミニマルな構成 */}
