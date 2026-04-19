@@ -45,7 +45,7 @@ export default function ServiceSection() {
   return (
     <>
       {/* 背景: $bg-primary (#1e293b) */}
-      <section data-bg="dark" className="relative py-32 w-full bg-[#1e293b] text-[#f8fafc] overflow-hidden"
+      <section id="service-section" data-bg="dark" className="relative py-32 w-full bg-[#1e293b] text-[#f8fafc] overflow-hidden"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
           }}>
@@ -58,7 +58,7 @@ export default function ServiceSection() {
         <div 
           className="absolute inset-0 bg-[#0f172a]" // 紺色
           style={{
-            clipPath: "polygon(0 0, 70% 0, 20% 100%, 0 100%)",
+            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
         />
 
@@ -66,21 +66,21 @@ export default function ServiceSection() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80")',
+            backgroundImage: 'url("/images/bg_02.webp")',
             backgroundSize: "cover",
             backgroundPosition: "center",
-            clipPath: "polygon(70% 0%, 100% 0%, 100% 100%, 20% 100%)",
+            clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
           }}
         />
       </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0F1730] via-[#0f172a]/90 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0F1730] via-[#0f172a]/95 to-[#0f172a]/80" />
 
           {/* </div> */}
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">
             {/* 見出しエリア：MessageSectionに近い、線を使ったミニマルな構成 */}
             <div className="flex items-center gap-4 mb-24">
-              <div className="w-12 h-[2px] bg-[#0ea5e9]" />
+              <div className="w-12 h-[2px] bg-[#0ea5e9] reveal" />
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
                 Our Services
               </h2>
@@ -109,7 +109,7 @@ export default function ServiceSection() {
 
                         <div className="flex flex-col items-start space-y-6">
                           {/* --- サービス用写真スペース (正円) --- */}
-                          <div className="w-24 h-24 rounded-full bg-[#f8fafc]/5 border border-[#f8fafc]/10 overflow-hidden flex-shrink-0 relative">
+                          <div className="w-24 h-24 rounded-full bg-[#f8fafc]/5 border border-[#f8fafc]/10 overflow-hidden flex-shrink-0 relative reveal">
                             {/* ここに後で写真を挿入 */}
                             <div className="absolute inset-0 bg-gradient-to-br from-[#0ea5e9]/20 to-transparent flex items-center justify-center text-[#0ea5e9] group-hover:scale-110 transition-transform duration-500">
                               {service.icon}

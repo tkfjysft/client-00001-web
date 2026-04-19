@@ -35,8 +35,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative w-full">
-      <section data-bg="dark" className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
+	<>
+	      <section data-bg="dark" className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden">
         {/* --- 背景グリッドレイヤー --- */}
         <div className="absolute inset-0 z-0 animate-bg-fadein">
           {/* 写真のグリッド表示 */}
@@ -199,12 +199,16 @@ export default function Home() {
         </div>
       </section>
 
+    <main className="relative w-full">
+
 	  <MessageSection />
     <ServiceSection />
 	    <ProductsSection />
-	    <Footer />
 {/* ページの最上部へのスムーススクロールボタン */}
-<ScrollToTop />
     </main>
+		    <Footer />
+<ScrollToTop />
+			</>
+
   );
 }

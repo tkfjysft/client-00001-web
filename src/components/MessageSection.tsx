@@ -1,15 +1,61 @@
 "use client";
 
 import { Container } from "./Container";
+import { useAutoAnimate } from "./hooks/useAutoAnimate";
 
 export default function MessageSection() {
+useAutoAnimate();
+
   return (
     <>
       {/* 背景: $bg-base (#f8fafc) */}
-      <section data-bg="light" className="py-24 w-full bg-[#f8fafc] border-y border-[#1e293b]/5">
+      <section id="message-section" data-bg="light" className="py-24 w-full bg-[#f8fafc] border-y border-[#1e293b]/5"
+	            style={{
+            clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
+          }}
+      >
         <Container>
-          <div className="max-w-6xl mx-auto px-6">
-            {/* 上部の装飾：細い直線とアクセントカラーの小さな矩形 */}
+
+
+{/* 2. 背景ユニット：画面に完全に固定（fixed） */}
+      <div className="fixed inset-0 z-1 pointer-events-none">
+        {/* 左側の紺色背景（画面の左60%くらいを占める） */}
+        <div 
+          className="absolute inset-0 bg-transparent z-2" // 紺色
+          style={{
+			            clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
+          }}
+        />
+
+        {/* 右側の画像背景（斜めに重なる） */}
+		<div className="bg-white opacity-100 z-3 w-full h-full"
+		          style={{
+            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+          }}>
+        <div
+          className="absolute inset-0 opacity-8"
+          style={{
+            backgroundImage: 'url("/images/bg_01.webp")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+          }}
+        />
+		</div>
+      </div>
+
+
+		  {/* 背景にドットのあしらい */}
+          <div
+            className="absolute inset-0 opacity-[0.1] pointer-events-none z-0 bg-[#f8fafc] "
+            style={{
+              backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+              backgroundSize: "20px 20px",
+            }}
+          />
+
+          <div className="max-w-6xl mx-auto relative px-6 z-10 reveal">
+			            {/* 上部の装飾：細い直線とアクセントカラーの小さな矩形 */}
             <div className="flex items-center gap-4 mb-16">
               <div className="w-12 h-[2px] bg-[#0ea5e9]" />
               <span className="text-[#1e293b] font-mono text-xs tracking-[0.4em] uppercase">
@@ -49,7 +95,7 @@ export default function MessageSection() {
                   <span className="text-[#1e293b]/40 font-mono text-xs italic">
                     Established 2026 / SERVICTY
                   </span>
-                  <div className="w-24 h-px bg-[#0ea5e9]" />
+                  <div className="w-24 h-px bg-[#0ea5e9] reveal" />
                 </div>
               </div>
             </div>

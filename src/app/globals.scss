@@ -296,3 +296,41 @@ main {
   will-change: transform, opacity;
   /* これが「この後動くから準備して」というブラウザへのサインです */
 }
+
+
+
+
+
+
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/* 1. 初期状態（アニメーション前） */
+main h1, 
+main h2, 
+main h3, 
+main h4, 
+main p, 
+main span, 
+main li, 
+main a, 
+main img, 
+main svg, 
+main .reveal, 
+.c-visual-box, 
+.c-section-title {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+main .reveal.deep {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.8s ease-out, transform 2s ease-out;
+}
+
+/* 2. アニメーション後 */
+.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}

@@ -43,6 +43,8 @@ export default function RootLayout({
 			}}>
         <Header />
         {children}
+				<script src="js/fadeanimate.js" defer></script>
+
       </body>
     </html>
   );
