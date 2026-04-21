@@ -2,6 +2,9 @@
 import { Header } from "@/components/Header";
 import "./globals.scss";
 import { Jost, Noto_Sans_JP } from "next/font/google";
+import HeroSection from "@/components/HeroSection";
+import Footer from "@/components/Footer";
+import ScrollToTop  from "@/components/ScrollToTop";
 
 // 1. 英字フォント：Jost (Futura系の幾何学的でモダンなフォント)
 const jost = Jost({
@@ -42,9 +45,10 @@ export default function RootLayout({
 			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
 			}}>
         <Header />
+        <HeroSection />
         {children}
-				<script src="js/fadeanimate.js" defer></script>
-
+		<Footer />
+		<ScrollToTop />
       </body>
     </html>
   );

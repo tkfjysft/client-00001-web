@@ -110,7 +110,7 @@ export const Header = () => {
 		${
       isPosTop
         ? "bg-transparent py-2" // スクロールしていない、トップにいる時の透明
-        : "backdrop-blur-md shadow-lg" // スクロールしている、背景をぼかしてドロップシャドウいれる
+        : "backdrop-blur-md" // スクロールしている、背景をぼかしてドロップシャドウいれる
     }`}
       >
         <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
