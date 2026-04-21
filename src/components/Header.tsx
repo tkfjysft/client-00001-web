@@ -99,8 +99,8 @@ export const Header = () => {
 
   //navの文字色、背景色の濃淡によって文字色を変える
   const navTextColor = isDarkBg
-    ? "text-white [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-    : "text-[#1e293b] [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+    ? "text-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+    : "text-main-1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
   return (
     <>
@@ -109,11 +109,14 @@ export const Header = () => {
 		h-15 md:h-20
 		${
       isPosTop
-        ? "bg-transparent py-2" // スクロールしていない、トップにいる時の透明
+        ? "bg-transparent" // スクロールしていない、トップにいる時の透明
         : "backdrop-blur-md" // スクロールしている、背景をぼかしてドロップシャドウいれる
     }`}
       >
+        {/*  */}
+        {/* PC版ヘッダー */}
         <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
+          {/*  */}
           {/* ロゴ部分 */}
           <Link
             href="/"
@@ -125,6 +128,7 @@ export const Header = () => {
           {/* 2. 右側グループ（ナビ + コンタクトボタン） */}
           {/* gap-8 または gap-12 くらいにすると、ボタンとの距離が程よく保たれます */}
           <div className="flex px-4 h-16 items-center gap-8 md:gap-8">
+            {/*  */}
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
             <nav className={`hidden md:flex items-center gap-6`}>
               {siteConfig.navItems.map((item) => (
@@ -132,7 +136,7 @@ export const Header = () => {
                   {/* メインのリンク */}
                   <Link
                     href={item.href}
-                    className={`ext-black font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1 ${navTextColor}`}
+                    className={`font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1 ${navTextColor}`}
                   >
                     {item.label}
                     {/* 子要素がある場合に下矢印アイコンなどを出す（任意） */}
@@ -142,12 +146,12 @@ export const Header = () => {
                   {/* サブメニューがある場合のみレンダリング */}
                   {item.children && (
                     <div className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <ul className="bg-white border border-gray-100 shadow-xl py-2 min-w-[200px]">
+                      <ul className="bg-white py-2 min-w-[200px]">
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <Link
                               href={child.href}
-                              className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
+                              className="block px-4 py-2 text-sm text-main-1/55 hover:bg-gray-50 hover:text-black transition-colors"
                             >
                               {child.label}
                             </Link>
@@ -160,12 +164,12 @@ export const Header = () => {
               ))}
             </nav>
 
-            {/* --- 追加：お問い合わせボタン --- */}
+            {/* --- お問い合わせボタン --- */}
             <Link
               href="/contact"
               className="hidden md:inline-flex items-center justify-center
 				   px-6 py-2.5 rounded-full 
-                   bg-[#0ea5e9]
+                   bg-accent
                    text-white font-bold shadow-lg shadow-black-500/20 
                    hover:scale-105 transition-all active:scale-95"
             >
@@ -174,6 +178,7 @@ export const Header = () => {
           </div>
         </div>
       </header>
+
       {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
       <div className="fixed left-[25%] w-[75%] px-8 py-4.5 flex justify-end z-10000">
         <button
@@ -198,42 +203,42 @@ export const Header = () => {
       {/* スマホ用：スライドメニュー */}
       <div
         className={`
-        fixed top-0 right-0 bottom-0 z-[100] w-[65%] bg-white/95 z-400 transition-transform duration-300 md:hidden
+        fixed top-0 right-0 bottom-0 z-[100] w-[65%] bg-base-2/95 z-400 transition-transform duration-300 md:hidden
         ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
       >
         <nav className="flex flex-col items-center pt-10 gap-8">
-			<div>
-          {siteConfig.navItems.map((item) => (
-            <div key={item.label} className="mb-8">
-              {/* メインのリンク */}
-              <Link
-                href={item.href}
-                className={`hover:scale-125 transition-all`}
-              >
-                {item.label}
-              </Link>
+          <div>
+            {siteConfig.navItems.map((item) => (
+              <div key={item.label} className="mb-8">
+                {/* メインのリンク */}
+                <Link
+                  href={item.href}
+                  className={`hover:scale-125 transition-all`}
+                >
+                  {item.label}
+                </Link>
 
-              {/* サブメニューがある場合のみレンダリング */}
-              {item.children && (
-                <div className="pt-2 transition-all duration-300 z-50">
-                  <ul className="">
-                    {item.children.map((child) => (
-                      <li key={child.label} className="ml-3">
-                        <Link
-                          href={child.href}
-                          className="block py-1 text-sm text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
-		  </div>
+                {/* サブメニューがある場合のみレンダリング */}
+                {item.children && (
+                  <div className="pt-2 transition-all duration-300 z-50">
+                    <ul className="">
+                      {item.children.map((child) => (
+                        <li key={child.label} className="ml-3">
+                          <Link
+                            href={child.href}
+                            className="block py-1 text-sm text-main-1/55 hover:bg-gray-50 hover:text-black transition-colors"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </nav>
       </div>
     </>

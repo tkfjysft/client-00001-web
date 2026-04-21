@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <section
       data-bg="dark"
-      className="relative w-full h-[100dvh] flex items-center justify-center bg-[#0F172A] overflow-hidden"
+      className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden"
     >
       {/* --- 背景グリッドレイヤー --- */}
       <div className="absolute inset-0 z-0 animate-bg-fadein">
@@ -41,7 +41,7 @@ export default function Home() {
           {backgroundImages.map((src, idx) => (
             <div
               key={idx}
-              className="relative w-full h-full overflow-hidden border-[0.5px] border-cyan-500/20"
+              className="relative w-full h-full overflow-hidden border-[0.5px] border-main-1"
             >
               <div
                 className="w-full h-full bg-cover bg-center contrast-[1.1]"
@@ -54,29 +54,20 @@ export default function Home() {
                 }}
               />
               {/* 写真の上に、さらに薄い青色の膜を張る */}
-              <div className="absolute inset-0 bg-[#1e3a8a]/30 mix-blend-overlay" />
+              <div className="absolute inset-0 bg-main-1/30 mix-blend-overlay" />
             </div>
           ))}
         </div>
 
         {/* 下部のグラデーションも「黒」ではなく「深い青」へ */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/40 via-transparent to-[#0f172a]/80" />
-
-        {/* さらに質感を出すためのドットパターン（お好みで） */}
-        <div
-          className="absolute inset-0 opacity-[0.15]"
-          style={{
-            backgroundImage: `radial-gradient(#22d3ee 0.5px, transparent 0.5px)`,
-            backgroundSize: "20px 20px",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-main-1/40 via-transparent to-main-1/80" />
       </div>
 
       {/* 粒子レイヤー */}
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         {/* --- 粒子（収束アニメーション） --- */}
         {isAnimating && (
-          <div className="relative w-0 h-0 suppressHydrationWarning">
+          <div className="relative w-0 h-0">
             {items.map((i) => {
               const angle = i * 137.5;
               const radius = Math.sqrt(i) * 35;
@@ -111,7 +102,7 @@ export default function Home() {
         className="relative z-20 text-center px-6 pointer-events-none"
         style={{ perspective: "1000px" }}
       >
-        <h1 className="text-white text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 [word-break:keep-all]">
+        <h1 className="text-base-2 text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 [word-break:keep-all]">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {

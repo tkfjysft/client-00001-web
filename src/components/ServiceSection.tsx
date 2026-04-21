@@ -44,7 +44,6 @@ export default function ServiceSection() {
 
   return (
     <>
-      {/* 背景: $bg-primary (#1e293b) */}
       <section id="service-section" data-bg="dark" className="relative py-32 w-full bg-[#1e293b] text-[#f8fafc] overflow-hidden"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
