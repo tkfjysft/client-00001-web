@@ -55,7 +55,7 @@ export const Header = () => {
   const lineColorTop = isOpen
     ? "rotate-45 translate-y-2 text-[#1e293b]"
     : baseColor;
-  const lineColorMiddle = isOpen ? "opacity-0" : baseColor;
+  const lineColorMiddle = isOpen ? "hidden" : baseColor;
   const lineColorBottom = isOpen
     ? "-rotate-45 -translate-y-2 text-[#1e293b]"
     : baseColor;
