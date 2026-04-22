@@ -102,6 +102,9 @@ export const Header = () => {
     ? "text-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
     : "text-main-1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
+const borderChangeColor = isDarkBg
+  ? "border-base-1/20" : "border-main-1/20";
+
   return (
     <>
       <header
@@ -110,7 +113,7 @@ export const Header = () => {
 		${
       isPosTop
         ? "bg-transparent" // スクロールしていない、トップにいる時の透明
-        : "backdrop-blur-md" // スクロールしている、背景をぼかしてドロップシャドウいれる
+        : "md:backdrop-blur-md" // スクロールしている、背景をぼかしてドロップシャドウいれる
     }`}
       >
         {/*  */}
@@ -120,7 +123,7 @@ export const Header = () => {
           {/* ロゴ部分 */}
           <Link
             href="/"
-            className="h-12 md:h-16 md:pl-2 flex flex-col items-center justify-center overflow-visible"
+            className="fixed top-3 left-3 h-12 md:h-16 md:pl-2 flex flex-col items-center justify-center overflow-visible"
           >
             <Logo style={{ height: "60px", width: "auto" }} className="block" />
           </Link>
@@ -182,7 +185,8 @@ export const Header = () => {
       {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
       <div className="fixed left-[25%] w-[75%] px-8 py-4.5 flex justify-end z-10000">
         <button
-          className="md:hidden cursor-pointer"
+          className={`md:hidden cursor-pointer
+		  				fixed top-3 right-3 flex py-4 px-3 items-center justify-center border ${borderChangeColor} backdrop-blur-md rounded-lg`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menu"
         >
