@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
-import { Logo } from "./Logo";
+import Logo from "./Logo";
 
 export const Header = () => {
   //ハンバーガーメニューの開閉を判定
@@ -99,11 +99,18 @@ export const Header = () => {
 
   //navの文字色、背景色の濃淡によって文字色を変える
   const navTextColor = isDarkBg
-    ? "text-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-    : "text-main-1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+    ? "text-base---2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+    : "text-main---1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
 const borderChangeColor = isDarkBg
-  ? "border-base-1/20" : "border-main-1/20";
+  ? isOpen
+  ? "border-main---1/20" : "border-base---1/20"
+	 : "border-main---1/20";
+  const ciLogoTextColor = isDarkBg
+  ?isOpen
+  ? "text-main---2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]"
+  : "text-base---2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+    : "text-main---2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
   return (
     <>
@@ -121,16 +128,18 @@ const borderChangeColor = isDarkBg
         <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
           {/*  */}
           {/* ロゴ部分 */}
+		  <div className={`hidden md:block md:static md:pl-2`}>
           <Link
             href="/"
-            className="fixed top-3 left-3 h-12 md:h-16 md:pl-2 flex flex-col items-center justify-center overflow-visible"
+            className={`h-full`}
           >
-            <Logo style={{ height: "60px", width: "auto" }} className="block" />
+            <Logo />
           </Link>
+		  </div>
 
           {/* 2. 右側グループ（ナビ + コンタクトボタン） */}
           {/* gap-8 または gap-12 くらいにすると、ボタンとの距離が程よく保たれます */}
-          <div className="flex px-4 h-16 items-center gap-8 md:gap-8">
+          <div className="flex px-4 h-16 items-center gap-8 md:gap-5">
             {/*  */}
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
             <nav className={`hidden md:flex items-center gap-6`}>
@@ -154,7 +163,7 @@ const borderChangeColor = isDarkBg
                           <li key={child.label}>
                             <Link
                               href={child.href}
-                              className="block px-4 py-2 text-sm text-main-1/55 hover:bg-gray-50 hover:text-black transition-colors"
+                              className="block px-4 py-2 text-sm text-main---1/55 hover:bg-gray-50 hover:text-black transition-colors"
                             >
                               {child.label}
                             </Link>
@@ -172,8 +181,8 @@ const borderChangeColor = isDarkBg
               href="/contact"
               className="hidden md:inline-flex items-center justify-center
 				   px-6 py-2.5 rounded-full 
-                   bg-accent
-                   text-white font-bold shadow-lg shadow-black-500/20 
+                   bg-accent---1
+                   text-base---2 font-bold 
                    hover:scale-105 transition-all active:scale-95"
             >
               Contact
@@ -183,7 +192,7 @@ const borderChangeColor = isDarkBg
       </header>
 
       {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
-      <div className="fixed left-[25%] w-[75%] px-8 py-4.5 flex justify-end z-10000">
+      <div className="fixed left-[80%] w-[20%] px-8 py-4.5 flex justify-end z-10000">
         <button
           className={`md:hidden cursor-pointer
 		  				fixed top-3 right-3 flex py-4 px-3 items-center justify-center border ${borderChangeColor} backdrop-blur-md rounded-lg`}
@@ -207,10 +216,17 @@ const borderChangeColor = isDarkBg
       {/* スマホ用：スライドメニュー */}
       <div
         className={`
-        fixed top-0 right-0 bottom-0 z-[100] w-[65%] bg-base-2/95 z-400 transition-transform duration-300 md:hidden
+        fixed top-0 right-0 bottom-0 z-[100] w-[80%] bg-base---2/95 z-400 transition-transform duration-300 md:hidden
         ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
       >
+		          {/* ロゴ部分 */}
+          <Link
+            href="/"
+            className=" flex flex-col items-center justify-center pt-2 overflow-visible"
+          >
+            <Logo isOpen={isOpen} />
+          </Link>
         <nav className="flex flex-col items-center pt-10 gap-8">
           <div>
             {siteConfig.navItems.map((item) => (
@@ -231,7 +247,7 @@ const borderChangeColor = isDarkBg
                         <li key={child.label} className="ml-3">
                           <Link
                             href={child.href}
-                            className="block py-1 text-sm text-main-1/55 hover:bg-gray-50 hover:text-black transition-colors"
+                            className="block py-1 text-sm text-main---1/55 hover:bg-gray-50 hover:text-black transition-colors"
                           >
                             {child.label}
                           </Link>

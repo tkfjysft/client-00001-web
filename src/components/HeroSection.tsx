@@ -41,7 +41,7 @@ export default function Home() {
           {backgroundImages.map((src, idx) => (
             <div
               key={idx}
-              className="relative w-full h-full overflow-hidden border-[0.5px] border-main-1"
+              className="relative w-full h-full overflow-hidden border-[0.5px] border-main---1"
             >
               <div
                 className="w-full h-full bg-cover bg-center contrast-[1.1]"
@@ -54,13 +54,13 @@ export default function Home() {
                 }}
               />
               {/* 写真の上に、さらに薄い青色の膜を張る */}
-              <div className="absolute inset-0 bg-main-1/30 mix-blend-overlay" />
+              <div className="absolute inset-0 bg-main---1/30 mix-blend-overlay" />
             </div>
           ))}
         </div>
 
         {/* 下部のグラデーションも「黒」ではなく「深い青」へ */}
-        <div className="absolute inset-0 bg-gradient-to-b from-main-1/40 via-transparent to-main-1/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-main---1/40 via-transparent to-main---1/80" />
       </div>
 
       {/* 粒子レイヤー */}
@@ -102,7 +102,7 @@ export default function Home() {
         className="relative z-20 text-center px-6 pointer-events-none"
         style={{ perspective: "1000px" }}
       >
-        <h1 className="text-base-2 text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 [word-break:keep-all]">
+        <h1 className="text-base---2 text-5xl md:text-7xl font-extrabold bg- tracking-tighter mb-10 [word-break:keep-all]">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {

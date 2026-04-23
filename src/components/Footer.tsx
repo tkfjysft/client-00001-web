@@ -7,7 +7,7 @@ import SnsLinks from "@/components/SnsLinks";
 
 export default function Footer() {
   return (
-    <footer id="footer" className="relative w-full bg-[#1e293b] text-[#f8fafc]">
+    <footer id="footer" className="relative w-full bg-main---1 text-[#f8fafc]">
       {/* 1. Google Maps エリア */}
       <div
         data-bg="light"
