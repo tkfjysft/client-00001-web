@@ -51,13 +51,13 @@ export const Header = () => {
   }, []);
 
   // ハンバーガーメニューの３本線ボタンの色設定
-  const baseColor = isDarkBg ? "text-white" : "text-[#1e293b]";
+  const baseColor = isDarkBg ? "text-base---2" : "text-main---1";
   const lineColorTop = isOpen
-    ? "rotate-45 translate-y-2 text-[#1e293b]"
+    ? "rotate-45 translate-y-2 baseColor"
     : baseColor;
   const lineColorMiddle = isOpen ? "hidden" : baseColor;
   const lineColorBottom = isOpen
-    ? "-rotate-45 -translate-y-2 text-[#1e293b]"
+    ? "-rotate-45 -translate-y-2 baseColor"
     : baseColor;
 
   //ブラウザの画面が僅かでも下にスクロールしているかしていないか判定
@@ -103,19 +103,15 @@ export const Header = () => {
     : "text-main---1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
 const borderChangeColor = isDarkBg
-  ? isOpen
-  ? "border-main---1/20" : "border-base---1/20"
-	 : "border-main---1/20";
+  ? "border-base---2/50" : "border-main---2/50";
   const ciLogoTextColor = isDarkBg
-  ?isOpen
-  ? "text-main---2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]"
-  : "text-base---2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+  ? "text-base---2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
     : "text-main---2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 flex flex-col items-center justify-center transition-all
+        className={`absolute top-3 left-0 md:fixed md:top-0 w-full z-50 flex flex-col items-center justify-center transition-all
 		h-15 md:h-20
 		${
       isPosTop
@@ -125,21 +121,24 @@ const borderChangeColor = isDarkBg
       >
         {/*  */}
         {/* PC版ヘッダー */}
-        <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between h-15 md:h-15 z-99999">
+        <div className="relative w-full max-w-7xl mx-auto pl-3 md:px-8 flex items-center justify-between h-15 md:h-15 z-99999">
           {/*  */}
           {/* ロゴ部分 */}
-		  <div className={`hidden md:block md:static md:pl-2`}>
+		  <div className={`block static relative top-13 h-full`}>
           <Link
             href="/"
             className={`h-full`}
           >
-            <Logo />
+			<span className={`font-zen leading-[0.5] italic ${ciLogoTextColor}`}>
+			<span className={`text-sm md:text-lg border-b-1 ${borderChangeColor} font-[900] pb-1 md:tracking-widest`}>{siteConfig.companyName1}</span><br />
+			<span className={`block text-xs font-[500] pt-0 mt-1 md:pt-2 md:mt-0 ${borderChangeColor}`}>&nbsp;{siteConfig.enCompamyName}</span>
+			</span>
           </Link>
 		  </div>
 
           {/* 2. 右側グループ（ナビ + コンタクトボタン） */}
           {/* gap-8 または gap-12 くらいにすると、ボタンとの距離が程よく保たれます */}
-          <div className="flex px-4 h-16 items-center gap-8 md:gap-5">
+          <div className="flex h-16 items-center gap-8 md:gap-5">
             {/*  */}
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
             <nav className={`hidden md:flex items-center gap-6`}>
@@ -158,12 +157,12 @@ const borderChangeColor = isDarkBg
                   {/* サブメニューがある場合のみレンダリング */}
                   {item.children && (
                     <div className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <ul className="bg-white py-2 min-w-[200px]">
+                      <ul className="bg-base---1 py-2 min-w-[200px]">
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <Link
                               href={child.href}
-                              className="block px-4 py-2 text-sm text-main---1/55 hover:bg-gray-50 hover:text-black transition-colors"
+                              className="block px-4 py-2 text-sm text-main---1/55 hover:bg-gray-50 hover:text-main---1/95 transition-colors"
                             >
                               {child.label}
                             </Link>
@@ -225,7 +224,10 @@ const borderChangeColor = isDarkBg
             href="/"
             className=" flex flex-col items-center justify-center pt-2 overflow-visible"
           >
-            <Logo isOpen={isOpen} />
+	<span className={`font-zen leading-[0] text-center italic text-main---2`}>
+	<span className={`text-sm font-[900] pb-1 md:tracking-widest whitespace-pre-wrap`}>{siteConfig.companyName2}</span><br />
+	<span className={`block text-xs font-[500] pt-1 mt-1 border-t-1 md:pt-2 md:mt-0 md:border-0 border-main---2/40`}>{siteConfig.enCompamyName}</span>
+	</span>
           </Link>
         <nav className="flex flex-col items-center pt-10 gap-8">
           <div>
@@ -247,7 +249,7 @@ const borderChangeColor = isDarkBg
                         <li key={child.label} className="ml-3">
                           <Link
                             href={child.href}
-                            className="block py-1 text-sm text-main---1/55 hover:bg-gray-50 hover:text-black transition-colors"
+                            className="block py-1 text-sm text-main---1/55 hover:bg-base---1 hover:text-main---1/95 transition-colors"
                           >
                             {child.label}
                           </Link>
