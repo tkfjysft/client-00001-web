@@ -143,7 +143,9 @@ const borderChangeColor = isDarkBg
             {/*  */}
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
             <nav className={`hidden md:flex items-center gap-6`}>
-              {siteConfig.navItems.map((item) => (
+              {siteConfig.navItems
+			  .filter((_, index) => index !== 4) // 先に5番目を除外する
+			  .map((item) => (
                 <div key={item.label} className="relative group">
                   {/* メインのリンク */}
                   <Link
@@ -181,7 +183,7 @@ const borderChangeColor = isDarkBg
               href="/contact"
               className="hidden md:inline-flex items-center justify-center
 				   px-6 py-2.5 rounded-full 
-                   bg-clr-accent-1
+                   bg-clr-primary-1
                    text-clr-base-2 font-bold 
                    hover:scale-105 transition-all active:scale-95"
             >
@@ -232,7 +234,9 @@ const borderChangeColor = isDarkBg
           </Link>
         <nav className="flex flex-col items-center pt-10 gap-8">
           <div>
-            {siteConfig.navItems.map((item) => (
+            {siteConfig.navItems
+			.filter((_, index) => index !== 4) // 先に5番目を除外する
+			.map((item) => (
               <div key={item.label} className="mb-8">
                 {/* メインのリンク */}
                 <Link

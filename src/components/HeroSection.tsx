@@ -102,7 +102,7 @@ export default function Home() {
         className="relative z-20 text-center px-6 pointer-events-none"
         style={{ perspective: "1000px" }}
       >
-        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold bg- tracking-tighter mb-10 [word-break:keep-all]">
+        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold tracking-tighter mb-10">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {
@@ -141,29 +141,8 @@ export default function Home() {
         <div className="space-y-4">
           {/* 全体のテンポに合わせて日本語の出現も早めます */}
           {/* 背景だけを少し暗くし、ぼかすレイヤー */}
-          <p className="text-cyan-100 text-base md:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] [word-break:keep-all]">
+          <p className="text-clr-base-1/80 md:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             {siteConfig.description1.split("").map((char, index) => {
-              // 1. もし文字が「/」だったら、改行ポイントを返す
-              if (char === "/") {
-                return <wbr key={`wbr-${index}`} />;
-              }
-              // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
-              return (
-                <span
-                  key={`d1-${index}`}
-                  className="char-fade inline-block"
-                  style={{
-                    animationDelay: `${2.2 + index * 0.04}s`,
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              );
-            })}
-          </p>
-          <p className="text-cyan-100 text-base md:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] [word-break:keep-all]">
-            {siteConfig.description2.split("").map((char, index) => {
               // 1. もし文字が「/」だったら、改行ポイントを返す
               if (char === "/") {
                 return <wbr key={`wbr-${index}`} />;

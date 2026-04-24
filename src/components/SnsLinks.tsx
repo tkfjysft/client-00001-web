@@ -26,7 +26,7 @@ export default function SnsLinks() {
           rel="noopener noreferrer"
           aria-label={sns.label}
           // hover:opacity で少し変化をつけると「リンク感」が出ます
-          className="text-white hover:opacity-70 transition-opacity"
+          className="text-clr-base-1 hover:opacity-70 transition-opacity"
         >
           {/* アイコンの大きさは className で調整可能 */}
           <FontAwesomeIcon icon={sns.icon} className="text-2xl" />

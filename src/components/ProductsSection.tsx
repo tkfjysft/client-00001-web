@@ -26,7 +26,7 @@ export default function ProductsSection() {
 
   return (
     <>
-      <section id="products-section" data-bg="light" className="py-24 w-full bg-[#f8fafc] relative"
+      <section id="products-section" data-bg="light" className="py-24 w-full bg-clr-base-1 relative"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
           }}
@@ -45,7 +45,7 @@ export default function ProductsSection() {
         />
 
         {/* 右側の画像背景（斜めに重なる） */}
-		<div className="bg-white opacity-100 z-3 w-full h-full"
+		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full"
 		          style={{
             clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}>
@@ -64,7 +64,7 @@ export default function ProductsSection() {
 
 		  {/* 背景にドットのあしらい */}
           <div
-            className="absolute inset-0 opacity-[0.1] pointer-events-none z-0 bg-[#f8fafc]"
+            className="absolute inset-0 opacity-[0.1] pointer-events-none z-0 bg-clr-base-1"
             style={{
               backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
               backgroundSize: "20px 20px",
@@ -74,11 +74,11 @@ export default function ProductsSection() {
           <div className="max-w-6xl mx-auto relative px-6 z-10">
             {/* 見出し */}
             <div className="flex items-center gap-4 mb-20">
-              <div className="w-12 h-[2px] bg-[#0ea5e9] reveal" />
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-[#1e293b]">
+              <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-clr-base-1">
                 Selected Products
               </h2>
-              <div className="flex-grow h-[1px] bg-[#1e293b]/5" />
+              <div className="flex-grow h-[1px] bg-clr-main-1/5" />
             </div>
 
             {/* グリッドレイアウト 
@@ -90,23 +90,23 @@ export default function ProductsSection() {
               <div className="md:col-span-7 group border-t border-[#1e293b]/10 pt-10">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
-                  <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-[#1e293b]/10 bg-white relative overflow-hidden reveal">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#f8fafc] to-[#0ea5e9]/5 flex items-center justify-center">
-                      <span className="text-[#1e293b]/10 font-mono text-4xl">
+                  <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-clr-base-1 to-clr-main-1/5 flex items-center justify-center">
+                      <span className="text-clr-primary-1/10 font-mono text-4xl">
                         01
                       </span>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-[#0ea5e9] font-mono text-xs">
+                      <span className="text-clr-primary-1 font-mono text-xs">
                         01
                       </span>
-                      <h3 className="text-2xl font-bold text-[#1e293b] group-hover:text-[#0ea5e9] transition-colors">
+                      <h3 className="text-2xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
                         {products[0].title}
                       </h3>
                     </div>
-                    <p className="text-[#1e293b]/60 text-lg leading-relaxed font-light">
+                    <p className="text-clr-main-1/70 text-lg leading-relaxed font-light">
                       {products[0].description}
                     </p>
                   </div>
@@ -117,23 +117,23 @@ export default function ProductsSection() {
               <div className="md:col-span-5 group border-t border-[#1e293b]/10 pt-10">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* 写真サイズ: 2番目もスマホでは w-32 に統一 */}
-                  <div className="w-32 h-32 md:w-32 md:h-32 flex-shrink-0 rounded-full border border-[#1e293b]/10 bg-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#f8fafc] to-[#0ea5e9]/5 flex items-center justify-center">
-                      <span className="text-[#1e293b]/10 font-mono text-2xl">
+                  <div className="w-32 h-32 md:w-32 md:h-32 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-clr-base-1 to-clr-main-1/5 flex items-center justify-center">
+                      <span className="text-clr-primary-1/10 font-mono text-2xl">
                         02
                       </span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <span className="text-[#0ea5e9] font-mono text-xs">
+                      <span className="text-clr-primary-1 font-mono text-xs">
                         02
                       </span>
-                      <h3 className="text-2xl md:text-xl font-bold text-[#1e293b] group-hover:text-[#0ea5e9] transition-colors">
+                      <h3 className="text-2xl md:text-xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
                         {products[1].title}
                       </h3>
                     </div>
-                    <p className="text-[#1e293b]/60 text-lg md:text-sm leading-relaxed font-light">
+                    <p className="text-clr-main-1/60 text-lg md:text-sm leading-relaxed font-light">
                       {products[1].description}
                     </p>
                   </div>
@@ -144,23 +144,23 @@ export default function ProductsSection() {
               <div className="md:col-span-8 md:col-start-5 group border-t border-[#1e293b]/10 pt-10">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
-                  <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-[#1e293b]/10 bg-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#f8fafc] to-[#0ea5e9]/5 flex items-center justify-center">
-                      <span className="text-[#1e293b]/10 font-mono text-4xl">
+                  <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-clr-base-1 to-clr-main-1/5 flex items-center justify-center">
+                      <span className="text-clr-main-1/10 font-mono text-4xl">
                         03
                       </span>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-[#0ea5e9] font-mono text-xs">
+                      <span className="text-clr-primary-1 font-mono text-xs">
                         03
                       </span>
-                      <h3 className="text-2xl font-bold text-[#1e293b] group-hover:text-[#0ea5e9] transition-colors">
+                      <h3 className="text-2xl clr-main-2 font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
                         {products[2].title}
                       </h3>
                     </div>
-                    <p className="text-[#1e293b]/60 text-lg leading-relaxed font-light">
+                    <p className="text-clr-main-1/60 text-lg leading-relaxed font-light">
                       {products[2].description}
                     </p>
                   </div>

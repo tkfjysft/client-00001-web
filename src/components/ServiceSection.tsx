@@ -44,7 +44,7 @@ export default function ServiceSection() {
 
   return (
     <>
-      <section id="service-section" data-bg="dark" className="relative py-32 w-full bg-[#1e293b] text-[#f8fafc] overflow-hidden"
+      <section id="service-section" data-bg="dark" className="relative py-32 w-full bg-clr-main-1 text-clr-base-1 overflow-hidden"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
           }}>
@@ -55,7 +55,7 @@ export default function ServiceSection() {
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* 左側の紺色背景（画面の左60%くらいを占める） */}
         <div 
-          className="absolute inset-0 bg-[#0f172a]" // 紺色
+          className="absolute inset-0 bg-clr-main-1" // 紺色
           style={{
             clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
@@ -72,18 +72,18 @@ export default function ServiceSection() {
           }}
         />
       </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0F1730] via-[#0f172a]/95 to-[#0f172a]/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-clr-main-1 via-clr-main-1/90 to-clr-main-1/80" />
 
           {/* </div> */}
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">
             {/* 見出しエリア：MessageSectionに近い、線を使ったミニマルな構成 */}
             <div className="flex items-center gap-4 mb-24">
-              <div className="w-12 h-[2px] bg-[#0ea5e9] reveal" />
+              <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
                 Our Services
               </h2>
-              <div className="flex-grow h-[1px] bg-[#f8fafc]/10" />
+              <div className="flex-grow h-[1px] bg-clr-base-1/10" />
             </div>
 
             <div className="space-y-32">
@@ -91,10 +91,10 @@ export default function ServiceSection() {
                 <div key={groupIdx} className="relative">
                   {/* グループ見出し：横線で区切るスタイル */}
                   <div className="flex items-baseline gap-6 mb-12 border-b border-[#f8fafc]/10 pb-4">
-                    <span className="text-[#0ea5e9] font-mono text-xs tracking-[0.4em]">
+                    <span className="text-clr-primary-1 font-mono text-xs tracking-[0.4em]">
                       {group.label}
                     </span>
-                    <h3 className="text-xl font-light tracking-widest text-[#f8fafc]/60">
+                    <h3 className="text-xl font-light tracking-widest text-clr-base-1/60">
                       {group.title}
                     </h3>
                   </div>
@@ -104,22 +104,22 @@ export default function ServiceSection() {
                     {group.services.map((service, serviceIdx) => (
                       <div key={serviceIdx} className="group relative">
                         {/* 左側の垂直線（MessageSectionのA案的なアクセント） */}
-                        <div className="absolute -left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#0ea5e9] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute -left-6 top-0 bottom-0 w-px bg-gradient-to-b from-clr-main-1 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                         <div className="flex flex-col items-start space-y-6">
                           {/* --- サービス用写真スペース (正円) --- */}
-                          <div className="w-24 h-24 rounded-full bg-[#f8fafc]/5 border border-[#f8fafc]/10 overflow-hidden flex-shrink-0 relative reveal">
+                          <div className="w-24 h-24 rounded-full bg-clr-base-1/5 border border-[#f8fafc]/10 overflow-hidden flex-shrink-0 relative reveal">
                             {/* ここに後で写真を挿入 */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#0ea5e9]/20 to-transparent flex items-center justify-center text-[#0ea5e9] group-hover:scale-110 transition-transform duration-500">
+                            <div className="absolute inset-0 bg-gradient-to-br from-clr-main-1/20 to-transparent flex items-center justify-center text-clr-base-1 group-hover:scale-110 transition-transform duration-500">
                               {service.icon}
                             </div>
                           </div>
 
                           <div className="space-y-3">
-                            <h4 className="text-xl font-bold tracking-tight group-hover:text-[#0ea5e9] transition-colors">
+                            <h4 className="text-xl font-bold tracking-tight group-hover:text-clr-base-1 transition-colors">
                               {service.name}
                             </h4>
-                            <p className="text-[#f8fafc]/50 text-sm leading-relaxed font-light">
+                            <p className="text-clr-base-1/65 leading-relaxed font-light">
                               最適な技術スタックを選定し、ビジネスの課題をシンプルかつ堅牢な解決策へと導きます。
                             </p>
                           </div>

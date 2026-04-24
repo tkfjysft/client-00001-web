@@ -28,30 +28,65 @@ export default function ScrollToTop() {
     });
   };
 
+    // 背景が暗いか明るいか、セクションに記述されている'data-bg'をチェックして判定する
+  const [isDarkBg, setIsDarkBg] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const x = window.innerWidth / 2;
+      const y = window.innerHeight-50;
+		// console.log(y);
+      const elements = document.elementsFromPoint(x, y);
+		//   console.log(elements);
+
+      const section = elements
+        .find((el) => el.closest("[data-bg]"))
+        ?.closest("[data-bg]");
+
+      // trim() を追加して、余計な空白を消します
+      const bgType = section?.getAttribute("data-bg")?.trim();
+
+      // デバッグログをもう少し詳細にします
+      // console.log(`判定中... bgType: "${bgType}" / 比較結果: ${bgType === 'dark'}`);
+
+      if (bgType === "dark") {
+        setIsDarkBg(true);
+      } else {
+        setIsDarkBg(false);
+      }
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
+  const bgChangeColor = isDarkBg
+  ? "bg-clr-base-1" : "bg-clr-main-1";
+ const textChangeColor = isDarkBg
+  ? "text-clr-main-1" : "text-clr-base-1";
+
   return (
     <>
       {isVisible && (
         <button
           onClick={scrollToTop}
           /* 3. デザインとアニメーション（Tailwind） */
-          className="fixed bottom-4 right-4 z-50 p-4 bg-white border border-[#0ea5e9] border-[2px] text-[#0ea5e9] shadow-lg transition-all duration-300 ease-in-out hover:bg-white hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] focus:ring-offset-2 rounded-full"
+          className={`fixed bottom-0 right-0 z-50 transition-all duration-300 ease-in-out ${bgChangeColor} ${textChangeColor} focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] focus:ring-offset-2
+			/* ▼ここから追加・修正するクラス ▼ */
+			w-20 h-20         /* 1. 正方形の土台を作る */
+			p-0               /* 2. 余白をなくす（文字を角に寄せるため） */
+			flex items-end justify-end /* 3. 文字を右下に配置 */
+			[clip-path:polygon(100%_0,100%_100%,0_100%)] /* 4. 右下の直角三角形に切り抜く */
+			
+			/* ホバー時の動きを「引き算」デザインに調整 */
+			hover:-translate-y-0 hover:translate-x-1 hover:translate-y-1 /* 右下に少し沈む動き */
+			hover:shadow-none  /* 切り抜かれているので影は不要 */
+`}
           aria-label="ページ最上部へ戻る"
         >
-          {/* 4. 矢印アイコン（SVG） */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2.5"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.5 15.75l7.5-7.5 7.5 7.5"
-            />
-          </svg>
+          <span className="absolute bottom-5 right-[-46px] block w-[150px] text-center transform -rotate-45 text-xs font-bold tracking-tighter leading-none group-hover:scale-110 transition-transform">
+    Go to<br />Page Top
+  </span>
         </button>
       )}
     </>

@@ -17,9 +17,9 @@ export const siteConfig = {
   enCompamyName: "Mind Shift Systems",
   ownerName: "山田 太郎", // ← 追加しました！
   heroTagline: "Simplicity/ through/ Complexity.",
-  description1: "革新的洗練された/アーキテクチャで、/ビジネスの核心を/支える。",
+  description1: "革新的洗練された/アーキテクチャで、/ビジネスの核心を/支える。私たちは、/止められないシステムと、/終わらない進化を/追求し続けます。",
   description2:
-    "私たちは、/止まらないシステムと、/終わらない進化を/追求し続けます。",
+    "",
   url: "https://example.com",
   contact: {
     postcode: "*******",

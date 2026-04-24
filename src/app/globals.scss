@@ -10,8 +10,8 @@
 	--color-clr-base-1: #f8fafc;
 	--color-clr-base-2: #ffffff;
 	--color-clr-main-1: #0f172a; // 少し明るく、青みの強いネイビー
-	--color-clr-main-2: #0ea5e9; 
-	--color-clr-accent-1: #0ea5e9; 
+	--color-clr-main-2: #1034a8; 
+	--color-clr-primary-1: #0ea5e9; 
 }
 
 // @themeブロック全体を /* */ で囲むか、
@@ -21,7 +21,7 @@
   --color-clr-base-2: var(--color-clr-base-2);
   --color-clr-main-1: var(--color-clr-main-1);
   --color-clr-main-2: var(--color-clr-main-2);
-  --color-clr-accent-1: var(--color-clr-accent-1);
+  --color-clr-primary-1: var(--color-clr-primary-1);
 	/* ここで md の定義を上書きします */
   /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
   --breakpoint-md: 960px;
