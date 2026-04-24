@@ -75,7 +75,7 @@ export default function ProductsSection() {
             {/* 見出し */}
             <div className="flex items-center gap-4 mb-20">
               <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-clr-base-1">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-clr-main-1">
                 Selected Products
               </h2>
               <div className="flex-grow h-[1px] bg-clr-main-1/5" />
