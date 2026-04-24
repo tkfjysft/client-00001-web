@@ -9,7 +9,7 @@ useAutoAnimate();
   return (
     <>
       {/* 背景: $bg-base (#f8fafc) */}
-      <section id="message-section" data-bg="light" className="py-24 w-full bg-clr-base-1 border-y border-[#1e293b]/5"
+      <section id="message-section" data-bg="light" className="py-24 w-full bg-clr-base-1"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
           }}
@@ -77,7 +77,7 @@ useAutoAnimate();
               </div>
 
               {/* 右側：本文 (7カラム) - 直線によるセパレート */}
-              <div className="lg:col-span-7 lg:border-l lg:border-[#1e293b]/10 lg:pl-16 space-y-10">
+              <div className="lg:col-span-7 lg:border-l lg:border-clr-main-1/10 lg:pl-16 space-y-10">
                 <div className="space-y-6">
                   <p className="text-clr-main-1 text-xl md:text-2xl leading-relaxed font-light">
                     私たちは、単にコードを書く集団ではありません。
@@ -91,7 +91,7 @@ useAutoAnimate();
                 </div>
 
                 {/* 下部の署名的な装飾：アクセントカラーのライン */}
-                <div className="pt-8 border-t border-[#1e293b]/5 flex justify-between items-center">
+                <div className="pt-8 border-t border-clr-main-1/5 flex justify-between items-center">
                   <span className="text-clr-primary-1/40 font-mono text-xs italic">
                     Established 2026 / SERVICTY
                   </span>

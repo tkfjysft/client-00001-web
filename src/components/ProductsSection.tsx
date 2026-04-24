@@ -87,7 +87,7 @@ export default function ProductsSection() {
         */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8">
               {/* 1番目: PCでは7列、スマホでは共通レイアウト */}
-              <div className="md:col-span-7 group border-t border-[#1e293b]/10 pt-10">
+              <div className="md:col-span-7 group border-t border-clr-main-1/10 pt-10">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
                   <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal">
@@ -114,7 +114,7 @@ export default function ProductsSection() {
               </div>
 
               {/* 2番目: PCでは5列、スマホでは共通レイアウト */}
-              <div className="md:col-span-5 group border-t border-[#1e293b]/10 pt-10">
+              <div className="md:col-span-5 group border-t border-clr-main-1/10 pt-10">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* 写真サイズ: 2番目もスマホでは w-32 に統一 */}
                   <div className="w-32 h-32 md:w-32 md:h-32 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
@@ -141,7 +141,7 @@ export default function ProductsSection() {
               </div>
 
               {/* 3番目: PCでは8列・右寄せ、スマホでは共通レイアウト */}
-              <div className="md:col-span-8 md:col-start-5 group border-t border-[#1e293b]/10 pt-10">
+              <div className="md:col-span-8 md:col-start-5 group border-t border-clr-main-1/10 pt-10">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
                   <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">

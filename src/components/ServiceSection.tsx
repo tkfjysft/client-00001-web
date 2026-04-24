@@ -90,7 +90,7 @@ export default function ServiceSection() {
               {serviceGroups.map((group, groupIdx) => (
                 <div key={groupIdx} className="relative">
                   {/* グループ見出し：横線で区切るスタイル */}
-                  <div className="flex items-baseline gap-6 mb-12 border-b border-[#f8fafc]/10 pb-4">
+                  <div className="flex items-baseline gap-6 mb-12 border-b border-clr-base-1/10 pb-4">
                     <span className="text-clr-primary-1 font-mono text-xs tracking-[0.4em]">
                       {group.label}
                     </span>
@@ -108,7 +108,7 @@ export default function ServiceSection() {
 
                         <div className="flex flex-col items-start space-y-6">
                           {/* --- サービス用写真スペース (正円) --- */}
-                          <div className="w-24 h-24 rounded-full bg-clr-base-1/5 border border-[#f8fafc]/10 overflow-hidden flex-shrink-0 relative reveal">
+                          <div className="w-24 h-24 rounded-full bg-clr-base-1/5 border border-clr-base-1/10 overflow-hidden flex-shrink-0 relative reveal">
                             {/* ここに後で写真を挿入 */}
                             <div className="absolute inset-0 bg-gradient-to-br from-clr-main-1/20 to-transparent flex items-center justify-center text-clr-base-1 group-hover:scale-110 transition-transform duration-500">
                               {service.icon}

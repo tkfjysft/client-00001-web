@@ -72,7 +72,7 @@ export default function Footer() {
 
                   {/* 子メニュー：最初からリストとして展開して見せる */}
                   {item.children && (
-                    <ul className="border-l border-white/10 pl-4">
+                    <ul className="border-l border-clr-base-1/20 pl-4">
                       {item.children.map((child) => (
                         <li key={child.label} style={{paddingBottom:'3px'}}>
                           <Link

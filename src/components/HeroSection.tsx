@@ -141,7 +141,7 @@ export default function Home() {
         <div className="space-y-4">
           {/* 全体のテンポに合わせて日本語の出現も早めます */}
           {/* 背景だけを少し暗くし、ぼかすレイヤー */}
-          <p className="text-clr-base-1/80 md:text-2xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+          <p className="text-clr-base-1/80 md:text-2xl font-bold drop-shadow-[0_2px_4px_var(--color-clr-main-2)]">
             {siteConfig.description1.split("").map((char, index) => {
               // 1. もし文字が「/」だったら、改行ポイントを返す
               if (char === "/") {
