@@ -51,7 +51,7 @@ export const Header = () => {
   }, []);
 
   // ハンバーガーメニューの３本線ボタンの色設定
-  const baseColor = isDarkBg ? "text-base---2" : "text-main---1";
+  const baseColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1";
   const lineColorTop = isOpen
     ? "rotate-45 translate-y-2 baseColor"
     : baseColor;
@@ -99,14 +99,15 @@ export const Header = () => {
 
   //navの文字色、背景色の濃淡によって文字色を変える
   const navTextColor = isDarkBg
-    ? "text-base---2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-    : "text-main---1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+    ? "text-clr-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+    : "text-clr-main-1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
 const borderChangeColor = isDarkBg
-  ? "border-base---2/50" : "border-main---2/50";
+  ? ( isOpen ? "border-clr-main-1/30" : "border-clr-base-2/30" )
+  : "border-clr-main-1/30";
   const ciLogoTextColor = isDarkBg
-  ? "text-base---2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-    : "text-main---2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+  ? "text-clr-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
+    : "text-clr-main-2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
 
   return (
     <>
@@ -124,14 +125,14 @@ const borderChangeColor = isDarkBg
         <div className="relative w-full max-w-7xl mx-auto pl-3 md:px-8 flex items-center justify-between h-15 md:h-15 z-99999">
           {/*  */}
           {/* ロゴ部分 */}
-		  <div className={`block static relative top-13 h-full`}>
+		  <div className={`block static relative h-full`}>
           <Link
             href="/"
-            className={`h-full`}
+            className={`h-full flex items-start md:items-center`}
           >
-			<span className={`font-zen leading-[0.5] italic ${ciLogoTextColor}`}>
-			<span className={`text-sm md:text-lg border-b-1 ${borderChangeColor} font-[900] pb-1 md:tracking-widest`}>{siteConfig.companyName1}</span><br />
-			<span className={`block text-xs font-[500] pt-0 mt-1 md:pt-2 md:mt-0 ${borderChangeColor}`}>&nbsp;{siteConfig.enCompamyName}</span>
+			<span className={`font-zen leading-[0.5] ${ciLogoTextColor}`}>
+			<span className={`text-base md:text-lg font-[900] pb-1`}>{siteConfig.companyName1}</span><br />
+			<span className={`block text-sm font-[500] pt-0 md:mt-0 italic`}>{siteConfig.enCompamyName}</span>
 			</span>
           </Link>
 		  </div>
@@ -157,12 +158,12 @@ const borderChangeColor = isDarkBg
                   {/* サブメニューがある場合のみレンダリング */}
                   {item.children && (
                     <div className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <ul className="bg-base---1 py-2 min-w-[200px]">
+                      <ul className="bg-clr-base-1 py-2 min-w-[200px]">
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <Link
                               href={child.href}
-                              className="block px-4 py-2 text-sm text-main---1/55 hover:bg-gray-50 hover:text-main---1/95 transition-colors"
+                              className="block px-4 py-2 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
                             >
                               {child.label}
                             </Link>
@@ -180,8 +181,8 @@ const borderChangeColor = isDarkBg
               href="/contact"
               className="hidden md:inline-flex items-center justify-center
 				   px-6 py-2.5 rounded-full 
-                   bg-accent---1
-                   text-base---2 font-bold 
+                   bg-clr-accent-1
+                   text-clr-base-2 font-bold 
                    hover:scale-105 transition-all active:scale-95"
             >
               Contact
@@ -215,7 +216,7 @@ const borderChangeColor = isDarkBg
       {/* スマホ用：スライドメニュー */}
       <div
         className={`
-        fixed top-0 right-0 bottom-0 z-[100] w-[80%] bg-base---2/95 z-400 transition-transform duration-300 md:hidden
+        fixed top-0 right-0 bottom-0 z-[100] w-[80%] bg-clr-base-2/95 z-400 transition-transform duration-300 md:hidden
         ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
       >
@@ -224,9 +225,9 @@ const borderChangeColor = isDarkBg
             href="/"
             className=" flex flex-col items-center justify-center pt-2 overflow-visible"
           >
-	<span className={`font-zen leading-[0] text-center italic text-main---2`}>
-	<span className={`text-sm font-[900] pb-1 md:tracking-widest whitespace-pre-wrap`}>{siteConfig.companyName2}</span><br />
-	<span className={`block text-xs font-[500] pt-1 mt-1 border-t-1 md:pt-2 md:mt-0 md:border-0 border-main---2/40`}>{siteConfig.enCompamyName}</span>
+	<span className={`font-zen leading-none text-center text-clr-main-2`}>
+	<span className={`text-sm font-[900] pb-1 whitespace-pre-wrap`}>{siteConfig.companyName2}</span><br />
+	<span className={`block text-xs italic font-[500] pt-1  md:mt-0`}>{siteConfig.enCompamyName}</span>
 	</span>
           </Link>
         <nav className="flex flex-col items-center pt-10 gap-8">
@@ -249,7 +250,7 @@ const borderChangeColor = isDarkBg
                         <li key={child.label} className="ml-3">
                           <Link
                             href={child.href}
-                            className="block py-1 text-sm text-main---1/55 hover:bg-base---1 hover:text-main---1/95 transition-colors"
+                            className="block py-1 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
                           >
                             {child.label}
                           </Link>

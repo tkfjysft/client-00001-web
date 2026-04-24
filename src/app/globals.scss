@@ -7,21 +7,21 @@
 
 :root {
   /* ここに共通変数を置く */
-	--color-base---1: #f8fafc;
-	--color-base---2: #ffffff;
-	--color-main---1: #0f172a; // 少し明るく、青みの強いネイビー
-	--color-main---2: #0ea5e9; 
-	--color-accent---1: #0ea5e9; 
+	--color-clr-base-1: #f8fafc;
+	--color-clr-base-2: #ffffff;
+	--color-clr-main-1: #0f172a; // 少し明るく、青みの強いネイビー
+	--color-clr-main-2: #0ea5e9; 
+	--color-clr-accent-1: #0ea5e9; 
 }
 
 // @themeブロック全体を /* */ で囲むか、
 // または以下のようにCSS変数として直接定義する形に逃がすと波線が消えることがあります
 @theme {
-  --color-base---1: var(--color-base---1);
-  --color-base---2: var(--color-base---2);
-  --color-main---1: var(--color-main---1);
-  --color-main---2: var(--color-main---2);
-  --color-accent---1: var(--color-accent---1);
+  --color-clr-base-1: var(--color-clr-base-1);
+  --color-clr-base-2: var(--color-clr-base-2);
+  --color-clr-main-1: var(--color-clr-main-1);
+  --color-clr-main-2: var(--color-clr-main-2);
+  --color-clr-accent-1: var(--color-clr-accent-1);
 	/* ここで md の定義を上書きします */
   /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
   --breakpoint-md: 960px;
@@ -67,10 +67,10 @@ html {
 
 
 
-  .text-white {
-    // ぼかしの少ない濃い影ではなく、広範囲に薄く影を落とす
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  }
+//   .text-white {
+//     // ぼかしの少ない濃い影ではなく、広範囲に薄く影を落とす
+//     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+//   }
 
 @keyframes fade-up {
   from {
@@ -134,7 +134,7 @@ html {
     opacity: 0;
     /* 発生時は scale(1.5) くらいで存在感を出す */
     transform: translate(var(--sx), var(--sy)) scale(1.5);
-    background: var(--color-base---2);
+    background: var(--color-clr-base-2);
   }
   15% {
     opacity: 1;
@@ -145,7 +145,7 @@ html {
     /* 中心に向かって scale(0) まで絞り込む */
     transform: translate(var(--ex), var(--ey)) scale(0);
     opacity: 0;
-    background: var(--color-main---1);
+    background: var(--color-clr-main-1);
     filter: blur(1px);
   }
 }
@@ -243,7 +243,7 @@ main {
     /* 画面外の遠く（上下左右ランダム）から、巨大な状態で */
     transform: translate(var(--fx), var(--fy)) scale(10) translateZ(500px);
     filter: blur(20px) brightness(2); // 光輝くボケ
-    color: color-mix(in srgb, var(--color-main---2) 40%, transparent); // 最初はシアン
+    color: color-mix(in srgb, var(--color-clr-main-2) 40%, transparent); // 最初はシアン
   }
 
   70% {
@@ -257,14 +257,14 @@ main {
     /* 着弾時の「ブレ」を演出 */
     transform: scale(0.95);
     filter: blur(0px) brightness(1);
-    color: color-mix(in srgb, var(--color-base---2) 80%, transparent); // 白へ
+    color: color-mix(in srgb, var(--color-clr-base-2) 80%, transparent); // 白へ
   }
 
   100% {
     opacity: 1;
     transform: scale(1);
     filter: blur(0px);
-    color: var(--color-base---2);
+    color: var(--color-clr-base-2);
   }
 }
 
@@ -276,7 +276,7 @@ main {
   /* 1.2s から 0.8s に短縮。さらに急加速するイージングに変更 */
   animation: char-fly-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
-  text-shadow: 0 0 20px var(--color-main---2), 0 0 40px var(--color-main---2);
+  text-shadow: 0 0 20px var(--color-clr-main-2), 0 0 40px var(--color-clr-main-2);
 }
 
 /* --- 日本語メッセージ（下の2行）のアニメーション --- */

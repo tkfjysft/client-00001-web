@@ -7,7 +7,7 @@ import SnsLinks from "@/components/SnsLinks";
 
 export default function Footer() {
   return (
-    <footer id="footer" className="relative w-full bg-main---1 text-[#f8fafc]">
+    <footer id="footer" className="relative w-full bg-clr-main-1 text-[#f8fafc]">
       {/* 1. Google Maps エリア */}
       <div
         data-bg="light"
@@ -25,7 +25,7 @@ export default function Footer() {
 
         {/* マップの上に浮かぶ拠点カード (MessageSectionのデザインを継承) */}
         <div className="absolute top-10 left-10 p-7 bg-[#1e293b] border-l-4 border-[#0ea5e9] hidden md:block">
-          <h3 className="text-base font-bold mb-2">{siteConfig.companyName}</h3>
+          <h3 className="text-base font-bold mb-2">{siteConfig.companyName1}</h3>
           <p className="text-[#f8fafc]/80 text-sm leading-relaxed">
             〒{siteConfig.contact.postcode}
             <br />

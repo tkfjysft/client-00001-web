@@ -14,7 +14,7 @@ export type NavItem = {
 export const siteConfig = {
   companyName1: "マインドシフトシステムズ株式会社",
   companyName2: "マインドシフトシステムズ\n株式会社",
-  enCompamyName: "Temp Tech Solutions",
+  enCompamyName: "Mind Shift Systems",
   ownerName: "山田 太郎", // ← 追加しました！
   heroTagline: "Simplicity/ through/ Complexity.",
   description1: "革新的洗練された/アーキテクチャで、/ビジネスの核心を/支える。",
