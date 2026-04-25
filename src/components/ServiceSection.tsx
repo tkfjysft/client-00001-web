@@ -18,7 +18,7 @@ export default function ServiceSection() {
       label: "GROUP 01",
       title: "Core Infrastructure",
       services: [
-        { name: "Webシステム開発", icon: <Server /> },
+        { name: "Webシステム開発", icon: <Server />, photo: '/images/services_01.webp' },
         { name: "基幹システム構築", icon: <Database /> },
       ],
     },
@@ -55,7 +55,7 @@ export default function ServiceSection() {
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* 左側の紺色背景（画面の左60%くらいを占める） */}
         <div 
-          className="absolute inset-0 bg-bgclr-dark" // 紺色
+          className="absolute inset-0 bg-bgclr_startup-dark" // 紺色
           style={{
             // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
@@ -113,7 +113,7 @@ export default function ServiceSection() {
                         <div className="flex flex-col items-start space-y-6">
                           {/* --- サービス用写真スペース (正円) --- */}
                           <div className="w-24 h-24 rounded-full bg-clr-base-1/5 border border-clr-base-1/10 overflow-hidden flex-shrink-0 relative reveal">
-                            {/* ここに後で写真を挿入 */}
+                            <img src={service.photo} alt="" />
                             <div className="absolute inset-0 bg-gradient-to-br from-clr-main-1/20 to-transparent flex items-center justify-center text-clr-base-1 group-hover:scale-110 transition-transform duration-500">
                               {service.icon}
                             </div>

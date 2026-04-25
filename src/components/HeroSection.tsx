@@ -153,7 +153,7 @@ export default function Home() {
                   key={`d1-${index}`}
                   className="char-fade inline-block"
                   style={{
-                    animationDelay: `${1 + index * 0.04}s`,
+                    animationDelay: `${2.4 + index * 0.04}s`,
                     whiteSpace: "normal",
                   }}
                 >

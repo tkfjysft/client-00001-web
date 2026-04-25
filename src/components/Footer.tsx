@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer id="footer" className="relative w-full text-clr-base-1 overflow-hidden">
 	{/* 💡 固定背景レイヤー */}
-  	<div className="fixed inset-0 -z-10 bg-bgclr-dark" />
+  	<div className="fixed inset-0 -z-10 bg-bgclr_startup-dark" />
       {/* 1. Google Maps エリア */}
       <div
         data-bg="light"
