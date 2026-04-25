@@ -26,7 +26,7 @@ export const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const x = window.innerWidth / 2;
-      const y = 100;
+      const y = 40;
 
       const elements = document.elementsFromPoint(x, y);
       const section = elements
@@ -99,15 +99,15 @@ export const Header = () => {
 
   //navの文字色、背景色の濃淡によって文字色を変える
   const navTextColor = isDarkBg
-    ? "text-clr-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-    : "text-clr-main-1 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+    ? "text-clr-base-2"
+    : "text-clr-main-1";
 
 const borderChangeColor = isDarkBg
   ? ( isOpen ? "border-clr-main-1/30" : "border-clr-base-2/30" )
   : "border-clr-main-1/30";
   const ciLogoTextColor = isDarkBg
-  ? "text-clr-base-2 [text-shadow:_1px_1px_10px_rgba(38,48,118,0.5),_-1px_-1px_10px_rgba(38,48,118,0.5),_1px_-1px_10px_rgba(38,48,118,0.5),_-1px_1px_10px_rgba(38,48,118,0.5)]"
-    : "text-clr-main-2 [text-shadow:_1px_1px_10px_rgba(255,255,255,1),_-1px_-1px_10px_rgba(255,255,255,1),_1px_-1px_10px_rgba(255,255,255,1),_-1px_1px_10px_rgba(255,255,255,1)]";
+  ? "text-clr-base-2"
+    : "text-clr-main-1/50";
 
   return (
     <>
@@ -117,7 +117,7 @@ const borderChangeColor = isDarkBg
 		${
       isPosTop
         ? "bg-transparent" // スクロールしていない、トップにいる時の透明
-        : "md:backdrop-blur-md" // スクロールしている、背景をぼかしてドロップシャドウいれる
+        : "md:backdrop-blur-xl" // スクロールしている、背景をぼかしてドロップシャドウいれる
     }`}
       >
         {/*  */}

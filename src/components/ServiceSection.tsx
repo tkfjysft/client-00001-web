@@ -57,18 +57,20 @@ export default function ServiceSection() {
         <div 
           className="absolute inset-0 bg-clr-main-1" // 紺色
           style={{
-            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
         />
 
         {/* 右側の画像背景（斜めに重なる） */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0
+			[clip-path:polygon(0_20%,100%_70%,100%_100%,0_100%)]
+		  	md:[clip-path:polygon(90%_0,100%_0,100%_100%,15%_100%)]"
           style={{
             backgroundImage: 'url("/images/bg_02.webp")',
             backgroundSize: "cover",
             backgroundPosition: "center",
-            clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
+            // clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
           }}
         />
       </div>

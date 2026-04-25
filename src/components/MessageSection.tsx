@@ -18,27 +18,34 @@ useAutoAnimate();
 
 
 {/* 2. 背景ユニット：画面に完全に固定（fixed） */}
-      <div className="fixed inset-0 z-1 pointer-events-none">
+      <div className="fixed inset-0 z-1 pointer-events-none
+		">
         {/* 右側 */}
         <div 
           className="absolute inset-0 bg-transparent z-2"
-          style={{
-			clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
-          }}
         />
 
         {/* 左側 */}
-		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full"
+		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full
+			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
+		  md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
+		  "
 		          style={{
-            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}>
         <div
-          className="absolute inset-0 opacity-8"
+          className="absolute inset-0 opacity-8
+		  	bg-[url('/images/bg_01.webp')]
+		  	[background-position:-180px_-30px]
+			md:[background-position:0px_0px]
+			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
+		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
+		  "
           style={{
-            backgroundImage: 'url("/images/bg_01.webp")',
+            // backgroundImage: 'url("/images/bg_01.webp")',
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+            // backgroundPosition: "center",
+            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
         />
 		</div>
@@ -47,7 +54,7 @@ useAutoAnimate();
 
 		  {/* 背景にドットのあしらい */}
           <div
-            className="absolute inset-0 opacity-[0.1] pointer-events-none z-0 bg-clr-base-1 "
+            className="fixed inset-0 opacity-[0.1] pointer-events-none z-0 bg-clr-base-1 "
             style={{
               backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, transparent 1px)`,
               backgroundSize: "20px 20px",
@@ -92,7 +99,7 @@ useAutoAnimate();
 
                 {/* 下部の署名的な装飾：アクセントカラーのライン */}
                 <div className="pt-8 border-t border-clr-main-1/5 flex justify-between items-center">
-                  <span className="text-clr-primary-1/40 font-mono text-xs italic">
+                  <span className="text-clr-main-1/40 font-mono text-xs italic">
                     Established 2026 / SERVICTY
                   </span>
                   <div className="w-24 h-px bg-clr-primary-1 reveal" />

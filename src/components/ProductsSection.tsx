@@ -39,23 +39,32 @@ export default function ProductsSection() {
         {/* 左側の紺色背景（画面の左60%くらいを占める） */}
         <div 
           className="absolute inset-0 bg-transparent z-2" // 紺色
-          style={{
-			            clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
-          }}
+        //   style={{
+		// 	clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
+        //   }}
         />
 
         {/* 右側の画像背景（斜めに重なる） */}
-		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full"
+		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full
+			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
+		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
+		  "
 		          style={{
-            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}>
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-10
+		  bg-[url('/images/bg_03.webp')]
+		  	[background-position:-150px_-200px]
+			md:[background-position:1000px_-200px]
+		  	[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
+		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
+			"
           style={{
-            backgroundImage: 'url("/images/bg_03.webp")',
+            // backgroundImage: 'url("/images/bg_03.webp")',
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+            // backgroundPosition: "center",
+            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
         />
 		</div>
@@ -64,7 +73,7 @@ export default function ProductsSection() {
 
 		  {/* 背景にドットのあしらい */}
           <div
-            className="absolute inset-0 opacity-[0.1] pointer-events-none z-0 bg-clr-base-1"
+            className="fixed inset-0 opacity-[0.1] pointer-events-none z-0 bg-clr-base-1"
             style={{
               backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
               backgroundSize: "20px 20px",
