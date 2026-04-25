@@ -102,7 +102,7 @@ export default function Home() {
         className="relative z-20 text-center px-6 pointer-events-none"
         style={{ perspective: "1000px" }}
       >
-        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold tracking-tighter mb-10">
+        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 drop-shadow-[0_2px_4px_var(--color-clr-main-2)]">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {
@@ -153,7 +153,7 @@ export default function Home() {
                   key={`d1-${index}`}
                   className="char-fade inline-block"
                   style={{
-                    animationDelay: `${2.2 + index * 0.04}s`,
+                    animationDelay: `${1 + index * 0.04}s`,
                     whiteSpace: "normal",
                   }}
                 >
