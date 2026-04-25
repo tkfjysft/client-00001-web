@@ -2,12 +2,21 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
 
+//SCSSの変数とCSSの変数は相性が悪いのか、同時に使えない？ので
+//同一の色情報を2回書く
+$base-color: #999;
+$clr-base-1: #f8fafc;
+$clr-base-2: #ffffff;
+$clr-main-1: #0f172a; // 少し明るく、青みの強いネイビー
+$clr-main-2: #1d65c9;
+$clr-primary-1: #0ea5e9;
+
 :root {
   /* ここに共通変数を置く */
 	--color-clr-base-1: #f8fafc;
 	--color-clr-base-2: #ffffff;
 	--color-clr-main-1: #0f172a; // 少し明るく、青みの強いネイビー
-	--color-clr-main-2: #1034a8; 
+	--color-clr-main-2: #1d65c9; 
 	--color-clr-primary-1: #0ea5e9; 
 }
 
@@ -51,7 +60,8 @@ html {
   left: 50%;
   top: 50%;
   border-radius: 50%;
-  box-shadow: 0 0 15px #67e8f9;
+//   background-color: #fff;
+  box-shadow: 0 0 15px var(--color-clr-base-1);
   animation: gathering-animation 1.5s ease-out forwards;
   will-change: transform, opacity;
   opacity: 0;
@@ -63,19 +73,19 @@ html {
   0% {
     opacity: 0;
     /* 発生時は scale(1.5) くらいで存在感を出す */
-    transform: translate(var(--sx), var(--sy)) scale(1.5);
-    background: var(--color-clr-base-2);
+    transform: translate(var(--sx), var(--sy)) scale(1);
+    background: color-mix(in srgb, var(--color-clr-main-2), white 80%);
   }
   15% {
     opacity: 1;
     /* 出現直後に少しだけ大きく（1.8倍）してキラッと見せる */
-    transform: translate(var(--sx), var(--sy)) scale(1.8);
+    transform: translate(var(--sx), var(--sy)) scale(1.5);
   }
   100% {
     /* 中心に向かって scale(0) まで絞り込む */
     transform: translate(var(--ex), var(--ey)) scale(0);
     opacity: 0;
-    background: var(--color-clr-main-1);
+    background: color-mix(in srgb, var(--color-clr-main-2), white 40%);
     filter: blur(1px);
   }
 }
@@ -86,14 +96,14 @@ html {
 
 /////////////////////////////////////////
 /////////////////////////////////////////
-/* --- 2. 英語メッセージ（heroTagline）の文字飛来アニメーション --- */
+/* ---  英語メッセージ（heroTagline）の文字飛来アニメーション --- */
 @keyframes char-fly-in {
   0% {
     opacity: 0;
     /* 画面外の遠く（上下左右ランダム）から、巨大な状態で */
     transform: translate(var(--fx), var(--fy)) scale(10) translateZ(500px);
     filter: blur(20px) brightness(2); // 光輝くボケ
-    color: color-mix(in srgb, var(--color-clr-main-2) 40%, transparent); // 最初はシアン
+    color: color-mix(in srgb, var(--color-clr-main-2) 40%, transparent);
   }
 
   70% {
@@ -126,7 +136,12 @@ html {
   /* 1.2s から 0.8s に短縮。さらに急加速するイージングに変更 */
   animation: char-fly-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
-  text-shadow: 0 0 20px var(--color-clr-main-2), 0 0 40px var(--color-clr-main-2);
+  text-shadow:
+  	0 0 40px color-mix(in srgb, var(--color-clr-main-2), white 40%),
+  	0 0 30px color-mix(in srgb, var(--color-clr-main-2), white 40%),   /* 文字のすぐ裏にある濃い影 */
+    0 0 10px color-mix(in srgb, var(--color-clr-main-2), white 40%),
+    0 0 7px color-mix(in srgb, var(--color-clr-main-2), white 40%),
+    0 0 4px color-mix(in srgb, var(--color-clr-main-2), white 40%);   /* 文字のすぐ裏にある濃い影 */;
 }
 
 
@@ -155,9 +170,9 @@ html {
   animation: char-fade-in 0.8s ease-out forwards;
 	/* 1つ目の影で「光彩」を、2つ目の影で「文字の輪郭」を確保 */
   text-shadow: 
-    0 0 10px rgba(34, 211, 238, 0.5), /* 外側の光 */
-    0 0 7px rgba(4, 97, 111, 1),   /* 文字のすぐ裏にある濃い影 */
-    0 0 4px rgba(4, 97, 111, 1);   /* 文字のすぐ裏にある濃い影 */
+    0 0 10px color-mix(in srgb, var(--color-clr-main-2), white 40%), /* 外側の光 */
+    0 0 7px color-mix(in srgb, var(--color-clr-main-2), white 40%),   /* 文字のすぐ裏にある濃い影 */
+    0 0 4px color-mix(in srgb, var(--color-clr-main-2), white 40%);   /* 文字のすぐ裏にある濃い影 */
 }
 
 
@@ -168,7 +183,17 @@ html {
 ///////////////////////////////
 /// /* 背景グリッド全体のフェードイン */
 @keyframes bg-grid-appearance {
-  0% {
+	0% {
+    opacity: 0;
+    transform: scale(1.3);
+    filter: blur(10px);
+  }
+    40% {
+    opacity: 0;
+    transform: scale(1.2);
+    filter: blur(10px);
+  }
+  70% {
     opacity: 0;
     transform: scale(1.1);
     filter: blur(10px);
@@ -181,7 +206,7 @@ html {
 }
 
 .animate-bg-fadein {
-  animation: bg-grid-appearance 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: bg-grid-appearance 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 
