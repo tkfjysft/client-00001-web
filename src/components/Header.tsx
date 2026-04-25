@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import Logo from "./Logo";
+import { Container } from "lucide-react";
 
 export const Header = () => {
   //ハンバーガーメニューの開閉を判定

@@ -26,7 +26,7 @@ export default function Footer() {
         ></iframe>
 
         {/* マップの上に浮かぶ拠点カード (MessageSectionのデザインを継承) */}
-        <div className="absolute top-10 left-10 p-7 bg-clr-main-1 border-l-4 border-clr-main-2 hidden md:block">
+        <div className="absolute top-12 left-10 p-7 bg-clr-main-1 border-l-4 border-clr-primary-1 hidden md:block">
           <h3 className="font-bold mb-2">{siteConfig.companyName1}</h3>
           <p className="text-clr-base-1 text-sm leading-relaxed">
             〒{siteConfig.contact.postcode}
@@ -39,10 +39,11 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
       {/* ここからContainder */}
       <Container>
         {/* 2. メインフッターエリア */}
-        <div className="max-w-6xl mx-auto px-6 py-20" data-bg="dark">
+        <div className="mx-auto py-32" data-bg="dark">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-19">
             {/* ロゴ・会社概要 */}
             <div className="md:col-span-5 space-y-6">
@@ -97,7 +98,7 @@ export default function Footer() {
           </div>
 
           {/* コピーライトとSNSリンク */}
-          <div className="mt-20 py-8 border-t border-clr-base-1/8 w-full flex justify-end text-clr-base-1/50 text-sm font-mono">
+          <div className="mt-20 pt-8 border-t border-clr-base-1/8 w-full flex justify-end text-clr-base-1/50 text-sm font-mono">
             <small>© 2026 SERVICTY INC. ALL RIGHTS RESERVED.</small>
           </div>
         </div>

@@ -9,7 +9,7 @@ useAutoAnimate();
   return (
     <>
       {/* 背景: $bg-base (#f8fafc) */}
-      <section id="message-section" data-bg="light" className="py-24 w-full bg-clr-base-1"
+      <section id="message-section" data-bg="light" className="py-32 w-full bg-clr-base-1"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
           }}
@@ -61,7 +61,7 @@ useAutoAnimate();
             }}
           />
 
-          <div className="max-w-6xl mx-auto relative px-6 z-10 reveal">
+          <div className="mx-auto relative z-10 reveal">
 			            {/* 上部の装飾：細い直線とアクセントカラーの小さな矩形 */}
             <div className="flex items-center gap-4 mb-16">
               <div className="w-12 h-[2px] bg-clr-primary-1" />

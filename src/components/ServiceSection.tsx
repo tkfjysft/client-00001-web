@@ -84,8 +84,8 @@ export default function ServiceSection() {
             {/* 見出しエリア：MessageSectionに近い、線を使ったミニマルな構成 */}
             <div className="flex items-center gap-4 mb-15">
               <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
-                Our Services
+              <h2 className="text-4xl md:text-5xl font-bold tracking-widest">
+                Services
               </h2>
               <div className="flex-grow h-[1px] bg-clr-base-1/10" />
             </div>

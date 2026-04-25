@@ -7,18 +7,21 @@ export default function ProductsSection() {
     {
       id: "01",
       title: "Enterprise Ecosystem",
+	  photo: '/images/products_01.webp',
       description:
         "大規模なビジネス基盤を支える、次世代の統合プラットフォーム。複雑なデータフローを最適化し、意思決定のスピードを劇的に向上させます。",
     },
     {
       id: "02",
       title: "Lightweight Tool",
+	  photo: '/images/products_02.webp',
       description:
         "特定の課題に特化した、シンプルで強力なミニマル・ソリューション。",
     },
     {
       id: "03",
       title: "Cloud Native System",
+	  photo: '/images/products_03.webp',
       description:
         "スケーラビリティを最優先したクラウドネイティブなプロダクト。変化し続ける市場環境に柔軟に対応できる堅牢な設計を実現しました。",
     },
@@ -26,7 +29,7 @@ export default function ProductsSection() {
 
   return (
     <>
-      <section id="products-section" data-bg="light" className="py-24 w-full bg-clr-base-1 relative"
+      <section id="products-section" data-bg="light" className="py-32 w-full bg-clr-base-1 relative"
 	            style={{
             clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
           }}
@@ -78,12 +81,12 @@ export default function ProductsSection() {
             }}
           />
 
-          <div className="max-w-6xl mx-auto relative px-6 z-10">
+          <div className="mx-auto relative z-10">
             {/* 見出し */}
-            <div className="flex items-center gap-4 mb-20">
+            <div className="flex items-center gap-4 mb-10">
               <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-clr-main-1">
-                Selected Products
+              <h2 className="text-4xl md:text-5xl font-bold tracking-widest text-clr-main-1">
+                Products
               </h2>
               <div className="flex-grow h-[1px] bg-clr-main-1/5" />
             </div>
@@ -92,28 +95,24 @@ export default function ProductsSection() {
             - デフォルト（スマホ）: 1列 (grid-cols-1)
             - md以上: 12カラム
         */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8">
+            <div className="grid grid-cols-1 md:grid-cols-[auto_auto] lg:grid-cols-12 gap-y-16 lg:gap-x-8">
               {/* 1番目: PCでは7列、スマホでは共通レイアウト */}
-              <div className="md:col-span-7 group border-t border-clr-main-1/10 pt-10">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="md:w-[42vw] lg:w-auto lg:col-span-7 group lg:border-t lg:border-clr-main-1/10 pt-10">
+                <div className="flex flex-col lg:flex-row gap-1 lg:gap-2 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
-                  <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-clr-base-1 to-clr-main-1/5 flex items-center justify-center">
-                      <span className="text-clr-primary-1/10 font-mono text-4xl">
-                        01
-                      </span>
-                    </div>
+                  <div className="size-[70vw] md:size-60 lg:w-56 lg:h-56 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal">
+				  	<img src={products[0].photo} alt="" className="h-full w-full object-cover" />
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-1">
                     <div className="flex items-center gap-3">
                       <span className="text-clr-primary-1 font-mono text-xs">
                         01
                       </span>
-                      <h3 className="text-2xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
+                      <h3 className="text-xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
                         {products[0].title}
                       </h3>
                     </div>
-                    <p className="text-clr-main-1/70 text-lg leading-relaxed font-light">
+                    <p className="text-clr-main-1/70 leading-relaxed font-light text-justify">
                       {products[0].description}
                     </p>
                   </div>
@@ -121,26 +120,22 @@ export default function ProductsSection() {
               </div>
 
               {/* 2番目: PCでは5列、スマホでは共通レイアウト */}
-              <div className="md:col-span-5 group border-t border-clr-main-1/10 pt-10">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="md:w-[39vw] lg:w-auto lg:col-span-5 group lg:border-t lg:border-clr-main-1/10 pt-10">
+                <div className="flex flex-col lg:flex-row gap-1 lg:gap-2 items-start">
                   {/* 写真サイズ: 2番目もスマホでは w-32 に統一 */}
-                  <div className="w-32 h-32 md:w-32 md:h-32 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-clr-base-1 to-clr-main-1/5 flex items-center justify-center">
-                      <span className="text-clr-primary-1/10 font-mono text-2xl">
-                        02
-                      </span>
-                    </div>
+                  <div className="size-[70vw] md:size-60 lg:w-32 lg:h-32 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
+				  	<img src={products[1].photo} alt="" className="h-full w-full object-cover" />
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-1">
                     <div className="flex items-center gap-3">
                       <span className="text-clr-primary-1 font-mono text-xs">
                         02
                       </span>
-                      <h3 className="text-2xl md:text-xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
+                      <h3 className="text-xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
                         {products[1].title}
                       </h3>
                     </div>
-                    <p className="text-clr-main-1/60 text-lg md:text-sm leading-relaxed font-light">
+                    <p className="text-clr-main-1/70 leading-relaxed font-light text-justify">
                       {products[1].description}
                     </p>
                   </div>
@@ -148,26 +143,22 @@ export default function ProductsSection() {
               </div>
 
               {/* 3番目: PCでは8列・右寄せ、スマホでは共通レイアウト */}
-              <div className="md:col-span-8 md:col-start-5 group border-t border-clr-main-1/10 pt-10">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="md:w-[42vw] lg:w-auto lg:col-span-9 lg:col-start-3 group lg:border-t lg:border-clr-main-1/10 pt-10">
+                <div className="flex flex-col lg:flex-row gap-1 lg:gap-2 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
-                  <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0 rounded-full border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-clr-base-1 to-clr-main-1/5 flex items-center justify-center">
-                      <span className="text-clr-main-1/10 font-mono text-4xl">
-                        03
-                      </span>
-                    </div>
+                  <div className="size-[70vw] md:size-60 lg:w-70 lg:h-70 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
+				  	<img src={products[2].photo} alt="" className="h-full w-full object-cover" />
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-1">
                     <div className="flex items-center gap-3">
                       <span className="text-clr-primary-1 font-mono text-xs">
                         03
                       </span>
-                      <h3 className="text-2xl clr-main-2 font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
+                      <h3 className="text-xl clr-main-2 font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
                         {products[2].title}
                       </h3>
                     </div>
-                    <p className="text-clr-main-1/60 text-lg leading-relaxed font-light">
+                    <p className="text-clr-main-1/70 leading-relaxed font-light text-justify">
                       {products[2].description}
                     </p>
                   </div>
