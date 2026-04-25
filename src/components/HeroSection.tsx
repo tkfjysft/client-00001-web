@@ -35,32 +35,49 @@ export default function Home() {
       className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden"
     >
       {/* --- 背景グリッドレイヤー --- */}
-      <div className="absolute inset-0 z-0 animate-bg-fadein">
+      <div className="absolute -top-[10%] -left-[10%] inset-0 z-0 animate-bg-fadein"
+	   
+	  >
         {/* 写真のグリッド表示 */}
-        <div className="grid grid-cols-2 md:grid-cols-3 w-full h-full gap-0">
+        <div className="grid grid-cols-2 md:grid-cols-7 w-full h-full gap-3"
+		style={{transform: 'rotate(-5deg)',
+			position: "absolute",
+  width: "110%",
+  height: "110%",
+
+
+		 }}>
           {backgroundImages.map((src, idx) => (
             <div
               key={idx}
-              className="relative w-full h-full overflow-hidden border-[0.5px] border-clr-main-1"
+              className={`}relative w-full h-full overflow-hidden
+									${idx === 0 ? 'relative -top-[13%]' : ''}
+									${idx === 3 ? 'relative -top-[13%]' : ''}
+									${idx === 2 ? 'relative -bottom-[20%]' : ''}
+									${idx === 5 ? 'relative -bottom-[20%]' : ''}
+									${idx === 1 ? 'pb-[100px] col-span-3' : 'col-span-2'}
+									${idx === 4 ? 'pt-[100px] col-span-3' : 'col-span-2'}
+				`}
             >
               <div
-                className="w-full h-full bg-cover bg-center contrast-[1.1]"
+                className={`}w-full h-full bg-cover bg-center`}
                 style={{
                   backgroundImage: `url(${src})`,
                   // grayscaleを削除し、青いフィルターを重ねる
-                  filter:
-                    "sepia(60%) hue-rotate(80deg) saturate(40%) brightness(0.6)",
+                // filter: "brightness(60%) contrast(80%)"
+                    // "sepia(60%) hue-rotate(80deg) saturate(40%) brightness(0.6)",
                   // "sepia(100%) hue-rotate(190deg) saturate(150%) brightness(0.7)",
                 }}
               />
               {/* 写真の上に、さらに薄い青色の膜を張る */}
-              <div className="absolute inset-0 bg-clr-main-1/30 mix-blend-overlay" />
+              {/* <div className="absolute inset-0 bg-clr-primary-1/20 mix-blend-overlay" /> */}
             </div>
           ))}
         </div>
 
         {/* 下部のグラデーションも「黒」ではなく「深い青」へ */}
-        <div className="absolute inset-0 bg-gradient-to-b from-clr-main-1/40 via-transparent to-clr-main-1/80" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-clr-primary-1/20 to-transparent" /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-clr-primary-1/20 via-transparent to-clr-primary-1/20" /> */}
       </div>
 
       {/* 粒子レイヤー */}
@@ -100,13 +117,42 @@ export default function Home() {
       {/* --- テキストレイヤー --- */}
       <div
         className="relative z-20 text-center px-6 pointer-events-none"
-        style={{ perspective: "1000px" }}
+        style={{ perspective: "1000px",
+			transform: 'rotate(-5deg)',
+		 }}
       >
-        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold tracking-tighter mb-10 drop-shadow-[0_2px_4px_var(--color-clr-main-2)]">
+
+        <div className="pb-10">
+          {/* 全体のテンポに合わせて日本語の出現も早めます */}
+          {/* 背景だけを少し暗くし、ぼかすレイヤー */}
+          <p className="text-clr-base-2 md:text-2xl font-bold drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-loose">
+            {siteConfig.description1.split("").map((char, index) => {
+              // 1. もし文字が「/」だったら、改行ポイントを返す
+              if (char === "/") {
+                return <br key={`wbr-${index}`} />;
+              }
+              // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
+              return (
+                <span
+                  key={`d1-${index}`}
+                  className="char-fade inline-block"
+                  style={{
+                    animationDelay: `${2.4 + index * 0.04}s`,
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              );
+            })}
+          </p>
+        </div>
+		
+        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold tracking-[1] mb-10 drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-[0.7]">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {
-              return <wbr key={`wbr-${index}`} />;
+              return <br key={`wbr-${index}`} />;
             }
 
             // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
@@ -115,37 +161,43 @@ export default function Home() {
             const dist = 1200; // 飛来距離を少し伸ばしてスピード感を強調
             const fx = Math.cos(angle) * dist;
             const fy = Math.sin(angle) * dist;
-            return (
-              <span
-                key={`ht-${index}`}
-                className="animate-char-fly inline-block"
-                suppressHydrationWarning={true}
-                style={
-                  {
-                    /* 1.0s 開始だったのを 0.3s に大幅前倒し。
-                       粒子が「パッ」と出た直後から文字が飛び込み始めます。
-                    */
-                    animationDelay: `${0.3 + index * 0.05}s`,
-                    "--fx": `${fx}px`,
-                    "--fy": `${fy}px`,
-                    whiteSpace: "normal",
-                  } as any
-                }
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            );
+				return (
+					
+				<span
+					key={`ht-${index}`}
+					className={`animate-char-fly inline-block
+					${(char.match(/^[a-z\s]/i)) ? "" : "font-zen text-base md:text-3xl font-[900]"}
+						`}
+					suppressHydrationWarning={true}
+					style={
+					{
+						/* 1.0s 開始だったのを 0.3s に大幅前倒し。
+						粒子が「パッ」と出た直後から文字が飛び込み始めます。
+						*/
+						animationDelay: `${0.3 + index * 0.05}s`,
+						"--fx": `${fx}px`,
+						"--fy": `${fy}px`,
+						whiteSpace: "normal",
+					} as any
+					}
+				>
+					{char === " " ? "\u00A0" : char}
+				</span>
+
+
+				);
+			
           })}
         </h1>
 
-        <div className="space-y-4">
+        <div className="pt-4">
           {/* 全体のテンポに合わせて日本語の出現も早めます */}
           {/* 背景だけを少し暗くし、ぼかすレイヤー */}
-          <p className="text-clr-base-1/80 md:text-2xl font-bold drop-shadow-[0_2px_4px_var(--color-clr-main-2)]">
-            {siteConfig.description1.split("").map((char, index) => {
+          <p className="text-clr-base-2 md:text-2xl font-bold leading-loose">
+            {siteConfig.description2.split("").map((char, index) => {
               // 1. もし文字が「/」だったら、改行ポイントを返す
               if (char === "/") {
-                return <wbr key={`wbr-${index}`} />;
+                return <br key={`wbr-${index}`} />;
               }
               // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
               return (

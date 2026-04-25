@@ -16,8 +16,8 @@ export const siteConfig = {
   companyName2: "マインドシフトシステムズ\n株式会社",
   enCompamyName: "Mind Shift Systems",
   ownerName: "山田 太郎", // ← 追加しました！
-  heroTagline: "Simplicity/ through/ Complexity.",
-  description1: "革新的洗練された/アーキテクチャで、/ビジネスの核心を/支える。私たちは、/止められないシステムと、/終わらない進化を/追求し続けます。",
+  heroTagline: "New Mind/ソフトウェアで、ビジネスの常識を転換する。",
+  description1: "",
   description2:
     "",
   url: "https://example.com",

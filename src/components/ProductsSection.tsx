@@ -48,7 +48,7 @@ export default function ProductsSection() {
         />
 
         {/* 右側の画像背景（斜めに重なる） */}
-		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full
+		<div className="bg-clr-primary-2 opacity-100 z-3 w-full h-full
 			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
 		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
 		  "
@@ -56,7 +56,7 @@ export default function ProductsSection() {
             // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}>
         <div
-          className="absolute inset-0 opacity-10
+          className="absolute inset-0 opacity-8
 		  bg-[url('/images/bg_03.webp')]
 		  	[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
 		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]

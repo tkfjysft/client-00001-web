@@ -26,7 +26,7 @@ useAutoAnimate();
         />
 
         {/* 左側 */}
-		<div className="bg-clr-base-1 opacity-100 z-3 w-full h-full
+		<div className="bg-clr-primary-2 opacity-100 z-3 w-full h-full
 			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
 		  md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
 		  "
