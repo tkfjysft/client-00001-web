@@ -55,11 +55,9 @@ export default function ProductsSection() {
         <div
           className="absolute inset-0 opacity-10
 		  bg-[url('/images/bg_03.webp')]
-		  	[background-position:-150px_-200px]
-			md:[background-position:1000px_-200px]
 		  	[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
 		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
-			"
+			contrast-150"
           style={{
             // backgroundImage: 'url("/images/bg_03.webp")',
             backgroundSize: "cover",

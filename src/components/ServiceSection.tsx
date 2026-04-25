@@ -55,7 +55,7 @@ export default function ServiceSection() {
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* 左側の紺色背景（画面の左60%くらいを占める） */}
         <div 
-          className="absolute inset-0 bg-clr-main-1" // 紺色
+          className="absolute inset-0 bg-bgclr-dark" // 紺色
           style={{
             // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
           }}
@@ -70,11 +70,13 @@ export default function ServiceSection() {
             backgroundImage: 'url("/images/bg_02.webp")',
             backgroundSize: "cover",
             backgroundPosition: "center",
+			filter: "brightness(40%) contrast(160%)",
             // clipPath: "polygon(90% 0%, 100% 0%, 100% 100%, 15% 100%)",
           }}
         />
       </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-clr-main-1 via-clr-main-1/90 to-clr-main-1/80" />
+	  		{/* 濃紺背景 */}
+            {/* <div className="absolute inset-0 bg-gradient-to-r from-clr-main-1 via-clr-main-1/90 to-clr-main-1/80" /> */}
 
           {/* </div> */}
 

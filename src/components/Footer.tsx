@@ -7,7 +7,9 @@ import SnsLinks from "@/components/SnsLinks";
 
 export default function Footer() {
   return (
-    <footer id="footer" className="relative w-full bg-clr-main-1 text-clr-base-1">
+    <footer id="footer" className="relative w-full text-clr-base-1 overflow-hidden">
+	{/* 💡 固定背景レイヤー */}
+  	<div className="fixed inset-0 -z-10 bg-bgclr-dark" />
       {/* 1. Google Maps エリア */}
       <div
         data-bg="light"
