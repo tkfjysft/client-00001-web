@@ -112,37 +112,37 @@ const borderChangeColor = isDarkBg
   return (
     <>
       <header
-        className={`absolute top-3 left-0 md:fixed md:top-0 w-full z-50 flex flex-col items-center justify-center transition-all
-		h-15 md:h-20
+        className={`absolute top-3 left-0 lg:fixed lg:top-0 w-full z-50 flex flex-col items-center justify-center transition-all
+		h-15 lg:h-20
 		${
       isPosTop
         ? "bg-transparent" // スクロールしていない、トップにいる時の透明
-        : "md:backdrop-blur-xl" // スクロールしている、背景をぼかしてドロップシャドウいれる
+        : "lg:backdrop-blur-xl" // スクロールしている、背景をぼかしてドロップシャドウいれる
     }`}
       >
         {/*  */}
         {/* PC版ヘッダー */}
-        <div className="relative w-full max-w-7xl mx-auto pl-3 md:px-8 flex items-center justify-between h-15 md:h-15 z-99999">
+        <div className="relative w-full max-w-7xl mx-auto pl-3 lg:px-8 flex items-center justify-between h-15 lg:h-15 z-99999">
           {/*  */}
           {/* ロゴ部分 */}
 		  <div className={`block static relative h-full`}>
           <Link
             href="/"
-            className={`h-full flex items-start md:items-center`}
+            className={`h-full flex items-start lg:items-center`}
           >
 			<span className={`font-zen leading-[0.5] ${ciLogoTextColor}`}>
-			<span className={`text-base md:text-lg font-[900] pb-1`}>{siteConfig.companyName1}</span><br />
-			<span className={`block text-sm font-[500] pt-0 md:mt-0 italic`}>{siteConfig.enCompamyName}</span>
+			<span className={`text-base lg:text-lg font-[900] pb-1`}>{siteConfig.companyName1}</span><br />
+			<span className={`block text-sm font-[500] pt-0 lg:mt-0 italic`}>{siteConfig.enCompamyName}</span>
 			</span>
           </Link>
 		  </div>
 
           {/* 2. 右側グループ（ナビ + コンタクトボタン） */}
           {/* gap-8 または gap-12 くらいにすると、ボタンとの距離が程よく保たれます */}
-          <div className="flex h-16 items-center gap-8 md:gap-5">
+          <div className="flex h-16 items-center gap-8 lg:gap-5">
             {/*  */}
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
-            <nav className={`hidden md:flex items-center gap-6`}>
+            <nav className={`hidden lg:flex items-center gap-6`}>
               {siteConfig.navItems
 			  .filter((_, index) => index !== 4) // 先に5番目を除外する
 			  .map((item) => (
@@ -181,7 +181,7 @@ const borderChangeColor = isDarkBg
             {/* --- お問い合わせボタン --- */}
             <Link
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center
+              className="hidden lg:inline-flex items-center justify-center
 				   px-6 py-2.5 rounded-full 
                    bg-clr-primary-1
                    text-clr-base-2 font-bold 
@@ -196,7 +196,7 @@ const borderChangeColor = isDarkBg
       {/* スマホ用：ハンバーガーボタン (md未満で表示) */}
       <div className="fixed left-[80%] w-[20%] px-8 py-4.5 flex justify-end z-10000">
         <button
-          className={`md:hidden cursor-pointer
+          className={`lg:hidden cursor-pointer
 		  				fixed top-3 right-3 flex py-4 px-3 items-center justify-center border ${borderChangeColor} backdrop-blur-md rounded-lg`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menu"
@@ -218,7 +218,7 @@ const borderChangeColor = isDarkBg
       {/* スマホ用：スライドメニュー */}
       <div
         className={`
-        fixed top-0 right-0 bottom-0 z-[100] w-[80%] bg-clr-base-2/95 z-400 transition-transform duration-300 md:hidden
+        fixed top-0 right-0 bottom-0 z-[100] w-[80%] bg-clr-base-2/95 z-400 transition-transform duration-300 lg:hidden
         ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
       >
@@ -229,7 +229,7 @@ const borderChangeColor = isDarkBg
           >
 	<span className={`font-zen leading-none text-center text-clr-main-2`}>
 	<span className={`text-sm font-[900] pb-1 whitespace-pre-wrap`}>{siteConfig.companyName2}</span><br />
-	<span className={`block text-xs italic font-[500] pt-1  md:mt-0`}>{siteConfig.enCompamyName}</span>
+	<span className={`block text-xs italic font-[500] pt-1  lg:mt-0`}>{siteConfig.enCompamyName}</span>
 	</span>
           </Link>
         <nav className="flex flex-col items-center pt-10 gap-8">

@@ -19,25 +19,25 @@ export default function ServiceSection() {
       title: "Core Infrastructure",
       services: [
         { name: "Webシステム開発", icon: <Server />, photo: '/images/services_01.webp' },
-        { name: "基幹システム構築", icon: <Database /> },
+        { name: "基幹システム構築", icon: <Database />, photo: '/images/services_02.webp' },
       ],
     },
     {
       label: "GROUP 02",
       title: "Experience Design",
       services: [
-        { name: "UI/UXデザイン", icon: <Monitor /> },
-        { name: "モバイルアプリ開発", icon: <Smartphone /> },
-        { name: "フロントエンド開発", icon: <Code /> },
+        { name: "UI/UXデザイン", icon: <Monitor />, photo: '/images/services_03.webp' },
+        { name: "モバイルアプリ開発", icon: <Smartphone />, photo: '/images/services_04.webp' },
+        { name: "フロントエンド開発", icon: <Code />, photo: '/images/services_05.webp' },
       ],
     },
     {
       label: "GROUP 03",
       title: "Consulting & Security",
       services: [
-        { name: "DXコンサルティング", icon: <Lightbulb /> },
-        { name: "クラウド移行支援", icon: <Cloud /> },
-        { name: "セキュリティ診断", icon: <Shield /> },
+        { name: "DXコンサルティング", icon: <Lightbulb />, photo: '/images/services_06.webp' },
+        { name: "クラウド移行支援", icon: <Cloud />, photo: '/images/services_07.webp' },
+        { name: "セキュリティ診断", icon: <Shield />, photo: '/images/services_08.webp' },
       ],
     },
   ];
@@ -80,9 +80,9 @@ export default function ServiceSection() {
 
           {/* </div> */}
 
-          <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="mx-auto relative z-10">
             {/* 見出しエリア：MessageSectionに近い、線を使ったミニマルな構成 */}
-            <div className="flex items-center gap-4 mb-24">
+            <div className="flex items-center gap-4 mb-15">
               <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
                 Our Services
@@ -90,11 +90,11 @@ export default function ServiceSection() {
               <div className="flex-grow h-[1px] bg-clr-base-1/10" />
             </div>
 
-            <div className="space-y-32">
+            <div className="space-y-20">
               {serviceGroups.map((group, groupIdx) => (
                 <div key={groupIdx} className="relative">
                   {/* グループ見出し：横線で区切るスタイル */}
-                  <div className="flex items-baseline gap-6 mb-12 border-b border-clr-base-1/10 pb-4">
+                  <div className="flex items-baseline gap-6 mb-6 border-b border-clr-base-1/10 pb-2">
                     <span className="text-clr-primary-1 font-mono text-xs tracking-[0.4em]">
                       {group.label}
                     </span>
@@ -104,26 +104,26 @@ export default function ServiceSection() {
                   </div>
 
                   {/* サービスカード：MessageSectionのような「箱なし」デザイン */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+                  <div className="grid grid-cols-1 md:grid-cols-[auto_auto] lg:grid-cols-[auto_auto_auto] justify-between gap-y-10">
                     {group.services.map((service, serviceIdx) => (
-                      <div key={serviceIdx} className="group relative">
+                      <div key={serviceIdx} className="w-full md:w-[42vw] lg:w-70 group relative">
                         {/* 左側の垂直線（MessageSectionのA案的なアクセント） */}
-                        <div className="absolute -left-6 top-0 bottom-0 w-px bg-gradient-to-b from-clr-main-1 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                        <div className="flex flex-col items-start space-y-6">
+                        <div className="flex flex-col items-start space-y-2">
                           {/* --- サービス用写真スペース (正円) --- */}
-                          <div className="w-24 h-24 rounded-full bg-clr-base-1/5 border border-clr-base-1/10 overflow-hidden flex-shrink-0 relative reveal">
-                            <img src={service.photo} alt="" />
+                          <div className="size-[70vw] md:size-60 bg-clr-base-1/5 border border-clr-base-1/10 overflow-hidden flex-shrink-0 relative reveal">
+                            <img src={service.photo} alt="" className="h-full w-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-br from-clr-main-1/20 to-transparent flex items-center justify-center text-clr-base-1 group-hover:scale-110 transition-transform duration-500">
                               {service.icon}
                             </div>
                           </div>
 
-                          <div className="space-y-3">
+                          <div className="space-y-1">
                             <h4 className="text-xl font-bold tracking-tight group-hover:text-clr-base-1 transition-colors">
                               {service.name}
                             </h4>
-                            <p className="text-clr-base-1/65 leading-relaxed font-light">
+                            <p className="text-clr-base-1/65 leading-relaxed font-light text-justify">
                               最適な技術スタックを選定し、ビジネスの課題をシンプルかつ堅牢な解決策へと導きます。
                             </p>
                           </div>
