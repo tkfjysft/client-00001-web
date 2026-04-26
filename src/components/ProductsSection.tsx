@@ -1,7 +1,7 @@
-"use client";
+// "use client";
 
 import { Container } from "./Container";
-import ArrowLinkBlack from "./ArrowLinkBlack";
+import ArrowLink from "@/components/ArrowLink";
 
 export default function ProductsSection() {
   const products = [
@@ -116,7 +116,7 @@ export default function ProductsSection() {
                     <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
                       {products[0].description}
                     </p>
-					<ArrowLinkBlack href="https://ex.jp" />
+					<ArrowLink href="https://example.co.jp" />
                   </div>
                 </div>
               </div>
@@ -140,7 +140,7 @@ export default function ProductsSection() {
                     <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
                       {products[1].description}
                     </p>
-					<ArrowLinkBlack href="https://ex.jp" />
+					<ArrowLink href="https://example.co.jp" />
                   </div>
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function ProductsSection() {
                     <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
                       {products[2].description}
                     </p>
-					<ArrowLinkBlack href="https://ex.jp" />
+					<ArrowLink href="https://example.co.jp" />
                   </div>
                 </div>
               </div>

@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <section
-      data-bg="dark"
+      data-bg="dark"  id="hero-section"
       className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden"
     >
       {/* --- 背景グリッドレイヤー --- */}

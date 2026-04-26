@@ -33,7 +33,7 @@ export default function Footer() {
             <br />
             {siteConfig.contact.address}
             <br />
-            <span className="text-xs">tel</span>&nbsp;&nbsp;{siteConfig.contact.tel}
+            <span className="text-xs">tel</span>&nbsp;&nbsp;<a href={`tel:${siteConfig.contact.tel}`}>{siteConfig.contact.tel}</a>
             <br />
             <span className="text-xs">fax</span>&nbsp;&nbsp;{siteConfig.contact.fax}
           </p>
@@ -53,7 +53,7 @@ export default function Footer() {
               <ul className="text-clr-base-1/90 leading-relaxed max-w-sm">
                 <li>〒{siteConfig.contact.postcode}</li>
                 <li>{siteConfig.contact.address}</li>
-                <li>tel&nbsp;:&nbsp;{siteConfig.contact.tel}</li>
+                <li>tel&nbsp;:&nbsp;<a href={`tel:${siteConfig.contact.tel}`}>{siteConfig.contact.tel}</a></li>
                 <li>fax&nbsp;:&nbsp;{siteConfig.contact.fax}</li>
               </ul>
               <p className="text-clr-base-1/65 text-sm leading-relaxed max-w-sm pt-3">

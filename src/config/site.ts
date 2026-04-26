@@ -16,16 +16,18 @@ export const siteConfig = {
   companyName2: "マインドシフトシステムズ\n株式会社",
   enCompamyName: "Mind Shift Systems",
   ownerName: "山田 太郎", // ← 追加しました！
+  metaTitle: "",
+  metaDescription: "",
   heroTagline: "Mind Shift/ソフトウェアでビジネスの常識を転換する",
   description1: "",
-  description2:
-    "",
+  description2: "",
   url: "https://example.com",
   contact: {
     postcode: "*******",
     address: "大阪市中央区北浜1丁目1番9号",
-	    tel: "**-****-****",
-    	fax: "**-****-****",
+	    tel: "0600000000",
+		// 数字の間に \u200c (ゼロ幅非接合子のコード) を入れる
+    	fax: "00\u200c0000\u200c0000",
     	email: "info@example.com",
   },
   navItems: [

@@ -3,7 +3,7 @@
 import { Container } from "./Container";
 import { useAutoAnimate } from "./hooks/useAutoAnimate";
 import Link from "next/link";
-import ArrowLinkBlack from "./ArrowLinkBlack";
+import ArrowLink from "@/components/ArrowLink";
 
 export default function MessageSection() {
 useAutoAnimate();
@@ -97,7 +97,7 @@ useAutoAnimate();
                     堅牢な設計による安定した基盤と、洗練されたインターフェースによる快適な操作性。
                     高度な専門性と確かな実装力をもって、複雑なビジネス課題を最適なデジタルソリューションへと導きます。
                   </p>
-				  <ArrowLinkBlack href="https://ex.jp" />
+				  <ArrowLink href="https://example.co.jp" />
 
                 </div>
 

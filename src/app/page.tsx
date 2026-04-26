@@ -1,27 +1,19 @@
 // src/app/page.tsx
-"use client";
 
 // import { motion } from "framer-motion"; // ← これが必要です！
-import { siteConfig } from "@/config/site";
-import { useEffect, useState, useMemo } from "react";
-import  MessageSection  from "@/components/MessageSection";
-import  ServiceSection  from "@/components/ServiceSection";
-import  ProductsSection  from "@/components/ProductsSection";
+// import { siteConfig } from "@/config/site";
+// import { useEffect, useState, useMemo } from "react";
+import MessageSection from "@/components/MessageSection";
+import ServiceSection from "@/components/ServiceSection";
+import ProductsSection from "@/components/ProductsSection";
 
 export default function Home() {
-
-
-
   return (
-
     <main className="relative w-full">
-
-	  <MessageSection />
-    <ServiceSection />
-	    <ProductsSection />
-{/* ページの最上部へのスムーススクロールボタン */}
+      <MessageSection />
+      <ServiceSection />
+      <ProductsSection />
+      {/* ページの最上部へのスムーススクロールボタン */}
     </main>
-
-
   );
 }

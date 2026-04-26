@@ -4,63 +4,60 @@ import { useEffect } from "react";
 
 export const useAutoAnimate = () => {
   useEffect(() => {
-    const autoAnimate = (selector: string) => {
-      // 1. parentの取得を少し確実にするため、少し待機するか、存在確認を徹底
-      const parent = document.querySelector(selector);
-      if (!parent) return;
+    // 1. 監視対象のセレクタ（一括管理）、divとimgがズレてアニメーションするのでimgは対象外
+    const selector = "h1, h2, h3, h4, p, span, li, a, svg, .reveal, .c-visual-box, .c-section-title";
+    
+    // 2. IntersectionObserverの定義
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // 交差した（画面に入った）要素だけを抽出
+        const visibleEntries = entries.filter((e) => e.isIntersecting);
 
-      const targets = parent.querySelectorAll(
-		//外側記述のdivの枠とズレてアニメーションするのでimgは除けておく
-        'h1, h2, h3, h4, p, span, li, a, svg, .reveal, .c-visual-box, .c-section-title'
-      );
+        visibleEntries.forEach((entry, index) => {
+          const element = entry.target as HTMLElement;
+          if (element.classList.contains("is-visible")) return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+          // 表示の遅延を計算して付与
+          element.style.transitionDelay = `${index * 0.1}s`;
           
-          visibleEntries.forEach((entry, index) => {
-            // ★ここを修正: entryそのものではなく entry.target を HTMLElement として扱う
-            const element = entry.target as HTMLElement;
-
-            if (element.classList.contains("is-visible")) return;
-
-            // transitionDelay を直接付与
-            element.style.transitionDelay = `${index * 0.1}s`;
-            
-            // クラス付与（ブラウザのレンダリングを強制的に待つため requestAnimationFrame を使うとより確実）
-            requestAnimationFrame(() => {
-              element.classList.add("is-visible");
-            });
-
-            observer.unobserve(element);
+          requestAnimationFrame(() => {
+            element.classList.add("is-visible");
           });
-        },
-        {
-          root: null,
-          rootMargin: "0px 0px -250px 0px", // 少し甘めに設定
-          threshold: 0,
-        }
-      );
 
-      targets.forEach((target) => observer.observe(target));
-      return observer;
-    };
+          // 一度表示したら監視を解除（引き算の思想：無駄な監視を続けない）
+          observer.unobserve(element);
+        });
+      },
+      {
+        rootMargin: "0px 0px -150px 0px", // 150px〜250px程度が自然です
+        threshold: 0,
+      }
+    );
 
-    // 実行
-    const targetSections = ["#message-section", "#service-section", "#products-section"];
-    const observers: IntersectionObserver[] = [];
-
-    // Next.jsのレンダリング完了を待つために少しだけ遅延させる
+    // 3. 実行（特定のIDではなく、特定のコンテナ内の要素を全スキャン）
     const timer = setTimeout(() => {
-      targetSections.forEach((section) => {
-        const obs = autoAnimate(section);
-        if (obs) observers.push(obs);
-      });
+      // mainタグ内の対象要素をすべて取得
+      const targets = document.querySelectorAll(`main ${selector}`);
+      targets.forEach((t) => {
+		// observer.observe(t)
+	
+		// ヒーローエリアのID（例: #hero または #message-section）を指定
+        const isInsideHero = t.closest("#hero-section"); 
+        
+        if (isInsideHero) {
+          // ヒーローエリア内の要素は、監視せず即座に表示クラスを付ける
+        //   t.classList.add("is-visible");
+        } else {
+          // ヒーローエリア以外は監視対象にする
+          observer.observe(t);
+        }
+
+	});  
     }, 100);
 
     return () => {
       clearTimeout(timer);
-      observers.forEach((obs) => obs.disconnect());
+      observer.disconnect();
     };
-  }, []);
+  }, []); // 空配列でマウント時のみ実行
 };

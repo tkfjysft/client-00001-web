@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { Container } from "./Container";
 import {
@@ -12,7 +12,7 @@ import {
   Shield,
 } from "lucide-react";
 import Link from "next/link";
-import ArrowLinkWhite from "./ArrowLinkWhite";
+import ArrowLink from "@/components/ArrowLink";
 
 export default function ServiceSection() {
   const serviceGroups = [
@@ -130,7 +130,7 @@ export default function ServiceSection() {
                             </p>
                           </div>
 
-						  <ArrowLinkWhite href="https://ex.jp" />
+						  <ArrowLink href="https://ex.jp" variant="white" />
                         </div>
                       </div>
                     ))}
