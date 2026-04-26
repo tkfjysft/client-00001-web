@@ -11,11 +11,13 @@ import {
   Cloud,
   Shield,
 } from "lucide-react";
+import Link from "next/link";
+import ArrowLinkWhite from "./ArrowLinkWhite";
 
 export default function ServiceSection() {
   const serviceGroups = [
     {
-      label: "GROUP 01",
+      label: "01",
       title: "Core Infrastructure",
       services: [
         { name: "Webシステム開発", icon: <Server />, photo: '/images/services_01.webp' },
@@ -23,7 +25,7 @@ export default function ServiceSection() {
       ],
     },
     {
-      label: "GROUP 02",
+      label: "02",
       title: "Experience Design",
       services: [
         { name: "UI/UXデザイン", icon: <Monitor />, photo: '/images/services_03.webp' },
@@ -32,7 +34,7 @@ export default function ServiceSection() {
       ],
     },
     {
-      label: "GROUP 03",
+      label: "03",
       title: "Consulting & Security",
       services: [
         { name: "DXコンサルティング", icon: <Lightbulb />, photo: '/images/services_06.webp' },
@@ -84,7 +86,7 @@ export default function ServiceSection() {
             {/* 見出しエリア：MessageSectionに近い、線を使ったミニマルな構成 */}
             <div className="flex items-center gap-4 mb-15">
               <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
-              <h2 className="text-4xl md:text-5xl font-bold tracking-widest">
+              <h2 className="text-clr-base-1/85 text-4xl md:text-5xl font-bold tracking-widest">
                 Services
               </h2>
               <div className="flex-grow h-[1px] bg-clr-base-1/10" />
@@ -98,7 +100,7 @@ export default function ServiceSection() {
                     <span className="text-clr-primary-1 font-mono text-xs tracking-[0.4em]">
                       {group.label}
                     </span>
-                    <h3 className="text-xl font-light tracking-widest text-clr-base-1/60">
+                    <h3 className="text-xl font-light tracking-widest text-clr-base-1/75">
                       {group.title}
                     </h3>
                   </div>
@@ -120,13 +122,15 @@ export default function ServiceSection() {
                           </div>
 
                           <div className="space-y-1">
-                            <h4 className="text-xl font-bold tracking-tight group-hover:text-clr-base-1 transition-colors">
+                            <h4 className="text-xl font-bold tracking-tight text-clr-base-1/90 group-hover:text-clr-base-1/90 transition-colors">
                               {service.name}
                             </h4>
-                            <p className="text-clr-base-1/65 leading-relaxed font-light text-justify">
+                            <p className="text-clr-base-1/90 leading-relaxed font-light text-justify">
                               最適な技術スタックを選定し、ビジネスの課題をシンプルかつ堅牢な解決策へと導きます。
                             </p>
                           </div>
+
+						  <ArrowLinkWhite href="https://ex.jp" />
                         </div>
                       </div>
                     ))}

@@ -71,7 +71,7 @@ export default function ScrollToTop() {
         <button
           onClick={scrollToTop}
           /* 3. デザインとアニメーション（Tailwind） */
-          className={`fixed bottom-0 right-0 z-50 transition-all duration-300 ease-in-out ${bgChangeColor} ${textChangeColor} focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] focus:ring-offset-2
+          className={`fixed bottom-0 right-0 z-50 transition-all duration-300 ease-in-out ${bgChangeColor} ${textChangeColor}
 			/* ▼ここから追加・修正するクラス ▼ */
 			w-20 h-20         /* 1. 正方形の土台を作る */
 			p-0               /* 2. 余白をなくす（文字を角に寄せるため） */
@@ -79,13 +79,12 @@ export default function ScrollToTop() {
 			[clip-path:polygon(100%_0,100%_100%,0_100%)] /* 4. 右下の直角三角形に切り抜く */
 			
 			/* ホバー時の動きを「引き算」デザインに調整 */
-			hover:-translate-y-0 hover:translate-x-1 hover:translate-y-1 /* 右下に少し沈む動き */
-			hover:shadow-none  /* 切り抜かれているので影は不要 */
+			hover:translate-x-0.5 hover:translate-y-0.5 /* 右下に少し沈む動き */
 `}
           aria-label="ページ最上部へ戻る"
         >
           <span className="absolute bottom-5 right-[-46px] block w-[150px] text-center transform -rotate-45 text-xs font-bold tracking-tighter leading-none group-hover:scale-110 transition-transform">
-    Go to<br />Page Top
+    Page Top
   </span>
         </button>
       )}

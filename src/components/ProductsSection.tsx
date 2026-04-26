@@ -1,6 +1,7 @@
 "use client";
 
 import { Container } from "./Container";
+import ArrowLinkBlack from "./ArrowLinkBlack";
 
 export default function ProductsSection() {
   const products = [
@@ -85,7 +86,7 @@ export default function ProductsSection() {
             {/* 見出し */}
             <div className="flex items-center gap-4 mb-10">
               <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
-              <h2 className="text-4xl md:text-5xl font-bold tracking-widest text-clr-main-1">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-widest text-clr-main-1/90">
                 Products
               </h2>
               <div className="flex-grow h-[1px] bg-clr-main-1/5" />
@@ -108,13 +109,14 @@ export default function ProductsSection() {
                       <span className="text-clr-primary-1 font-mono text-xs">
                         01
                       </span>
-                      <h3 className="text-xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
+                      <h3 className="text-xl font-bold text-clr-main-1/70 group-hover:text-clr-main-2/80 transition-colors">
                         {products[0].title}
                       </h3>
                     </div>
-                    <p className="text-clr-main-1/70 leading-relaxed font-light text-justify">
+                    <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
                       {products[0].description}
                     </p>
+					<ArrowLinkBlack href="https://ex.jp" />
                   </div>
                 </div>
               </div>
@@ -123,7 +125,7 @@ export default function ProductsSection() {
               <div className="md:w-[39vw] lg:w-auto lg:col-span-5 group lg:border-t lg:border-clr-main-1/10 pt-10">
                 <div className="flex flex-col lg:flex-row gap-1 lg:gap-2 items-start">
                   {/* 写真サイズ: 2番目もスマホでは w-32 に統一 */}
-                  <div className="size-[70vw] md:size-60 lg:w-32 lg:h-32 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
+                  <div className="size-[70vw] md:size-60 lg:w-32 lg:h-32 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal">
 				  	<img src={products[1].photo} alt="" className="h-full w-full object-cover" />
                   </div>
                   <div className="space-y-1">
@@ -131,13 +133,14 @@ export default function ProductsSection() {
                       <span className="text-clr-primary-1 font-mono text-xs">
                         02
                       </span>
-                      <h3 className="text-xl font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
+                      <h3 className="text-xl font-bold text-clr-main-1/70 group-hover:text-clr-main-2/80 transition-colors">
                         {products[1].title}
                       </h3>
                     </div>
-                    <p className="text-clr-main-1/70 leading-relaxed font-light text-justify">
+                    <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
                       {products[1].description}
                     </p>
+					<ArrowLinkBlack href="https://ex.jp" />
                   </div>
                 </div>
               </div>
@@ -146,7 +149,7 @@ export default function ProductsSection() {
               <div className="md:w-[42vw] lg:w-auto lg:col-span-9 lg:col-start-3 group lg:border-t lg:border-clr-main-1/10 pt-10">
                 <div className="flex flex-col lg:flex-row gap-1 lg:gap-2 items-start">
                   {/* 写真サイズ: スマホでは w-32 (共通) / PCでは w-56 (大) */}
-                  <div className="size-[70vw] md:size-60 lg:w-70 lg:h-70 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden">
+                  <div className="size-[70vw] md:size-60 lg:w-70 lg:h-70 flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal">
 				  	<img src={products[2].photo} alt="" className="h-full w-full object-cover" />
                   </div>
                   <div className="space-y-1">
@@ -154,13 +157,14 @@ export default function ProductsSection() {
                       <span className="text-clr-primary-1 font-mono text-xs">
                         03
                       </span>
-                      <h3 className="text-xl clr-main-2 font-bold text-clr-main-1 group-hover:text-clr-main-2/80 transition-colors">
+                      <h3 className="text-xl clr-main-2 font-bold text-clr-main-1/70 group-hover:text-clr-main-2/80 transition-colors">
                         {products[2].title}
                       </h3>
                     </div>
-                    <p className="text-clr-main-1/70 leading-relaxed font-light text-justify">
+                    <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
                       {products[2].description}
                     </p>
+					<ArrowLinkBlack href="https://ex.jp" />
                   </div>
                 </div>
               </div>

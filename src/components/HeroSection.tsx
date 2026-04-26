@@ -42,7 +42,7 @@ export default function Home() {
 	   
 	  >
         {/* 写真のグリッド表示 */}
-        <div className="grid grid-cols-2 md:grid-cols-7 grid-rows-20 w-full h-full gap-2"
+        <div className="grid grid-cols-2 grid-cols-7 grid-rows-20 w-full h-full gap-2"
 		style={{
 // 			position: "absolute",
 //   width: "110%",
@@ -54,15 +54,15 @@ export default function Home() {
             <div
               key={idx}
               className={`}relative w-full h-full overflow-hidden
-					${idx === 0 ? 'col-start-1 col-end-3 row-start-1 row-end-9' :''}
-					${idx === 3 ? 'col-start-1 col-end-3 row-start-9 row-end-9' : ''}
-					${idx === 6 ? 'col-start-1 col-end-3 row-start-9 row-end-21' : ''}
-					${idx === 1 ? 'col-start-3 col-end-6 row-start-1 row-end-8' : ''}
-					${idx === 4 ? 'col-start-3 col-end-6 row-start-8 row-end-13' : ''}
-					${idx === 7 ? 'col-start-3 col-end-6 row-start-13 row-end-21' : ''}
-					${idx === 2 ? 'col-start-6 col-end-8 row-start-1 row-end-12' : ''}
-					${idx === 5 ? 'col-start-6 col-end-8 row-start-12 row-end-12' : ''}
-					${idx === 8 ? 'col-start-6 col-end-8 row-start-12 row-end-21' : ''}
+					${idx === 0 ? 'col-start-1 col-end-4 row-start-1 row-end-8 md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-9' :''}
+					${idx === 3 ? 'col-start-4 col-end-4 row-start-1 row-end-8 md:col-start-1 md:col-end-3 md:row-start-9 md:row-end-9' : ''}
+					${idx === 6 ? 'col-start-4 col-end-8 row-start-1 row-end-8 md:col-start-1 md:col-end-3 md:row-start-9 md:row-end-21' : ''}
+					${idx === 1 ? 'col-start-1 col-end-3 row-start-8 row-end-12 md:col-start-3 md:col-end-6 md:row-start-1 md:row-end-8' : ''}
+					${idx === 4 ? 'col-start-3 col-end-6 row-start-8 row-end-12 md:col-start-3 md:col-end-6 md:row-start-8 md:row-end-13' : ''}
+					${idx === 7 ? 'col-start-6 col-end-8 row-start-8 row-end-12 md:col-start-3 md:col-end-6 md:row-start-13 md:row-end-21' : ''}
+					${idx === 2 ? 'col-start-1 col-end-5 row-start-12 row-end-21 md:col-start-6 md:col-end-8 md:row-start-1 md:row-end-12' : ''}
+					${idx === 5 ? 'col-start-5 col-end-5 row-start-12 row-end-21 md:col-start-6 md:col-end-8 md:row-start-12 md:row-end-12' : ''}
+					${idx === 8 ? 'col-start-5 col-end-8 row-start-12 row-end-21 md:col-start-6 md:col-end-8 md:row-start-12 md:row-end-21' : ''}
 				`}
             >
               <div
@@ -157,7 +157,7 @@ export default function Home() {
           </p>
         </div> */}
 		
-        <h1 className="text-clr-base-2 tracking-[-2] mb-10 drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-[300%]">
+        <h1 className="text-clr-base-2 tracking-[-2] mb-10 drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-[200%] mt-[-5%] md:mt-0 md:leading-[300%]">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {

@@ -27,8 +27,8 @@ export default function Footer() {
 
         {/* マップの上に浮かぶ拠点カード (MessageSectionのデザインを継承) */}
         <div className="absolute top-12 left-10 p-7 bg-clr-main-1 border-l-4 border-clr-primary-1 hidden md:block">
-          <h3 className="font-bold mb-2">{siteConfig.companyName1}</h3>
-          <p className="text-clr-base-1 text-sm leading-relaxed">
+          <h3 className="text-clr-base-1/90 font-bold mb-2">{siteConfig.companyName1}</h3>
+          <p className="text-clr-base-1/90 text-sm leading-relaxed">
             〒{siteConfig.contact.postcode}
             <br />
             {siteConfig.contact.address}
@@ -61,8 +61,10 @@ export default function Footer() {
                 確かな技術力と柔軟な思考で、次世代のスタンダードを共創します。
               </p>
             </div>
-            {/* リンク集 (右側 7カラム分) */}
-            <div className="md:col-span-7 grid grid-cols-2 md:gap-y-0 gap-y-8">
+			{/* 空白 */}
+			<div className="md:col-span-1"></div>
+            {/* リンク集 (右側 6カラム分) */}
+            <div className="md:col-span-6 grid grid-cols-2 md:gap-y-0 gap-y-8">
               {siteConfig.navItems.map((item) => (
                 <div key={item.label} className="space-y-4">
                   {/* 親メニュー：少し太字にする */}
