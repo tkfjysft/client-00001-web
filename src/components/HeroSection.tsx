@@ -18,6 +18,9 @@ export default function Home() {
     "/images/hero_cording.webp", // 会議風景
     "/images/hero_meeting.webp", // コード画面
     "/images/hero_office.webp", // オフィス
+    "/", // オフィス
+    "/", // オフィス
+    "/", // オフィス
     "/images/hero_ceo.webp", // PC操作
     "/images/hero_whiteboard.webp", // ホワイトボード
     "/images/hero_serverroom.webp", // デバイス
@@ -35,15 +38,15 @@ export default function Home() {
       className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden"
     >
       {/* --- 背景グリッドレイヤー --- */}
-      <div className="absolute -top-[10%] -left-[10%] inset-0 z-0 animate-bg-fadein"
+      <div className="absolute -top-[0%] -left-[0%] inset-0 z-0 animate-bg-fadein"
 	   
 	  >
         {/* 写真のグリッド表示 */}
-        <div className="grid grid-cols-2 md:grid-cols-7 w-full h-full gap-3"
-		style={{transform: 'rotate(-5deg)',
-			position: "absolute",
-  width: "110%",
-  height: "110%",
+        <div className="grid grid-cols-2 md:grid-cols-7 grid-rows-20 w-full h-full gap-2"
+		style={{
+// 			position: "absolute",
+//   width: "110%",
+//   height: "110%",
 
 
 		 }}>
@@ -51,33 +54,39 @@ export default function Home() {
             <div
               key={idx}
               className={`}relative w-full h-full overflow-hidden
-									${idx === 0 ? 'relative -top-[13%]' : ''}
-									${idx === 3 ? 'relative -top-[13%]' : ''}
-									${idx === 2 ? 'relative -bottom-[20%]' : ''}
-									${idx === 5 ? 'relative -bottom-[20%]' : ''}
-									${idx === 1 ? 'pb-[100px] col-span-3' : 'col-span-2'}
-									${idx === 4 ? 'pt-[100px] col-span-3' : 'col-span-2'}
+					${idx === 0 ? 'col-start-1 col-end-3 row-start-1 row-end-9' :''}
+					${idx === 3 ? 'col-start-1 col-end-3 row-start-9 row-end-9' : ''}
+					${idx === 6 ? 'col-start-1 col-end-3 row-start-9 row-end-21' : ''}
+					${idx === 1 ? 'col-start-3 col-end-6 row-start-1 row-end-8' : ''}
+					${idx === 4 ? 'col-start-3 col-end-6 row-start-8 row-end-13' : ''}
+					${idx === 7 ? 'col-start-3 col-end-6 row-start-13 row-end-21' : ''}
+					${idx === 2 ? 'col-start-6 col-end-8 row-start-1 row-end-12' : ''}
+					${idx === 5 ? 'col-start-6 col-end-8 row-start-12 row-end-12' : ''}
+					${idx === 8 ? 'col-start-6 col-end-8 row-start-12 row-end-21' : ''}
 				`}
             >
               <div
-                className={`}w-full h-full bg-cover bg-center`}
+                className={`}w-full h-full bg-cover bg-center
+														${idx === 3 ? 'h-[160%]' : ''}
+					`}
                 style={{
                   backgroundImage: `url(${src})`,
                   // grayscaleを削除し、青いフィルターを重ねる
                 // filter: "brightness(60%) contrast(80%)"
+                filter: "brightness(60%)"
                     // "sepia(60%) hue-rotate(80deg) saturate(40%) brightness(0.6)",
                   // "sepia(100%) hue-rotate(190deg) saturate(150%) brightness(0.7)",
                 }}
               />
               {/* 写真の上に、さらに薄い青色の膜を張る */}
-              {/* <div className="absolute inset-0 bg-clr-primary-1/20 mix-blend-overlay" /> */}
+              {/* <div className="absolute inset-0 bg-clr-main-1/20 mix-blend-color" /> */}
             </div>
           ))}
         </div>
 
         {/* 下部のグラデーションも「黒」ではなく「深い青」へ */}
         {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-clr-primary-1/20 to-transparent" /> */}
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-clr-primary-1/20 via-transparent to-clr-primary-1/20" /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-clr-primary-1/30 via-clr-primary-1/5 to-clr-primary-1/20" /> */}
       </div>
 
       {/* 粒子レイヤー */}
@@ -118,13 +127,13 @@ export default function Home() {
       <div
         className="relative z-20 text-center px-6 pointer-events-none"
         style={{ perspective: "1000px",
-			transform: 'rotate(-5deg)',
+			// transform: 'rotate(-5deg)',
 		 }}
       >
 
-        <div className="pb-10">
           {/* 全体のテンポに合わせて日本語の出現も早めます */}
           {/* 背景だけを少し暗くし、ぼかすレイヤー */}
+        {/* <div className="pb-10">
           <p className="text-clr-base-2 md:text-2xl font-bold drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-loose">
             {siteConfig.description1.split("").map((char, index) => {
               // 1. もし文字が「/」だったら、改行ポイントを返す
@@ -146,9 +155,9 @@ export default function Home() {
               );
             })}
           </p>
-        </div>
+        </div> */}
 		
-        <h1 className="text-clr-base-2 text-5xl md:text-7xl font-extrabold tracking-[1] mb-10 drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-[0.7]">
+        <h1 className="text-clr-base-2 tracking-[-2] mb-10 drop-shadow-[0_2px_4px_var(--color-clr-primary-3)] leading-[300%]">
           {siteConfig.heroTagline.split("").map((char, index) => {
             // 1. もし文字が「/」だったら、改行ポイントを返す
             if (char === "/" || char === "/ ") {
@@ -166,7 +175,8 @@ export default function Home() {
 				<span
 					key={`ht-${index}`}
 					className={`animate-char-fly inline-block
-					${(char.match(/^[a-z\s]/i)) ? "" : "font-zen text-base md:text-3xl font-[900]"}
+					${(char.match(/^[a-z\s]/i)) ? "hero-maintext font-[500]" : "font-zen hero-description font-[900]"}
+					${(char === "M" || char === "S") ? "hero-big-maintext text-clr-primary-3": ""}
 						`}
 					suppressHydrationWarning={true}
 					style={
@@ -190,31 +200,7 @@ export default function Home() {
           })}
         </h1>
 
-        <div className="pt-4">
-          {/* 全体のテンポに合わせて日本語の出現も早めます */}
-          {/* 背景だけを少し暗くし、ぼかすレイヤー */}
-          <p className="text-clr-base-2 md:text-2xl font-bold leading-loose">
-            {siteConfig.description2.split("").map((char, index) => {
-              // 1. もし文字が「/」だったら、改行ポイントを返す
-              if (char === "/") {
-                return <br key={`wbr-${index}`} />;
-              }
-              // 2. それ以外の普通の文字は、今まで通りアニメーション付きのspanで返す
-              return (
-                <span
-                  key={`d1-${index}`}
-                  className="char-fade inline-block"
-                  style={{
-                    animationDelay: `${2.4 + index * 0.04}s`,
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              );
-            })}
-          </p>
-        </div>
+
       </div>
     </section>
   );
