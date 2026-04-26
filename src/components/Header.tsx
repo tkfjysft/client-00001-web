@@ -131,7 +131,7 @@ const borderChangeColor = isDarkBg
             href="/"
             className={`h-full flex items-start lg:items-center`}
           >
-			<span className={`font-zen leading-[0.5] ${ciLogoTextColor}`}>
+			<span className={`font-zen-kaku leading-[0.5] ${ciLogoTextColor}`}>
 			<span className={`text-base lg:text-lg font-[900] pb-1`}>{siteConfig.companyName1}</span><br />
 			<span className={`block text-sm font-[500] pt-0 lg:mt-0 italic`}>{siteConfig.enCompamyName}</span>
 			</span>
@@ -228,7 +228,7 @@ const borderChangeColor = isDarkBg
             href="/"
             className=" flex flex-col items-center justify-center pt-2 overflow-visible"
           >
-	<span className={`font-zen leading-none text-center text-clr-main-2`}>
+	<span className={`font-zen-kaku leading-none text-center text-clr-main-2`}>
 	<span className={`text-sm font-[900] pb-1 whitespace-pre-wrap`}>{siteConfig.companyName2}</span><br />
 	<span className={`block text-xs italic font-[500] pt-1  lg:mt-0`}>{siteConfig.enCompamyName}</span>
 	</span>

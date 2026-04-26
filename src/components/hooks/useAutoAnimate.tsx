@@ -10,7 +10,8 @@ export const useAutoAnimate = () => {
       if (!parent) return;
 
       const targets = parent.querySelectorAll(
-        'h1, h2, h3, h4, p, span, li, a, img, svg, .reveal, .c-visual-box, .c-section-title'
+		//外側記述のdivの枠とズレてアニメーションするのでimgは除けておく
+        'h1, h2, h3, h4, p, span, li, a, svg, .reveal, .c-visual-box, .c-section-title'
       );
 
       const observer = new IntersectionObserver(
@@ -36,7 +37,7 @@ export const useAutoAnimate = () => {
         },
         {
           root: null,
-          rootMargin: "0px 0px -10% 0px", // 少し甘めに設定
+          rootMargin: "0px 0px -250px 0px", // 少し甘めに設定
           threshold: 0,
         }
       );
@@ -46,7 +47,7 @@ export const useAutoAnimate = () => {
     };
 
     // 実行
-    const targetSections = ["#message-section", "#service-section", "#products-section", "#footer"];
+    const targetSections = ["#message-section", "#service-section", "#products-section"];
     const observers: IntersectionObserver[] = [];
 
     // Next.jsのレンダリング完了を待つために少しだけ遅延させる

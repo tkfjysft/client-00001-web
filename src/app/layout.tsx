@@ -2,6 +2,8 @@
 import { Header } from "@/components/Header";
 import "./globals.scss";
 import { Jost, Noto_Sans_JP } from "next/font/google";
+import { Playfair_Display, Noto_Serif_JP } from 'next/font/google';
+import { Zen_Kaku_Gothic_New } from 'next/font/google';
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import ScrollToTop  from "@/components/ScrollToTop";
@@ -20,6 +22,9 @@ const notoSansJP = Noto_Sans_JP({
   display: "swap",
 });
 
+
+
+
 export const metadata = {
   // ...既存のメタデータ
   formatDetection: {
@@ -27,6 +32,24 @@ export const metadata = {
   },
 };
 
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  weight: ['700', '900'],
+});
+
+const notoSerif = Noto_Serif_JP({
+  subsets: ['latin'],
+  variable: '--font-noto-serif',
+  weight: ['700', '900'],
+});
+
+const zenKaku = Zen_Kaku_Gothic_New({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'], // 誠実な太さを出すため、太めも含めます
+  display: 'swap',
+  variable: '--font-zen-kaku', // CSS変数として定義
+});
 
 export default function RootLayout({
   children,
@@ -40,7 +63,7 @@ export default function RootLayout({
           - これにより、英数字はJost、日本語はNoto Sansが自動で適用されます。
       	*/}
 		<body 
-			className="antialiased" 
+			className={`${playfair.variable} ${notoSerif.variable} ${zenKaku.variable} font-sans antialiased`}
 			style={{
 			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
 			}}>

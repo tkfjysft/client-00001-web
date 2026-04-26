@@ -1,6 +1,5 @@
 // src/app/globals.scss
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
 
 //SCSSの変数とCSSの変数は相性が悪いのか、同時に使えない？ので
 //同一の色情報を2回書く
@@ -35,7 +34,8 @@ $clr-main-1: #38bdf866; // 少し明るく、青みの強いネイビー
   /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
 //   --breakpoint-md: 960px;
 
-  --font-zen: "Zen Kaku Gothic New", sans-serif;
+  --font-zen-kaku: var(--font-zen-kaku);
+
 
   /* 💡 ここに背景を定義する */
   --background-image-bgclr-dark: radial-gradient(circle at center, var(--color-clr-main-2) 0%, var(--color-clr-main-1) 100%);
@@ -149,7 +149,7 @@ html {
     /* 画面外の遠く（上下左右ランダム）から、巨大な状態で */
     transform: translate(var(--fx), var(--fy)) scale(10) translateZ(500px);
     // filter: blur(20px) brightness(2); // 光輝くボケ
-    color: color-mix(in srgb, var(--color-clr-main-2) 40%, transparent);
+    color: var(--color-clr-base-2);
   }
 
   70% {
@@ -163,7 +163,7 @@ html {
     /* 着弾時の「ブレ」を演出 */
     transform: scale(0.95);
     // filter: blur(0px) brightness(1);
-    color: color-mix(in srgb, var(--color-clr-base-2) 80%, transparent); // 白へ
+    color: var(--color-clr-base-2); // 白へ
   }
 
   100% {
@@ -275,6 +275,7 @@ html {
 /////////////////////////////////////////////////
 /* ロード時、画面を下へスクロールしたときの */
 /* コンテンツのフェードイン設定 */
+//外側記述のdivの枠とズレてアニメーションするのでimgは除けておく
 main h1, 
 main h2, 
 main h3, 
@@ -283,19 +284,19 @@ main p,
 main span, 
 main li, 
 main a, 
-main img, 
+// main img, 
 main svg, 
 main .reveal, 
 .c-visual-box, 
 .c-section-title {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.2s ease-out;
 }
 main .reveal.deep {
   opacity: 0;
   transform: translateY(100px);
-  transition: opacity 0.8s ease-out, transform 2s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.2s ease-out;
 }
 
 /*  アニメーション後 */
@@ -346,14 +347,18 @@ main .reveal.deep {
 /////////////////////////////////////////////////
 //ヒーローエリアの文字サイズ関連
 /* 例：最小2rem、最大5remの間で、画面幅に合わせて「無段階」に変化させる */
+
 h1 .hero-maintext {
-  font-size: clamp(3rem, calc(10vw + 1rem), 30rem);
+  font-size: clamp(3.5rem, calc(7vw + 1rem), 30rem);
+  	font-family: var(--font-playfair), serif;
 }
 h1 .hero-big-maintext {
-  font-size: clamp(3rem, calc(15vw + 1rem), 60rem);
+  font-size: clamp(7rem, calc(14vw + 1rem), 60rem);
 }
 h1 .hero-description {
   font-size: clamp(1rem, calc(2vw + 0.1rem), 3rem);
+  	font-family: var(--font-noto-serif), serif;
+
 }
 
 

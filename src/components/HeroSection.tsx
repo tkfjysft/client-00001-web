@@ -73,7 +73,7 @@ export default function Home() {
                   backgroundImage: `url(${src})`,
                   // grayscaleを削除し、青いフィルターを重ねる
                 // filter: "brightness(60%) contrast(80%)"
-                filter: "brightness(60%)"
+                filter: "brightness(55%)"
                     // "sepia(60%) hue-rotate(80deg) saturate(40%) brightness(0.6)",
                   // "sepia(100%) hue-rotate(190deg) saturate(150%) brightness(0.7)",
                 }}
