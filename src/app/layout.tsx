@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import { siteConfig } from "@/config/site";
-import "./globals.scss";
+import "@/app/globals.scss";
 import { Header } from "@/components/Header";
 import { Jost, Noto_Sans_JP } from "next/font/google";
 import { Playfair_Display, Noto_Serif_JP } from 'next/font/google';

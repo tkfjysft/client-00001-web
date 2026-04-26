@@ -1,6 +1,6 @@
 // "use client";
 
-import { Container } from "./Container";
+import { Container } from "@/components/Container";
 import {
   Monitor,
   Server,

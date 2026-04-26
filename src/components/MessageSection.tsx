@@ -1,6 +1,6 @@
 "use client";
 
-import { Container } from "./Container";
+import { Container } from "@/components/Container";
 import { useAutoAnimate } from "./hooks/useAutoAnimate";
 import Link from "next/link";
 import ArrowLink from "@/components/ArrowLink";
