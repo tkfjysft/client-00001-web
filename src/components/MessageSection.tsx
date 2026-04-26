@@ -1,12 +1,7 @@
-"use client";
-
 import { Container } from "@/components/Container";
-import { useAutoAnimate } from "./hooks/useAutoAnimate";
-import Link from "next/link";
 import ArrowLink from "@/components/ArrowLink";
 
 export default function MessageSection() {
-useAutoAnimate();
 
   return (
     <>

@@ -2,11 +2,15 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { siteConfig } from "@/config/site";
+import { useAutoAnimate } from "./hooks/useAutoAnimate";
 import Link from "next/link";
 import Logo from "./Logo";
 import { Container } from "lucide-react";
 
 export const Header = () => {
+  //スクロール連動フェードインアニメーション
+  useAutoAnimate();
+
   //ハンバーガーメニューの開閉を判定
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,9 +57,7 @@ export const Header = () => {
 
   // ハンバーガーメニューの３本線ボタンの色設定
   const baseColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1";
-  const lineColorTop = isOpen
-    ? "rotate-45 translate-y-2 baseColor"
-    : baseColor;
+  const lineColorTop = isOpen ? "rotate-45 translate-y-2 baseColor" : baseColor;
   const lineColorMiddle = isOpen ? "hidden" : baseColor;
   const lineColorBottom = isOpen
     ? "-rotate-45 -translate-y-2 baseColor"
@@ -99,16 +101,14 @@ export const Header = () => {
   }, []);
 
   //navの文字色、背景色の濃淡によって文字色を変える
-  const navTextColor = isDarkBg
-    ? "text-clr-base-2"
-    : "text-clr-main-1";
+  const navTextColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1";
 
-const borderChangeColor = isDarkBg
-  ? ( isOpen ? "border-clr-main-1/30" : "border-clr-base-2/30" )
-  : "border-clr-main-1/30";
-  const ciLogoTextColor = isDarkBg
-  ? "text-clr-base-2"
-    : "text-clr-main-1/50";
+  const borderChangeColor = isDarkBg
+    ? isOpen
+      ? "border-clr-main-1/30"
+      : "border-clr-base-2/30"
+    : "border-clr-main-1/30";
+  const ciLogoTextColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1/50";
 
   return (
     <>
@@ -126,17 +126,26 @@ const borderChangeColor = isDarkBg
         <div className="relative w-full max-w-7xl mx-auto pl-3 lg:px-8 flex items-center justify-between h-15 lg:h-15 z-99999">
           {/*  */}
           {/* ロゴ部分 */}
-		  <div className={`block static relative h-full`}>
-          <Link
-            href="/"
-            className={`h-full flex items-start lg:items-center`}
-          >
-			<span className={`font-zen-kaku leading-[0.5] ${ciLogoTextColor}`}>
-			<span className={`text-base lg:text-lg font-[900] pb-1`}>{siteConfig.companyName1}</span><br />
-			<span className={`block text-sm font-[500] pt-0 lg:mt-0 italic`}>{siteConfig.enCompamyName}</span>
-			</span>
-          </Link>
-		  </div>
+          <div className={`block static relative h-full`}>
+            <Link
+              href="/"
+              className={`h-full flex items-start lg:items-center`}
+            >
+              <span
+                className={`font-zen-kaku leading-[0.5] ${ciLogoTextColor}`}
+              >
+                <span className={`text-base lg:text-lg font-[900] pb-1`}>
+                  {siteConfig.companyName1}
+                </span>
+                <br />
+                <span
+                  className={`block text-sm font-[500] pt-0 lg:mt-0 italic`}
+                >
+                  {siteConfig.enCompamyName}
+                </span>
+              </span>
+            </Link>
+          </div>
 
           {/* 2. 右側グループ（ナビ + コンタクトボタン） */}
           {/* gap-8 または gap-12 くらいにすると、ボタンとの距離が程よく保たれます */}
@@ -145,38 +154,38 @@ const borderChangeColor = isDarkBg
             {/* デスクトップ用：グローバルナビ (md以上で表示) */}
             <nav className={`hidden lg:flex items-center gap-6`}>
               {siteConfig.navItems
-			  .filter((_, index) => index !== 4) // 先に5番目を除外する
-			  .map((item) => (
-                <div key={item.label} className="relative group">
-                  {/* メインのリンク */}
-                  <Link
-                    href={item.href}
-                    className={`font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1 ${navTextColor}`}
-                  >
-                    {item.label}
-                    {/* 子要素がある場合に下矢印アイコンなどを出す（任意） */}
-                    {item.children && <span className="text-xs">▼</span>}
-                  </Link>
+                .filter((_, index) => index !== 4) // 先に5番目を除外する
+                .map((item) => (
+                  <div key={item.label} className="relative group">
+                    {/* メインのリンク */}
+                    <Link
+                      href={item.href}
+                      className={`font-light tracking-widest hover:scale-105 transition-all flex items-center gap-1 ${navTextColor}`}
+                    >
+                      {item.label}
+                      {/* 子要素がある場合に下矢印アイコンなどを出す（任意） */}
+                      {item.children && <span className="text-xs">▼</span>}
+                    </Link>
 
-                  {/* サブメニューがある場合のみレンダリング */}
-                  {item.children && (
-                    <div className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <ul className="bg-clr-base-1 py-2 min-w-[200px]">
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              href={child.href}
-                              className="block px-4 py-2 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    {/* サブメニューがある場合のみレンダリング */}
+                    {item.children && (
+                      <div className="absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <ul className="bg-clr-base-1 py-2 min-w-[200px]">
+                          {item.children.map((child) => (
+                            <li key={child.label}>
+                              <Link
+                                href={child.href}
+                                className="block px-4 py-2 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ))}
             </nav>
 
             {/* --- お問い合わせボタン --- */}
@@ -223,49 +232,56 @@ const borderChangeColor = isDarkBg
         ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
       >
-		          {/* ロゴ部分 */}
-          <Link
-            href="/"
-            className=" flex flex-col items-center justify-center pt-2 overflow-visible"
+        {/* ロゴ部分 */}
+        <Link
+          href="/"
+          className=" flex flex-col items-center justify-center pt-2 overflow-visible"
+        >
+          <span
+            className={`font-zen-kaku leading-none text-center text-clr-main-2`}
           >
-	<span className={`font-zen-kaku leading-none text-center text-clr-main-2`}>
-	<span className={`text-sm font-[900] pb-1 whitespace-pre-wrap`}>{siteConfig.companyName2}</span><br />
-	<span className={`block text-xs italic font-[500] pt-1  lg:mt-0`}>{siteConfig.enCompamyName}</span>
-	</span>
-          </Link>
+            <span className={`text-sm font-[900] pb-1 whitespace-pre-wrap`}>
+              {siteConfig.companyName2}
+            </span>
+            <br />
+            <span className={`block text-xs italic font-[500] pt-1  lg:mt-0`}>
+              {siteConfig.enCompamyName}
+            </span>
+          </span>
+        </Link>
         <nav className="flex flex-col items-center pt-10 gap-8">
           <div>
             {siteConfig.navItems
-			.filter((_, index) => index !== 4) // 先に5番目を除外する
-			.map((item) => (
-              <div key={item.label} className="mb-8">
-                {/* メインのリンク */}
-                <Link
-                  href={item.href}
-                  className={`hover:scale-125 transition-all`}
-                >
-                  {item.label}
-                </Link>
+              .filter((_, index) => index !== 4) // 先に5番目を除外する
+              .map((item) => (
+                <div key={item.label} className="mb-8">
+                  {/* メインのリンク */}
+                  <Link
+                    href={item.href}
+                    className={`hover:scale-125 transition-all`}
+                  >
+                    {item.label}
+                  </Link>
 
-                {/* サブメニューがある場合のみレンダリング */}
-                {item.children && (
-                  <div className="pt-2 transition-all duration-300 z-50">
-                    <ul className="">
-                      {item.children.map((child) => (
-                        <li key={child.label} className="ml-3">
-                          <Link
-                            href={child.href}
-                            className="block py-1 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
+                  {/* サブメニューがある場合のみレンダリング */}
+                  {item.children && (
+                    <div className="pt-2 transition-all duration-300 z-50">
+                      <ul className="">
+                        {item.children.map((child) => (
+                          <li key={child.label} className="ml-3">
+                            <Link
+                              href={child.href}
+                              className="block py-1 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
           </div>
         </nav>
       </div>

@@ -29,7 +29,7 @@ export const useAutoAnimate = () => {
         });
       },
       {
-        rootMargin: "0px 0px -150px 0px", // 150px〜250px程度が自然です
+        rootMargin: "0px 0px -200px 0px", // 150px〜250px程度が自然です
         threshold: 0,
       }
     );
