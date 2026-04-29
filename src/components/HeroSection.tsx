@@ -35,16 +35,31 @@ const HeroSection = () => {
 
 // Gridのクラスを返すヘルパー関数（これでJSXが劇的にスリム化）
 const getGridClass = (idx: number) => {
+//   const classes = [
+//     "col-start-1 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:row-end-9",
+//     "col-start-1 col-end-3 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-10",
+//     "col-start-1 col-end-5 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-1 lg:row-end-12",
+
+//     "col-start-4 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-9 lg:row-end-9",
+//     "col-start-3 col-end-6 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-10 lg:row-end-13",
+//     "col-start-5 col-end-5 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-12 lg:row-end-12",
+
+//     "col-start-4 col-end-8 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-9 lg:row-end-21",
+//     "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-13 lg:row-end-21",
+//     "col-start-5 col-end-8 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-12 lg:row-end-21",
+//   ];
   const classes = [
-    "col-start-1 col-end-4 row-start-1 row-end-8 md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-9",
-    "col-start-1 col-end-3 row-start-8 row-end-12 md:col-start-3 md:col-end-6 md:row-start-1 md:row-end-8",
-    "col-start-1 col-end-5 row-start-12 row-end-21 md:col-start-6 md:col-end-8 md:row-start-1 md:row-end-12",
-    "col-start-4 col-end-4 row-start-1 row-end-8 md:col-start-1 md:col-end-3 md:row-start-9 md:row-end-9",
-    "col-start-3 col-end-6 row-start-8 row-end-12 md:col-start-3 md:col-end-6 md:row-start-8 md:row-end-13",
-    "col-start-5 col-end-5 row-start-12 row-end-21 md:col-start-6 md:col-end-8 md:row-start-12 md:row-end-12",
-    "col-start-4 col-end-8 row-start-1 row-end-8 md:col-start-1 md:col-end-3 md:row-start-9 md:row-end-21",
-    "col-start-6 col-end-8 row-start-8 row-end-12 md:col-start-3 md:col-end-6 md:row-start-13 md:row-end-21",
-    "col-start-5 col-end-8 row-start-12 row-end-21 md:col-start-6 md:col-end-8 md:row-start-12 md:row-end-21",
+    "col-start-1 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:row-end-10",
+    "col-start-1 col-end-3 row-start-10 row-end-12  lg:col-start-3 lg:col-end-5 lg:row-start-1 lg:row-end-10",
+    "col-start-1 col-end-5 row-start-12 row-end-21 lg:col-start-5 lg:col-end-8 lg:row-start-1 lg:row-end-10",
+
+    "col-start-4 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-10 lg:row-end-13",
+    "col-start-3 col-end-6 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-10 lg:row-end-13",
+    "col-start-5 col-end-5 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-10 lg:row-end-13",
+
+    "col-start-4 col-end-8 row-start-1 row-end-10   lg:col-start-1 lg:col-end-4 lg:row-start-13 lg:row-end-21",
+    "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-4 lg:col-end-6 lg:row-start-13 lg:row-end-21",
+    "col-start-5 col-end-8 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-13 lg:row-end-21",
   ];
   return classes[idx] || "";
 };
@@ -58,11 +73,11 @@ return (
 
     {/* 背景グリッド */}
     <div className="absolute inset-0 z-0 animate-bg-fadein" aria-hidden="true">
-      <div className="grid grid-cols-7 grid-rows-20 w-full h-full gap-2">
+      <div className="grid grid-cols-7 grid-rows-20 w-full h-full gap-2 md:gap-4 grid-container">
         {backgroundImages.map((src, idx) => (
           <div key={idx} className={`relative overflow-hidden ${getGridClass(idx)}`}>
             <div
-              className={`w-full h-full bg-cover bg-center brightness-[0.55] ${idx === 3 ? 'h-[160%]' : ''}`}
+              className={`w-full h-full bg-cover bg-center brightness-[0.5] ${idx === 3 ? 'h-[160%]' : ''}`}
               style={{ backgroundImage: `url(${src})` }}
             />
           </div>
@@ -76,8 +91,8 @@ return (
     </div>
 
     {/* テキストレイヤー */}
-    <div className="relative z-20 text-center px-6 pointer-events-none">
-      <h1 className="text-clr-base-2 tracking-[-2] leading-[200%] md:leading-[300%]" aria-label={siteConfig.heroTagline}>
+    <div className="relative z-20 text-center px-6 mt-[-9vh] pointer-events-none">
+      <h1 className="text-clr-base-2 tracking-[-2]" aria-label={siteConfig.heroTagline}>
         {siteConfig.heroTagline.split("").map((char, index) => (
           <HeroAnimatedChar key={index} char={char} index={index} />
         ))}

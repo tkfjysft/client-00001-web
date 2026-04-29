@@ -34,7 +34,9 @@ export const Header = () => {
 		${headerBorderColor}
 	${
       isPosTop ? "bg-transparent" : "lg:backdrop-blur-xl"
-    }`}
+    }
+	header-appearance
+	`}
   >
     {/* 1. メインバー（ロゴ・PCナビ・ボタン） */}
     <div className="relative w-full max-w-7xl mx-auto pl-3 lg:px-8 flex items-center justify-between h-15 lg:h-15 z-999">

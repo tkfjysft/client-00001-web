@@ -44,7 +44,7 @@ export default function Footer() {
       </div>
 
       <Container>
-        <div className="mx-auto py-32" data-bg="dark">
+        <div className="mx-auto py-16" data-bg="dark">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-[60px]"> {/* md:px-15に合わせgapも調整 */}
             
             {/* 2. ロゴ・会社概要 */}
