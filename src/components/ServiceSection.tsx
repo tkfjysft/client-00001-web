@@ -104,7 +104,7 @@ export default function ServiceSection() {
         
         {/* 【最背面】濃紺背景：画面全体に敷く スクロール時に動かず固定させるために必要 */}
         <div
-          className="absolute inset-0 bg-bgclr_startup-dark"
+          className="absolute inset-0 bg-bgclr-startup-dark"
         />
 
         {/* 【前面】写真背景 + 斜めカット：これで下のドットを「隠す」 */}

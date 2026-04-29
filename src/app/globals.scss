@@ -3,13 +3,13 @@
 
 :root {
   /* ここに共通変数を置く */
-	--color-clr-base-1: #f8fafc;
-	--color-clr-base-2: #ffffff;
-	--color-clr-main-1: #020617; // 少し明るく、青みの強いネイビー
-	--color-clr-main-2: #383dca; 
-	--color-clr-primary-1: #38bdf8; 
-	--color-clr-primary-2: #f0f5fa; 
-	--color-clr-primary-3: #77cff6; 
+  --color-clr-base-1: #f8fafc;
+  --color-clr-base-2: #ffffff;
+  --color-clr-main-1: #020617; // 少し明るく、青みの強いネイビー
+  --color-clr-main-2: #383dca;
+  --color-clr-primary-1: #38bdf8;
+  --color-clr-primary-2: #f0f5fa;
+  --color-clr-primary-3: #77cff6;
 }
 
 // @themeブロック全体を /* */ で囲むか、
@@ -23,76 +23,83 @@
   --color-clr-primary-2: var(--color-clr-primary-2);
   --color-clr-primary-3: var(--color-clr-primary-3);
 
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  /* ここで md の定義を上書きします */
+  /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
+  //   --breakpoint-md: 960px;
 
-/* ここで md の定義を上書きします */
-/* v4では、このように CSS 変数形式で指定するのが公式ルールです */
-//   --breakpoint-md: 960px;
-
-
-// 【Next.js Font 連携】
-//     layout.tsxの next/font で定義した変数 '--font-zen-kaku' を 
-//     Tailwindのクラス名 'font-zen-kaku' として登録するための記述です。
-//     これを削除すると、HTML上の font-zen-kaku クラスが機能しなくなります。
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////
+  // 【Next.js Font 連携】
+  //     layout.tsxの next/font で定義した変数 '--font-zen-kaku' を
+  //     Tailwindのクラス名 'font-zen-kaku' として登録するための記述です。
+  //     これを削除すると、HTML上の font-zen-kaku クラスが機能しなくなります。
   --font-zen-kaku: var(--font-zen-kaku);
 
-
+  //現在不使用
   /* 💡 ここに背景を定義する */
-  --background-image-bgclr-dark: radial-gradient(circle at center, var(--color-clr-main-2) 0%, var(--color-clr-main-1) 100%);
+  // --background-image-bgclr-dark: radial-gradient(circle at center, var(--color-clr-main-2) 0%, var(--color-clr-main-1) 100%);
 
-
-
-	--background-image-bgclr_startup-dark: 
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  /* 💡 現在使用中の濃紺グラデーション背景設定 【モバイル設定】*/
+  --background-image-bgclr-startup-dark: 
 		/* 1. 右上からのスカイブルー：不透明度を0.4（40%）まで上げ、範囲も60%へ拡大 */
-		radial-gradient(circle 50vw at 100% 50%, 
-		color-mix(in srgb, var(--color-clr-primary-1) 20%, transparent), 
-		transparent 150%),
-		
-		/* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
-		radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-clr-main-2) 60%, transparent), transparent 50%),
-		
-		/* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
-		linear-gradient(to bottom right, color-mix(in srgb, var(--color-clr-main-1) 95%, transparent), var(--color-clr-main-1));
-
+    radial-gradient(
+      circle 50vw at 100% 50%,
+      color-mix(in srgb, var(--color-clr-primary-1) 20%, transparent),
+      transparent 150%
+    ),
+    /* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
+      radial-gradient(
+        circle at 0% 0%,
+        color-mix(in srgb, var(--color-clr-main-2) 60%, transparent),
+        transparent 50%
+      ),
+    /* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
+      linear-gradient(
+        to bottom right,
+        color-mix(in srgb, var(--color-clr-main-1) 95%, transparent),
+        var(--color-clr-main-1)
+      );
 }
 
-@media screen and (min-width:960px) {
-	:root {
-	--background-image-bgclr_startup-dark: 
-		radial-gradient(circle 80vw at 105% 15%, 
-		color-mix(in srgb, var(--color-clr-primary-1) 38%, transparent), 
-		transparent 70%),
-		
-		/* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
-		radial-gradient(circle at 15% 85%, color-mix(in srgb, var(--color-clr-main-2) 50%, transparent), transparent 70%),
-		
-		/* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
-		linear-gradient(to bottom right, color-mix(in srgb, var(--color-clr-main-1) 95%, transparent), var(--color-clr-main-1));
-	--border-brdrclr_startup-dark: 
-		radial-gradient(circle 80vw at 105% 15%, 
-		color-mix(in srgb, var(--color-clr-primary-1) 38%, transparent), 
-		transparent 70%),
-		
-		/* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
-		radial-gradient(circle at 15% 85%, color-mix(in srgb, var(--color-clr-main-2) 50%, transparent), transparent 70%),
-		
-		/* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
-		linear-gradient(to bottom right, color-mix(in srgb, var(--color-clr-main-1) 95%, transparent), var(--color-clr-main-1));
-
-	}
+//////////////////////////////////////////////////////
+/* 💡 現在使用中の濃紺グラデーション背景設定 【PC設定】*/
+@media screen and (min-width: 960px) {
+  :root {
+    --background-image-bgclr-startup-dark:
+      radial-gradient(
+        circle 80vw at 105% 15%,
+        color-mix(in srgb, var(--color-clr-primary-1) 38%, transparent),
+        transparent 70%
+      ),
+      /* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
+        radial-gradient(
+          circle at 15% 85%,
+          color-mix(in srgb, var(--color-clr-main-2) 50%, transparent),
+          transparent 70%
+        ),
+      /* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
+        linear-gradient(
+          to bottom right,
+          color-mix(in srgb, var(--color-clr-main-1) 95%, transparent),
+          var(--color-clr-main-1)
+        );
+  }
 }
-
-
-
-
 
 html {
   /* 常に縦スクロールバーの領域を確保する */
-	overflow-y: scroll;
+  overflow-y: scroll;
 }
-
-
-
-
 
 // アニメーションの定義
 
@@ -105,10 +112,9 @@ html {
   left: 50%;
   top: 50%;
   border-radius: 50%;
-//   background-color: #fff;
+  //   background-color: #fff;
   box-shadow: 0 0 15px var(--color-clr-base-1);
   animation: gathering-animation 1.5s ease-out forwards;
-  will-change: transform, opacity;
   opacity: 0;
 }
 
@@ -134,10 +140,6 @@ html {
     filter: blur(1px);
   }
 }
-
-
-
-
 
 /////////////////////////////////////////
 /////////////////////////////////////////
@@ -170,12 +172,12 @@ html {
     transform: scale(1);
     // filter: blur(0px);
     color: var(--color-clr-base-2);
-	//   text-shadow:
-  		// 0 0 20px var(--color-clr-primary-3),
-  	 	// 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
-    	// 0 0 10px var(--color-clr-primary-3),
-     	// 0 0 7px var(--color-clr-primary-2),
-     	// 0 0 6px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
+    //   text-shadow:
+    // 0 0 20px var(--color-clr-primary-3),
+    // 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
+    // 0 0 10px var(--color-clr-primary-3),
+    // 0 0 7px var(--color-clr-primary-2),
+    // 0 0 6px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
   }
 }
 
@@ -183,16 +185,9 @@ html {
   display: inline-block;
   opacity: 0;
   backface-visibility: hidden;
-  will-change: transform, opacity;
   /* 1.2s から 0.8s に短縮。さらに急加速するイージングに変更 */
   animation: char-fly-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-
-
 }
-
-
-
-
 
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
@@ -214,29 +209,30 @@ html {
   display: inline-block;
   opacity: 0;
   animation: char-fade-in 0.8s ease-out forwards;
-	/* 1つ目の影で「光彩」を、2つ目の影で「文字の輪郭」を確保 */
-//   text-shadow: 
-  		// 0 0 40px var(--color-clr-primary-3),
-  	 	// 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
-    	// 0 0 10px var(--color-clr-primary-3),
-     	// 0 0 7px var(--color-clr-main-1),
-     	// 0 0 4px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
+  /* 1つ目の影で「光彩」を、2つ目の影で「文字の輪郭」を確保 */
+  // text-shadow:
+  // 0 0 40px var(--color-clr-primary-3),
+  // 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
+  // 0 0 10px var(--color-clr-primary-3),
+  // 0 0 7px var(--color-clr-main-1),
+  // 0 0 4px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
+  /* 
+		もし一斉にふわっと出すのではなく、
+		英語の動きが終わった後に順番に出したい時に備えて 
+	*/
+  /* animation-delay: var(--delay); */
 }
-
-
-
-
 
 ///////////////////////////////
 ///////////////////////////////
 /// /* 背景グリッド全体のフェードイン */
 @keyframes bg-grid-appearance {
-	0% {
+  0% {
     opacity: 0;
     transform: scale(1.3);
     filter: blur(10px);
   }
-    40% {
+  40% {
     opacity: 0;
     transform: scale(1.2);
     filter: blur(10px);
@@ -257,18 +253,16 @@ html {
   animation: bg-grid-appearance 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-
-
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
+/// 【描画最適化】
+///  アニメーションのガタつきを防ぐため、ブラウザにGPU準備を指示します。
 /* 粒子と英字、両方のクラスにこれを追加 */
 .particle,
 .animate-char-fly {
   will-change: transform, opacity;
   /* これが「この後動くから準備して」というブラウザへのサインです */
 }
-
-
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -290,12 +284,21 @@ main .reveal,
 .c-section-title {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.4s ease-out, transform 0.2s ease-out;
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.2s ease-out;
 }
+/////////// /* 例：インライン要素が崩れる場合の対策 */
+/////////// main a:not(.c-btn), main span:not(.u-text-accent) {
+///////////   /* ここで transform を無効化するなど */
+/////////// }
+
 main .reveal.deep {
   opacity: 0;
   transform: translateY(100px);
-  transition: opacity 0.4s ease-out, transform 0.2s ease-out;
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.2s ease-out;
 }
 
 /*  アニメーション後 */
@@ -304,60 +307,23 @@ main .reveal.deep {
   transform: translateY(0) !important;
 }
 
-
-
-
-
-
-
-
-
-// .hero-section {
-//   position: relative;
-// //   overflow: hidden; /* 傾けてはみ出した部分をカット */
-// }
-
-// .hero-section::before {
-//   content: "";
-//   position: absolute;
-//   /* 画面より大きく作るのがポイント（回転時の隙間を埋めるため） */
-//   top: -10%; 
-//   left: -10%;
-//   width: 120%;
-//   height: 120%;
-  
-//   /* ここにあなたのグラデーションや画像を入れる */
-// //   background: var(--background-image-startup-dark);
-//   background-size: cover;
-  
-//   /* 傾ける */
-//   transform: rotate(-30deg); 
-//   z-index: -1;
-// }
-
-
-
-
-
-
-
-
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 //ヒーローエリアの文字サイズ関連
 /* 例：最小2rem、最大5remの間で、画面幅に合わせて「無段階」に変化させる */
 
 h1 .hero-maintext {
-  font-size: clamp(3.5rem, calc(7vw + 1rem), 30rem);
-  	font-family: var(--font-playfair), serif;
+  font-size: clamp(3.5rem, calc(7vw + 1rem), 12rem);
+  font-family: var(--font-playfair), serif;
 }
 h1 .hero-big-maintext {
-  font-size: clamp(7rem, calc(14vw + 1rem), 60rem);
+  font-size: clamp(7rem, calc(14vw + 1rem), 24rem);
 }
 h1 .hero-description {
   font-size: clamp(1rem, calc(2vw + 0.1rem), 3rem);
-  	font-family: var(--font-noto-serif), serif;
-
+  font-family: var(--font-noto-serif), serif;
 }
-
-
+h1 .hero-maintext,
+h1 .hero-big-maintext {
+  line-height: 1; /* 少し詰めるだけで、グッと高級感が出ます */
+}

@@ -20,7 +20,7 @@ export default function Footer() {
 
   return (
     <footer id="footer-section" className="relative w-full text-clr-base-1 overflow-hidden">
-      <div className="fixed inset-0 -z-10 bg-bgclr_startup-dark" />
+      <div className="fixed inset-0 -z-10 bg-bgclr-startup-dark" />
 
       {/* 1. Google Maps エリア */}
       <div
