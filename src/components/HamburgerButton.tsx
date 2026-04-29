@@ -10,6 +10,7 @@ interface HamburgerButtonProps {
   lineColorTop?: string;
   lineColorMiddle?: string;
   lineColorBottom?: string;
+  className?: string;
 }
 
 const HamburgerButton = ({
@@ -19,11 +20,12 @@ const HamburgerButton = ({
   lineColorTop,
   lineColorMiddle,
   lineColorBottom,
+  className = "", 
 }: HamburgerButtonProps) => {
   return (
-    <div className="fixed left-[80%] w-[20%] px-8 py-4.5 flex justify-end z-10000">
+    <div className={`lg:hidden fixed left-[80%] w-[20%] px-8 py-4.5 flex justify-end ${className}`}>
       <button
-        className={`lg:hidden cursor-pointer
+        className={`cursor-pointer
           fixed top-3 right-3 flex py-4 px-3 items-center justify-center border ${borderChangeColor} backdrop-blur-md rounded-lg`}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Menu"

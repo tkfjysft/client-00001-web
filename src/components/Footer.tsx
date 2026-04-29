@@ -1,5 +1,3 @@
-"use client";
-
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import { Container } from "@/components/Container";
@@ -21,7 +19,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="footer" className="relative w-full text-clr-base-1 overflow-hidden">
+    <footer id="footer-section" className="relative w-full text-clr-base-1 overflow-hidden">
       <div className="fixed inset-0 -z-10 bg-bgclr_startup-dark" />
 
       {/* 1. Google Maps エリア */}

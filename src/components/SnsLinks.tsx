@@ -8,28 +8,30 @@ import {
   faGithub 
 } from '@fortawesome/free-brands-svg-icons';
 
-export default function SnsLinks() {
-  const snsLinks = [
-    { icon: faXTwitter, href: "https://x.com/yourid", label: "X" },
-    { icon: faInstagram, href: "https://instagram.com/yourid", label: "Instagram" },
-    { icon: faLine, href: "https://line.me/...", label: "LINE" },
-    { icon: faGithub, href: "https://github.com/yourid", label: "GitHub" },
-  ];
+// SNSデータも外に出しておくとスッキリします
+const SNS_LINKS = [
+  { icon: faXTwitter, href: "https://x.com/yourid", label: "X" },
+  { icon: faInstagram, href: "https://instagram.com/yourid", label: "Instagram" },
+  { icon: faLine, href: "https://line.me/...", label: "LINE" },
+  { icon: faGithub, href: "https://github.com/yourid", label: "GitHub" },
+] as const;
 
+export default function SnsLinks() {
   return (
-    <div className="flex items-center gap-3">
-      {snsLinks.map((sns, index) => (
+    <div className="flex items-center gap-5">
+      {SNS_LINKS.map((sns) => (
         <a 
-          key={index}
+          key={sns.label}
           href={sns.href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={sns.label}
-          // hover:opacity で少し変化をつけると「リンク感」が出ます
-          className="text-clr-base-1 hover:opacity-70 transition-opacity"
+          className="group text-clr-base-1 transition-all duration-300"
         >
-          {/* アイコンの大きさは className で調整可能 */}
-          <FontAwesomeIcon icon={sns.icon} className="text-2xl" />
+          <FontAwesomeIcon 
+            icon={sns.icon} 
+            className="text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" 
+          />
         </a>
       ))}
     </div>

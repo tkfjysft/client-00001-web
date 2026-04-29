@@ -29,7 +29,7 @@ export const useAutoAnimate = () => {
         });
       },
       {
-        rootMargin: "0px 0px -200px 0px", // 150px〜250px程度が自然です
+        rootMargin: "0px 0px -170px 0px", // 150px〜250px程度が自然です
         threshold: 0,
       }
     );
@@ -43,10 +43,11 @@ export const useAutoAnimate = () => {
 	
 		// ヒーローエリアのID（例: #hero または #message-section）を指定
         const isInsideHero = t.closest("#hero-section"); 
-        // ★追加：ボタンの中にある要素（spanなど）は監視しない
-  		const isInsideButton = t.closest("#header-section");
+        // ★header/footer内の要素（spanなど）は監視しない
+  		const isInsideHeader = t.closest("#header-section");
+  		const isInsideFooter = t.closest("#footer-section");
 
-        if (isInsideHero || isInsideButton) {
+        if (isInsideHero || isInsideHeader || isInsideFooter) {
           // ヒーローエリア内の要素は、監視せず即座に表示クラスを付ける
         //   t.classList.add("is-visible");
         } else {

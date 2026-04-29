@@ -1,14 +1,6 @@
 // src/app/globals.scss
 @import "tailwindcss";
 
-//SCSSの変数とCSSの変数は相性が悪いのか、同時に使えない？ので
-//同一の色情報を2回書く
-$base-color: #020617;
-$clr-base-1: #1e40af80;
-$clr-base-2: #1e40af80;
-$clr-main-1: #38bdf866; // 少し明るく、青みの強いネイビー
-
-
 :root {
   /* ここに共通変数を置く */
 	--color-clr-base-1: #f8fafc;
@@ -16,7 +8,7 @@ $clr-main-1: #38bdf866; // 少し明るく、青みの強いネイビー
 	--color-clr-main-1: #020617; // 少し明るく、青みの強いネイビー
 	--color-clr-main-2: #383dca; 
 	--color-clr-primary-1: #38bdf8; 
-	--color-clr-primary-2: hsl(206, 47%, 96%); 
+	--color-clr-primary-2: #f0f5fa; 
 	--color-clr-primary-3: #77cff6; 
 }
 
@@ -30,10 +22,17 @@ $clr-main-1: #38bdf866; // 少し明るく、青みの強いネイビー
   --color-clr-primary-1: var(--color-clr-primary-1);
   --color-clr-primary-2: var(--color-clr-primary-2);
   --color-clr-primary-3: var(--color-clr-primary-3);
-	/* ここで md の定義を上書きします */
-  /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
+
+
+/* ここで md の定義を上書きします */
+/* v4では、このように CSS 変数形式で指定するのが公式ルールです */
 //   --breakpoint-md: 960px;
 
+
+// 【Next.js Font 連携】
+//     layout.tsxの next/font で定義した変数 '--font-zen-kaku' を 
+//     Tailwindのクラス名 'font-zen-kaku' として登録するための記述です。
+//     これを削除すると、HTML上の font-zen-kaku クラスが機能しなくなります。
   --font-zen-kaku: var(--font-zen-kaku);
 
 
@@ -171,12 +170,12 @@ html {
     transform: scale(1);
     // filter: blur(0px);
     color: var(--color-clr-base-2);
-	  text-shadow:
-  		0 0 20px var(--color-clr-primary-3),
+	//   text-shadow:
+  		// 0 0 20px var(--color-clr-primary-3),
   	 	// 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
     	// 0 0 10px var(--color-clr-primary-3),
      	// 0 0 7px var(--color-clr-primary-2),
-     	0 0 6px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
+     	// 0 0 6px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
   }
 }
 
@@ -216,12 +215,12 @@ html {
   opacity: 0;
   animation: char-fade-in 0.8s ease-out forwards;
 	/* 1つ目の影で「光彩」を、2つ目の影で「文字の輪郭」を確保 */
-  text-shadow: 
-  		0 0 40px var(--color-clr-primary-3),
-  	 	0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
-    	0 0 10px var(--color-clr-primary-3),
-     	0 0 7px var(--color-clr-main-1),
-     	0 0 4px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
+//   text-shadow: 
+  		// 0 0 40px var(--color-clr-primary-3),
+  	 	// 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
+    	// 0 0 10px var(--color-clr-primary-3),
+     	// 0 0 7px var(--color-clr-main-1),
+     	// 0 0 4px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
 }
 
 

@@ -1,113 +1,104 @@
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 
+const MESSAGE_CONTENT = {
+    mission: "Mission Statement",
+    catchphrase: {
+      top: "テクノロジーで、",
+      middle: "ビジネスの「次」を",
+      bottom: "形にする。",
+    },
+    paragraphs: [
+      "私たちは、単にコードを書く集団ではありません。お客様のビジネスの本質を理解し、最新のテクノロジーを駆使して、真に価値のあるデジタル体験を共創するパートナーです。",
+      "堅牢な設計による安定した基盤と、洗練されたインターフェースによる快適な操作性。高度な専門性と確かな実装力をもって、複雑なビジネス課題を最適なデジタルソリューションへと導きます。",
+    ],
+    signature: "Established 2026 / SERVICTY",
+	link: "",
+  };
+
 export default function MessageSection() {
 
   return (
-    <>
-      {/* 背景: $bg-base (#f8fafc) */}
-      <section id="message-section" data-bg="light" className="py-32 w-full bg-clr-base-1"
-	            style={{
-            clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
-          }}
-      >
-        <Container>
+<section 
+      id="message-section" 
+      data-bg="light" 
+      className="relative w-full bg-clr-base-1 py-32"
+	  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
+    >
 
-
-{/* 2. 背景ユニット：画面に完全に固定（fixed） */}
-      <div className="fixed inset-0 z-1 pointer-events-none
-		">
-        {/* 右側 */}
-        <div 
-          className="absolute inset-0 bg-transparent z-2"
-        />
-
-        {/* 左側 */}
-		<div className="bg-clr-primary-2 opacity-100 z-3 w-full h-full
-			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
-		  md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
-		  "
-		          style={{
-            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
-          }}>
+	  {/* 1. 背景ユニット：fixed で画面全体に固定 */}
+      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+        
+        {/* 【最背面】ドット模様：画面全体に敷く */}
         <div
-          className="absolute inset-0 opacity-8
-		  	bg-[url('/images/bg_01.webp')]
-		  	[background-position:-180px_-30px]
-			md:[background-position:0px_0px]
-			[clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
-		  	md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]
-		  "
+          className="absolute inset-0 opacity-[0.1]"
           style={{
-            // backgroundImage: 'url("/images/bg_01.webp")',
-            backgroundSize: "cover",
-            // backgroundPosition: "center",
-            // clipPath: "polygon(0 0, 90% 0, 15% 100%, 0 100%)",
+            backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, transparent 1px)`,
+            backgroundSize: "20px 20px",
           }}
         />
-		</div>
-      </div>
 
-
-		  {/* 背景にドットのあしらい */}
+        {/* 【前面】写真背景 + 斜めカット：これで下のドットを「隠す」 */}
+        <div className="absolute inset-0 bg-clr-primary-2 
+          [clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
+          md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]">
+          
+          {/* 背景画像：親の clip-path の範囲内だけに表示される */}
           <div
-            className="fixed inset-0 opacity-[0.1] pointer-events-none z-0 bg-clr-base-1 "
-            style={{
-              backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, transparent 1px)`,
-              backgroundSize: "20px 20px",
-            }}
+            className="absolute inset-0 opacity-10 bg-[url('/images/bg_01.webp')] bg-cover
+              [background-position:-180px_-30px] md:[background-position:0px_0px]"
           />
+        </div>
+      </div>
+	  
+      {/* --- コンテンツレイヤー --- */}
+      <Container>
+        <div className="relative z-10 mx-auto reveal">
+          
+          {/* セクション見出し装飾 */}
+          <div className="flex items-center gap-4 mb-16">
+            <div className="w-12 h-[2px] bg-clr-primary-1" />
+            <span className="text-clr-main-1/70 font-mono text-xs tracking-[0.4em] uppercase">
+              {MESSAGE_CONTENT.mission}
+            </span>
+            <div className="flex-grow h-[1px] bg-clr-main-1/10" />
+          </div>
 
-          <div className="mx-auto relative z-10 reveal">
-			            {/* 上部の装飾：細い直線とアクセントカラーの小さな矩形 */}
-            <div className="flex items-center gap-4 mb-16">
-              <div className="w-12 h-[2px] bg-clr-primary-1" />
-              <span className="text-clr-main-1/70 font-mono text-xs tracking-[0.4em] uppercase">
-                Mission Statement
-              </span>
-              <div className="flex-grow h-[1px] bg-clr-main-1/10" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* 左側：キャッチコピー */}
+            <div className="lg:col-span-5">
+              <h2 className="text-4xl md:text-4.5xl font-bold text-clr-main-1/90 leading-[1.5] tracking-tighter">
+                {MESSAGE_CONTENT.catchphrase.top}<br />
+                {MESSAGE_CONTENT.catchphrase.middle}<br />
+                <span className="text-clr-primary-1">{MESSAGE_CONTENT.catchphrase.bottom}</span>
+              </h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-              {/* 左側：キャッチコピー (4カラム) */}
-              <div className="lg:col-span-5">
-                <h2 className="text-4xl md:text-4.5xl font-bold text-clr-main-1/90 leading-[1.5] tracking-tighter">
-                  テクノロジーで、
-                  <br />
-                  ビジネスの「次」を
-                  <br />
-                  <span className="text-clr-primary-1">形にする。</span>
-                </h2>
+            {/* 右側：本文 */}
+            <div className="lg:col-span-7 lg:border-l lg:border-clr-main-1/10 lg:pl-16 space-y-10">
+              <div className="space-y-6">
+                {MESSAGE_CONTENT.paragraphs.map((text, i) => (
+                  <p key={i} className={i === 0 
+                    ? "text-clr-main-1/80 text-xl md:text-2xl leading-relaxed font-light" 
+                    : "text-clr-main-1/70 text-lg leading-relaxed"
+                  }>
+                    {text}
+                  </p>
+                ))}
+                <ArrowLink href={MESSAGE_CONTENT.link || "#"} />
               </div>
 
-              {/* 右側：本文 (7カラム) - 直線によるセパレート */}
-              <div className="lg:col-span-7 lg:border-l lg:border-clr-main-1/10 lg:pl-16 space-y-10">
-                <div className="space-y-6">
-                  <p className="text-clr-main-1/80 text-xl md:text-2xl leading-relaxed font-light">
-                    私たちは、単にコードを書く集団ではありません。
-                    お客様のビジネスの本質を理解し、最新のテクノロジーを駆使して、
-                    真に価値のあるデジタル体験を共創するパートナーです。
-                  </p>
-                  <p className="text-clr-main-1/70 text-lg leading-relaxed">
-                    堅牢な設計による安定した基盤と、洗練されたインターフェースによる快適な操作性。
-                    高度な専門性と確かな実装力をもって、複雑なビジネス課題を最適なデジタルソリューションへと導きます。
-                  </p>
-				  <ArrowLink href="https://example.co.jp" />
-
-                </div>
-
-                {/* 下部の署名的な装飾：アクセントカラーのライン */}
-                <div className="pt-8 border-t border-clr-main-1/5 flex justify-between items-center">
-                  <span className="text-clr-main-1/40 font-mono text-xs italic">
-                    Established 2026 / SERVICTY
-                  </span>
-                  <div className="w-56 h-[2px] bg-clr-primary-1 reveal" />
-                </div>
+              {/* 下部の署名 */}
+              <div className="pt-8 border-t border-clr-main-1/5 flex justify-between items-center">
+                <span className="text-clr-main-1/40 font-mono text-xs italic">
+                  {MESSAGE_CONTENT.signature}
+                </span>
+                <div className="w-56 h-[2px] bg-clr-primary-1 reveal" />
               </div>
             </div>
           </div>
-        </Container>
-      </section>
-    </>
+        </div>
+      </Container>
+    </section>
   );
 }

@@ -5,9 +5,12 @@ import { label } from "framer-motion/client";
 export type NavItem = {
   label: string;
   href: string;
+  // メインメニューへの掲載有無（コンポーネント側のfilter条件に使用）
+  showInNav: boolean;
   children?: readonly { // 「?」をつけることで、あってもなくても良いことになります
     label: string;
     href: string;
+	showInNav: boolean;
   }[];
 };
 
@@ -34,26 +37,38 @@ export const siteConfig = {
     googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280303808788!2d139.76493611234!3d35.6812361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x44c8309623e03!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp",
   },	
   navItems: [
-    { label: "Service", href: "#service",
+    { label: "Service", href: "#service", showInNav: true,
 		children: [
-			{label: "Integration", href: "#products"},
-			{label: "Solutions", href: "#products"},
-			{label: "as a Service", href: "#products"},
+			{label: "Integration", href: "#products", showInNav: true },
+			{label: "Solutions", href: "#products", showInNav: true },
+			{label: "as a Service", href: "#products", showInNav: true },
 		]
 	 },
-    { label: "Products", href: "#products",
+    { label: "Products", href: "#products", showInNav: true,
 		children: [
-			{label: "Integration", href: "#products"},
-			{label: "Oracle", href: "#products"},
-			{label: "各種ハードウェア", href: "#products"},
+			{label: "Integration", href: "#products", showInNav: true },
+			{label: "Oracle", href: "#products", showInNav: true },
+			{label: "各種ハードウェア", href: "#products", showInNav: true },
 		] },
-    { label: "Company", href: "#company",
+    { label: "Company", href: "#company", showInNav: true,
 		children: [
-			{label: "Philosophy", href: "#products"},
-			{label: "overview", href: "#products"},
+			{label: "Philosophy", href: "#products", showInNav: true },
+			{label: "overview", href: "#products", showInNav: true },
 		] },
-    { label: "Recruit", href: "#recruit" },
+    { label: "Recruit", href: "#recruit", showInNav: true },
+    { label: "Privacy Policy", href: "#Privacy Policy", showInNav: false },
   ]as NavItem[],
+  heroImages: [
+    "/images/hero_cording.webp",
+    "/images/hero_meeting.webp",
+    "/images/hero_office.webp",
+    "/", // あえて空にするセル
+    "/",
+    "/",
+    "/images/hero_ceo.webp",
+    "/images/hero_whiteboard.webp",
+    "/images/hero_serverroom.webp",
+  ],
   theme: {
     baseColor: "#F8FAFC",
     primaryColor: "#0F172A",
@@ -67,6 +82,7 @@ export const siteConfig = {
     showCaseStudies: false,
     showMember: true,
   },
+
 } as const;
 
 export type SiteConfig = typeof siteConfig;
