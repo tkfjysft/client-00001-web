@@ -78,20 +78,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-		{/* - className="antialiased" で文字を滑らかに。
-          - style属性で、英字(Jost)を先頭、日本語(Noto Sans)を次に指定。
-          - これにより、英数字はJost、日本語はNoto Sansが自動で適用されます。
-      	*/}
-		<body 
+	  {/* - className="antialiased" で文字を滑らかに。
+        - style属性で、英字(Jost)を先頭、日本語(Noto Sans)を次に指定。
+        - これにより、英数字はJost、日本語はNoto Sansが自動で適用されます。
+      */}
+	  <body 
 			className={`${playfair.variable} ${notoSerif.variable} ${zenKaku.variable} font-sans antialiased`}
 			style={{
 			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
 			}}>
-        <Header />
+        <Header className="z-100" />
         <HeroSection />
         {children}
 		<Footer />
-		<ScrollToTop />
+		<ScrollToTop className="z-10" />
       </body>
     </html>
   );

@@ -166,7 +166,7 @@ function ServiceCard({ service }: { service: typeof SERVICE_GROUPS[0]["services"
       <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
       {/* 写真スペース */}
-      <div className="relative aspect-square w-full overflow-hidden border border-clr-base-1/10 bg-clr-base-1/5 reveal md:size-60 lg:w-full">
+      <div className="relative aspect-square overflow-hidden border border-clr-base-1/10 bg-clr-base-1/5 reveal size-[70vw] md:size-60 lg:w-full">
         <img src={service.photo} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
           <div className="scale-125">{service.icon}</div>

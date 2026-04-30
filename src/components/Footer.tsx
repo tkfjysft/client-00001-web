@@ -61,7 +61,7 @@ export default function Footer() {
             <div className="md:col-span-1" />
 
             {/* 3. リンク集 */}
-            <div className="md:col-span-6 grid grid-cols-2 md:gap-y-0 gap-y-8">
+            <div className="md:col-span-6 grid grid-flow-col grid-rows-2 md:gap-y-0 gap-y-8 mt-[-50px] md:mt-0">
               {siteConfig.navItems.map((item) => (
                 <div key={item.label} className="space-y-4">
                   <Link
@@ -90,13 +90,28 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="w-full flex justify-end mt-20">
+		  {/* snsアイコン */}
+          <div className="w-full flex justify-start md:justify-end mt-20">
             <SnsLinks />
           </div>
 
+		  {/* サブリンク集 */}
+          <div className="flex justify-start md:justify-end gap-4 pt-4">
+            {siteConfig.subNavItems.map((item) => (
+              <div key={item.label} className="">
+                <Link
+                  href={item.href}
+                  className="text-clr-base-1/60 text-sm hover:text-clr-base-1/100 transition-colors"
+                >
+                  {item.label}
+                </Link>  
+              </div>
+            ))}
+          </div>
+
           {/* 4. コピーライト */}
-          <div className="mt-20 pt-8 border-t border-clr-base-1/8 w-full flex justify-end text-clr-base-1/50 text-sm font-mono">
-            <small>© {currentYear} {siteConfig.enCompamyName.toUpperCase()} ALL RIGHTS RESERVED.</small>
+          <div className="mt-20 pt-8 border-t border-clr-base-1/8 w-full flex justify-start md:justify-end text-clr-base-1/50 text-sm font-mono">
+            <small>© {currentYear} {siteConfig.enCompamyName.toUpperCase()} <br className="inline-block sm:hidden" />ALL RIGHTS RESERVED.</small>
           </div>
         </div>
       </Container>

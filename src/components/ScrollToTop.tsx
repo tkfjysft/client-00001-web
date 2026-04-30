@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from 'react';
 
-export default function ScrollToTop() {
+interface ScrollToTopProps {
+	className?: string;
+}
+
+export default function ScrollToTop({
+	className
+}:ScrollToTopProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isDarkBg, setIsDarkBg] = useState(false);
 
@@ -42,7 +48,7 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       aria-label="ページ最上部へ戻る"
       className={`
-        fixed bottom-0 right-0 z-50 flex items-end justify-end
+        fixed bottom-0 right-0 flex items-end justify-end cursor-pointer
         w-24 h-24 p-0 transition-all duration-500 ease-in-out
         [clip-path:polygon(100%_0,100%_100%,0_100%)]
         hover:translate-x-1 hover:translate-y-1

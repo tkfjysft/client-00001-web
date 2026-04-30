@@ -9,7 +9,13 @@ import NavList from "@/components/NavList";
 import ContactButton from "@/components/ContactButton";
 import HamburgerButton from "@/components/HamburgerButton";
 
-export const Header = () => {
+interface HeaderProps  {
+	className? : string;
+}
+
+export const Header = ({
+	className
+}: HeaderProps) => {
   useAutoAnimate();
   const { isOpen, setIsOpen, isDarkBg, isPosTop } = useHeaderVisual();
 
@@ -22,16 +28,19 @@ export const Header = () => {
   const lineColorBottom = isOpen
     ? "-rotate-45 -translate-y-2 baseColor"
     : navTextColor;
+  // スクロール時のborder-bのちらつき防止のために、切り替え時、透明度を変化させる
   const headerBorderColor = isDarkBg
-  	? (isPosTop ? "" : "border-b-[1px] border-b-clr-base-1/10")
-  	: "border-b-[1px] border-b-clr-main-1/10";
+  	? (isPosTop ? "border-b-transparent" : "border-b-clr-base-1/10")
+  	: "border-b-clr-main-1/10";
+	// スクロール時のborder-bのちらつき防止のために、スマホでは 0、PCでは 1px と明示的に分ける
+	const borderWeight = "border-b-0 md:border-b-[1px]";
 
   return (
 
   <header
     id="header-section"
     className={`absolute top-3 left-0 lg:fixed lg:top-0 w-full z-50 flex flex-col items-center justify-center transition-all h-15 lg:h-20
-		${headerBorderColor}
+		${borderWeight} ${headerBorderColor}
 	${
       isPosTop ? "bg-transparent" : "lg:backdrop-blur-xl"
     }
@@ -59,7 +68,7 @@ export const Header = () => {
         <nav className="hidden lg:flex items-center gap-6">
           <NavList navTextColor={navTextColor} />
         </nav>
-        <ContactButton />
+        <ContactButton className="hidden lg:inline-flex" />
       </div>
     </div>
 
@@ -76,17 +85,18 @@ export const Header = () => {
 
     {/* 3. スマホメニュー（header内部に移動） */}
     <div
-      className={`fixed top-0 right-0 bottom-0 w-[80%] bg-clr-base-2/95 z-9000 transition-transform duration-300 lg:hidden ${
+      className={`fixed top-0 right-0 bottom-0 w-[100%] bg-clr-base-2/95 z-9000 transition-transform duration-300 lg:hidden ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
+			{/* スマホ版CIロゴ部分 */}
       <Link
         href="/"
-        className="flex flex-col items-center justify-center pt-2 pb-8 overflow-visible"
+        className="flex flex-col items-center justify-center pt-4 pb-[18px] mb-6 border-b-[1px] border-clr-main-1/10 overflow-visible"
       >
-        <span className="font-zen-kaku leading-none text-center text-clr-main-2">
-          <span className="text-sm font-[900] pb-1 whitespace-pre-wrap">
-            {siteConfig.companyName2}
+        <span className="font-zen-kaku leading-none text-center text-clr-main-1/50">
+          <span className="text-base font-[900] pb-1 whitespace-pre-wrap">
+            {siteConfig.companyName1}
           </span>
           <br />
           <span className="block text-xs italic font-[500] pt-1 lg:mt-0">
@@ -95,6 +105,7 @@ export const Header = () => {
         </span>
       </Link>
       <NavList isMobile={true} />
+			<ContactButton className="block mx-auto w-[50%] lg:hidden"/>
     </div>
   </header>
 

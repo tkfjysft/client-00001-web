@@ -101,6 +101,8 @@ html {
   overflow-y: scroll;
 }
 
+
+
 // アニメーションの定義
 
 ///////////////////////////////////////////////
@@ -293,7 +295,7 @@ html {
 //↑forwardsがあるとハンバーガーボタンのY座標が狂うので、削除している
 
 .header-appearance {
-  animation: header-appearance 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: header-appearance 3.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
@@ -371,6 +373,16 @@ h1 .hero-description {
 h1 .hero-maintext,
 h1 .hero-big-maintext {
   line-height: 1; /* 少し詰めるだけで、グッと高級感が出ます */
+
+//   /* macOS / iOS でより滑らかにする設定 */
+//   -webkit-font-smoothing: antialiased;
+  
+//   /* Firefox でより滑らかにする設定 */
+//   -moz-osx-font-smoothing: grayscale;
+
+//   /* 文字の角を少しだけ丸く見せるための「隠し味」 */
+//   text-shadow: 0 0 1px rgba(0,0,0,0.01);
+
 }
 
 

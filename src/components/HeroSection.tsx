@@ -49,17 +49,17 @@ const getGridClass = (idx: number) => {
 //     "col-start-5 col-end-8 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-12 lg:row-end-21",
 //   ];
   const classes = [
-    "col-start-1 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:row-end-10",
-    "col-start-1 col-end-3 row-start-10 row-end-12  lg:col-start-3 lg:col-end-5 lg:row-start-1 lg:row-end-10",
-    "col-start-1 col-end-5 row-start-12 row-end-21 lg:col-start-5 lg:col-end-8 lg:row-start-1 lg:row-end-10",
+    "col-start-1 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-4 lg:row-start-1 lg:row-end-10",
+    "col-start-1 col-end-3 row-start-10 row-end-12  lg:col-start-4 lg:col-end-6 lg:row-start-1 lg:row-end-10",
+    "col-start-1 col-end-5 row-start-12 row-end-21  lg:col-start-6 lg:col-end-8 lg:row-start-1 lg:row-end-10",
 
-    "col-start-4 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-10 lg:row-end-13",
-    "col-start-3 col-end-6 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-10 lg:row-end-13",
-    "col-start-5 col-end-5 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-10 lg:row-end-13",
+    "col-start-4 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-4 lg:row-start-10 lg:row-end-13",
+    "col-start-3 col-end-6 row-start-10 row-end-12  lg:col-start-4 lg:col-end-6 lg:row-start-10 lg:row-end-13",
+    "col-start-5 col-end-5 row-start-12 row-end-21  lg:col-start-6 lg:col-end-8 lg:row-start-10 lg:row-end-13",
 
-    "col-start-4 col-end-8 row-start-1 row-end-10   lg:col-start-1 lg:col-end-4 lg:row-start-13 lg:row-end-21",
-    "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-4 lg:col-end-6 lg:row-start-13 lg:row-end-21",
-    "col-start-5 col-end-8 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-13 lg:row-end-21",
+    "col-start-4 col-end-8 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-13 lg:row-end-21",
+    "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-3 lg:col-end-5 lg:row-start-13 lg:row-end-21",
+    "col-start-5 col-end-8 row-start-12 row-end-21  lg:col-start-5 lg:col-end-8 lg:row-start-13 lg:row-end-21",
   ];
   return classes[idx] || "";
 };
@@ -73,7 +73,7 @@ return (
 
     {/* 背景グリッド */}
     <div className="absolute inset-0 z-0 animate-bg-fadein" aria-hidden="true">
-      <div className="grid grid-cols-7 grid-rows-20 w-full h-full gap-2 md:gap-4 grid-container">
+      <div className="grid grid-cols-7 grid-rows-20 w-full h-full gap-2 grid-container">
         {backgroundImages.map((src, idx) => (
           <div key={idx} className={`relative overflow-hidden ${getGridClass(idx)}`}>
             <div

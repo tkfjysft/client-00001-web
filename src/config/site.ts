@@ -14,6 +14,13 @@ export type NavItem = {
   }[];
 };
 
+export type SubNavItem = {
+  label: string;
+  href: string;
+  // メインメニューへの掲載有無（コンポーネント側のfilter条件に使用）
+  showInNav: boolean;
+};
+
 export const siteConfig = {
   companyName1: "マインドシフトシステムズ株式会社",
   companyName2: "マインドシフトシステムズ\n株式会社",
@@ -56,8 +63,12 @@ export const siteConfig = {
 			{label: "overview", href: "#products", showInNav: true },
 		] },
     { label: "Recruit", href: "#recruit", showInNav: true },
-    { label: "Privacy Policy", href: "#Privacy Policy", showInNav: false },
   ]as NavItem[],
+  subNavItems: [
+  { label: "プライバシーポリシー", href: "privacy_policy", showInNav: true },
+  { label: "利用規約", href: "terms", showInNav: true },
+  ]as SubNavItem[],
+
   heroImages: [
     "/images/hero_cording.webp",
     "/images/hero_meeting.webp",
