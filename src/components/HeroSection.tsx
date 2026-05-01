@@ -77,7 +77,7 @@ return (
         {backgroundImages.map((src, idx) => (
           <div key={idx} className={`relative overflow-hidden ${getGridClass(idx)}`}>
             <div
-              className={`w-full h-full bg-cover bg-center brightness-[0.5] ${idx === 3 ? 'h-[160%]' : ''}`}
+              className={`w-full h-full bg-cover bg-center brightness-[0.6] contrast-[140%] ${idx === 3 ? 'h-[160%]' : ''}`}
               style={{ backgroundImage: `url(${src})` }}
             />
           </div>

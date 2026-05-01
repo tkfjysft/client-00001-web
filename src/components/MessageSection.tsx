@@ -4,8 +4,9 @@ import ArrowLink from "@/components/ArrowLink";
 const MESSAGE_CONTENT = {
     mission: "Mission Statement",
     catchphrase: {
-      top: "テクノロジーで、",
-      middle: "ビジネスの「次」を",
+      top: "テクノロジーで",
+      middle_1: "ビジネスの",
+      middle_2: "「次」を",
       bottom: "形にする。",
     },
     paragraphs: [
@@ -21,7 +22,7 @@ export default function MessageSection() {
   return (
 <section 
       id="message-section" 
-      data-bg="light" 
+      data-bg="dark" 
       className="relative w-full bg-clr-base-1 py-32"
 	  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
     >
@@ -45,7 +46,8 @@ export default function MessageSection() {
           
           {/* 背景画像：親の clip-path の範囲内だけに表示される */}
           <div
-            className="absolute inset-0 opacity-10 bg-[url('/images/bg_01.webp')] bg-cover
+            className="absolute inset-0 bg-[url('/images/bg_01.webp')] bg-cover
+			brightness-[60%] contrast-[160%]
               [background-position:-180px_-30px] md:[background-position:0px_0px]"
           />
         </div>
@@ -58,29 +60,30 @@ export default function MessageSection() {
           {/* セクション見出し装飾 */}
           <div className="flex items-center gap-4 mb-16">
             <div className="w-12 h-[2px] bg-clr-primary-1" />
-            <span className="text-clr-main-1/70 font-mono text-xs tracking-[0.4em] uppercase">
+            <span className="text-clr-main-1 font-mono text-xs tracking-[0.4em] uppercase">
               {MESSAGE_CONTENT.mission}
             </span>
             <div className="flex-grow h-[1px] bg-clr-main-1/10" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-20 items-start">
             {/* 左側：キャッチコピー */}
-            <div className="lg:col-span-5">
-              <h2 className="text-4xl md:text-4.5xl font-bold text-clr-main-1/90 leading-[1.5] tracking-tighter">
+            <div className="w-fit lg:col-span-6 bg-clr-base-2/80 py-6 pl-6 pr-8">
+              <h2 className="text-4xl md:text-5xl font-[700] text-clr-main-1/90 leading-[1.5] tracking-tighter">
                 {MESSAGE_CONTENT.catchphrase.top}<br />
-                {MESSAGE_CONTENT.catchphrase.middle}<br />
+                {MESSAGE_CONTENT.catchphrase.middle_1}<br />
+                {MESSAGE_CONTENT.catchphrase.middle_2}<br />
                 <span className="text-clr-primary-1">{MESSAGE_CONTENT.catchphrase.bottom}</span>
               </h2>
             </div>
 
             {/* 右側：本文 */}
-            <div className="lg:col-span-7 lg:border-l lg:border-clr-main-1/10 lg:pl-16 space-y-10">
-              <div className="space-y-6">
+            <div className="lg:col-span-6 lg:border-l lg:border-clr-main-1/10 lg:pl-16 space-y-10">
+              <div className="space-y-6 bg-clr-base-2/80 p-6">
                 {MESSAGE_CONTENT.paragraphs.map((text, i) => (
                   <p key={i} className={i === 0 
-                    ? "text-clr-main-1/80 text-xl md:text-2xl leading-relaxed font-light" 
-                    : "text-clr-main-1/70 text-lg leading-relaxed"
+                    ? "text-clr-main-1/90 text-xl font-medium md:text-2xl leading-[1.8] text-justify tracking-tight" 
+                    : "text-clr-main-1/90 text-lg leading-[1.8] text-justify tracking-tight"
                   }>
                     {text}
                   </p>
@@ -90,7 +93,7 @@ export default function MessageSection() {
 
               {/* 下部の署名 */}
               <div className="pt-8 border-t border-clr-main-1/5 flex justify-between items-center">
-                <span className="text-clr-main-1/40 font-mono text-xs italic">
+                <span className="text-clr-main-1 font-mono text-xs italic">
                   {MESSAGE_CONTENT.signature}
                 </span>
                 <div className="w-56 h-[2px] bg-clr-primary-1 reveal" />

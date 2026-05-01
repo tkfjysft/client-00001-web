@@ -193,7 +193,7 @@ function ServiceCard({ service }: { service: typeof SERVICE_GROUPS[0]["services"
           <span>{service.name}</span>
         </h4>
         {/* 固定テキストから service.description に変更 */}
-        <p className="text-justify font-light leading-relaxed text-clr-base-1/80 whitespace-pre-wrap">
+        <p className="text-justify tracking-tight font-light leading-[1.8] text-clr-base-1/80 whitespace-pre-wrap">
           {service.description}
         </p>
 		{service.link && (

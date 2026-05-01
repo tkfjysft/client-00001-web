@@ -60,22 +60,22 @@ export default function ProductsSection() {
         <div
           className="absolute inset-0 opacity-[0.1]"
           style={{
-            backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, var(--color-clr-base-1) 1px)`,
             backgroundSize: "20px 20px",
           }}
         />
 
         {/* 【前面】写真背景 + 斜めカット：これで下のドットを「隠す」 */}
-        <div className="absolute inset-0 bg-clr-primary-2 
+        <div className="absolute inset-0 bg-clr-base-2 
           [clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
           md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]">
           
           {/* 背景画像：親の clip-path の範囲内だけに表示される */}
           <div
-            className="absolute inset-0 opacity-10 bg-[url('/images/bg_03.webp')] bg-cover
-              [background-position:-180px_-30px] md:[background-position:0px_0px]"
+            className="absolute inset-0 bg-clr-base-1/50"
           />
         </div>
+
       </div>
 
 	  {/* --- コンテンツレイヤー --- */}
@@ -115,8 +115,8 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
 
 <div className="group relative flex flex-col space-y-4">
   {/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-  <div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal shadow-sm`}>
-    <div className="absolute inset-0 border border-clr-main-1/10 z-10 pointer-events-none" />
+  <div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal`}>
+    <div className="absolute inset-0 z-10 pointer-events-none" />
     <img 
       src={product.photo} 
       alt="" 
@@ -137,18 +137,20 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
       </h3>
     </div>
 
-    <div className="text-clr-main-1/70 tracking-tight leading-relaxed text-base lg:text-lg whitespace-pre-wrap max-w-2xl">
+	{product.description && (
+		<>
 		{/* 共通コンポーネントで長文を表示 */}
 		<MarkdownView content={product.description} />
-    </div>
+		</>
+	)}
 
     {/* 子要素：カード形式にして情報の塊を分ける */}
     {product.children && (
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+      <div>
         {product.children.map((child) => (
-          <div key={child.label} className="p-4 border-l-2 border-clr-primary-1/30 bg-clr-base-1/50 hover:bg-clr-base-1 transition-colors">
-            <h4 className="font-bold text-sm text-clr-main-1/90 mb-1">{child.label}</h4>
-            <p className="text-clr-main-1/60 text-xs leading-extended tracking-wide whitespace-pre-wrap">{child.description}</p>
+          <div key={child.label} className="pb-4">
+            <h4 className="font-bold text-sm text-clr-main-1/90 mb-2">{child.label}</h4>
+			<MarkdownView content={child.description} />
           </div>
         ))}
       </div>
