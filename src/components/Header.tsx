@@ -16,7 +16,9 @@ interface HeaderProps  {
 export const Header = ({
 	className
 }: HeaderProps) => {
-  useAutoAnimate();
+  //画面スクロール連動フェードインアニメーション
+//   useAutoAnimate();
+
   const { isOpen, setIsOpen, isDarkBg, isPosTop } = useHeaderVisual();
 
   // 色の定義を「変数」としてまとめておくと、JSXがスッキリします

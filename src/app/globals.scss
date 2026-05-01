@@ -329,24 +329,16 @@ main svg,
 main .reveal, 
 .c-visual-box, 
 .c-section-title {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.4s ease-out,
-    transform 0.2s ease-out;
+//   opacity: 0;
+//   transform: translateY(100px);
+//   transition:
+//     opacity 0.4s ease-out,
+//     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 /////////// /* 例：インライン要素が崩れる場合の対策 */
 /////////// main a:not(.c-btn), main span:not(.u-text-accent) {
 ///////////   /* ここで transform を無効化するなど */
 /////////// }
-
-main .reveal.deep {
-  opacity: 0;
-  transform: translateY(100px);
-  transition:
-    opacity 0.4s ease-out,
-    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 /*  アニメーション後 */
 .is-visible {

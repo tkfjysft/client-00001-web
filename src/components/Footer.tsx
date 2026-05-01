@@ -5,7 +5,7 @@ import SnsLinks from "@/components/SnsLinks";
 
 // 1. 連絡先情報を表示する小さな部品（ファイル内で定義）
 const ContactInfo = ({ className = "" }: { className?: string }) => (
-  <ul className={`leading-relaxed ${className}`}>
+  <ul className={`leading-relaxed ${className} text-justify font-light leading-relaxed text-clr-base-1/80 whitespace-pre-wrap`}>
     <li>〒{siteConfig.contact.postcode}</li>
     <li>{siteConfig.contact.address}</li>
     <li>

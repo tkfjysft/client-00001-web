@@ -1,28 +1,43 @@
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
+import { MarkdownView } from "@/components/MarkdownView";
 
 // 1. 各製品のデータを整理
 const PRODUCTS = [
   {
     id: "01",
-    title: "Enterprise Ecosystem",
+    title: "Microsoft",
     photo: '/images/products_01.webp',
-    description: "大規模なビジネス基盤を支える、次世代の統合プラットフォーム。複雑なデータフローを最適化し、意思決定のスピードを劇的に向上させます。",
-    imgSize: "lg:w-56 lg:h-56" // PC版の画像サイズをここで指定
+    description: `Azureのライセンスはもちろんのこと、様々な状況からAzureへの載せ替えに関する技術的支援や実装も行っています。
+	
+Azureをご検討ならば、ライセンスから実作業まで一気通貫でお応えできる弊社にお任せください。`,
+    imgSize: "lg:w-56 lg:h-56", // PC版の画像サイズをここで指定
+	link: "products/#microsoft",
   },
   {
     id: "02",
-    title: "Lightweight Tool",
+    title: "Oracle",
     photo: '/images/products_02.webp',
-    description: "特定の課題に特化した、シンプルで強力なミニマル・ソリューション。",
-    imgSize: "lg:w-32 lg:h-32"
+    description: "Oracle製品を取り扱っております。データセンタ専用のライセンス（年額利用料方式のライセンス）も取り扱っております。",
+    imgSize: "lg:w-32 lg:h-32",
+	link: "",
   },
   {
     id: "03",
-    title: "Cloud Native System",
+    title: "各種ハードウェア",
     photo: '/images/products_03.webp',
-    description: "スケーラビリティを最優先したクラウドネイティブなプロダクト。変化し続ける市場環境に柔軟に対応できる堅牢な設計を実現しました。",
-    imgSize: "lg:w-70 lg:h-70"
+    description: "",
+    imgSize: "lg:w-70 lg:h-70",
+	link: "",
+	children: [
+			{label: "サーバ機器",
+				description: `メーカ製のハードウェアはもちろんのこと、お客様の仕様で組み付けることが可能な、いわゆるホワイトボックスも扱っております。`,
+			},
+			{label: "ネットワーク機器",
+				description: `一般的なルータ、SW-HUB、Firewall、UTM、など、多岐にわたり取り扱っています。	
+また、少し、特殊な機器としてWANの高速化アプライアンスRapicomも取り扱っています。詳しい説明をご希望される場合は、お問い合せのページよりご連絡下さい。`,
+			},
+		]
   },
 ];
 
@@ -74,20 +89,20 @@ export default function ProductsSection() {
           </div>
 
           {/* グリッドレイアウト */}
-          <div className="grid grid-cols-1 md:grid-cols-[auto_auto] lg:grid-cols-12 gap-y-16 lg:gap-x-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 md:gap-8 lg:gap-x-8">
             
             {/* 1番目 (7列) */}
-            <div className="md:w-[42vw] lg:w-auto lg:col-span-7 pt-10 lg:border-t lg:border-clr-main-1/10">
+            <div className="lg:w-auto lg:col-span-7 pt-10 lg:border-t lg:border-clr-main-1/10">
               <ProductCard product={PRODUCTS[0]} />
             </div>
 
             {/* 2番目 (5列) */}
-            <div className="md:w-[42vw] lg:w-auto lg:col-span-5 pt-10 lg:border-t lg:border-clr-main-1/10">
+            <div className="lg:w-auto lg:col-span-5 pt-10 lg:border-t lg:border-clr-main-1/10">
               <ProductCard product={PRODUCTS[1]} />
             </div>
 
             {/* 3番目 (9列・オフセット) */}
-            <div className="md:w-[42vw] lg:w-auto lg:col-span-9 lg:col-start-3 pt-10 lg:border-t lg:border-clr-main-1/10">
+            <div className="lg:w-auto lg:col-span-9 lg:col-start-3 pt-10 lg:border-t lg:border-clr-main-1/10">
               <ProductCard product={PRODUCTS[2]} />
             </div>
 
@@ -103,24 +118,55 @@ export default function ProductsSection() {
 // --- 内部パーツ：製品カード ---
 function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
   return (
-    <div className="group flex flex-col lg:flex-row gap-1 lg:gap-2 items-start">
-      {/* 写真：共通のレスポンシブ設定 + データから渡されるPCサイズ */}
-      <div className={`size-[70vw] md:size-60 ${product.imgSize} flex-shrink-0 border border-clr-main-1/10 bg-clr-base-1 relative overflow-hidden reveal`}>
-        <img src={product.photo} alt="" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" />
+
+<div className="group flex flex-col lg:flex-row gap-8 lg:gap-10 items-start py-8 border-t border-clr-main-1/5 first:border-t-0">
+  {/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
+  <div className={`size-[70vw] md:size-60 ${product.imgSize} flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal shadow-sm`}>
+    <div className="absolute inset-0 border border-clr-main-1/10 z-10 pointer-events-none" />
+    <img 
+      src={product.photo} 
+      alt="" 
+      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+    />
+  </div>
+  
+  <div className="flex-1 space-y-6">
+    <div className="space-y-2">
+      {/* IDを強調せず、アクセントとして添える */}
+      <div className="flex items-center gap-2">
+        <span className="w-4 h-[1px] bg-clr-primary-1/60"></span>
+        <span className="text-clr-primary-1 font-mono text-xs tracking-widest uppercase">{product.id}</span>
       </div>
       
-      <div className="space-y-1">
-        <div className="flex items-center gap-3">
-          <span className="text-clr-primary-1 font-mono text-xs">{product.id}</span>
-          <h3 className="text-xl font-bold text-clr-main-1/70 group-hover:text-clr-main-2/80 transition-colors">
-            {product.title}
-          </h3>
-        </div>
-        <p className="text-clr-main-1/80 leading-relaxed font-light text-justify">
-          {product.description}
-        </p>
-        <ArrowLink href="https://example.co.jp" />
-      </div>
+      <h3 className="text-3xl lg:text-4xl font-bold tracking-tighter text-clr-main-1/90 group-hover:text-clr-main-2 transition-colors duration-300">
+        {product.title}
+      </h3>
     </div>
+
+    <div className="text-clr-main-1/70 tracking-tight leading-relaxed text-base lg:text-lg whitespace-pre-wrap max-w-2xl">
+{/* 共通コンポーネントで長文を表示 */}
+  <MarkdownView content={product.description} />
+    </div>
+
+    {/* 子要素：カード形式にして情報の塊を分ける */}
+    {product.children && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+        {product.children.map((child) => (
+          <div key={child.label} className="p-4 border-l-2 border-clr-primary-1/30 bg-clr-base-1/50 hover:bg-clr-base-1 transition-colors">
+            <h4 className="font-bold text-sm text-clr-main-1/90 mb-1">{child.label}</h4>
+            <p className="text-clr-main-1/60 text-xs leading-extended tracking-wide whitespace-pre-wrap">{child.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {product.link && (
+      <div className="pt-4">
+        <ArrowLink href={product.link || "#"} className="text-clr-main-2 hover:text-clr-primary-1 transition-colors" />
+      </div>
+    )}
+  </div>
+</div>
+
   );
 }

@@ -15,75 +15,83 @@ import ArrowLink from "@/components/ArrowLink";
 const SERVICE_GROUPS = [
   {
     label: "01",
-    title: "Core Infrastructure",
+    title: "Integration",
     services: [
       { 
-        name: "Webシステム開発", 
+		tag: "",
+        name: "コンサルティングサービス", 
         icon: <Server />, 
         photo: '/images/services_01.webp',
-        description: "最適な技術スタックを選定し、ビジネスの課題をシンプルかつ堅牢な解決策へと導きます。",
-		link: "",
+        description: "コンサルティングサービスは、お客様の仕事に内在するムダを見つけ、ムダを排除した効率的な作業ができるよう、お客様と一緒に考えます。",
+		link: "services/#consulting",
       },
       { 
-        name: "基幹システム構築", 
+		tag: "",
+        name: "プロフェッショナルサービス", 
         icon: <Database />, 
         photo: '/images/services_02.webp',
-        description: "既存資産を活かしつつ、将来の拡張性を見据えたセキュアな基幹システムを構築します。",
-		link: "",
+        description: "プロフェッショナルサービスは、業務系システム構築サービス、情報基盤構築サービス、オープンソース活用サービス、等で構成されています。",
+		link: "services/#pro-service",
       },
     ],
   },
   {
     label: "02",
-    title: "Experience Design",
+    title: "Solutions",
     services: [
       { 
-        name: "UI/UXデザイン", 
+		tag: "生産管理",
+        name: "SPiCS", 
         icon: <Monitor />, 
         photo: '/images/services_03.webp',
-        description: "ユーザー視点を徹底的に追求し、直感的で心地よいデジタル体験をデザインします。",
-		link: "",
+        description: "弊社が開発した部品加工業向けの生産管理システム。",
+		link: "services/#spics",
       },
       { 
-        name: "モバイルアプリ開発", 
+		tag: "生産管理",
+        name: "TPiCS", 
         icon: <Smartphone />, 
         photo: '/images/services_04.webp',
-        description: "iOS/Android両プラットフォームにおいて、パフォーマンスと操作性に優れたアプリを提供します。",
-		link: "",
+        description: "iOS/あらゆる変化を乗りこなす生産管理システム。",
+		link: "services/#tpics",
       },
       { 
-        name: "フロントエンド開発", 
+		tag: "生産スケジューラ",
+        name: "FLEXSCHE", 
         icon: <Code />, 
         photo: '/images/services_05.webp',
-        description: "最新のフレームワークを活用し、高速でアクセシビリティの高い画面実装を実現します。",
-		link: "",
+        description: "時間と闘う製造業のために。生産管理をより綿密に実行するためには生産スケジューラが必要です。",
+		link: "services/#flexsche",
       },
     ],
   },
   {
     label: "03",
-    title: "Consulting & Security",
+    title: "as a Service",
     services: [
       { 
-        name: "DXコンサルティング", 
+		tag: "ベアメタルサーバサービス",
+        name: "satellite.server", 
         icon: <Lightbulb />, 
         photo: '/images/services_06.webp',
-        description: "デジタル技術を活用したビジネスモデルの変革を、戦略立案から実行まで伴走支援します。",
-		link: "",
+        description: "satellite.serverと命名したベアメタルサーバサービスは、まさに、お客様のサテライトとして機能したいという想いを込めました。",
+		link: "services/#satellite-server",
       },
       { 
-        name: "クラウド移行支援", 
+		tag: "VSPサービス",
+        name: "smart.VPS", 
         icon: <Cloud />, 
         photo: '/images/services_07.webp',
-        description: "オンプレミスからクラウドへのスムーズな移行により、運用コストの削減と柔軟性を両立させます。",
-		link: "",
+        description: "固定グローバルIPアドレス付与UTM標準装備のVPSサービス。",
+		link: "services/#vps",
       },
       { 
-        name: "セキュリティ診断", 
+		tag: "クラウドストレージサービス",
+        name: "satellite.folder", 
         icon: <Shield />, 
         photo: '/images/services_08.webp',
-        description: "潜在的な脆弱性を特定し、ビジネスを脅威から守るための強固な防御策を提案・実装します。",
-		link: "",
+        description: "Windows Server OSで構築されたファイルサーバを定額でご利用いただくサービス。",
+		link: "services/#cloud",
       },
     ],
   },
@@ -144,7 +152,7 @@ export default function ServiceSection() {
                 </div>
 
                 {/* サービスグリッド */}
-                <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
+                <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-x-12">
                   {group.services.map((service, idx) => (
                     <ServiceCard key={idx} service={service} />
                   ))}
@@ -168,21 +176,28 @@ function ServiceCard({ service }: { service: typeof SERVICE_GROUPS[0]["services"
       {/* 写真スペース */}
       <div className="relative aspect-square overflow-hidden border border-clr-base-1/10 bg-clr-base-1/5 reveal size-[70vw] md:size-60 lg:w-full">
         <img src={service.photo} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
+        {/* <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
           <div className="scale-125">{service.icon}</div>
-        </div>
+        </div> */}
       </div>
 
       {/* テキストコンテンツ */}
       <div className="space-y-2">
-        <h4 className="text-xl font-bold tracking-tight text-clr-base-1/90">
-          {service.name}
+        <h4 className="text-xl font-bold tracking-tight text-clr-base-1/90 flex flex-col items-start">
+		  {service.tag && (
+			<>
+			<span className="block border-b border-clr-base-1/50 py-1 mr-2 mb-1 text-xs text-clr-base-1/80">{service.tag}</span><br />
+			</>
+			)}
+          <span>{service.name}</span>
         </h4>
         {/* 固定テキストから service.description に変更 */}
-        <p className="text-justify font-light leading-relaxed text-clr-base-1/80">
+        <p className="text-justify font-light leading-relaxed text-clr-base-1/80 whitespace-pre-wrap">
           {service.description}
         </p>
-        <ArrowLink href={service.link || "#"} variant="white" />
+		{service.link && (
+          <ArrowLink href={service.link || "#"} variant="white" />
+		)}
       </div>
     </div>
   );
