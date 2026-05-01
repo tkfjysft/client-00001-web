@@ -5,7 +5,7 @@ import SnsLinks from "@/components/SnsLinks";
 
 // 1. 連絡先情報を表示する小さな部品（ファイル内で定義）
 const ContactInfo = ({ className = "" }: { className?: string }) => (
-  <ul className={`${className} text-justify tracking-tight leading-[1.8] text-clr-base-1/80 whitespace-pre-wrap`}>
+  <ul className={`${className} text-clr-base-1/80 whitespace-pre-wrap`}>
     <li>〒{siteConfig.contact.postcode}</li>
     <li>{siteConfig.contact.address}</li>
     <li>
@@ -49,11 +49,11 @@ export default function Footer() {
             
             {/* 2. ロゴ・会社概要 */}
             <div className="md:col-span-5 space-y-6">
-              <h2 className="text-lg font-bold tracking-tighter">
+              <h2 className="text-lg font-bold">
                 {siteConfig.companyName1}
               </h2>
               <ContactInfo className="text-clr-base-1/90" />
-              <p className="text-clr-base-1/65 text-sm leading-[1.8] text-justify tracking-tight max-w-sm pt-3">
+              <p className="text-clr-base-1/65 text-sm max-w-sm pt-3">
                 {siteConfig.description1}
               </p>
             </div>
@@ -66,7 +66,7 @@ export default function Footer() {
                 <div key={item.label} className="space-y-4">
                   <Link
                     href={item.href}
-                    className="text-clr-base-1/80 font-bold tracking-wider hover:text-clr-base-1/100 transition-colors"
+                    className="text-clr-base-1/80 font-bold tracking-widest hover:text-clr-base-1/100 transition-colors"
                   >
                     {item.label}
                   </Link>

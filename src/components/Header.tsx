@@ -54,8 +54,8 @@ export const Header = ({
       {/* CIロゴ部分 */}
       <div className="block static relative h-full">
         <Link href="/" className="h-full flex items-start lg:items-center">
-          <span className={`font-zen-kaku leading-[0.5] ${ciLogoTextColor}`}>
-            <span className="text-base lg:text-lg font-[900] pb-1">
+          <span className={`font-zen-kaku !leading-[1] ${ciLogoTextColor}`}>
+            <span className="text-base !leading-[1] lg:text-lg font-[900] pb-1">
               {siteConfig.companyName1}
             </span>
             <br />
@@ -96,12 +96,12 @@ export const Header = ({
         href="/"
         className="flex flex-col items-center justify-center pt-4 pb-[18px] mb-6 border-b-[1px] border-clr-main-1/10 overflow-visible"
       >
-        <span className="font-zen-kaku leading-none text-center text-clr-main-1/50">
+        <span className="font-zen-kaku !leading-[1] text-center text-clr-main-1/50">
           <span className="text-base font-[900] pb-1 whitespace-pre-wrap">
             {siteConfig.companyName1}
           </span>
           <br />
-          <span className="block text-xs italic font-[500] pt-1 lg:mt-0">
+          <span className="block !leading-[1] text-xs italic text-center font-[500] pt-1 lg:mt-0">
             {siteConfig.enCompamyName}
           </span>
         </span>

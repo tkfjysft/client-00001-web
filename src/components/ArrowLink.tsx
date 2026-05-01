@@ -38,7 +38,7 @@ export default function ArrowLink({
     <div className={`w-full flex ${alignClasses[align]} ${className}`}>
       <Link 
         href={href}  
-        className="group inline-flex flex-col items-start gap-1 font-medium tracking-widest transition-all duration-500"
+        className="group inline-flex flex-col items-start gap-1 font-medium transition-all duration-500"
       >
         {/* 文字 */}
         <span className={`text-[10px] uppercase transition-colors duration-500 ${styles.text}`}>

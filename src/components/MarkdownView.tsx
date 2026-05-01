@@ -20,7 +20,7 @@ export const MarkdownView = ({ content }: MarkdownViewProps) => {
             });
 
             return (
-              <p className="mb-2 last:mb-0 leading-[1.8] text-base text-clr-main-1/90 text-justify tracking-tight">
+              <p className="mb-2 last:mb-0 text-base text-clr-main-1/80">
                 {content}
               </p>
             );

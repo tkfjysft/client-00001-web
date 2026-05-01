@@ -24,8 +24,11 @@ export default function ScrollToTop({
       
       const section = elements.find((el) => el.closest("[data-bg]"))?.closest("[data-bg]");
       const bgType = section?.getAttribute("data-bg")?.trim();
-      
-      setIsDarkBg(bgType === "dark");
+	  //現在、message-sectionだけ、背景色がヘッダー付近とフッター付近で明暗逆なので
+	  //特別仕様に
+      const sectionType = (elements.find((el) => el.closest("[id]"))?.closest("[id]"))?.getAttribute("id")?.trim();
+
+      setIsDarkBg(bgType === "dark" && sectionType !== "message-section");
     };
 
     // 初期実行とイベント登録
@@ -56,7 +59,7 @@ export default function ScrollToTop({
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}
       `}
     >
-      <span className="absolute bottom-6 right-[-40px] block w-[150px] text-center transform -rotate-45 text-[12px] font-bold tracking-tighter leading-none transition-transform duration-300 hover:scale-110">
+      <span className="absolute bottom-6 right-[-40px] block w-[150px] text-center transform -rotate-45 text-[12px] font-bold transition-transform duration-300 hover:scale-110">
         Page Top
       </span>
     </button>

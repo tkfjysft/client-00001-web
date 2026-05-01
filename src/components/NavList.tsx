@@ -28,7 +28,7 @@ export default function NavList({
               href={item.href}
               className={
                 isMobile
-                  ? "font-bold text-clr-main-1/60 hover:scale-125 transition-all block text-lg" // スマホ版スタイル
+                  ? "font-bold tracking-widest text-clr-main-1/60 hover:scale-125 transition-all block text-lg" // スマホ版スタイル
                   : `font-bold ${navTextColor} tracking-widest hover:scale-105 transition-all flex items-center gap-1` // PC版スタイル
               }
             >
@@ -47,12 +47,12 @@ export default function NavList({
               >
                 <ul className={isMobile ? "" : "bg-clr-base-1 py-2 min-w-[200px] shadow-xl"}>
                   {item.children.map((child) => (
-                    <li key={child.label} className={isMobile ? "ml-3" : ""}>
+                    <li key={child.label}>
                       <Link
                         href={child.href}
                         className={
                           isMobile
-                            ? "block py-1 text-sm text-clr-main-1/55"
+                            ? "block py-1 text-sm text-clr-main-1/55 text-center"
                             : "block px-4 py-2 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
                         }
                       >

@@ -101,7 +101,38 @@ html {
   overflow-y: scroll;
 }
 
+@layer base {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div {
+	text-align: justify;
+	font-feature-settings: "palt";
+	// line-height: 1.8em; //これは@layer base {}の中では効かない
+		//jsx中では、leading-**は、「!」を使用して詳細度を強くしている
+		//そうでないと、globals.scssの方が詳細度が強くなる
+}
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div {
+	line-height: 1.8em;
+	// line-height: 1.8em; //これは@layer base {}の中では効かない
+	//jsx中では、leading-**は、「!」を使用して詳細度を強くしている
+	//そうでないと、globals.scssの方が詳細度が強くなる
+}
 
 // アニメーションの定義
 
@@ -361,6 +392,7 @@ h1 .hero-big-maintext {
 h1 .hero-description {
   font-size: clamp(1rem, calc(2vw + 0.1rem), 3rem);
   font-family: var(--font-noto-serif), serif;
+  text-align: center;
 }
 h1 .hero-maintext,
 h1 .hero-big-maintext {

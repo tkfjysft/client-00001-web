@@ -2,12 +2,7 @@ import { Container } from "@/components/Container";
 import {
   Monitor,
   Server,
-  Lightbulb,
-  Code,
-  Database,
-  Smartphone,
-  Cloud,
-  Shield,
+  TrendingUp,
 } from "lucide-react";
 import ArrowLink from "@/components/ArrowLink";
 
@@ -20,7 +15,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "",
         name: "コンサルティングサービス", 
-        icon: <Server />, 
+        icon: TrendingUp, 
         photo: '/images/services_01.webp',
         description: "コンサルティングサービスは、お客様の仕事に内在するムダを見つけ、ムダを排除した効率的な作業ができるよう、お客様と一緒に考えます。",
 		link: "services/#consulting",
@@ -28,7 +23,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "",
         name: "プロフェッショナルサービス", 
-        icon: <Database />, 
+        icon: TrendingUp, 
         photo: '/images/services_02.webp',
         description: "プロフェッショナルサービスは、業務系システム構築サービス、情報基盤構築サービス、オープンソース活用サービス、等で構成されています。",
 		link: "services/#pro-service",
@@ -42,7 +37,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "生産管理",
         name: "SPiCS", 
-        icon: <Monitor />, 
+        icon: Monitor, 
         photo: '/images/services_03.webp',
         description: "弊社が開発した部品加工業向けの生産管理システム。",
 		link: "services/#spics",
@@ -50,7 +45,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "生産管理",
         name: "TPiCS", 
-        icon: <Smartphone />, 
+        icon: Monitor, 
         photo: '/images/services_04.webp',
         description: "iOS/あらゆる変化を乗りこなす生産管理システム。",
 		link: "services/#tpics",
@@ -58,7 +53,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "生産スケジューラ",
         name: "FLEXSCHE", 
-        icon: <Code />, 
+        icon: Monitor, 
         photo: '/images/services_05.webp',
         description: "時間と闘う製造業のために。生産管理をより綿密に実行するためには生産スケジューラが必要です。",
 		link: "services/#flexsche",
@@ -72,7 +67,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "ベアメタルサーバサービス",
         name: "satellite.server", 
-        icon: <Lightbulb />, 
+        icon: Server, 
         photo: '/images/services_06.webp',
         description: "satellite.serverと命名したベアメタルサーバサービスは、まさに、お客様のサテライトとして機能したいという想いを込めました。",
 		link: "services/#satellite-server",
@@ -80,7 +75,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "VSPサービス",
         name: "smart.VPS", 
-        icon: <Cloud />, 
+        icon: Server, 
         photo: '/images/services_07.webp',
         description: "固定グローバルIPアドレス付与UTM標準装備のVPSサービス。",
 		link: "services/#vps",
@@ -88,7 +83,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "クラウドストレージサービス",
         name: "satellite.folder", 
-        icon: <Shield />, 
+        icon: Server, 
         photo: '/images/services_08.webp',
         description: "Windows Server OSで構築されたファイルサーバを定額でご利用いただくサービス。",
 		link: "services/#cloud",
@@ -148,7 +143,7 @@ export default function ServiceSection() {
               <div key={group.label} className="relative">
                 {/* グループ見出し */}
                 <div className="flex items-baseline gap-6 mb-8 border-b border-clr-base-1/10 pb-2">
-                  <span className="font-mono text-xs tracking-[0.4em] text-clr-primary-1">{group.label}</span>
+                  <span className="font-mono text-xs tracking-[0.4em] text-clr-primary-3">{group.label}</span>
                   <h3 className="text-xl font-light tracking-widest text-clr-base-1/75">{group.title}</h3>
                 </div>
 
@@ -169,14 +164,19 @@ export default function ServiceSection() {
 
 // --- 内部パーツ：サービスカード ---
 function ServiceCard({ service }: { service: typeof SERVICE_GROUPS[0]["services"][0] }) {
+	{/* コンポーネントを変数として扱う */}
+	const Icon = service.icon;
+
   return (
-    <div className="group relative flex flex-col space-y-4">
+	<>
+	{/* ArrowLink 以外へのホバーを「無効」にする */}
+    <div className="group/link relative flex flex-col space-y-4 pointer-events-none">
       {/* 左側のホバー線アクセント */}
-      <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
       {/* 写真スペース */}
       <div className="relative aspect-square overflow-hidden border border-clr-base-1/10 bg-clr-base-1/5 reveal size-[70vw] md:size-60 lg:w-full">
-        <img src={service.photo} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+        <img src={service.photo} alt="" className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/link:scale-110" />
         {/* <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
           <div className="scale-125">{service.icon}</div>
         </div> */}
@@ -184,22 +184,35 @@ function ServiceCard({ service }: { service: typeof SERVICE_GROUPS[0]["services"
 
       {/* テキストコンテンツ */}
       <div className="space-y-2">
-        <h4 className="text-xl font-bold tracking-tight text-clr-base-1/90 flex flex-col items-start">
+		<div className="flex items-center">
+		{!service.tag && (
+		<Icon size={20} strokeWidth={2} className="text-clr-primary-3 mr-2" />
+		)}
+        <h4 className="text-xl font-bold text-clr-base-1/90 flex flex-col items-start">
 		  {service.tag && (
 			<>
-			<span className="block border-b border-clr-base-1/50 py-1 mr-2 mb-1 text-xs text-clr-base-1/80">{service.tag}</span><br />
+			<div className="flex items-center border-b border-clr-base-1/30 py-1 mb-1">
+				<Icon size={20} strokeWidth={2} className="text-clr-primary-3 mr-2" />
+				<span className="blockmr-2 text-xs text-clr-base-1/80">{service.tag}</span><br />
+			</div>
 			</>
 			)}
-          <span>{service.name}</span>
+          <span className="group-hover/link:text-clr-primary-3 transition-colors duration-300">{service.name}</span>
         </h4>
+		</div>
         {/* 固定テキストから service.description に変更 */}
-        <p className="text-justify tracking-tight font-light leading-[1.8] text-clr-base-1/80 whitespace-pre-wrap">
+        <p className="font-light text-clr-base-1/80 whitespace-pre-wrap">
           {service.description}
         </p>
+		
+		{/* ArrowLink だけ pointer-events を復活させる */}
 		{service.link && (
-          <ArrowLink href={service.link || "#"} variant="white" />
+			<div className="pointer-events-auto">
+          		<ArrowLink href={service.link || "#"} variant="white" />
+		  	</div>
 		)}
       </div>
     </div>
+	</>
   );
 }

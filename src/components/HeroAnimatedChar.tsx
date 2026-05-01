@@ -22,7 +22,7 @@ export const HeroAnimatedChar = ({ char,index }: HeroAnimatedCharProps) => {
 					
 				<span
 					key={`ht-${index}`}
-					className={`animate-char-fly inline-block
+					className={`animate-char-fly inline-block text-center
 					${(char.match(/^[a-z\s]/i)) ? "hero-maintext font-[500]" : "font-zen hero-description font-[900]"}
 					${(char === "M" || char === "S") ? "hero-big-maintext text-clr-primary-3": ""}
 						`}

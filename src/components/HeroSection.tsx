@@ -91,8 +91,8 @@ return (
     </div>
 
     {/* テキストレイヤー */}
-    <div className="relative z-20 text-center px-6 mt-[-9vh] pointer-events-none">
-      <h1 className="text-clr-base-2 tracking-[-2]" aria-label={siteConfig.heroTagline}>
+    <div className="relative z-20 px-6 mt-[-9vh] pointer-events-none">
+      <h1 className="text-clr-base-2 tracking-[-1] text-center" aria-label={siteConfig.heroTagline}>
         {siteConfig.heroTagline.split("").map((char, index) => (
           <HeroAnimatedChar key={index} char={char} index={index} />
         ))}

@@ -13,7 +13,7 @@ const MESSAGE_CONTENT = {
       "私たちは、単にコードを書く集団ではありません。お客様のビジネスの本質を理解し、最新のテクノロジーを駆使して、真に価値のあるデジタル体験を共創するパートナーです。",
       "堅牢な設計による安定した基盤と、洗練されたインターフェースによる快適な操作性。高度な専門性と確かな実装力をもって、複雑なビジネス課題を最適なデジタルソリューションへと導きます。",
     ],
-    signature: "Established 2026 / SERVICTY",
+    signature: "Established 2026",
 	link: "",
   };
 
@@ -55,35 +55,37 @@ export default function MessageSection() {
 	  
       {/* --- コンテンツレイヤー --- */}
       <Container>
-        <div className="relative z-10 mx-auto reveal">
+        <div className="relative z-10 mx-auto reveal bg-clr-base-2/80 p-10">
           
           {/* セクション見出し装飾 */}
-          <div className="flex items-center gap-4 mb-16">
-            <div className="w-12 h-[2px] bg-clr-primary-1" />
-            <span className="text-clr-main-1 font-mono text-xs tracking-[0.4em] uppercase">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-4 sm:w-12 h-[2px] bg-clr-primary-1" />
+            <span className="text-clr-main-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
               {MESSAGE_CONTENT.mission}
             </span>
             <div className="flex-grow h-[1px] bg-clr-main-1/10" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 items-start">
             {/* 左側：キャッチコピー */}
-            <div className="w-fit lg:col-span-6 bg-clr-base-2/80 py-6 pl-6 pr-8">
-              <h2 className="text-4xl md:text-5xl font-[700] text-clr-main-1/90 leading-[1.5] tracking-tighter">
+            <div className="relative w-fit lg:col-span-6 bg-clr-base-2/40 py-6 pl-6 pr-8">
+              <h2 className="text-3xl md:text-5xl font-[700] text-clr-main-1/90 !leading-[1.5]">
                 {MESSAGE_CONTENT.catchphrase.top}<br />
                 {MESSAGE_CONTENT.catchphrase.middle_1}<br />
                 {MESSAGE_CONTENT.catchphrase.middle_2}<br />
                 <span className="text-clr-primary-1">{MESSAGE_CONTENT.catchphrase.bottom}</span>
               </h2>
+			  <div className="absolute size-full inset-0 bg-clr-main-2
+			  		[clip-path:polygon(0%_0%,5%_0%,0%_5%)]" />
             </div>
 
             {/* 右側：本文 */}
-            <div className="lg:col-span-6 lg:border-l lg:border-clr-main-1/10 lg:pl-16 space-y-10">
-              <div className="space-y-6 bg-clr-base-2/80 p-6">
+            <div className="lg:col-span-6 space-y-10">
+              <div className="space-y-6">
                 {MESSAGE_CONTENT.paragraphs.map((text, i) => (
                   <p key={i} className={i === 0 
-                    ? "text-clr-main-1/90 text-xl font-medium md:text-2xl leading-[1.8] text-justify tracking-tight" 
-                    : "text-clr-main-1/90 text-lg leading-[1.8] text-justify tracking-tight"
+                    ? "text-clr-main-1/80 text-xl font-medium md:text-2xl" 
+                    : "text-clr-main-1/80 text-lg"
                   }>
                     {text}
                   </p>
@@ -91,15 +93,16 @@ export default function MessageSection() {
                 <ArrowLink href={MESSAGE_CONTENT.link || "#"} />
               </div>
 
-              {/* 下部の署名 */}
-              <div className="pt-8 border-t border-clr-main-1/5 flex justify-between items-center">
+            </div>
+          </div>
+
+		                {/* 下部の署名 */}
+              <div className="pt-8 flex justify-between items-center gap-4">
+                <div className="flex-grow h-[1px] bg-clr-primary-1/30 reveal" />
                 <span className="text-clr-main-1 font-mono text-xs italic">
                   {MESSAGE_CONTENT.signature}
                 </span>
-                <div className="w-56 h-[2px] bg-clr-primary-1 reveal" />
               </div>
-            </div>
-          </div>
         </div>
       </Container>
     </section>

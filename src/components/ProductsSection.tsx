@@ -1,12 +1,18 @@
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 import { MarkdownView } from "@/components/MarkdownView";
+import {
+  HardDrive,
+  Database,
+  Computer,
+} from "lucide-react";
 
 // 1. 各製品のデータを整理
 const PRODUCTS = [
   {
     id: "01",
     title: "Microsoft",
+	icon: Computer,
     photo: '/images/products_01.webp',
     description: `Azureのライセンスはもちろんのこと、様々な状況からAzureへの載せ替えに関する技術的支援や実装も行っています。
 	
@@ -17,6 +23,7 @@ Azureをご検討ならば、ライセンスから実作業まで一気通貫で
   {
     id: "02",
     title: "Oracle",
+	icon: Database,
     photo: '/images/products_02.webp',
     description: "Oracle製品を取り扱っております。データセンタ専用のライセンス（年額利用料方式のライセンス）も取り扱っております。",
     imgSize: "lg:w-70 lg:h-70",
@@ -25,6 +32,7 @@ Azureをご検討ならば、ライセンスから実作業まで一気通貫で
   {
     id: "03",
     title: "各種ハードウェア",
+	icon: HardDrive,
     photo: '/images/products_03.webp',
     description: "",
     imgSize: "lg:w-70 lg:h-70",
@@ -111,58 +119,69 @@ export default function ProductsSection() {
 
 // --- 内部パーツ：製品カード ---
 function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
+	{/* コンポーネントを変数として扱う */}
+	const Icon = product.icon;
+
   return (
+	<>
+	{/* ArrowLink 以外へのホバーを「無効」にする */}
+	<div className="group/link relative flex flex-col space-y-4 pointer-events-none">
+	      {/* 左側のホバー線アクセント */}
+      		<div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
-<div className="group relative flex flex-col space-y-4">
-  {/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-  <div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal`}>
-    <div className="absolute inset-0 z-10 pointer-events-none" />
-    <img 
-      src={product.photo} 
-      alt="" 
-      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-    />
-  </div>
-  
-  <div className="flex-1 space-y-3">
-    <div className="space-y-2">
-      {/* IDを強調せず、アクセントとして添える */}
-      <div className="flex items-center gap-2">
-        <span className="text-clr-primary-1 font-mono text-xs tracking-widest uppercase">{product.id}</span>
-        <span className="w-8 h-[1px] bg-clr-primary-1/60"></span>
-      </div>
-      
-      <h3 className="text-3xl lg:text-2xl font-medium tracking-tight text-clr-main-1/60 border-b border-clr-primary-1/50 pb-2 group-hover:text-clr-main-2 transition-colors duration-300">
-        {product.title}
-      </h3>
-    </div>
+		{/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
+		<div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal`}>
+			<div className="absolute inset-0 z-10 pointer-events-none" />
+			<img 
+			src={product.photo} 
+			alt="" 
+			className="h-full w-full object-cover transition-transform  duration-500 ease-out group-hover/link:scale-110" 
+			/>
+		</div>
+		
+		<div className="flex-1 space-y-3">
+			<div className="space-y-2">
+				{/* IDを強調せず、アクセントとして添える */}
+				<div className="flex items-center gap-2">
+					<span className="text-clr-primary-1 font-mono text-xs tracking-widest uppercase">{product.id}</span>
+					<span className="w-8 h-[1px] bg-clr-primary-1/60"></span>
+				</div>
+			
+				<div className="flex items-center border-b border-clr-primary-1/50 pb-2 ">
+					<Icon size={20} strokeWidth={2} className="text-clr-primary-1 mr-2" />
+					<h3 className="text-3xl lg:text-2xl font-medium text-clr-main-1/60group-hover/link:text-clr-primary-3 transition-colors duration-300">
+						{product.title}
+					</h3>
+				</div>
+			</div>
 
-	{product.description && (
-		<>
-		{/* 共通コンポーネントで長文を表示 */}
-		<MarkdownView content={product.description} />
-		</>
-	)}
+			{product.description && (
+				<>
+				{/* 共通コンポーネントで長文を表示 */}
+				<MarkdownView content={product.description} />
+				</>
+			)}
 
-    {/* 子要素：カード形式にして情報の塊を分ける */}
-    {product.children && (
-      <div>
-        {product.children.map((child) => (
-          <div key={child.label} className="pb-4">
-            <h4 className="font-bold text-sm text-clr-main-1/90 mb-2">{child.label}</h4>
-			<MarkdownView content={child.description} />
-          </div>
-        ))}
-      </div>
-    )}
+			{/* 子要素：カード形式にして情報の塊を分ける */}
+			{product.children && (
+			<div>
+				{product.children.map((child) => (
+				<div key={child.label} className="pb-4">
+					<h4 className="font-bold text-sm text-clr-main-1/90 mb-2">{child.label}</h4>
+					<MarkdownView content={child.description} />
+				</div>
+				))}
+			</div>
+			)}
 
-    {product.link && (
-      <div className="pt-4">
-        <ArrowLink href={product.link || "#"} className="text-clr-main-2 hover:text-clr-primary-1 transition-colors" />
-      </div>
-    )}
-  </div>
-</div>
-
+			{/* ArrowLink だけ pointer-events を復活させる */}
+			{product.link && (
+			<div className="pt-4 pointer-events-auto">
+				<ArrowLink href={product.link || "#"} className="text-clr-main-2 hover:text-clr-primary-1 transition-colors" />
+			</div>
+			)}
+		</div>
+	</div>
+	</>
   );
 }
