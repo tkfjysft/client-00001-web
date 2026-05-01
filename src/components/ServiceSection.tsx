@@ -93,6 +93,7 @@ const SERVICE_GROUPS = [
         description: "Windows Server OSで構築されたファイルサーバを定額でご利用いただくサービス。",
 		link: "services/#cloud",
       },
+	  
     ],
   },
 ];

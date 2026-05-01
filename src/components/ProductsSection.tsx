@@ -11,7 +11,7 @@ const PRODUCTS = [
     description: `Azureのライセンスはもちろんのこと、様々な状況からAzureへの載せ替えに関する技術的支援や実装も行っています。
 	
 Azureをご検討ならば、ライセンスから実作業まで一気通貫でお応えできる弊社にお任せください。`,
-    imgSize: "lg:w-56 lg:h-56", // PC版の画像サイズをここで指定
+    imgSize: "lg:w-70 lg:h-70", // PC版の画像サイズをここで指定
 	link: "products/#microsoft",
   },
   {
@@ -19,7 +19,7 @@ Azureをご検討ならば、ライセンスから実作業まで一気通貫で
     title: "Oracle",
     photo: '/images/products_02.webp',
     description: "Oracle製品を取り扱っております。データセンタ専用のライセンス（年額利用料方式のライセンス）も取り扱っております。",
-    imgSize: "lg:w-32 lg:h-32",
+    imgSize: "lg:w-70 lg:h-70",
 	link: "",
   },
   {
@@ -89,22 +89,16 @@ export default function ProductsSection() {
           </div>
 
           {/* グリッドレイアウト */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 md:gap-8 lg:gap-x-8">
+          <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-x-12">
             
             {/* 1番目 (7列) */}
-            <div className="lg:w-auto lg:col-span-7 pt-10 lg:border-t lg:border-clr-main-1/10">
               <ProductCard product={PRODUCTS[0]} />
-            </div>
 
             {/* 2番目 (5列) */}
-            <div className="lg:w-auto lg:col-span-5 pt-10 lg:border-t lg:border-clr-main-1/10">
               <ProductCard product={PRODUCTS[1]} />
-            </div>
 
             {/* 3番目 (9列・オフセット) */}
-            <div className="lg:w-auto lg:col-span-9 lg:col-start-3 pt-10 lg:border-t lg:border-clr-main-1/10">
               <ProductCard product={PRODUCTS[2]} />
-            </div>
 
           </div>
         </div>
@@ -119,9 +113,9 @@ export default function ProductsSection() {
 function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
   return (
 
-<div className="group flex flex-col lg:flex-row gap-8 lg:gap-10 items-start py-8 border-t border-clr-main-1/5 first:border-t-0">
+<div className="group relative flex flex-col space-y-4">
   {/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-  <div className={`size-[70vw] md:size-60 ${product.imgSize} flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal shadow-sm`}>
+  <div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal shadow-sm`}>
     <div className="absolute inset-0 border border-clr-main-1/10 z-10 pointer-events-none" />
     <img 
       src={product.photo} 
@@ -130,22 +124,22 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
     />
   </div>
   
-  <div className="flex-1 space-y-6">
+  <div className="flex-1 space-y-3">
     <div className="space-y-2">
       {/* IDを強調せず、アクセントとして添える */}
       <div className="flex items-center gap-2">
-        <span className="w-4 h-[1px] bg-clr-primary-1/60"></span>
         <span className="text-clr-primary-1 font-mono text-xs tracking-widest uppercase">{product.id}</span>
+        <span className="w-8 h-[1px] bg-clr-primary-1/60"></span>
       </div>
       
-      <h3 className="text-3xl lg:text-4xl font-bold tracking-tighter text-clr-main-1/90 group-hover:text-clr-main-2 transition-colors duration-300">
+      <h3 className="text-3xl lg:text-2xl font-medium tracking-tight text-clr-main-1/60 border-b border-clr-primary-1/50 pb-2 group-hover:text-clr-main-2 transition-colors duration-300">
         {product.title}
       </h3>
     </div>
 
     <div className="text-clr-main-1/70 tracking-tight leading-relaxed text-base lg:text-lg whitespace-pre-wrap max-w-2xl">
-{/* 共通コンポーネントで長文を表示 */}
-  <MarkdownView content={product.description} />
+		{/* 共通コンポーネントで長文を表示 */}
+		<MarkdownView content={product.description} />
     </div>
 
     {/* 子要素：カード形式にして情報の塊を分ける */}
