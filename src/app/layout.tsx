@@ -83,15 +83,16 @@ export default function RootLayout({
         - これにより、英数字はJost、日本語はNoto Sansが自動で適用されます。
       */}
 	  <body 
-			className={`${playfair.variable} ${notoSerif.variable} ${zenKaku.variable} font-sans antialiased`}
+			className={`${playfair.variable} ${notoSerif.variable} ${zenKaku.variable} font-sans antialiased
+			  bg-clr-main-1`}
 			style={{
 			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
 			}}>
         <Header className="z-100" />
-        <HeroSection />
+        <HeroSection className="-z-1" />
         {children}
-		<Footer />
-		<ScrollToTop className="z-10" />
+		<Footer className="z-60" />
+		<ScrollToTop className="z-60" />
       </body>
     </html>
   );

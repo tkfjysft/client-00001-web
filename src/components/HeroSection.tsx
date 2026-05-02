@@ -1,11 +1,20 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 import { HeroParticles } from "@/components/HeroParticles";
 import { HeroAnimatedChar } from "@/components/HeroAnimatedChar";
 
-const HeroSection = () => {
+
+interface HeroSectionProps  {
+	className? : string;
+}
+
+
+
+export default function HeroSection ({
+	className
+}: HeroSectionProps) {
   const [isAnimating, setIsAnimating] = useState(true);
   const [isClient, setIsClient] = useState(false);
 
@@ -61,29 +70,94 @@ const getGridClass = (idx: number) => {
     "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-3 lg:col-end-5 lg:row-start-13 lg:row-end-21",
     "col-start-5 col-end-8 row-start-12 row-end-21  lg:col-start-5 lg:col-end-8 lg:row-start-13 lg:row-end-21",
   ];
+  
   return classes[idx] || "";
 };
 
+
+
+
+const [isDark, setIsDark] = useState(false);
+  const triggerRef = useRef(null);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      // entry.boundingClientRect.top が 0 より小さい ＝ 画面の上端より上にターゲットがある
+      if (entry.boundingClientRect.top < 0) {
+        setIsDark(true);
+      } else {
+        setIsDark(false);
+      }
+    },
+    { threshold: 0 }
+  );
+
+  if (triggerRef.current) {
+    observer.observe(triggerRef.current);
+  }
+  return () => observer.disconnect();
+}, []);
+
+  
+
+
+
+
+
 return (
-  <section data-bg="dark" id="hero-section" className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden">
+	<>
+  <section data-bg="dark" id="hero-section" className={`relative w-full h-[100dvh] flex items-center justify-center overflow-hidden bg-bgclr-startup-dark ${className}`}>
 
 		{/* --- isClient が true になってから中身を描画する --- */}
     {isClient && (
     <>
 
     {/* 背景グリッド */}
-    <div className="absolute inset-0 z-0 animate-bg-fadein" aria-hidden="true">
-      <div className="grid grid-cols-7 grid-rows-20 w-full h-full gap-2 grid-container">
-        {backgroundImages.map((src, idx) => (
-          <div key={idx} className={`relative overflow-hidden ${getGridClass(idx)}`}>
-            <div
-              className={`w-full h-full bg-cover bg-center brightness-[0.6] contrast-[140%] ${idx === 3 ? 'h-[160%]' : ''}`}
-              style={{ backgroundImage: `url(${src})` }}
-            />
-          </div>
-        ))}
+    <div className="fixed inset-0 top-0 left-0 w-full h-screen -z-10 overflow-hidden bg-bgclr-startup-dark pointer-events-none animate-bg-fadein" aria-hidden="true">
+
+
+
+{/* 上段：左から右へ */}
+    <div className="flex h-1/2 w-[200%] animate-slide-slow-forward">
+      <div className="flex w-1/2 justify-around">
+        {/* 画像3枚 */}
+        <img src="/images/hero_cording.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pb-20" />
+        <img src="/images/hero_meeting.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pb-20" />
+        <img src="/images/hero_office.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pb-20" />
+      </div>
+      <div className="flex w-1/2 justify-around">
+        {/* ループ用に同じ3枚を繰り返す */}
+        <img src="/images/hero_cording.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pb-20" />
+        <img src="/images/hero_meeting.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pb-20" />
+        <img src="/images/hero_office.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pb-20" />
       </div>
     </div>
+
+    {/* 下段：右から左へ */}
+    <div className="flex h-1/2 w-[200%] animate-slide-slow-backward">
+      <div className="flex w-1/2 justify-around">
+        {/* 画像3枚（別のセット） */}
+        <img src="/images/hero_ceo.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pt-20" />
+        <img src="/images/hero_whiteboard.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pt-20" />
+        <img src="/images/hero_serverroom.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pt-20" />
+      </div>
+      <div className="flex w-1/2 justify-around">
+        <img src="/images/hero_ceo.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pt-20" />
+        <img src="/images/hero_whiteboard.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pt-20" />
+        <img src="/images/hero_serverroom.webp" className="w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 pt-20" />
+      </div>
+    </div>    
+	
+	
+	        {/* ★ 暗くするための膜：isDark が true になると不透明度が上がる */}
+        <div 
+          className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out pointer-events-none ${
+            isDark ? 'opacity-70' : 'opacity-0'
+          }`}
+        />
+	
+	</div>
 
     {/* 粒子レイヤー */}
     <div className="absolute inset-0 z-10 flex items-center justify-center" aria-hidden="true">
@@ -101,7 +175,9 @@ return (
 		</>
     )}
   </section>
+
+        {/* ★ 暗くするタイミングを決めるターゲット要素（画面の下端付近に配置） */}
+      <div ref={triggerRef} className="mt-120 h-1 w-full"></div>
+	  </>
 );
 };
-
-export default HeroSection;

@@ -11,9 +11,8 @@ export default function Home() {
   return (
     <main className="relative w-full">
       <MessageSection />
-      <ServiceSection />
-      <ProductsSection />
-      {/* ページの最上部へのスムーススクロールボタン */}
+      <ServiceSection className="z-8" />
+      <ProductsSection className="z-50"/>
     </main>
   );
 }

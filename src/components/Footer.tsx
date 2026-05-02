@@ -15,11 +15,21 @@ const ContactInfo = ({ className = "" }: { className?: string }) => (
   </ul>
 );
 
-export default function Footer() {
+interface FooterProps  {
+	className? : string;
+}
+
+export default function Footer({
+	className
+}: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="footer-section" className="relative w-full text-clr-base-1 overflow-hidden">
+	<>
+	{/* グラデ背景は透明が僅かにあるのでそのさらに背景に不透明の色を配置する必要がある */}
+    <footer id="footer-section" className={`relative w-full text-clr-base-1 overflow-hidden bg-clr-main-1 ${className}`}
+		  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
+	>
       <div className="fixed inset-0 -z-10 bg-bgclr-startup-dark" />
 
       {/* 1. Google Maps エリア */}
@@ -116,5 +126,6 @@ export default function Footer() {
         </div>
       </Container>
     </footer>
+	</>
   );
 }

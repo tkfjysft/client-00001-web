@@ -12,7 +12,7 @@ export const Container = ({
   className = "" 
 }: ContainerProps) => {
   return (
-    <Component className={`max-w-[1480px] mx-auto px-[8vw] md:px-[60px] xl:px-[100pxZ] ${className}`}>
+    <Component className={`max-w-[1480px] mx-auto px-[8vw] md:px-[60px] xl:px-[100px] ${className}`}>
       {children}
     </Component>
   );

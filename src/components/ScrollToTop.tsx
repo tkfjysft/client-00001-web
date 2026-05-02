@@ -57,7 +57,7 @@ export default function ScrollToTop({
         hover:translate-x-1 hover:translate-y-1
         ${colors}
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}
-      `}
+        ${className}`}
     >
       <span className="absolute bottom-6 right-[-40px] block w-[150px] text-center transform -rotate-45 text-[12px] font-bold transition-transform duration-300 hover:scale-110">
         Page Top

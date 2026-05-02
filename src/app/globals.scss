@@ -342,6 +342,38 @@ div {
   /* これが「この後動くから準備して」というブラウザへのサインです */
 }
 
+
+
+
+
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+//無限ループアニメーション
+@keyframes slide-left-to-right {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes slide-right-to-left {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-slide-slow-forward {
+  animation: slide-left-to-right 120s linear infinite;
+}
+
+.animate-slide-slow-backward {
+  animation: slide-right-to-left 120s linear infinite;
+}
+
+
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 /* ロード時、画面を下へスクロールしたときの */

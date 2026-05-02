@@ -93,38 +93,45 @@ const SERVICE_GROUPS = [
   },
 ];
 
-export default function ServiceSection() {
-  return (
 
+interface ServiceSectionProps  {
+	className? : string;
+}
+
+export default function ServiceSection({
+	className
+}: ServiceSectionProps) {
+
+  return (
 	<section 
       id="service-section" 
       data-bg="dark" 
-      className="relative w-full py-32"
+      className={`relative w-full py-32 overflow-hidden ${className}`}
 	  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
     >
 		
 	  {/* 1. 背景ユニット：fixed で画面全体に固定 */}
-      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+      {/* <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true"> */}
         
         {/* 【最背面】濃紺背景：画面全体に敷く スクロール時に動かず固定させるために必要 */}
-        <div
+        {/* <div
           className="absolute inset-0 bg-bgclr-startup-dark"
-        />
+        /> */}
 
         {/* 【前面】写真背景 + 斜めカット：これで下のドットを「隠す」 */}
-        <div className="absolute inset-0 bg-clr-primary-2 
+        {/* <div className="absolute inset-0 bg-clr-primary-2 
 			[clip-path:polygon(0_20%,100%_70%,100%_100%,0_100%)]
 		  	md:[clip-path:polygon(90%_0,100%_0,100%_100%,15%_100%)]"
-		  >
+		  > */}
           
           {/* 背景画像：親の clip-path の範囲内だけに表示される */}
-          <div
+          {/* <div
             className="absolute inset-0 bg-[url('/images/bg_02.webp')] bg-cover
 			  brightness-[40%] contrast-[160%]
               [background-position:center]"
           />
         </div>
-      </div>
+      </div> */}
 
 
 
@@ -140,20 +147,39 @@ export default function ServiceSection() {
 
           <div className="space-y-20">
             {SERVICE_GROUPS.map((group) => (
-              <div key={group.label} className="relative">
+			
+			<div key={group.label} className="relative">
+			<div className="flex flex-col items-end mb-40">
+			{/* 見出しと写真群を横並びにするコンテナ */}
+			<div className={`w-full flex flex-col 
+			${group.label === "01" || group.label === "03" ? "lg:flex-row" : "lg:flex-row-reverse" }
+			items-end lg:items-center gap-12`}>            
                 {/* グループ見出し */}
-                <div className="flex items-baseline gap-6 mb-8 border-b border-clr-base-1/10 pb-2">
-                  <span className="font-mono text-xs tracking-[0.4em] text-clr-primary-3">{group.label}</span>
-                  <h3 className="text-xl font-light tracking-widest text-clr-base-1/75">{group.title}</h3>
+                <div className="relative flex items-baseline gap-6 mb-8 border-b border-clr-base-1/10 pb-2 w-full lg:w-auto lg:min-w-[280px] shrink-0">
+{/* 巨大な装飾図形：見出し側に大きくはみ出させる */}
+  <div className="absolute -top-40 left-10 w-110 h-110 bg-clr-base-1/[0.3] border border-clr-base-1/10 -z-10 backdrop-blur-[2px]" />
+  
+  {/* もう一つ、別の角度で重ねる（さらに複雑な重なり） */}
+  <div className="absolute -top-70 -left-30 w-60 h-60 bg-clr-primary-3/[0.5] border border-clr-primary-3/10 -z-10" /> 
+
+                  <span className="font-mono text-sm tracking-[0.4em] text-clr-primary-3">{group.label}</span>
+                  <h3 className="text-3xl md:text-4xl font-extralight tracking-widest text-clr-base-1/75">{group.title}</h3>
                 </div>
 
                 {/* サービスグリッド */}
-                <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-x-12 xl:gap-x-20">
+                <div className="w-full">
+
+  <div className={`grid grid-cols-1 md:grid-cols-2 gap-16
+				${group.label === "01" ? "lg:grid-cols-2" : "lg:grid-cols-3" }
+	`}>
                   {group.services.map((service, idx) => (
                     <ServiceCard key={idx} service={service} />
                   ))}
                 </div>
-              </div>
+				</div>
+			</div>
+			</div>
+			</div>
             ))}
           </div>
         </div>

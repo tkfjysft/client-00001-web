@@ -41,16 +41,16 @@ export const Header = ({
 
   <header
     id="header-section"
-    className={`absolute top-3 left-0 lg:fixed lg:top-0 w-full z-50 flex flex-col items-center justify-center transition-all h-15 lg:h-20
+    className={`absolute top-3 left-0 lg:fixed lg:top-0 xl:px-[100px] w-full flex flex-col items-center justify-center transition-all h-15 lg:h-20
 		${borderWeight} ${headerBorderColor}
 	${
       isPosTop ? "bg-transparent" : "lg:backdrop-blur-xl"
     }
 	header-appearance
-	`}
+	 ${className}`}
   >
     {/* 1. メインバー（ロゴ・PCナビ・ボタン） */}
-    <div className="relative w-full max-w-7xl mx-auto pl-3 lg:px-8 flex items-center justify-between h-15 lg:h-15 z-999">
+    <div className="relative w-full max-w-7xl mx-auto flex items-center justify-between h-15 lg:h-15 z-999">
       {/* CIロゴ部分 */}
       <div className="block static relative h-full">
         <Link href="/" className="h-full flex items-start lg:items-center">
