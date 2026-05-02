@@ -29,8 +29,8 @@ export default function MessageSection({
 <section 
       id="message-section" 
       data-bg="dark" 
-      className={`relative w-full py-320 ${className}`}
-	  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
+      className={`relative w-full py-320 overflow-hidden ${className}`}
+	//   style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
     >
 
 	  {/* 1. 背景ユニット：fixed で画面全体に固定 */}
@@ -61,31 +61,36 @@ export default function MessageSection({
 	  
       {/* --- コンテンツレイヤー --- */}
       <Container>
-        <div className="relative flex flex-col lg:flex-row items-start gap-0 lg:gap-16">
-          
+
           {/* セクション見出し装飾 */}
-          {/* <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-16">
             <div className="w-4 sm:w-12 h-[2px] bg-clr-primary-1" />
-            <span className="text-clr-main-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
+            <span className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
               {MESSAGE_CONTENT.mission}
             </span>
-            <div className="flex-grow h-[1px] bg-clr-main-1/10" />
-          </div> */}
+            <div className="flex-grow h-[1px] bg-clr-base-1/30" />
+          </div>
+
+        <div className="relative flex flex-col lg:flex-row items-start gap-0 lg:gap-16">
 
             {/* 左側：キャッチコピー */}
-            <div className="relative z-20 w-full lg:w-1/2 p-8 md:p-12 bg-clr-base-1/70 backdrop-blur-md border border-clr-base-1/20 shadow-xl self-start">
-              <h2 className="text-3xl md:text-5xl font-[700] text-clr-main-1/90 !leading-[1.5]">
+            <div className="relative z-20 w-full lg:w-[51%] xl:w-[55%] p-8 md:p-12 bg-clr-base-1/75 backdrop-saturate-150 border border-clr-base-1/20 shadow-xl self-start">
+              <h2 className="text-3xl md:text-5xl xl:text-6xl font-[700] text-clr-main-1/90 !leading-[1.5]">
                 {MESSAGE_CONTENT.catchphrase.top}<br />
                 {MESSAGE_CONTENT.catchphrase.middle_1}<br />
                 {MESSAGE_CONTENT.catchphrase.middle_2}<br />
-                <span className="text-clr-primary-1">{MESSAGE_CONTENT.catchphrase.bottom}</span>
+                <span className="text-clr-main-2">{MESSAGE_CONTENT.catchphrase.bottom}</span>
               </h2>
 			  <div className="absolute size-full inset-0 bg-clr-main-2
 			  		[clip-path:polygon(0%_0%,5%_0%,0%_5%)]" />
+					
+				{/*装飾図形*/}
+				<div className="absolute top-125 left-40 size-55 bg-clr-primary-3/[0.3] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+
             </div>
 
             {/* 右側：本文 */}
-            <div className="relative z-10 w-full lg:w-7/12 -mt-12 lg:-mt-0 lg:-ml-24 p-8 md:p-16 bg-clr-base-1/70 backdrop-blur-xl border border-clr-base-1/30 shadow-2xl self-end lg:mt-32">
+            <div className="relative z-10 w-full lg:w-8/12 -mt-12 lg:mt-80 lg:-ml-28 p-8 md:p-16 bg-clr-base-1/65 border border-clr-base-1/30 shadow-2xl self-end  backdrop-saturate">
               <div className="space-y-6">
                 {MESSAGE_CONTENT.paragraphs.map((text, i) => (
                   <p key={i} className={i === 0 
@@ -100,14 +105,19 @@ export default function MessageSection({
 
             </div>
 
-		                {/* 下部の署名 */}
-              <div className="pt-8 flex justify-between items-center gap-4">
+
+        </div>
+			<div className="relative -top-175 left-160 size-20 bg-clr-primary-3/[0.2] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+			<div className="relative -top-165 left-175 size-30 bg-clr-primary-3/[0.4] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+
+			{/* 下部の署名 */}
+              <div className="flex justify-between items-center gap-4">
                 <div className="flex-grow h-[1px] bg-clr-primary-1/30 reveal" />
-                <span className="text-clr-main-1 font-mono text-xs italic">
+                <span className="text-clr-base-1 font-mono text-xs italic">
                   {MESSAGE_CONTENT.signature}
                 </span>
               </div>
-        </div>
+
       </Container>
     </section>
   );

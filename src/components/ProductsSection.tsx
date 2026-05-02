@@ -62,7 +62,7 @@ export default function ProductsSection({
 	className
 }: ProductsSectionProps) {
 
-const containerRef = useRef(null);
+const containerRef = useRef<HTMLDivElement>(null);
   
   // 1. スクロール監視の設定
 // スクロール監視
@@ -85,11 +85,12 @@ const contentY = useTransform(scrollYProgress, [0.7, 1], [900, 0]);
 
 <section 
   ref={containerRef} 
-  className={`relative w-full ${className}`}
-  style={{ height: '500vh' }}
+  className={`relative w-full isolate ${className}`}
+  style={{ height: '500vh', position: 'relative', display: 'block', }}
 >
   {/* 白い膜 */}
   <motion.div 
+	layout
     style={{ opacity: bgOpacity }}
     className="absolute inset-0 bg-white pointer-events-none z-40"
   />
@@ -99,7 +100,8 @@ const contentY = useTransform(scrollYProgress, [0.7, 1], [900, 0]);
       これにより、どんなにスクロールしても、コンテンツは「画面のど真ん中」に固定されます。
   */}
   <div className="sticky top-0 min-h-screen w-full flex items-center justify-center z-50 overflow-hidden">
-    <motion.div 
+    <motion.div
+		layout
       style={{ 
         opacity: contentOpacity, 
         y: contentY 
