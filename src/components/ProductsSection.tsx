@@ -1,5 +1,3 @@
-"use client"
-
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 import { MarkdownView } from "@/components/MarkdownView";
@@ -8,8 +6,6 @@ import {
   Database,
   Computer,
 } from "lucide-react";
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 
 // 1. 各製品のデータを整理
 const PRODUCTS = [
@@ -53,7 +49,6 @@ Azureをご検討ならば、ライセンスから実作業まで一気通貫で
   },
 ];
 
-
 interface ProductsSectionProps  {
 	className? : string;
 }
@@ -62,75 +57,40 @@ export default function ProductsSection({
 	className
 }: ProductsSectionProps) {
 
-const containerRef = useRef<HTMLDivElement>(null);
-  
-  // 1. スクロール監視の設定
-// スクロール監視
-const { scrollYProgress } = useScroll({
-  target: containerRef,
-  offset: ["start start", "end end"]
-});
-
-// 背景：20%のスクロールで素早く白くする
-const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-
-// コンテンツ：30%から開始して、60%でゆっくり完了させる
-const contentOpacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
-
-// 出現位置：500px 下からスタート（画面の下端付近からじわっと出てきます）
-const contentY = useTransform(scrollYProgress, [0.7, 1], [900, 0]);
-
   return (
     <>
 
-<section 
-  ref={containerRef} 
-  className={`relative w-full isolate ${className}`}
-  style={{ height: '500vh', position: 'relative', display: 'block', }}
->
-  {/* 白い膜 */}
-  <motion.div 
-	layout
-    style={{ opacity: bgOpacity }}
-    className="absolute inset-0 bg-white pointer-events-none z-40"
-  />
+	<section 
+      id="products-section" 
+      data-bg="light" 
+      className={`relative w-full bg-clr-base-1 py-32 ${className}`}
+	  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
+    >
 
-  {/* 
-      sticky + h-screen + flex items-center
-      これにより、どんなにスクロールしても、コンテンツは「画面のど真ん中」に固定されます。
-  */}
-  <div className="sticky top-0 min-h-screen w-full flex items-center justify-center z-50 overflow-hidden">
-    <motion.div
-		layout
-      style={{ 
-        opacity: contentOpacity, 
-        y: contentY 
-      }}
-    >					
-		  {/* 1. 背景ユニット：fixed で画面全体に固定 */}
-      {/* <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true"> */}
+	  {/* 1. 背景ユニット：fixed で画面全体に固定 */}
+      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
         
         {/* 【最背面】ドット模様：画面全体に敷く */}
-        {/* <div
+        <div
           className="absolute inset-0 opacity-[0.1]"
           style={{
             backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, var(--color-clr-base-1) 1px)`,
             backgroundSize: "20px 20px",
           }}
-        /> */}
+        />
 
         {/* 【前面】写真背景 + 斜めカット：これで下のドットを「隠す」 */}
-        {/* <div className="absolute inset-0 bg-clr-base-2 
+        <div className="absolute inset-0 bg-clr-base-2 
           [clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
-          md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]"> */}
+          md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]">
           
           {/* 背景画像：親の clip-path の範囲内だけに表示される */}
-          {/* <div
+          <div
             className="absolute inset-0 bg-clr-base-1/50"
           />
-        </div> */}
+        </div>
 
-      {/* </div> */}
+      </div>
 
 	  {/* --- コンテンツレイヤー --- */}
       <Container>
@@ -157,10 +117,6 @@ const contentY = useTransform(scrollYProgress, [0.7, 1], [900, 0]);
           </div>
         </div>
       </Container>
-
-	  </motion.div>
-
-	  </div>
       </section>
     </>
   );
@@ -175,13 +131,12 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
   return (
 	<>
 	{/* ArrowLink 以外へのホバーを「無効」にする */}
-	<div className={`group/link relative flex flex-col space-y-4 pointer-events-none
-		`}>
+	<div className="group/link relative flex flex-col space-y-4 pointer-events-none">
 	      {/* 左側のホバー線アクセント */}
       		<div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
 		{/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-		<div className={`aspect-square size-[70vw] md:size-60 lg:w-full lg:h-auto flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal`}>
+		<div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal`}>
 			<div className="absolute inset-0 z-10 pointer-events-none" />
 			<img 
 			src={product.photo} 

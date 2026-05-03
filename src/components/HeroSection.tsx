@@ -206,7 +206,7 @@ return (
 	        {/* ★ 暗くするための膜：isDark が true になると不透明度が上がる */}
         <div 
           className={`absolute inset-0 bg-clr-main-1 transition-opacity duration-1000 ease-in-out pointer-events-none ${
-            isDark ? 'opacity-70' : 'opacity-0'
+            isDark ? 'opacity-85' : 'opacity-0'
           }`}
         />
 	

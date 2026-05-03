@@ -44,9 +44,8 @@ export const Header = ({
     className={`absolute top-3 left-0 lg:fixed lg:top-0 w-full flex flex-col items-center justify-center transition-all h-15 lg:h-20
 		${borderWeight} ${headerBorderColor}
 	${
-      isPosTop ? "bg-transparent" : "lg:backdrop-blur-xl"
+      isPosTop ? "bg-transparent header-appearance" : "lg:backdrop-blur-xl header-appearance-fast"
     }
-	header-appearance
 	 ${className}`}
   >
     {/* 1. メインバー（ロゴ・PCナビ・ボタン） */}

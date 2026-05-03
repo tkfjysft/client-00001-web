@@ -1,5 +1,9 @@
+"use client"
+
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
+import { motion, Variants } from "framer-motion"; // Variantsを追加
+import { FadeIn } from "@/components/FadeIn";
 
 const MESSAGE_CONTENT = {
     mission: "Mission Statement",
@@ -16,6 +20,29 @@ const MESSAGE_CONTENT = {
     signature: "Established 2026",
 	link: "",
   };
+
+
+const baseDelay = 0.08;
+const layouts = {
+  class: {
+  headline: "",
+  catchCopy:  "col-start-2  col-end-24  row-start-2  row-end-14   z-20",
+  text:       "col-start-6 col-end-25  row-start-10  row-end-24  z-20",
+  bgCircle01: "col-start-15  col-span-25  row-start-7  row-span-20  z-10 opacity-30",
+  bgCircle02: "col-start-16 col-end-25  row-start-4  row-end-12  z-0  opacity-20",
+  bgCircle03: "col-start-4  col-end-18  row-start-16 row-end-24  z-10 opacity-40",
+  subText: "",
+  },
+  delay: {
+  headline:   baseDelay * 1,
+  catchCopy:  baseDelay * 2,
+  text:       baseDelay * 3,
+  bgCircle01: baseDelay * 4,
+  bgCircle02: baseDelay * 5,
+  bgCircle03: baseDelay * 6,
+  subText:    baseDelay * 7,
+  },
+};
 
 interface MessageSectionProps  {
 	className? : string;
@@ -63,60 +90,76 @@ export default function MessageSection({
       <Container>
 
           {/* セクション見出し装飾 */}
-          <div className="flex items-center gap-4 mb-16">
+		  <FadeIn className="flex items-center gap-4 mb-40" delay={layouts.delay.headline}>
             <div className="w-4 sm:w-12 h-[2px] bg-clr-primary-1" />
             <span className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
               {MESSAGE_CONTENT.mission}
             </span>
             <div className="flex-grow h-[1px] bg-clr-base-1/30" />
-          </div>
-
-        <div className="relative flex flex-col lg:flex-row items-start gap-0 lg:gap-16">
-
-            {/* 左側：キャッチコピー */}
-            <div className="relative z-20 w-full lg:w-[51%] xl:w-[55%] p-8 md:p-12 bg-clr-base-1/75 backdrop-saturate-150 border border-clr-base-1/20 shadow-xl self-start">
-              <h2 className="text-3xl md:text-5xl xl:text-6xl font-[700] text-clr-main-1/90 !leading-[1.5]">
-                {MESSAGE_CONTENT.catchphrase.top}<br />
-                {MESSAGE_CONTENT.catchphrase.middle_1}<br />
-                {MESSAGE_CONTENT.catchphrase.middle_2}<br />
-                <span className="text-clr-main-2">{MESSAGE_CONTENT.catchphrase.bottom}</span>
-              </h2>
-			  <div className="absolute size-full inset-0 bg-clr-main-2
-			  		[clip-path:polygon(0%_0%,5%_0%,0%_5%)]" />
-					
-				{/*装飾図形*/}
-				<div className="absolute top-125 left-40 size-55 bg-clr-primary-3/[0.3] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
-
-            </div>
-
-            {/* 右側：本文 */}
-            <div className="relative z-10 w-full lg:w-8/12 -mt-12 lg:mt-80 lg:-ml-28 p-8 md:p-16 bg-clr-base-1/65 border border-clr-base-1/30 shadow-2xl self-end  backdrop-saturate">
-              <div className="space-y-6">
-                {MESSAGE_CONTENT.paragraphs.map((text, i) => (
-                  <p key={i} className={i === 0 
-                    ? "text-clr-main-1/80 text-xl font-medium md:text-2xl" 
-                    : "text-clr-main-1/80 text-lg"
-                  }>
-                    {text}
-                  </p>
-                ))}
-                <ArrowLink href={MESSAGE_CONTENT.link || "#"} />
-              </div>
-
-            </div>
+		  </FadeIn>
 
 
-        </div>
-			<div className="relative -top-175 left-160 size-20 bg-clr-primary-3/[0.2] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
-			<div className="relative -top-165 left-175 size-30 bg-clr-primary-3/[0.4] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+			<div className="grid grid-cols-[repeat(24,1fr)] grid-rows-[repeat(24,1fr)]
+			max-h-[100vh] min-h-[70vh] w-full gap-0 min-h-screen
+			 relative overflow-hidden">
+
+				{/* キャッチコピー（左側） */}
+				<FadeIn className={`
+						${layouts.class.catchCopy}`} delay={layouts.delay.catchCopy}>
+							<h2 className="text-3xl md:text-5xl font-[700] text-clr-base-1/90 !leading-[1.5]">
+								{MESSAGE_CONTENT.catchphrase.top}<br />
+								{MESSAGE_CONTENT.catchphrase.middle_1}
+								{MESSAGE_CONTENT.catchphrase.middle_2}<br />
+								<span className="text-clr-primary-1">{MESSAGE_CONTENT.catchphrase.bottom}</span>
+							</h2>
+							{/* <div className="absolute size-full inset-0 bg-clr-main-2 */}
+									{/* [clip-path:polygon(0%_0%,5%_0%,0%_5%)]" /> */}
+				</FadeIn>
+
+
+
+				{/* 本文（右側） */}
+				<FadeIn className={`
+				${layouts.class.text}`} delay={layouts.delay.text}>
+							<div className="space-y-6">
+								{MESSAGE_CONTENT.paragraphs.map((text, i) => (
+								<p key={i} className={i === 0 
+									? "text-clr-base-1/80 text-xl font-medium md:text-2xl" 
+									: "text-clr-base-1/80 text-lg"
+								}>
+									{text}
+								</p>
+								))}
+								<ArrowLink href={MESSAGE_CONTENT.link || "#"} />
+							</div>
+
+				</FadeIn>
+
+				{/* 装飾図形（同じセル、あるいは重ねる配置） */}
+				<FadeIn className={`
+				${layouts.class.bgCircle01}`} delay={layouts.delay.bgCircle01}>
+					<div className="size-15 bg-clr-primary-3/[0.3] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+				</FadeIn>
+
+				<FadeIn className={`
+				${layouts.class.bgCircle02}`} delay={layouts.delay.bgCircle02}>
+					<div className="size-30 bg-clr-primary-3/[0.3] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+				</FadeIn>
+
+				<FadeIn className={`
+				${layouts.class.bgCircle03}`} delay={layouts.delay.bgCircle03}>
+					<div className="size-40 bg-clr-primary-3/[0.3] border border-clr-base-1/10 backdrop-saturate-150 shadow-xl" />
+				</FadeIn>
+
+			</div>
 
 			{/* 下部の署名 */}
-              <div className="flex justify-between items-center gap-4">
+			<FadeIn className="flex justify-between items-center gap-4 mt-30" delay={layouts.delay.subText}>
                 <div className="flex-grow h-[1px] bg-clr-primary-1/30 reveal" />
                 <span className="text-clr-base-1 font-mono text-xs italic">
                   {MESSAGE_CONTENT.signature}
                 </span>
-              </div>
+			</FadeIn>
 
       </Container>
     </section>
