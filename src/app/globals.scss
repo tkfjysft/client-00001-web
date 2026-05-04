@@ -7,6 +7,7 @@
   --color-clr-base-2: #ffffff;
   --color-clr-main-1: #020617; // 少し明るく、青みの強いネイビー
   --color-clr-main-2: #383dca;
+  --color-clr-main-2-2: #20225b;
   --color-clr-primary-1: #38bdf8;
   --color-clr-primary-2: #f0f5fa;
   --color-clr-primary-3: #77cff6;
@@ -19,6 +20,7 @@
   --color-clr-base-2: var(--color-clr-base-2);
   --color-clr-main-1: var(--color-clr-main-1);
   --color-clr-main-2: var(--color-clr-main-2);
+  --color-clr-main-2-2: var(--color-clr-main-2-2);
   --color-clr-primary-1: var(--color-clr-primary-1);
   --color-clr-primary-2: var(--color-clr-primary-2);
   --color-clr-primary-3: var(--color-clr-primary-3);
@@ -40,6 +42,17 @@
   //     Tailwindのクラス名 'font-zen-kaku' として登録するための記述です。
   //     これを削除すると、HTML上の font-zen-kaku クラスが機能しなくなります。
   --font-zen-kaku: var(--font-zen-kaku);
+
+
+
+  /* ゆっくり回転するカスタムアニメーションを追加 */
+  --animate-spin-slow: spin 15s linear infinite;
+  --animate-spin-moreslow: spin 30s linear infinite;
+
+  /* もし逆回転も作りたい場合はこちら */
+  --animate-spin-reverse: spin 15s linear infinite reverse;
+  --animate-spin-reverse-moreslow: spin 30s linear infinite reverse;
+
 
   //現在不使用
   /* 💡 ここに背景を定義する */
