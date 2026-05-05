@@ -8,6 +8,11 @@ import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 import { motion, Variants } from "framer-motion"; // Variantsを追加
 import { FadeIn } from "@/components/FadeIn";
+import CyberCircleA from "@/components/CyberCircleA";
+import CyberCircleB from "@/components/CyberCircleB";
+import CyberCircleC from "@/components/CyberCircleC";
+import CyberCircleD from "@/components/CyberCircleD";
+import CyberCircleE from "@/components/CyberCircleE";
 
 const MESSAGE_CONTENT = {
     mission: "Mission Statement",
@@ -36,11 +41,11 @@ const layouts = {
   bgCircle01: "col-start-15  col-span-25  row-start-7  row-span-20  z-10 opacity-30",
   bgCircle02: "col-start-16 col-end-25  row-start-4  row-end-12  z-0  opacity-20",
   bgCircle03: "col-start-4  col-end-18  row-start-14 row-end-24  z-10 opacity-40",
-  gear01:     "col-start-17  col-span-17  row-start-2  row-span-7  z-10",
-  gear02:     "col-start-20  col-span-20  row-start-6  row-span-11  z-10",
-  gear03:     "col-start-22  col-span-22  row-start-5  row-span-9  z-10",
-  gear04:     "col-start-2  col-span-2  row-start-15  row-span-24  z-10",
-  gear05:     "col-start-4  col-span-4  row-start-17  row-span-24  z-10",
+  gear01:     "col-start-15  col-span-17  row-start-1  row-span-25  z-10",
+  gear02:     "col-start-18  col-span-16  row-start-9  row-span-25  z-10",
+  gear03:     "col-start-21  col-span-20  row-start-4  row-span-25  z-10",
+  gear04:     "col-start--1  col-span-2  row-start-2  row-span-25  z-10",
+  gear05:     "col-start-2  col-span-4  row-start-15  row-span-25  z-10",
 subText: "",
   },
   delay: {
@@ -105,6 +110,22 @@ export default function MessageSection({
       {/* --- コンテンツレイヤー --- */}
       <Container>
 
+
+<div className="relative w-full">
+
+				<FadeIn className={`absolute -left-140 top-100`} delay={layouts.delay.gear04}>
+<CyberCircleD
+    className="size-240 text-clr-primary-1/30 animate-spin-D" 
+/>
+				</FadeIn>
+				<FadeIn className={`absolute left-0 top-240`} delay={layouts.delay.gear05}>
+<CyberCircleE
+    className="size-140 text-clr-primary-1/30 animate-spin-E" 
+/>
+				</FadeIn>
+</div>
+
+
           {/* セクション見出し装飾 */}
 		  <FadeIn className="flex items-center gap-4 mb-10" delay={layouts.delay.headline}>
             <div className="w-4 sm:w-12 h-[2px] bg-clr-primary-1" />
@@ -117,7 +138,7 @@ export default function MessageSection({
 
 			<div className="grid grid-cols-[repeat(24,1fr)] grid-rows-[repeat(24,1fr)]
 			 w-full gap-0 min-h-screen
-			 relative overflow-hidden">
+			 relative">
 
 				{/* キャッチコピー（左側） */}
 				<FadeIn className={`
@@ -198,40 +219,22 @@ export default function MessageSection({
 				</FadeIn> */}
 
 				<FadeIn className={layouts.class.gear01} delay={layouts.delay.gear01}>
-					<Cog 
-					strokeWidth={1.5}
-					size={200} 
-					className="text-clr-main-2-2 animate-spin-slow" 
-					/>
+<CyberCircleA
+    className="size-140 text-clr-primary-1/30 animate-spin-A" 
+/>
 				</FadeIn>
 				<FadeIn className={layouts.class.gear02} delay={layouts.delay.gear02}>
-					<Cog 
-					size={120} 
-					strokeWidth={1.5}
-					className="text-clr-main-2-2 animate-spin-reverse" 
-					/>
+<CyberCircleB
+    className="size-100 text-clr-primary-1/30 animate-spin-B" 
+/>
 				</FadeIn>
 				<FadeIn className={layouts.class.gear03} delay={layouts.delay.gear03}>
-					<Cog 
-					size={80} 
-					strokeWidth={1.5}
-					className="text-clr-main-2-2 animate-spin-slow" 
-					/>
+<CyberCircleC
+    className="size-200 text-clr-primary-1/30 animate-spin-C" 
+/>
 				</FadeIn>
-				<FadeIn className={layouts.class.gear04} delay={layouts.delay.gear04}>
-					<Cog 
-					size={180} 
-					strokeWidth={1.8}
-					className="text-clr-main-2-2 animate-spin-reverse-moreslow" 
-					/>
-				</FadeIn>
-				<FadeIn className={layouts.class.gear05} delay={layouts.delay.gear05}>
-					<Cog 
-					size={340} 
-					strokeWidth={1.2}
-					className="text-clr-main-2-2 animate-spin-moreslow" 
-					/>
-				</FadeIn>
+
+
 			</div>
 
 			{/* 下部の署名 */}
@@ -241,6 +244,9 @@ export default function MessageSection({
                   {MESSAGE_CONTENT.signature}
                 </span>
 			</FadeIn>
+
+
+
 
       </Container>
     </section>
