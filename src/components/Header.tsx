@@ -17,7 +17,7 @@ export const Header = ({
 	className
 }: HeaderProps) => {
   //画面スクロール連動フェードインアニメーション
-//   useAutoAnimate();
+  useAutoAnimate();
 
   const { isOpen, setIsOpen, isDarkBg, isPosTop } = useHeaderVisual();
 

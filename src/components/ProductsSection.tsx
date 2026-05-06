@@ -64,40 +64,40 @@ export default function ProductsSection({
       id="products-section" 
       data-bg="light" 
       className={`relative w-full bg-clr-base-1 py-32 ${className}`}
-	  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
+	//   style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
     >
 
 	  {/* 1. 背景ユニット：fixed で画面全体に固定 */}
-      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+      {/* <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true"> */}
         
         {/* 【最背面】ドット模様：画面全体に敷く */}
-        <div
+        {/* <div
           className="absolute inset-0 opacity-[0.1]"
           style={{
             backgroundImage: `radial-gradient(var(--color-clr-main-1) 1px, var(--color-clr-base-1) 1px)`,
             backgroundSize: "20px 20px",
           }}
-        />
+        /> */}
 
         {/* 【前面】写真背景 + 斜めカット：これで下のドットを「隠す」 */}
-        <div className="absolute inset-0 bg-clr-base-2 
+        {/* <div className="absolute inset-0 bg-clr-base-2 
           [clip-path:polygon(0_0,100%_0,100%_70%,0_20%)]
-          md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]">
+          md:[clip-path:polygon(0_0,90%_0,15%_100%,0_100%)]"> */}
           
           {/* 背景画像：親の clip-path の範囲内だけに表示される */}
-          <div
+          {/* <div
             className="absolute inset-0 bg-clr-base-1/50"
           />
-        </div>
+        </div> */}
 
-      </div>
+      {/* </div> */}
 
 	  {/* --- コンテンツレイヤー --- */}
       <Container>
         <div className="relative z-10 mx-auto">
           {/* 見出し */}
           <div className="flex items-center gap-4 mb-10">
-            <div className="w-12 h-[2px] bg-clr-primary-1 reveal" />
+            <div className="w-12 h-[2px] bg-clr-primary-1 js-fadein" />
             <h2 className="text-4xl md:text-5xl font-bold tracking-widest text-clr-main-1/90">Products</h2>
             <div className="flex-grow h-[1px] bg-clr-main-1/5" />
           </div>
@@ -136,7 +136,7 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
       		<div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
 		{/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-		<div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden reveal`}>
+		<div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden js-fadein`}>
 			<div className="absolute inset-0 z-10 pointer-events-none" />
 			<img 
 			src={product.photo} 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useScroll, useMotionValueEvent } from 'framer-motion';
 import { siteConfig } from "@/config/site";
 import { useEffect, useRef, useState } from 'react';
 import { HeroParticles } from "@/components/HeroParticles";
@@ -76,40 +77,34 @@ const getGridClass = (idx: number) => {
 
 
 
-
-const [isDark, setIsDark] = useState(false);
-const triggerRef = useRef<HTMLDivElement>(null);
-
+//スクロールしたら、背景画像のptかつpbの値を動的に変化させる
+//and、スクロールしたら背景を暗くする
 const [isNarrow, setIsNarrow] = useState(false);
-const triggerRef2 = useRef<HTMLDivElement>(null);
+const [isDark, setIsDark] = useState(false);
 
-// 1つ目の監視：isDark 用
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      // 画面の上端を超えたかどうかだけを見る
-      setIsDark(entry.boundingClientRect.top < 0);
-    },
-    { threshold: 0 }
-  );
+  // スクロール位置を取得
+  const { scrollY } = useScroll();
 
-  if (triggerRef.current) observer.observe(triggerRef.current);
-  return () => observer.disconnect();
-}, []);
+  // scrollY の値が変化した時に実行されるイベント
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 200) {
+      // 300px以上スクロールしたら true
+      if (!isNarrow) setIsNarrow(true);
+    } else {
+      // 300px未満に戻ったら false
+      if (isNarrow) setIsNarrow(false);
+    }
 
-// 2つ目の監視：isNarrow 用
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      // こちらも独立して判定
-      setIsNarrow(entry.boundingClientRect.top < 0);
-    },
-    { threshold: 0 }
-  );
+    if (latest > 300) {
+      // 300px以上スクロールしたら true
+      if (!isDark) setIsDark(true);
+    } else {
+      // 300px未満に戻ったら false
+      if (isDark) setIsDark(false);
+    }
+  });
 
-  if (triggerRef2.current) observer.observe(triggerRef2.current);
-  return () => observer.disconnect();
-}, []);
+
 
 useEffect(() => {
   console.log("現在の状態:", { dark: isDark, narrow: isNarrow });
@@ -239,8 +234,8 @@ return (
 
         {/* ★ 暗くするタイミングを決めるターゲット要素（画面の下端付近に配置） */}
 		
-      <div ref={triggerRef2} className=" mt-20 h-40 w-full"></div>
-      <div ref={triggerRef} className="mt-120 h-10 w-full"></div>
+      {/* <div ref={triggerRef2} className=" mt-20 h-40 w-full"></div> */}
+      {/* <div ref={triggerRef} className="mt-60 h-10 w-full"></div> */}
 	  </>
 );
 };

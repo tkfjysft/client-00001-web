@@ -5,7 +5,8 @@ import { useEffect } from "react";
 export const useAutoAnimate = () => {
   useEffect(() => {
     // 1. 監視対象のセレクタ（一括管理）、divとimgがズレてアニメーションするのでimgは対象外
-    const selector = "h1, h2, h3, h4, p, span, li, a, svg, .reveal, .c-visual-box, .c-section-title";
+	// svgはsvg二設定しているアニメーションが止まるのでコレも対象外
+    const selector = "h1, h2, h3, h4, p, span, li, a, .js-fadein, .c-visual-box, .c-section-title";
     
     // 2. IntersectionObserverの定義
     const observer = new IntersectionObserver(
@@ -29,7 +30,7 @@ export const useAutoAnimate = () => {
         });
       },
       {
-        rootMargin: "0px 0px -170px 0px", // 150px〜250px程度が自然です
+        rootMargin: "0px 0px -100px 0px", // 150px〜250px程度が自然です
         threshold: 0,
       }
     );
