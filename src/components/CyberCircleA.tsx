@@ -1,44 +1,68 @@
 import React from 'react';
+import { FadeIn } from "@/components/FadeIn";
 
-export default function CyberCircle01({ className = "" }) {
+interface CyberCircleAProps {
+	className?: string;
+	classNameSvg?: string;
+	delay?: number;
+	speed?: number;
+	speedX?: number;
+	stiffness?: number
+}
+export default function CyberCircleA({
+	className = "",
+	classNameSvg = "",
+	delay = 0.48,
+	speed = 1.3,
+	speedX= 1.4,
+	stiffness = 100,
+}:CyberCircleAProps) {
 
 return (
-  <svg
-    viewBox="0 0 200 200"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    {/* --- 第1レイヤー：外郭の巨大な互い違い --- */}
-    {/* 右上から始まる200度以上の太い弧 */}
-    <circle cx="100" cy="100" r="96" stroke="currentColor" strokeWidth="2" strokeDasharray="360 240" strokeDashoffset="0" opacity="0.4" />
-    {/* 左下（点対称）から始まる180度の細い弧 */}
-    <circle cx="100" cy="100" r="92" stroke="currentColor" strokeWidth="1.5" strokeDasharray="300 300" strokeDashoffset="300" opacity="0.3" />
-    {/* 真上から始まる短い極太アクセント */}
-    <circle cx="100" cy="100" r="94" stroke="currentColor" strokeWidth="12" strokeDasharray="80 520" strokeDashoffset="450" opacity="0.15" />
+	<FadeIn
+      className={className} // absolute などの配置クラスを受け取る
+      delay={delay}           // 固定したい delay (layouts.delay.shapesD)
+      speed={speed}           // 固定の speed
+      speedX={speedX}           // 固定の speedX
+      stiffness={stiffness}       // 固定の stiffness
+    >
+	<svg
+		viewBox="0 0 200 200"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		className={`${classNameSvg} animate-spin-A`}
+	>
+		{/* --- 第1レイヤー：外郭の巨大な互い違い --- */}
+		{/* 右上から始まる200度以上の太い弧 */}
+		<circle cx="100" cy="100" r="96" stroke="currentColor" strokeWidth="2" strokeDasharray="360 240" strokeDashoffset="0" opacity="0.4" />
+		{/* 左下（点対称）から始まる180度の細い弧 */}
+		<circle cx="100" cy="100" r="92" stroke="currentColor" strokeWidth="1.5" strokeDasharray="300 300" strokeDashoffset="300" opacity="0.3" />
+		{/* 真上から始まる短い極太アクセント */}
+		<circle cx="100" cy="100" r="94" stroke="currentColor" strokeWidth="12" strokeDasharray="80 520" strokeDashoffset="450" opacity="0.15" />
 
-    {/* --- 第2レイヤー：中間層の不規則ストリーム --- */}
-    <circle cx="100" cy="100" r="82" stroke="currentColor" strokeWidth="0.8" strokeDasharray="400 200" strokeDashoffset="120" opacity="0.5" />
-    <circle cx="100" cy="100" r="79" stroke="currentColor" strokeWidth="5" strokeDasharray="150 450" strokeDashoffset="400" opacity="0.3" />
-    <circle cx="100" cy="100" r="76" stroke="currentColor" strokeWidth="2.2" strokeDasharray="250 350" strokeDashoffset="50" opacity="0.6" />
-    <circle cx="100" cy="100" r="75" stroke="currentColor" strokeWidth="0.3" strokeDasharray="500 100" strokeDashoffset="280" opacity="0.4" />
+		{/* --- 第2レイヤー：中間層の不規則ストリーム --- */}
+		<circle cx="100" cy="100" r="82" stroke="currentColor" strokeWidth="0.8" strokeDasharray="400 200" strokeDashoffset="120" opacity="0.5" />
+		<circle cx="100" cy="100" r="79" stroke="currentColor" strokeWidth="5" strokeDasharray="150 450" strokeDashoffset="400" opacity="0.3" />
+		<circle cx="100" cy="100" r="76" stroke="currentColor" strokeWidth="2.2" strokeDasharray="250 350" strokeDashoffset="50" opacity="0.6" />
+		<circle cx="100" cy="100" r="75" stroke="currentColor" strokeWidth="0.3" strokeDasharray="500 100" strokeDashoffset="280" opacity="0.4" />
 
-    {/* --- 第3レイヤー：内郭の重厚な干渉エリア --- */}
-    <circle cx="100" cy="100" r="62" stroke="currentColor" strokeWidth="15" strokeDasharray="100 500" strokeDashoffset="180" opacity="0.1" />
-    <circle cx="100" cy="100" r="58" stroke="currentColor" strokeWidth="4" strokeDasharray="220 380" strokeDashoffset="350" opacity="0.5" />
-    <circle cx="100" cy="100" r="55" stroke="currentColor" strokeWidth="1" strokeDasharray="300 300" strokeDashoffset="80" opacity="0.7" />
-    <circle cx="100" cy="100" r="50" stroke="currentColor" strokeWidth="8" strokeDasharray="120 480" strokeDashoffset="480" opacity="0.25" />
+		{/* --- 第3レイヤー：内郭の重厚な干渉エリア --- */}
+		<circle cx="100" cy="100" r="62" stroke="currentColor" strokeWidth="15" strokeDasharray="100 500" strokeDashoffset="180" opacity="0.1" />
+		<circle cx="100" cy="100" r="58" stroke="currentColor" strokeWidth="4" strokeDasharray="220 380" strokeDashoffset="350" opacity="0.5" />
+		<circle cx="100" cy="100" r="55" stroke="currentColor" strokeWidth="1" strokeDasharray="300 300" strokeDashoffset="80" opacity="0.7" />
+		<circle cx="100" cy="100" r="50" stroke="currentColor" strokeWidth="8" strokeDasharray="120 480" strokeDashoffset="480" opacity="0.25" />
 
-    {/* --- 第4レイヤー：コア周辺の高速回転イメージ --- */}
-    <circle cx="100" cy="100" r="38" stroke="currentColor" strokeWidth="0.5" strokeDasharray="180 180" strokeDashoffset="220" opacity="0.6" />
-    <circle cx="100" cy="100" r="34" stroke="currentColor" strokeWidth="6" strokeDasharray="60 540" strokeDashoffset="10" opacity="0.4" />
-    <circle cx="100" cy="100" r="30" stroke="currentColor" strokeWidth="2" strokeDasharray="140 220" strokeDashoffset="150" opacity="0.5" />
-    <circle cx="100" cy="100" r="24" stroke="currentColor" strokeWidth="10" strokeDasharray="40 560" strokeDashoffset="400" opacity="0.1" />
+		{/* --- 第4レイヤー：コア周辺の高速回転イメージ --- */}
+		<circle cx="100" cy="100" r="38" stroke="currentColor" strokeWidth="0.5" strokeDasharray="180 180" strokeDashoffset="220" opacity="0.6" />
+		<circle cx="100" cy="100" r="34" stroke="currentColor" strokeWidth="6" strokeDasharray="60 540" strokeDashoffset="10" opacity="0.4" />
+		<circle cx="100" cy="100" r="30" stroke="currentColor" strokeWidth="2" strokeDasharray="140 220" strokeDashoffset="150" opacity="0.5" />
+		<circle cx="100" cy="100" r="24" stroke="currentColor" strokeWidth="10" strokeDasharray="40 560" strokeDashoffset="400" opacity="0.1" />
 
-    {/* --- 第5レイヤー：最中心の収束ライン --- */}
-    <circle cx="100" cy="100" r="15" stroke="currentColor" strokeWidth="3" strokeDasharray="60 30" strokeDashoffset="90" opacity="0.4" />
-    <circle cx="100" cy="100" r="8" stroke="currentColor" strokeWidth="5" strokeDasharray="20 30" strokeDashoffset="0" opacity="0.2" />
-  </svg>
+		{/* --- 第5レイヤー：最中心の収束ライン --- */}
+		<circle cx="100" cy="100" r="15" stroke="currentColor" strokeWidth="3" strokeDasharray="60 30" strokeDashoffset="90" opacity="0.4" />
+		<circle cx="100" cy="100" r="8" stroke="currentColor" strokeWidth="5" strokeDasharray="20 30" strokeDashoffset="0" opacity="0.2" />
+	</svg>
+  </FadeIn>
 );
 
 
