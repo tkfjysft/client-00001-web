@@ -10,6 +10,9 @@ import CyberCircleC from "@/components/CyberCircleC";
 import CyberCircleD from "@/components/CyberCircleD";
 import CyberCircleE from "@/components/CyberCircleE";
 import AnimatedLine from "@/components/AnimatedLine";
+import { LogoShiftGate } from "@/components/LogoShiftGate";
+import { LogoBinaryOrbit } from "@/components/LogoBinaryOrbit";
+import { LogoLogicRefraction } from "@/components/LogoLogicRefraction";
 
 const MESSAGE_CONTENT = {
   mission: "Mission Statement",
@@ -163,6 +166,12 @@ export default function MessageSection({ className }: MessageSectionProps) {
             {MESSAGE_CONTENT.signature}
           </span>
         </div>
+
+		<LogoShiftGate className="size-140 text-clr-primary-1" />
+		<LogoBinaryOrbit className="size-104 text-clr-primary-1" />
+		<LogoLogicRefraction className="size-104 text-clr-primary-1" />
+
+		
       </Container>
     </section>
   );
