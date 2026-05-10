@@ -44,12 +44,13 @@ export const Header = ({
     className={`absolute top-3 left-0 lg:fixed lg:top-0 w-full flex flex-col items-center justify-center transition-all h-15 lg:h-20
 		${borderWeight} ${headerBorderColor}
 	${
-      isPosTop ? "bg-transparent header-appearance" : "lg:backdrop-blur-xl header-appearance-fast"
+    //   isPosTop ? "bg-transparent header-appearance" : "lg:backdrop-blur-xl header-appearance-fast"
+      isPosTop ? "bg-transparent header-appearance" : "lg:bg-transparent header-appearance"
     }
 	 ${className}`}
   >
     {/* 1. メインバー（ロゴ・PCナビ・ボタン） */}
-    <div className="relative w-full max-w-[1480px] mx-auto px-[8vw] md:px-[60px] xl:px-[100px] flex items-center justify-between h-15 lg:h-15 z-999">
+    <div className="hidden relative w-full max-w-[1480px] mx-auto px-[8vw] md:px-[60px] xl:px-[100px] flex items-center justify-between h-15 lg:h-15 z-999">
       {/* CIロゴ部分 */}
       <div className="block static relative h-full">
         <Link href="/" className="h-full flex items-start lg:items-center">
@@ -86,7 +87,8 @@ export const Header = ({
 
     {/* 3. スマホメニュー（header内部に移動） */}
     <div
-      className={`fixed top-0 right-0 bottom-0 w-[100%] bg-clr-base-2/95 z-9000 transition-transform duration-300 lg:hidden ${
+    //   className={`fixed top-0 right-0 bottom-0 w-[100%] bg-clr-base-2/95 z-9000 transition-transform duration-300 lg:hidden ${
+      className={`fixed top-0 right-0 bottom-0 w-[100%] bg-clr-base-2/95 z-9000 transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >

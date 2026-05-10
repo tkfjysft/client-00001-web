@@ -13,6 +13,8 @@ import AnimatedLine from "@/components/AnimatedLine";
 import { LogoShiftGate } from "@/components/LogoShiftGate";
 import { LogoBinaryOrbit } from "@/components/LogoBinaryOrbit";
 import { LogoLogicRefraction } from "@/components/LogoLogicRefraction";
+import { FaceSilhouette } from "@/components/FaceSilhouette";
+
 
 const MESSAGE_CONTENT = {
   mission: "Mission Statement",
@@ -24,8 +26,15 @@ const MESSAGE_CONTENT = {
   },
   paragraphs: [
     "私たちは、単にコードを書く集団ではありません。お客様のビジネスの本質を理解し、最新のテクノロジーを駆使して、真に価値のあるデジタル体験を共創するパートナーです。",
-    "堅牢な設計による安定した基盤と、洗練されたインターフェースによる快適な操作性。高度な専門性と確かな実装力をもって、複雑なビジネス課題を最適なデジタルソリューションへと導きます。",
   ],
+  subText: {
+	1: "堅牢な設計による安定した基盤",
+    2: "洗練されたインターフェースによる快適な操作性",
+    3: "高度な専門性と確かな実装力",
+    4: "複雑なビジネス課題を最適なデジタルソリューションへ",
+  },
+
+
   signature: "Established 2026",
   link: "",
 };
@@ -34,8 +43,8 @@ const baseDelay = 0.08;
 const layouts = {
   class: {
     headline: "",
-    catchCopy: "col-start-3  col-end-18  row-start-2  row-end-8   z-20",
-    text: "col-start-8 col-end-18  row-start-8  row-end-24  z-20",
+    catchCopy: "col-start-3  col-end-18  row-start-1  row-end-2   z-20",
+    text: "col-start-8 col-end-23  row-start-2  row-end-3  z-20",
     text_2: "col-start-14 col-end-23  row-start-17  row-end-24  z-20",
     shapesA: "col-start-15  col-span-17  row-start-1  row-span-25  z-10",
     shapesB: "col-start-18  col-span-16  row-start-9  row-span-25  z-10",
@@ -74,10 +83,10 @@ export default function MessageSection({ className }: MessageSectionProps) {
       <Container>
 
 		{/* 装飾図形 */}
-        <div className="relative w-full min-h-[400px]">
+        {/* <div className="relative w-full min-h-[400px]">
             <CyberCircleD className={`absolute -left-140 top-100`} classNameSvg="size-240 text-clr-primary-1/30" />
             <CyberCircleE className={`absolute left-0 top-240`} classNameSvg="size-140 text-clr-primary-1/30" />
-        </div>
+        </div> */}
 
         {/* セクション見出し装飾 */}
         <div className="relative flex items-center gap-4 mb-10" >
@@ -95,8 +104,8 @@ export default function MessageSection({ className }: MessageSectionProps) {
         </div>
 
         {/* grid */}
-        <div className="grid grid-cols-[repeat(24,1fr)] grid-rows-[repeat(24,1fr)]
-			 w-full gap-0 min-h-screen
+        <div className="grid grid-cols-[repeat(24,1fr)] grid-rows-[repeat(2,1fr)]
+			 w-full gap-0
 			 relative">
 
           {/* キャッチコピー（左側） */}
@@ -127,31 +136,39 @@ export default function MessageSection({ className }: MessageSectionProps) {
               </p>
           </div>
 
+
+			{/* 装飾図形 */}
+            {/* <CyberCircleA className={layouts.class.shapesA} classNameSvg="size-140 text-clr-primary-1/30" />
+            <CyberCircleB className={layouts.class.shapesB} classNameSvg="size-100 text-clr-primary-1/30" />
+            <CyberCircleC  className={layouts.class.shapesC} classNameSvg="size-200 text-clr-primary-1/30 "/> */}
+
+        </div>
+
           <div
-            className={`relative pt-20 space-y-6 ${layouts.class.text_2}`}>
-
-			{/* スクロール時、 無から右へ伸びる線のアニメーション*/}
-			{/* 1. 左端のドット（アニメーション付き） */}
-			{/* 2. 左から伸びる線 */}
-			<AnimatedLine classNameDot="absolute z-20 top-[-4px] -left-2 size-[8px] bg-clr-base-1/30" classNameLine="absolute z-20 top-0 left-0 w-full h-[1px] bg-clr-base-1/30" />
+            className={`relative pt-20 space-y-6`}>
 
 
-              <p className={"text-clr-base-1/80 text-lg"}>
-                {MESSAGE_CONTENT.paragraphs[1]}
-              </p>
+<div className="flex justify-between">
+  {[1, 2, 3, 4].map((index) => {
+    // オブジェクトから値を取得（もし空なら空文字を返す）
+    const text = (MESSAGE_CONTENT.subText as any)[index];
+
+    return (
+      <p 
+        key={index} 
+        className="flex items-center justify-center text-clr-base-1/80 border border-clr-base-1/30  border-[1px] rounded-full size-[14vw] p-10"
+      >
+        {text}
+      </p>
+    );
+  })}
+</div>
               <ArrowLink
                 variant="white"
                 href={MESSAGE_CONTENT.link || "#"}
                 className="mt-20"
               />
           </div>
-
-			{/* 装飾図形 */}
-            <CyberCircleA className={layouts.class.shapesA} classNameSvg="size-140 text-clr-primary-1/30" />
-            <CyberCircleB className={layouts.class.shapesB} classNameSvg="size-100 text-clr-primary-1/30" />
-            <CyberCircleC  className={layouts.class.shapesC} classNameSvg="size-200 text-clr-primary-1/30 "/>
-
-        </div>
 
         {/* 下部の署名 */}
         <div
@@ -167,11 +184,14 @@ export default function MessageSection({ className }: MessageSectionProps) {
           </span>
         </div>
 
-		<LogoShiftGate className="size-140 text-clr-primary-1" />
-		<LogoBinaryOrbit className="size-104 text-clr-primary-1" />
-		<LogoLogicRefraction className="size-104 text-clr-primary-1" />
+		{/* <LogoShiftGate className="size-140 text-clr-primary-1" />
+		<LogoBinaryOrbit className="size-104 text-clr-primary-1" /> */}
+		{/* <LogoLogicRefraction className="size-104 text-clr-primary-1" /> */}
 
-		
+		{/* <img src={'/images/face_left.svg'} />
+		<img src={'/images/face_right.svg'} /> */}
+
+
       </Container>
     </section>
   );

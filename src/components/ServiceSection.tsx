@@ -157,7 +157,7 @@ export default function ServiceSection({
 			<AnimatedLine classNameLine="z-20 block w-full h-[1px] bg-clr-base-1/30 mt-2" />
 
 							{/* 装飾図形 */}
-							${group.label === "01" ? (
+							{/* ${group.label === "01" ? (
 							<CyberCircleA className="absolute -top-160 -left-100" classNameSvg={`size-200 text-clr-primary-1/30`} />
 							) : (group.label === "02" ? (
 								<>
@@ -170,7 +170,7 @@ export default function ServiceSection({
 								<CyberCircleC className={`absolute -top-75 left-0`} classNameSvg="size-120 text-clr-primary-1/30" />
 								<CyberCircleA  className={`absolute top-10 -left-100`} classNameSvg="size-200 text-clr-primary-1/30" />
 								</>
-							))}
+							))} */}
 
 						</div>
 
