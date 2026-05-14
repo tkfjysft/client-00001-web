@@ -5,6 +5,7 @@ import {
   Monitor,
   Server,
   TrendingUp,
+  Activity,
 } from "lucide-react";
 import ArrowLink from "@/components/ArrowLink";
 import { FadeIn } from "@/components/FadeIn";
@@ -25,7 +26,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "",
         name: "コンサルティングサービス", 
-        icon: TrendingUp, 
+        icon: Activity, 
         photo: '/images/services_01.webp',
         description: "コンサルティングサービスは、お客様の仕事に内在するムダを見つけ、ムダを排除した効率的な作業ができるよう、お客様と一緒に考えます。",
 		link: "services/#consulting",
@@ -33,7 +34,7 @@ const SERVICE_GROUPS = [
       { 
 		tag: "",
         name: "プロフェッショナルサービス", 
-        icon: TrendingUp, 
+        icon: Activity, 
         photo: '/images/services_02.webp',
         description: "プロフェッショナルサービスは、業務系システム構築サービス、情報基盤構築サービス、オープンソース活用サービス、等で構成されています。",
 		link: "services/#pro-service",
@@ -209,13 +210,13 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
   return (
 	<>
 	{/* ArrowLink 以外へのホバーを「無効」にする */}
-    <div className={`}group/link relative flex flex-col space-y-4 pointer-events-none ${className}`}>
+    <div className={`group/link relative flex flex-col space-y-4 pointer-events-none ${className}`}>
       {/* 左側のホバー線アクセント */}
       <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
       {/* 写真スペース */}
-      <div className="relative aspect-square overflow-hidden border border-clr-base-1/10 bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto">
-        <img src={service.photo} alt="" className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/link:scale-110" />
+      <div className="relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto">
+        <img src={service.photo} alt="" className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" />
         {/* <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
           <div className="scale-125">{service.icon}</div>
         </div> */}
@@ -223,24 +224,27 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
 
       {/* テキストコンテンツ */}
       <div className="space-y-2">
-		<div className="flex items-center">
-		{!service.tag && (
-		<Icon size={20} strokeWidth={2} className="text-clr-primary-3 mr-2 js-fadein" />
-		)}
-        <h4 className="text-xl font-bold text-clr-base-1/90 flex flex-col items-start">
-		  {service.tag && (
-			<>
-			<div className="flex items-center">
-				<Icon size={20} strokeWidth={2} className="text-clr-primary-3 mr-2" />
-				<span className="blockmr-2 text-xs text-clr-base-1/80">{service.tag}</span><br />
-			</div>
-			{/* 2. 左から伸びる線 */}
-			<AnimatedLine classNameLine="z-20 w-full h-[1px] bg-clr-base-1/50 mt-2" />
-			</>
-			)}
-          <span className="group-hover/link:text-clr-primary-3 transition-colors duration-300">{service.name}</span>
-        </h4>
-		</div>
+
+<div className="flex flex-col items-center text-center"> {/* 1. 親を縦並び・中央揃えに */}
+  
+  {/* アイコンとタグのエリア */}
+
+    /* タグがない場合のアイコン */
+	<div className="border border-[1px] border-clr-primary-3 p-5 rounded-full size-20 flex flex-col items-center justify-center">
+    <Icon size={30} strokeWidth={2} className="text-clr-primary-3 js-fadein" />
+	</div>
+
+
+  {/* サービス名 */}
+  {service.tag && <span className="text-xs text-clr-base-1/80">{service.tag}</span>}
+  <h4 className="text-xl font-bold text-clr-base-1/90">
+    <span className="group-hover/link:text-clr-primary-3 transition-colors duration-300">
+      {service.name}
+    </span>
+  </h4>
+</div>
+
+
         {/* 固定テキストから service.description に変更 */}
         <p className="font-light text-clr-base-1/80 whitespace-pre-wrap">
           {service.description}

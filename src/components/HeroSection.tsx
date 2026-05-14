@@ -249,7 +249,7 @@ return (
 			<CyberCircleF className={`absolute right-35 bottom-140`} classNameSvg="size-20 text-clr-primary-1/52 z-20" /> */}
 
 
-		<img src={'/images/ci_logo.svg'} className='absolute top-10 left-20 w-100' />
+		<img src={'/images/ci_logo_10.svg'} className='absolute top-10 left-20 w-100' />
 
 
   </section>
