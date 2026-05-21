@@ -35,7 +35,7 @@ export const Header = ({
   	? (isPosTop ? "border-b-transparent" : "border-b-clr-base-1/10")
   	: "border-b-clr-main-1/10";
 	// スクロール時のborder-bのちらつき防止のために、スマホでは 0、PCでは 1px と明示的に分ける
-	const borderWeight = "border-b-0 md:border-b-[1px]";
+	const borderWeight = "border-b-0 md:border-b-0";
 
   return (
 

@@ -43,8 +43,8 @@ const baseDelay = 0.08;
 const layouts = {
   class: {
     headline: "",
-    catchCopy: "col-start-3  col-end-18  row-start-1  row-end-2   z-20",
-    text: "col-start-8 col-end-23  row-start-2  row-end-3  z-20",
+    catchCopy: "col-start-3  col-end-23  row-start-1  row-end-2   z-20",
+    text: "col-start-6 col-end-20  row-start-2  row-end-3  z-20",
     text_2: "col-start-14 col-end-23  row-start-17  row-end-24  z-20",
     shapesA: "col-start-15  col-span-17  row-start-1  row-span-25  z-10",
     shapesB: "col-start-18  col-span-16  row-start-9  row-span-25  z-10",
@@ -82,25 +82,13 @@ export default function MessageSection({ className }: MessageSectionProps) {
       {/* --- コンテンツレイヤー --- */}
       <Container>
 
-		{/* 装飾図形 */}
-        {/* <div className="relative w-full min-h-[400px]">
-            <CyberCircleD className={`absolute -left-140 top-100`} classNameSvg="size-240 text-clr-primary-1/30" />
-            <CyberCircleE className={`absolute left-0 top-240`} classNameSvg="size-140 text-clr-primary-1/30" />
-        </div> */}
-
         {/* セクション見出し装飾 */}
-        <div className="relative flex items-center gap-4 mb-10" >
-
+        <div className="relative flex items-center gap-4 mb-40" >
 			{/* 1. 左から伸びる線 */}
-			<AnimatedLine classNameLine="z-20 w-22 h-[2px] bg-clr-primary-1" />
-
+			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
 			<span className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
 				{MESSAGE_CONTENT.mission}
 			</span>
-
-		  	{/* 2. 左から伸びる線 */}
-			<AnimatedLine classNameLine="z-20 flex-grow w-1 h-[1px] bg-clr-base-1/30" />
-
         </div>
 
         {/* grid */}
@@ -109,8 +97,8 @@ export default function MessageSection({ className }: MessageSectionProps) {
 			 relative">
 
           {/* キャッチコピー（左側） */}
-          <div className={`${layouts.class.catchCopy}`}>
-            <h2 className="text-3xl md:text-5xl font-[700] text-clr-base-1/90 !leading-[1.5]">
+          <div className={`${layouts.class.catchCopy} mb-40`}>
+            <h2 className="text-3xl md:text-5xl font-[700] text-clr-base-1/90 text-center !leading-[1.5]">
               {MESSAGE_CONTENT.catchphrase.top}
               <br className="block lg:hidden" />
               {MESSAGE_CONTENT.catchphrase.middle_1}
@@ -123,8 +111,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
           </div>
 
           {/* 本文（右側） */}
-          <div
-            className={`relative pt-20 space-y-6 ${layouts.class.text}`}>
+          <div className={`relative pt-20 space-y-6 ${layouts.class.text}`}>
 
 			{/* スクロール時、 無から右へ伸びる線のアニメーション*/}
 			{/* 1. 左端のドット（アニメーション付き） */}
@@ -135,34 +122,26 @@ export default function MessageSection({ className }: MessageSectionProps) {
                 {MESSAGE_CONTENT.paragraphs[0]}
               </p>
           </div>
-
-
-			{/* 装飾図形 */}
-            {/* <CyberCircleA className={layouts.class.shapesA} classNameSvg="size-140 text-clr-primary-1/30" />
-            <CyberCircleB className={layouts.class.shapesB} classNameSvg="size-100 text-clr-primary-1/30" />
-            <CyberCircleC  className={layouts.class.shapesC} classNameSvg="size-200 text-clr-primary-1/30 "/> */}
-
         </div>
+
 
           <div
             className={`relative pt-20 space-y-6`}>
+				<div className="flex justify-between">
+				{[1, 2, 3, 4].map((index) => {
+					// オブジェクトから値を取得（もし空なら空文字を返す）
+					const text = (MESSAGE_CONTENT.subText as any)[index];
 
-
-<div className="flex justify-between">
-  {[1, 2, 3, 4].map((index) => {
-    // オブジェクトから値を取得（もし空なら空文字を返す）
-    const text = (MESSAGE_CONTENT.subText as any)[index];
-
-    return (
-      <p 
-        key={index} 
-        className="flex items-center justify-center text-clr-base-1/80 border border-clr-base-1/30  border-[1px] rounded-full size-[14vw] p-10"
-      >
-        {text}
-      </p>
-    );
-  })}
-</div>
+					return (
+					<p 
+						key={index} 
+						className="flex items-center justify-center text-clr-base-1/80 border border-clr-base-1/30  border-[1px] rounded-full size-[14vw] p-10"
+					>
+						{text}
+					</p>
+					);
+				})}
+				</div>
               <ArrowLink
                 variant="white"
                 href={MESSAGE_CONTENT.link || "#"}

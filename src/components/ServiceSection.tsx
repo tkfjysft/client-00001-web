@@ -127,74 +127,52 @@ export default function ServiceSection({
         <div className="relative z-10 mx-auto">
 
           {/* セクション見出し */}
-          <div className="relative flex items-center gap-4 mb-15">
+          <div className="relative flex items-center gap-4 mb-40">
 			{/* 1. 左から伸びる線 */}
-			<AnimatedLine classNameLine="z-20 w-22 h-[2px] bg-clr-primary-1" />
+			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
 
-			<h2 className="text-4xl font-bold tracking-widest text-clr-base-1/60 md:text-7xl">Services</h2>
+			<h2 className="text-4xl font-bold tracking-widest text-clr-base-1/60 md:text-8xl">Services</h2>
 
 			{/* 2. 左から伸びる線 */}
-			<AnimatedLine classNameLine="z-20 flex-grow w-1 h-[1px] bg-clr-base-1/30" />
+			{/* <AnimatedLine classNameLine="z-20 flex-grow w-1 h-[1px] bg-clr-base-1/30" /> */}
           </div>
 
 
-          <div className="space-y-20">
+		  {/* 見出しと写真群を横並びにするコンテナ */}		
+          <div className="space-y-100">
             {SERVICE_GROUPS.map((group) => (
-			
-			<div key={group.label} className="relative">
 
-				<div className="flex flex-col items-end mb-40">
-					{/* 見出しと写真群を横並びにするコンテナ */}
-					<div className={`w-full flex flex-col 
-					${group.label === "01" || group.label === "03" ? "lg:flex-row" : "lg:flex-row-reverse" }
-					items-end lg:items-start gap-12 mb-40`}>            
+				<div key={group.label} className="flex flex-col items-center">
+					<div>
 						{/* グループ見出し */}
-						<div className="relative mb-8 w-full lg:w-auto lg:min-w-[280px] shrink-0">
-						
-
-							<span className="font-mono text-sm tracking-[0.4em] text-clr-primary-3">{group.label}</span>
-							<h3 className="text-3xl md:text-4xl font-extralight tracking-widest text-clr-base-1/75">{group.title}</h3>
-									{/* 2. 左から伸びる線 */}
-			<AnimatedLine classNameLine="z-20 block w-full h-[1px] bg-clr-base-1/30 mt-2" />
-
-							{/* 装飾図形 */}
-							{/* ${group.label === "01" ? (
-							<CyberCircleA className="absolute -top-160 -left-100" classNameSvg={`size-200 text-clr-primary-1/30`} />
-							) : (group.label === "02" ? (
-								<>
-								<CyberCircleB className={`absolute -top-160 left-10`} classNameSvg="size-150 text-clr-primary-1/30" />
-								<CyberCircleD className={`absolute -top-50 left-20`} classNameSvg="size-80 text-clr-primary-1/30" />
-								<CyberCircleE className={`absolute top-10 -left-50`} classNameSvg="size-100 text-clr-primary-1/30" />
-								</>
-							) : (
-								<>
-								<CyberCircleC className={`absolute -top-75 left-0`} classNameSvg="size-120 text-clr-primary-1/30" />
-								<CyberCircleA  className={`absolute top-10 -left-100`} classNameSvg="size-200 text-clr-primary-1/30" />
-								</>
-							))} */}
-
+						<div className="relative w-full w-auto">
+							<span className="block font-mono text-center tracking-[0.4em] text-clr-primary-3">{group.label}</span>
+							<h3 className="text-3xl md:text-5xl text-center font-extralight tracking-widest text-clr-base-1/75">{group.title}</h3>
+							{/* 2. 左から伸びる線 */}
+							<AnimatedLine classNameLine="z-20 block h-[1px] bg-clr-base-1/30 my-20" />
 						</div>
 
 						{/* サービスグリッド */}
 						<div className="w-full z-10">
-							<div className={`grid grid-cols-1 md:grid-cols-2 gap-16
+							<div className={`grid grid-cols-1 md:grid-cols-2 gap-30
 							${group.label === "01" ? "lg:grid-cols-2" : "lg:grid-cols-3" }
 							`}>
 							{group.services.map((service, idx) => (
+								<ServiceCard key={idx} service={service}  />
+							))}
+							{/* {group.services.map((service, idx) => (
 								<ServiceCard key={idx} service={service} className={
 									idx === 0 ? "mt-0"
 									 : idx === 1 ? "mt-20" 
 									 	: idx === 2 ? "mt-40" : ""
 								} />
-							))}
+							))} */}
 							</div>
 						</div>
-
 					</div>
 				</div>
 
-			</div>
-            ))}
+			))}
           </div>
         </div>
       </Container>
@@ -210,7 +188,7 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
   return (
 	<>
 	{/* ArrowLink 以外へのホバーを「無効」にする */}
-    <div className={`group/link relative flex flex-col space-y-4 pointer-events-none ${className}`}>
+    <div className={`group/link max-w-[300px] relative flex flex-col space-y-4 pointer-events-none ${className}`}>
       {/* 左側のホバー線アクセント */}
       <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
@@ -225,24 +203,20 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
       {/* テキストコンテンツ */}
       <div className="space-y-2">
 
-<div className="flex flex-col items-center text-center"> {/* 1. 親を縦並び・中央揃えに */}
-  
-  {/* アイコンとタグのエリア */}
+		<div className="flex flex-col items-center text-center"> {/* 1. 親を縦並び・中央揃えに */}
+			{/* アイコン */}
+			<div className="border border-[1px] border-clr-primary-3 p-5 rounded-full size-20 flex flex-col items-center justify-center mt-2 mb-4">
+			<Icon size={30} strokeWidth={2} className="text-clr-primary-3 js-fadein" />
+			</div>
 
-    /* タグがない場合のアイコン */
-	<div className="border border-[1px] border-clr-primary-3 p-5 rounded-full size-20 flex flex-col items-center justify-center">
-    <Icon size={30} strokeWidth={2} className="text-clr-primary-3 js-fadein" />
-	</div>
-
-
-  {/* サービス名 */}
-  {service.tag && <span className="text-xs text-clr-base-1/80">{service.tag}</span>}
-  <h4 className="text-xl font-bold text-clr-base-1/90">
-    <span className="group-hover/link:text-clr-primary-3 transition-colors duration-300">
-      {service.name}
-    </span>
-  </h4>
-</div>
+			{/* タグ名とサービス名 */}
+			{service.tag && <span className="text-ms text-clr-main-1/80 bg-clr-base-1/80 px-4 rounded-full">{service.tag}</span>}
+			<h4 className="text-2xl font-bold text-clr-base-1/90 my-2">
+				<span className="group-hover/link:text-clr-primary-3 transition-colors duration-300">
+				{service.name}
+				</span>
+			</h4>
+		</div>
 
 
         {/* 固定テキストから service.description に変更 */}

@@ -41,7 +41,7 @@ export default function AnimatedLine({
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, amount: "some" }}
         transition={{ 
-          duration: 4, 
+          duration: 2, 
           ease: [0.22, 1, 0.36, 1], 
           delay: delay 
         }}
