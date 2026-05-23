@@ -27,7 +27,7 @@ export default function FramerMotionSection ({
 	<section
 	  ref={containerRef}
       id="framermotion-section" 
-      data-bg="dark" 
+      data-bg="light" 
       className={`
 		relative w-full py-32 overflow-hidden min-h-[300vh] ${className}
 		`}

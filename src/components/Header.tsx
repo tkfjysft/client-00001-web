@@ -24,11 +24,12 @@ export const Header = ({
   // 色の定義を「変数」としてまとめておくと、JSXがスッキリします
   const navTextColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1/80";
   const ciLogoTextColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1/50";
-  const borderChangeColor = isDarkBg && !isOpen ? "border-clr-base-2/30" : "border-clr-main-1/30";
-  const lineColorTop = isOpen ? "rotate-45 translate-y-2 baseColor" : navTextColor;
-  const lineColorMiddle = isOpen ? "hidden" : navTextColor;
-  const lineColorBottom = isOpen
-    ? "-rotate-45 -translate-y-2 baseColor"
+  const hamburgerTextChangeColor = isDarkBg && !isOpen ? "text-clr-base-2" : "text-clr-main-1/80";
+  const hamburgerBorderChangeColor = isDarkBg && !isOpen ? "border-clr-base-2/30" : "border-clr-main-1/30";
+  const hamburgerLineColorTop = isOpen ? "rotate-45 translate-y-2 text-clr-main-1/80 ml-2" : navTextColor;
+  const hamburgerLineColorMiddle = isOpen ? "hidden" : navTextColor;
+  const hamburgerLineColorBottom = isOpen
+    ? "-rotate-45 -translate-y-2 text-clr-main-1/80"
     : navTextColor;
   // スクロール時のborder-bのちらつき防止のために、切り替え時、透明度を変化させる
   const headerBorderColor = isDarkBg
@@ -78,10 +79,11 @@ export const Header = ({
     <HamburgerButton
       isOpen={isOpen}
       setIsOpen={() => setIsOpen(!isOpen)}
-      borderChangeColor={borderChangeColor}
-      lineColorTop={lineColorTop}
-      lineColorMiddle={lineColorMiddle}
-      lineColorBottom={lineColorBottom}
+	  hamburgerTextChangeColor={hamburgerTextChangeColor}
+      hamburgerBorderChangeColor={hamburgerBorderChangeColor}
+      hamburgerLineColorTop={hamburgerLineColorTop}
+      hamburgerLineColorMiddle={hamburgerLineColorMiddle}
+      hamburgerLineColorBottom={hamburgerLineColorBottom}
 	  className="z-10000"
     />
 

@@ -57,7 +57,7 @@ export default function Logo({ isOpen, className, style }: LogoProps) {
 	console.log('Logo内での生の状態確認:', isOpen);
 
 
-const borderChangeColor = isOpen 
+const hamburgerBorderChangeColor = isOpen 
   ? "border-clr-main-1/20"  // メニューが開いている時はこの色に固定
   : isDarkBg 
     ? "border-clr-base-1/20" // 閉じている時：背景が暗ければこの色
@@ -125,8 +125,8 @@ const borderChangeColor = isOpen
     // </svg>
 	<>
 	<span className={`font-zen leading-[0.5] text-center md:text-left italic ${ciLogoTextColor}`}>
-	<span className={`text-sm md:text-lg md:border-b-1 ${borderChangeColor} font-[900] pb-1 md:tracking-widest`}>マインドシフトシステムズ<br className="md:hidden"/>株式会社</span><br />
-	<span className={`block text-xs font-[500] pt-1 mt-1 border-t-1 md:pt-2 md:mt-0 md:border-0 ${borderChangeColor}`}>&nbsp;MindShiftSystems</span>
+	<span className={`text-sm md:text-lg md:border-b-1 ${hamburgerBorderChangeColor} font-[900] pb-1 md:tracking-widest`}>マインドシフトシステムズ<br className="md:hidden"/>株式会社</span><br />
+	<span className={`block text-xs font-[500] pt-1 mt-1 border-t-1 md:pt-2 md:mt-0 md:border-0 ${hamburgerBorderChangeColor}`}>&nbsp;MindShiftSystems</span>
 	</span>
 	</>
   );
