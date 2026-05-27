@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef } from 'react';
 
-interface FadeInProps {
+interface FadeIn_01Props {
   children: React.ReactNode;
   delay?: number;
   className?: string; // Gridの配置クラスを受け取るために追加
@@ -10,14 +10,14 @@ interface FadeInProps {
   stiffness?: number;  // バネの硬さ（個体差を出す）
 }
 
-export const FadeIn = ({ 
+export const FadeIn_01 = ({ 
   children, 
   delay = 0, 
   className, 
   speed = 1,        // デフォルトは 1
   speedX = 0,        // デフォルトは 0（垂直移動）
   stiffness = 50     // デフォルトは 50
-}: FadeInProps) => {
+}: FadeIn_01Props) => {
 
   	const ref = useRef(null);
 	const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });

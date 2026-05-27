@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FadeIn } from "@/components/FadeIn";
+import { FadeIn_01 } from "@/components/FadeIn_01";
 
 interface CyberCircleGProps {
 	className?: string;
@@ -67,7 +67,7 @@ const scaleB = useTransform(scrollYProgress, [0.7, 1], [1, 20]);
   }
 
 return (
-	<FadeIn
+	<FadeIn_01
       className={className} // absolute などの配置クラスを受け取る
       delay={delay}           // 固定したい delay (layouts.delay.shapesD)
       speed={speed}           // 固定の speed
@@ -149,7 +149,7 @@ return (
 
         </g>
       </svg>
-  </FadeIn>
+  </FadeIn_01>
 );
 
 

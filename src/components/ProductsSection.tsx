@@ -1,3 +1,5 @@
+"use client";
+
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 import { MarkdownView } from "@/components/MarkdownView";
@@ -6,6 +8,9 @@ import {
   Database,
   Computer,
 } from "lucide-react";
+import AnimatedLine from "@/components/AnimatedLine";
+import { FadeIn_02 } from "@/components/FadeIn_02";
+
 
 // 1. 各製品のデータを整理
 const PRODUCTS = [
@@ -96,25 +101,43 @@ export default function ProductsSection({
       <Container>
         <div className="relative z-10 mx-auto">
           {/* 見出し */}
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-12 h-[2px] bg-clr-primary-1 js-fadein" />
-            <h2 className="text-4xl md:text-5xl font-bold tracking-widest text-clr-main-1/90">Products</h2>
-            <div className="flex-grow h-[1px] bg-clr-main-1/5" />
+		  {/* セクション見出し */}
+		  <div className="relative flex items-center gap-4 mb-40">
+			{/* 1. 左から伸びる線 */}
+			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
+
+			<FadeIn_02>
+			<h2 className="text-4xl font-bold tracking-widest  text-clr-main-1/90 md:text-8xl">Products</h2>
+			</FadeIn_02>
+			
+		  </div>
+
+
+
+          <div className="space-y-100">
+
+
+				<div className="flex flex-col items-center">
+					<div>
+
+         	 {/* グリッドレイアウト */}
+        	 <div className={`grid grid-cols-1 md:grid-cols-2 gap-30 lg:grid-cols-3`}>
+
+				{/* 1番目 (7列) */}
+				<ProductCard product={PRODUCTS[0]} />
+
+				{/* 2番目 (5列) */}
+				<ProductCard product={PRODUCTS[1]} />
+
+				{/* 3番目 (9列・オフセット) */}
+				<ProductCard product={PRODUCTS[2]} />
+
+			  </div>
+			  </div>
+			  </div>
+
           </div>
 
-          {/* グリッドレイアウト */}
-          <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-x-12">
-            
-            {/* 1番目 (7列) */}
-              <ProductCard product={PRODUCTS[0]} />
-
-            {/* 2番目 (5列) */}
-              <ProductCard product={PRODUCTS[1]} />
-
-            {/* 3番目 (9列・オフセット) */}
-              <ProductCard product={PRODUCTS[2]} />
-
-          </div>
         </div>
       </Container>
       </section>
@@ -131,35 +154,43 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
   return (
 	<>
 	{/* ArrowLink 以外へのホバーを「無効」にする */}
-	<div className="group/link relative flex flex-col space-y-4 pointer-events-none">
+	<div className={`group/link max-w-[300px] relative flex flex-col space-y-4 pointer-events-none`}>
 	      {/* 左側のホバー線アクセント */}
       		<div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
 		{/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-		<div className={`size-[70vw] md:size-60 lg:w-full flex-shrink-0 bg-clr-base-1 relative overflow-hidden js-fadein`}>
+		<FadeIn_02 className={`relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto`}>
 			<div className="absolute inset-0 z-10 pointer-events-none" />
 			<img 
 			src={product.photo} 
 			alt="" 
-			className="h-full w-full object-cover transition-transform  duration-500 ease-out group-hover/link:scale-110" 
+			className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" 
 			/>
-		</div>
+		</FadeIn_02>
 		
 		<div className="flex-1 space-y-3">
-			<div className="space-y-2">
-				{/* IDを強調せず、アクセントとして添える */}
-				<div className="flex items-center gap-2">
-					<span className="text-clr-primary-1 font-mono text-xs tracking-widest uppercase">{product.id}</span>
+
+				<div className="flex items-center justify-center gap-2">
+					<span className="w-8 h-[1px] bg-clr-primary-1/60"></span>
+					<span className="text-clr-primary-1 font-mono tracking-widest uppercase">{product.id}</span>
 					<span className="w-8 h-[1px] bg-clr-primary-1/60"></span>
 				</div>
-			
-				<div className="flex items-center border-b border-clr-primary-1/50 pb-2 ">
-					<Icon size={20} strokeWidth={2} className="text-clr-primary-1 mr-2" />
-					<h3 className="text-3xl lg:text-2xl font-medium text-clr-main-1/60group-hover/link:text-clr-primary-3 transition-colors duration-300">
-						{product.title}
-					</h3>
-				</div>
+
+
+		<div className="flex flex-col items-center text-center"> {/* 1. 親を縦並び・中央揃えに */}
+			{/* アイコン */}
+			<div className="border border-[1px] border-clr-primary-3 p-5 rounded-full size-16 flex flex-col items-center justify-center mt-2 mb-4
+			">
+			<Icon size={20} strokeWidth={2} className="text-clr-primary-3 js-fadein" />
 			</div>
+
+			{/* タグ名とサービス名 */}
+			<h4 className="text-2xl font-bold text-clr-main-1/60 my-2">
+				<span className="group-hover/link:text-clr-primary-3 transition-colors duration-300">
+				{product.title}
+				</span>
+			</h4>
+		</div>
 
 			{product.description && (
 				<>

@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { useEffect, useRef, useState } from 'react';
 import { HeroParticles } from "@/components/HeroParticles";
 import { HeroAnimatedChar } from "@/components/HeroAnimatedChar";
+import { HeroAnimatedChar_02 } from "@/components/HeroAnimatedChar_02";
 import { FaceSilhouette } from "@/components/FaceSilhouette";
 import CyberCircleD from "@/components/CyberCircleD";
 import CyberCircleF from "@/components/CyberCircleF";
@@ -130,6 +131,36 @@ useEffect(() => {
 
 
 
+
+// 初回かどうかを判定するステート（初期値は true = アニメーションする）
+  const [isFirstAccess, setIsFirstAccess] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // ブラウザ環境（window）が存在するか確認
+    const hasVisited = sessionStorage.getItem("has_seen_hero_anime");
+
+    if (hasVisited) {
+      // 2回目以降アクセスの場合は false にする
+      setIsFirstAccess(false);
+    } else {
+      // 初回アクセスの場合はメモ帳に記録を残し、true にする
+      sessionStorage.setItem("has_seen_hero_anime", "true");
+      setIsFirstAccess(true);
+    }
+  }, []);
+
+  // サーバーサイドとクライアントサイドでの表示のズレ（ハイドレーションエラー）を防ぐため、
+  // 状態が確定するまでは要素を隠すか、静的な状態にしておきます
+  if (isFirstAccess === null) {
+    return <div className="min-h-screen bg-black" />; // 読み込み中の一瞬のチラつき防止
+  }
+
+  // 1回目用の「派手な初期状態」と、2回目用の「最初から表示された初期状態」を切り替える
+  const initialAnimation = isFirstAccess
+    ? { opacity: 0, y: -100, scale: 0.8, rotateX: -45 } // 1回目の派手な演出
+    : { opacity: 1, y: 0, scale: 1, rotateX: 0 };       // 2回目以降は即表示
+
+
 return (
 	<>
   <section data-bg="dark" id="hero-section" className={`relative w-full h-[100dvh] flex items-center justify-center overflow-hidden ${className}`}>
@@ -140,7 +171,7 @@ return (
 
     {/* 背景グリッド */}
     <div className={`fixed inset-0 top-0 left-0 w-full h-screen -z-10 overflow-hidden bg-bgclr-startup-dark pointer-events-none
-		${shouldAnimate ? "animate-bg-fadein" : "animate-bg-fadein-fast"}
+		${shouldAnimate && isFirstAccess ? "animate-bg-fadein" : "animate-bg-fadein-fast"}
 		`} aria-hidden="true">
 
 
@@ -213,15 +244,20 @@ return (
 
     {/* 粒子レイヤー */}
     <div className="absolute inset-0 z-10 flex items-center justify-center" aria-hidden="true">
-      {shouldAnimate && isAnimating && <HeroParticles />}
+      {shouldAnimate && isAnimating && isFirstAccess && <HeroParticles />}
     </div>
 
     {/* テキストレイヤー */}
     <div className="relative z-20 px-6 mt-[-9vh] pointer-events-none">
       <h1 className="text-clr-base-2 tracking-[-1] text-center" aria-label={siteConfig.heroTagline}>
-		{siteConfig.heroTagline.split("").map((char, index) => (
+		{(shouldAnimate && isFirstAccess) ? siteConfig.heroTagline.split("").map((char, index) => (
           <HeroAnimatedChar key={index} char={char} index={index} />
-        ))}
+        ))
+		:
+		siteConfig.heroTagline.split("").map((char, index) => (
+          <HeroAnimatedChar_02 key={index} char={char} index={index} />
+        ))
+		}
 		{/* {shouldAnimate ? (
         siteConfig.heroTagline.split("").map((char, index) => (
           <HeroAnimatedChar key={index} char={char} index={index} />

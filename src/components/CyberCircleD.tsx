@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FadeIn } from "@/components/FadeIn";
+import { FadeIn_01 } from "@/components/FadeIn_01";
 
 interface CyberCircleDProps {
 	className?: string;
@@ -33,7 +33,7 @@ export default function CyberCircleD({
   }
 
   return (
-  <FadeIn
+  <FadeIn_01
     className={className} // absolute などの配置クラスを受け取る
     delay={delay}           // 固定したい delay (layouts.delay.shapesD)
     speed={speed}           // 固定の speed
@@ -57,7 +57,7 @@ export default function CyberCircleD({
 		))}
 		<circle cx="100" cy="100" r="8" stroke="currentColor" strokeWidth="4" opacity="0.3" />
 	</svg>
-  </FadeIn>
+  </FadeIn_01>
 );
 
 

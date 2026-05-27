@@ -7,8 +7,9 @@ import {
   TrendingUp,
   Activity,
 } from "lucide-react";
+import { FadeIn_02 } from "@/components/FadeIn_02";
 import ArrowLink from "@/components/ArrowLink";
-import { FadeIn } from "@/components/FadeIn";
+import { FadeIn_01 } from "@/components/FadeIn_01";
 import CyberCircleA from "@/components/CyberCircleA";
 import CyberCircleB from "@/components/CyberCircleB";
 import CyberCircleC from "@/components/CyberCircleC";
@@ -131,7 +132,9 @@ export default function ServiceSection({
 			{/* 1. 左から伸びる線 */}
 			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
 
+			<FadeIn_02>
 			<h2 className="text-4xl font-bold tracking-widest text-clr-base-1/60 md:text-8xl">Services</h2>
+			</FadeIn_02>
 
 			{/* 2. 左から伸びる線 */}
 			{/* <AnimatedLine classNameLine="z-20 flex-grow w-1 h-[1px] bg-clr-base-1/30" /> */}
@@ -149,7 +152,7 @@ export default function ServiceSection({
 							<span className="block font-mono text-center tracking-[0.4em] text-clr-primary-3">{group.label}</span>
 							<h3 className="text-3xl md:text-5xl text-center font-extralight tracking-widest text-clr-base-1/75">{group.title}</h3>
 							{/* 2. 左から伸びる線 */}
-							<AnimatedLine classNameLine="z-20 block h-[1px] bg-clr-base-1/30 my-20" />
+							<AnimatedLine classNameDot="absolute z-20 -left-2 size-[8px] bg-clr-base-1/30 my-19" classNameLine="z-20 block h-[1px] bg-clr-base-1/30 my-20" />
 						</div>
 
 						{/* サービスグリッド */}
@@ -193,20 +196,21 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
       <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
       {/* 写真スペース */}
-      <div className="relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto">
+      <FadeIn_02 className="relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto">
         <img src={service.photo} alt="" className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" />
         {/* <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
           <div className="scale-125">{service.icon}</div>
         </div> */}
-      </div>
+      </FadeIn_02>
 
       {/* テキストコンテンツ */}
       <div className="space-y-2">
 
 		<div className="flex flex-col items-center text-center"> {/* 1. 親を縦並び・中央揃えに */}
 			{/* アイコン */}
-			<div className="border border-[1px] border-clr-primary-3 p-5 rounded-full size-20 flex flex-col items-center justify-center mt-2 mb-4">
-			<Icon size={30} strokeWidth={2} className="text-clr-primary-3 js-fadein" />
+			<div className="border border-[1px] border-clr-primary-3 p-5 rounded-full size-16 flex flex-col items-center justify-center mt-2 mb-4
+			shadow-[0_0_6px_var(--color-clr-primary-3),inset_0_0_6px_var(--color-clr-primary-3)]">
+			<Icon size={20} strokeWidth={2} className="text-clr-primary-3 js-fadein" />
 			</div>
 
 			{/* タグ名とサービス名 */}

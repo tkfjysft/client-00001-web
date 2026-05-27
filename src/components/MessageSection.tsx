@@ -3,7 +3,7 @@
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 import { motion, Variants } from "framer-motion"; // Variantsを追加
-import { FadeIn } from "@/components/FadeIn";
+import { FadeIn_02 } from "@/components/FadeIn_02";
 import CyberCircleA from "@/components/CyberCircleA";
 import CyberCircleB from "@/components/CyberCircleB";
 import CyberCircleC from "@/components/CyberCircleC";
@@ -86,9 +86,9 @@ export default function MessageSection({ className }: MessageSectionProps) {
         <div className="relative flex items-center gap-4 mb-40" >
 			{/* 1. 左から伸びる線 */}
 			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
-			<span className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
+			<FadeIn_02 className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
 				{MESSAGE_CONTENT.mission}
-			</span>
+			</FadeIn_02>
         </div>
 
         {/* grid */}
@@ -97,7 +97,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
 			 relative">
 
           {/* キャッチコピー（左側） */}
-          <div className={`${layouts.class.catchCopy} mb-40`}>
+          <FadeIn_02 className={`${layouts.class.catchCopy} mb-40`}>
             <h2 className="text-3xl md:text-5xl font-[700] text-clr-base-1/90 text-center !leading-[1.5]">
               {MESSAGE_CONTENT.catchphrase.top}
               <br className="block lg:hidden" />
@@ -108,7 +108,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
                 {MESSAGE_CONTENT.catchphrase.bottom}
               </span>
             </h2>
-          </div>
+          </FadeIn_02>
 
           {/* 本文（右側） */}
           <div className={`relative pt-20 space-y-6 ${layouts.class.text}`}>
@@ -125,7 +125,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
         </div>
 
 
-          <div
+          <FadeIn_02
             className={`relative pt-20 space-y-6`}>
 				<div className="flex justify-between">
 				{[1, 2, 3, 4].map((index) => {
@@ -147,7 +147,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
                 href={MESSAGE_CONTENT.link || "#"}
                 className="mt-20"
               />
-          </div>
+          </FadeIn_02>
 
         {/* 下部の署名 */}
         <div
