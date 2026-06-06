@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="265px"
+	 height="76px" viewBox="0 0 265 76" enable-background="new 0 0 265 76" xml:space="preserve">
+<g id="レイヤー_9" display="none">
+</g>
+<g id="レイヤー_1" display="none">
+</g>
+<g id="ガイド" display="none">
+</g>
+<g id="レイヤー_2" display="none">
+</g>
+<g id="ci_x5F_logo">
+</g>
+<g id="ci_x5F_logoのコピー">
+	<text transform="matrix(1 0 0 1 37.6929 60.2793)" fill="#202B47" font-family="'NotoSansJP-Medium'" font-size="11">モーションシンク</text>
+</g>
+<g id="_irasuto">
+</g>
+<g id="face_x5F_left">
+</g>
+<g id="face_x5F_right_1_">
+	<text transform="matrix(1 0 0 1 67.4644 47.4102)" fill="#202B47" font-family="'LibertinusSans-Bold'" font-size="33.0397">MotionSync</text>
+	<g>
+		<defs>
+			<polygon id="SVGID_62_" points="75.718,34.396 74.079,22.774 71.68,16.799 62.997,7.42 50.095,1.667 40.446,1.995 31.916,2.84 
+				24.16,5.715 16.725,9.897 10.551,15.335 5.301,27.597 3.323,36.315 3.98,46.23 12.479,61.636 26.104,71.347 40.882,39 
+				71.314,55.657 73.404,52.438 74.385,48.969 76.251,42.883 			"/>
+		</defs>
+		<clipPath id="SVGID_3_">
+			<use xlink:href="#SVGID_62_"  overflow="visible"/>
+		</clipPath>
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="17.3462" y1="38.3877" x2="64.0142" y2="38.3877">
+			<stop  offset="0" style="stop-color:#202B47"/>
+			<stop  offset="1" style="stop-color:#202B47;stop-opacity:0.1"/>
+		</linearGradient>
+		
+			<circle clip-path="url(#SVGID_3_)" fill="none" stroke="url(#SVGID_5_)" stroke-width="7" stroke-miterlimit="10" cx="40.68" cy="38.387" r="19.83"/>
+	</g>
+</g>
+</svg>

@@ -22,8 +22,8 @@ export type SubNavItem = {
 };
 
 export const siteConfig = {
-  companyName1: "マインドシフトシステムズ株式会社",
-  companyName2: "マインドシフトシステムズ\n株式会社",
+  companyName1: "モーションシンク株式会社",
+  companyName2: "モーションシンク\n株式会社",
   enCompamyName: "Mind Shift Systems Co., Ltd.",
   ownerName: "山田 太郎", // ← 追加しました！
   metaTitle: "",

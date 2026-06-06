@@ -10,10 +10,10 @@ import {
 
 // SNSデータも外に出しておくとスッキリします
 const SNS_LINKS = [
-  { icon: faXTwitter, href: "https://x.com/yourid", label: "X" },
-  { icon: faInstagram, href: "https://instagram.com/yourid", label: "Instagram" },
-  { icon: faLine, href: "https://line.me/...", label: "LINE" },
-  { icon: faGithub, href: "https://github.com/yourid", label: "GitHub" },
+  { icon: faXTwitter, href: "#", label: "X" },
+  { icon: faInstagram, href: "#", label: "Instagram" },
+  { icon: faLine, href: "#", label: "LINE" },
+  { icon: faGithub, href: "#", label: "GitHub" },
 ] as const;
 
 export default function SnsLinks() {
@@ -23,7 +23,7 @@ export default function SnsLinks() {
         <a 
           key={sns.label}
           href={sns.href}
-          target="_blank"
+        //   target="_blank"
           rel="noopener noreferrer"
           aria-label={sns.label}
           className="group text-clr-base-1 transition-all duration-300"

@@ -9,6 +9,8 @@ import { HeroAnimatedChar_02 } from "@/components/HeroAnimatedChar_02";
 import { FaceSilhouette } from "@/components/FaceSilhouette";
 import CyberCircleD from "@/components/CyberCircleD";
 import CyberCircleF from "@/components/CyberCircleF";
+import LogoCI from "@/components/LogoCI";
+
 
 
 interface HeroSectionProps  {
@@ -285,8 +287,15 @@ return (
 			<CyberCircleF className={`absolute right-35 bottom-140`} classNameSvg="size-20 text-clr-primary-1/52 z-20" /> */}
 
 
-		<img src={'/images/ci_logo_10.svg'} className='absolute top-10 left-20 w-100 header-appearance' />
+		{/* <img src={'/images/ci_logo_20.svg'} className={`absolute top-10 left-20 w-100 header-appearance
+			${shouldAnimate && isFirstAccess ? "header-appearance" : "header-appearance-fast"}`} /> */}
 
+      <div className="absolute top-10 left-20 w-100 max-w-[100px] md:max-w-[300px] flex fle-col items-center">
+        <LogoCI className={`text-clr-base-1 overflow-visible ${shouldAnimate && isFirstAccess ? "header-appearance" : "header-appearance-fast"}`} 
+          stroke="currentColor" 
+          strokeWidth="0.5"
+        />
+      </div>
 
   </section>
 

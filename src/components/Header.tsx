@@ -19,7 +19,7 @@ export const Header = ({
   //画面スクロール連動フェードインアニメーション
 //   useAutoAnimate();
 
-  const { isOpen, setIsOpen, isDarkBg, isPosTop } = useHeaderVisual();
+  const { isOpen, setIsOpen, isDarkBg, isPosTop, shouldAnimate, isFirstAccess } = useHeaderVisual();
 
   // 色の定義を「変数」としてまとめておくと、JSXがスッキリします
   const navTextColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1/80";
@@ -46,7 +46,8 @@ export const Header = ({
 		${borderWeight} ${headerBorderColor}
 	${
     //   isPosTop ? "bg-transparent header-appearance" : "lg:backdrop-blur-xl header-appearance-fast"
-      isPosTop ? "bg-transparent header-appearance" : "lg:bg-transparent header-appearance"
+    // isPosTop ? "bg-transparent header-appearance" : "lg:bg-transparent header-appearance"
+	shouldAnimate && isFirstAccess ? "header-appearance" : "header-appearance-fast"
     }
 	 ${className}`}
   >
