@@ -24,7 +24,7 @@ export type SubNavItem = {
 export const siteConfig = {
   companyName1: "モーションシンク株式会社",
   companyName2: "モーションシンク\n株式会社",
-  enCompamyName: "Mind Shift Systems Co., Ltd.",
+  enCompamyName: "MotionSync Co., Ltd.",
   ownerName: "山田 太郎", // ← 追加しました！
   metaTitle: "",
   metaDescription: "多様な技術を駆使し、ビジネスの課題をシンプルな解決策へと導くデジタルパートナー。確かな技術力と柔軟な思考で、次世代のスタンダードを共創します。",
