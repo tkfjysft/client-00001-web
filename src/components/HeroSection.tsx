@@ -90,7 +90,7 @@ useEffect(() => {
     : { opacity: 1, y: 0, scale: 1, rotateX: 0 };       // 2回目以降は即表示
 
 
-	
+
 return (
 	<>
   <section data-bg="dark" id="hero-section" className={`relative w-full h-[100dvh] flex items-center justify-center overflow-hidden ${className}`}>
@@ -100,9 +100,9 @@ return (
 
 <div className="absolute top-4 left-[2vw] sm:top-10 sm:left-[4vw] w-full max-w-[200px] sm:max-w-[300px] flex flex-col items-center z-[10000] pointer-events-auto">
   <Link href="/" className='block w-full h-full relative z-[10001]'>
-    <LogoCI className={`text-clr-base-1 overflow-visible `} 
+    <LogoCI className={`text-clr-base-1 overflow-visible`} 
       stroke="currentColor" 
-      strokeWidth="0.5"
+      strokeWidth="0"
     />
   </Link>
 </div>
