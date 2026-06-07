@@ -11,6 +11,7 @@ interface CyberCircleFProps {
 	speedX?: number;
 	stiffness?: number
   color?: string;
+  className_inner?: string;
 }
 export default function CyberCircleF({
 	className = "",
@@ -20,6 +21,7 @@ export default function CyberCircleF({
 	speedX= 0,
 	stiffness = 0,
   color = "currentColor",
+  className_inner = "",
 }:CyberCircleFProps) {
 
   // 回転の共通設定
@@ -71,6 +73,7 @@ return (
       speed={speed}           // 固定の speed
       speedX={speedX}           // 固定の speedX
       stiffness={stiffness}       // 固定の stiffness
+	  className_inner={className_inner}
     >
 
 <svg

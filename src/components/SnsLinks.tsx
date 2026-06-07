@@ -20,19 +20,11 @@ export default function SnsLinks() {
   return (
     <div className="flex items-center gap-5">
       {SNS_LINKS.map((sns) => (
-        <a 
-          key={sns.label}
-          href={sns.href}
-        //   target="_blank"
-          rel="noopener noreferrer"
-          aria-label={sns.label}
-          className="group text-clr-base-1 transition-all duration-300"
-        >
           <FontAwesomeIcon 
+		    key={sns.icon.iconName}
             icon={sns.icon} 
             className="text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5" 
           />
-        </a>
       ))}
     </div>
   );

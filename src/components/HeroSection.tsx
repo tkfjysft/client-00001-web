@@ -85,48 +85,6 @@ useEffect(() => {
   console.log("現在の状態:", { dark: isDark, narrow: isNarrow });
 }, [isDark, isNarrow]);
 
-
-  
-
-
-// const [shouldAnimate, setShouldAnimate] = useState(false);
-
-// useEffect(() => {
-//   // リロードした瞬間のスクロール位置を確認
-//   if (window.scrollY === 0) {
-//     setShouldAnimate(true);
-//   }
-// }, []);
-
-
-
-
-
-
-// // 初回かどうかを判定するステート（初期値は true = アニメーションする）
-//   const [isFirstAccess, setIsFirstAccess] = useState<boolean | null>(null);
-
-//   useEffect(() => {
-//     // ブラウザ環境（window）が存在するか確認
-//     const hasVisited = sessionStorage.getItem("has_seen_hero_anime");
-
-//     if (hasVisited) {
-//       // 2回目以降アクセスの場合は false にする
-//       setIsFirstAccess(false);
-//     } else {
-//       // 初回アクセスの場合はメモ帳に記録を残し、true にする
-//       sessionStorage.setItem("has_seen_hero_anime", "true");
-//       setIsFirstAccess(true);
-//     }
-//   }, []);
-
-//   // サーバーサイドとクライアントサイドでの表示のズレ（ハイドレーションエラー）を防ぐため、
-//   // 状態が確定するまでは要素を隠すか、静的な状態にしておきます
-//   if (isFirstAccess === null) {
-//     return <div className="min-h-screen bg-black" />; // 読み込み中の一瞬のチラつき防止
-//   }
-
-  // 1回目用の「派手な初期状態」と、2回目用の「最初から表示された初期状態」を切り替える
   const initialAnimation = isFirstAccess
     ? { opacity: 0, y: -100, scale: 0.8, rotateX: -45 } // 1回目の派手な演出
     : { opacity: 1, y: 0, scale: 1, rotateX: 0 };       // 2回目以降は即表示
@@ -136,13 +94,10 @@ return (
 	<>
   <section data-bg="dark" id="hero-section" className={`relative w-full h-[100dvh] flex items-center justify-center overflow-hidden ${className}`}>
 
-		{/* --- isClient が true になってから中身を描画する --- */}
     {isClient && (
     <>
 
-{/* 💡 変更点：z-10000 を z-[10000] に修正し、pointer-events-auto をここにも追加 */}
 <div className="absolute top-4 left-[2vw] sm:top-10 sm:left-[4vw] w-full max-w-[200px] sm:max-w-[300px] flex flex-col items-center z-[10000] pointer-events-auto">
-  {/* 💡 変更点：inline-block を block に変更 */}
   <Link href="/" className='block w-full h-full relative z-[10001]'>
     <LogoCI className={`text-clr-base-1 overflow-visible `} 
       stroke="currentColor" 
@@ -151,82 +106,18 @@ return (
   </Link>
 </div>
 
-
-
     {/* 背景グリッド */}
     <div className={`fixed inset-0 top-0 left-0 w-full h-screen -z-10 overflow-hidden bg-bgclr-startup-dark pointer-events-none
 		${shouldAnimate && isFirstAccess ? "animate-bg-fadein" : "animate-bg-fadein-fast"}
 		`} aria-hidden="true">
-
-
-
-
-
-
-{/* 上段：左から右へ */}
-    {/* <div className="flex h-1/2 w-[200%] animate-slide-slow-forward">
-      <div className="flex w-1/2 justify-around">
-        <img src="/images/hero_cording.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pb-1" : "pb-20"}
-			`} />
-        <img src="/images/hero_meeting.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pb-1" : "pb-20"}
-			`}  />
-        <img src="/images/hero_office.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pb-1" : "pb-20"}
-			`}  />
-      </div>
-      <div className="flex w-1/2 justify-around">
-        <img src="/images/hero_cording.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pb-1" : "pb-20"}
-			`}  />
-        <img src="/images/hero_meeting.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pb-1" : "pb-20"}
-			`}  />
-        <img src="/images/hero_office.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pb-1" : "pb-20"}
-			`}  />
-      </div>
-    </div> */}
-
-    {/* 下段：右から左へ */}
-    {/* <div className="flex h-1/2 w-[200%] animate-slide-slow-backward">
-      <div className="flex w-1/2 justify-around">
-        <img src="/images/hero_ceo.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pt-1" : "pt-20"}
-			`}  />
-        <img src="/images/hero_whiteboard.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pt-1" : "pt-20"}
-			`}  />
-        <img src="/images/hero_serverroom.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pt-1" : "pt-20"}
-			`}  />
-      </div>
-      <div className="flex w-1/2 justify-around">
-        <img src="/images/hero_ceo.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pt-1" : "pt-20"}
-			`}  />
-        <img src="/images/hero_whiteboard.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pt-1" : "pt-20"}
-			`}  />
-        <img src="/images/hero_serverroom.webp" className={`w-1/3 h-full object-cover brightness-[0.6] contrast-[140%] px-1 transition-all duration-700 ease-in-out
-			${isNarrow ? "pt-1" : "pt-20"}
-			`}  />
-      </div>
-    </div>     */}
 	
-			<CyberCircleF className={`absolute inset-0 m-auto w-fit h-fit`} classNameSvg="size-200 text-clr-primary-1/52 z-20" />
+			<CyberCircleF className={`absolute inset-0 m-auto w-fit h-fit`} className_inner="origin-bottom" classNameSvg="size-200 text-clr-primary-1/52 z-20" />
 
-	        {/* ★ 暗くするための膜：isDark が true になると不透明度が上がる */}
         <div 
           className={`absolute inset-0 bg-clr-main-1 transition-opacity duration-1000 ease-in-out pointer-events-none ${
             isDark ? 'opacity-50' : 'opacity-0'
           }`}
         />
-	
-
-
-
 	</div>
 
     {/* 粒子レイヤー */}
@@ -259,30 +150,8 @@ return (
     )}
 
 
-
-		{/* <FaceSilhouette startColor="color-mix(in srgb, var(--color-clr-main-1), white 50%)" endColor="var(--color-clr-main-1)" flip={true}
-		className='absolute top-20 left-20' size='w-64' /> */}
-
-		{/* <FaceSilhouette startColor="color-mix(in srgb, var(--color-clr-main-1), white 20%)" endColor="var(--color-clr-base-1)" 
-		className='absolute bottom-0 right-10' size='w-70' /> */}
-
-			{/* <CyberCircleF className={`absolute inset-0 m-auto w-fit h-fit`} classNameSvg="size-200 text-clr-primary-1/52 z-20" /> */}
-			{/* <CyberCircleF className={`absolute right-20 bottom-80`} classNameSvg="size-30 text-clr-primary-1/52 z-20" />
-			<CyberCircleF className={`absolute right-40 bottom-90`} classNameSvg="size-50 text-clr-primary-1/52 z-20" />
-			<CyberCircleF className={`absolute right-35 bottom-140`} classNameSvg="size-20 text-clr-primary-1/52 z-20" /> */}
-
-
-		{/* <img src={'/images/ci_logo_20.svg'} className={`absolute top-10 left-20 w-100 header-appearance
-			${shouldAnimate && isFirstAccess ? "header-appearance" : "header-appearance-fast"}`} /> */}
-
-
-
   </section>
 
-        {/* ★ 暗くするタイミングを決めるターゲット要素（画面の下端付近に配置） */}
-		
-      {/* <div ref={triggerRef2} className=" mt-20 h-40 w-full"></div> */}
-      {/* <div ref={triggerRef} className="mt-60 h-10 w-full"></div> */}
 	  </>
 );
 };

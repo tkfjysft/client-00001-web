@@ -8,6 +8,7 @@ interface FadeIn_01Props {
   speed?: number;      // 移動する距離の倍率
   speedX?: number;    // X軸の移動倍率（追加）
   stiffness?: number;  // バネの硬さ（個体差を出す）
+  className_inner?: string;
 }
 
 export const FadeIn_01 = ({ 
@@ -16,7 +17,8 @@ export const FadeIn_01 = ({
   className, 
   speed = 1,        // デフォルトは 1
   speedX = 0,        // デフォルトは 0（垂直移動）
-  stiffness = 50     // デフォルトは 50
+  stiffness = 50,     // デフォルトは 50
+  className_inner,
 }: FadeIn_01Props) => {
 
   	const ref = useRef(null);
@@ -73,7 +75,7 @@ export const FadeIn_01 = ({
 		// 内側は移動（回転含む）の変化を予告
 		willChange: "transform" ,
 		 }} 
-		 className="block w-full h-full">
+		 className={`block w-full h-full ${className_inner}`}>
           {children}
       </motion.div>
     </motion.div>

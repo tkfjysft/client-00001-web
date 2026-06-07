@@ -85,7 +85,7 @@ export default function RootLayout({
       */}
 	  <body 
 			className={`${playfair.variable} ${notoSerif.variable} ${zenKaku.variable} font-sans antialiased
-			  bg-bgclr-startup-dark`}
+			  `}
 			style={{
 			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
 			}}>
