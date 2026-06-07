@@ -37,7 +37,7 @@ const MESSAGE_CONTENT = {
 
 
   signature: "Established 2026",
-  link: "message",
+  link: "b/message",
 };
 
 const baseDelay = 0.08;
