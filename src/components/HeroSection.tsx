@@ -90,6 +90,7 @@ useEffect(() => {
     : { opacity: 1, y: 0, scale: 1, rotateX: 0 };       // 2回目以降は即表示
 
 
+	
 return (
 	<>
   <section data-bg="dark" id="hero-section" className={`relative w-full h-[100dvh] flex items-center justify-center overflow-hidden ${className}`}>
