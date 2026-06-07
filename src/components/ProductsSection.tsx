@@ -24,7 +24,7 @@ const PRODUCTS = [
 	
 Azureをご検討ならば、ライセンスから実作業まで一気通貫でお応えできる弊社にお任せください。`,
     imgSize: "lg:w-70 lg:h-70", // PC版の画像サイズをここで指定
-	link: "products/#microsoft",
+	link: "b/products/microsoft",
   },
   {
     id: "02",

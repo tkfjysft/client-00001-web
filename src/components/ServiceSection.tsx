@@ -31,7 +31,7 @@ const SERVICE_GROUPS = [
         icon: Activity, 
         photo: '/images/services_01.webp',
         description: "コンサルティングサービスは、お客様の仕事に内在するムダを見つけ、ムダを排除した効率的な作業ができるよう、お客様と一緒に考えます。",
-		link: "services/#consulting",
+		link: "b/services/consulting",
       },
       { 
 		tag: "",
@@ -39,7 +39,7 @@ const SERVICE_GROUPS = [
         icon: Activity, 
         photo: '/images/services_02.webp',
         description: "プロフェッショナルサービスは、業務系システム構築サービス、情報基盤構築サービス、オープンソース活用サービス、等で構成されています。",
-		link: "services/#pro-service",
+		link: "b/services/pro-service",
       },
     ],
   },
@@ -53,7 +53,7 @@ const SERVICE_GROUPS = [
         icon: Monitor, 
         photo: '/images/services_03.webp',
         description: "弊社が開発した部品加工業向けの生産管理システム。",
-		link: "services/#spics",
+		link: "b/services/spics",
       },
       { 
 		tag: "生産管理",
@@ -61,7 +61,7 @@ const SERVICE_GROUPS = [
         icon: Monitor, 
         photo: '/images/services_04.webp',
         description: "iOS/あらゆる変化を乗りこなす生産管理システム。",
-		link: "services/#tpics",
+		link: "b/services/tpics",
       },
       { 
 		tag: "生産スケジューラ",
@@ -69,7 +69,7 @@ const SERVICE_GROUPS = [
         icon: Monitor, 
         photo: '/images/services_05.webp',
         description: "時間と闘う製造業のために。生産管理をより綿密に実行するためには生産スケジューラが必要です。",
-		link: "services/#flexsche",
+		link: "b/services/flexsche",
       },
     ],
   },
@@ -83,7 +83,7 @@ const SERVICE_GROUPS = [
         icon: Server, 
         photo: '/images/services_06.webp',
         description: "satellite.serverと命名したベアメタルサーバサービスは、まさに、お客様のサテライトとして機能したいという想いを込めました。",
-		link: "services/#satellite-server",
+		link: "b/services/satellite-server",
       },
       { 
 		tag: "VSPサービス",
@@ -91,7 +91,7 @@ const SERVICE_GROUPS = [
         icon: Server, 
         photo: '/images/services_07.webp',
         description: "固定グローバルIPアドレス付与UTM標準装備のVPSサービス。",
-		link: "services/#vps",
+		link: "b/services/vps",
       },
       { 
 		tag: "クラウドストレージサービス",
@@ -99,7 +99,7 @@ const SERVICE_GROUPS = [
         icon: Server, 
         photo: '/images/services_08.webp',
         description: "Windows Server OSで構築されたファイルサーバを定額でご利用いただくサービス。",
-		link: "services/#cloud",
+		link: "b/services/cloud",
       },
 	  
     ],
