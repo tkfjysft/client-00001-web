@@ -16,6 +16,7 @@ import { LogoLogicRefraction } from "@/components/LogoLogicRefraction";
 import { FaceSilhouette } from "@/components/FaceSilhouette";
 
 
+
 const MESSAGE_CONTENT = {
   mission: "Mission Statement",
   catchphrase: {
