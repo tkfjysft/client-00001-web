@@ -1,5 +1,6 @@
 "use client";
 
+import Image from '@/components/CustomImage';
 import { Container } from "@/components/Container";
 import ArrowLink from "@/components/ArrowLink";
 import { MarkdownView } from "@/components/MarkdownView";
@@ -161,9 +162,11 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
 		{/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
 		<FadeIn_02 className={`relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto`}>
 			<div className="absolute inset-0 z-10 pointer-events-none" />
-			<img 
+			<Image 
 			src={product.photo} 
 			alt="" 
+			fill
+            sizes="(max-width: 768px) 100vw, 50vw, 25vw"
 			className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" 
 			/>
 		</FadeIn_02>

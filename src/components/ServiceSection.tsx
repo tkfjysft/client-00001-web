@@ -1,5 +1,6 @@
 "use client";
 
+import Image from '@/components/CustomImage';
 import { Container } from "@/components/Container";
 import {
   Monitor,
@@ -197,7 +198,12 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
 
       {/* 写真スペース */}
       <FadeIn_02 className="relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto">
-        <img src={service.photo} alt="" className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" />
+        <Image
+		 src={service.photo} 
+		 alt="" 
+		 fill
+         sizes="(max-width: 768px) 100vw, 50vw, 25vw"
+		 className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" />
         {/* <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
           <div className="scale-125">{service.icon}</div>
         </div> */}
