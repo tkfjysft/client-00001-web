@@ -134,7 +134,7 @@ export default function ServiceSection({
 			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
 
 			<FadeIn_02>
-			<h2 className="text-4xl font-bold tracking-widest text-clr-base-1/60 md:text-8xl">Services</h2>
+			<h2 className="text-lg md:text-4xl font-light tracking-widest text-clr-base-1 uppercase">Services</h2>
 			</FadeIn_02>
 
 			{/* 2. 左から伸びる線 */}
@@ -192,23 +192,32 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
   return (
 	<>
 	{/* ArrowLink 以外へのホバーを「無効」にする */}
-    <div className={`group/link max-w-[300px] relative flex flex-col space-y-4 pointer-events-none ${className}`}>
+    <div className={`group/link relative flex flex-col space-y-4 mb-32 pointer-events-none ${className}`}>
       {/* 左側のホバー線アクセント */}
       <div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
       {/* 写真スペース */}
-      <FadeIn_02 className="relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto">
-        <Image
-		 src={service.photo} 
-		 alt="" 
-		 fill
-         sizes="(max-width: 768px) 100vw, 50vw, 25vw"
-		 className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" />
-        {/* <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-clr-main-1/20 to-transparent text-clr-base-1">
-          <div className="scale-125">{service.icon}</div>
-        </div> */}
-      </FadeIn_02>
+		<FadeIn_02 className="
+		mx-auto /* 💡 これを足すだけで、すべての画面幅で左右中央に固定されます！ */
+		relative 
+		overflow-hidden 
+		border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein 
+		aspect-square
+            w-[60vw]       md:w-60       lg:w-[clamp(240px,22vw,300px)]
+            h-[60vw]       md:h-60       lg:h-[clamp(240px,22vw,300px)]
 
+		">
+
+
+		<img
+  src={`${process.env.__NEXT_BASE_PATH || ''}${service.photo}`} 
+  alt="" 
+  loading="lazy" 
+  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover/link:scale-110" 
+/>
+
+
+		</FadeIn_02>
       {/* テキストコンテンツ */}
       <div className="space-y-2">
 
@@ -230,7 +239,7 @@ function ServiceCard({ className, service }: { className?:string, service: typeo
 
 
         {/* 固定テキストから service.description に変更 */}
-        <p className="font-light text-clr-base-1/80 whitespace-pre-wrap">
+        <p className="px-[10vw] md:px-0 font-light text-clr-base-1/80 whitespace-pre-wrap">
           {service.description}
         </p>
 		

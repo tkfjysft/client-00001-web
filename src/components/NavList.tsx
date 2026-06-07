@@ -22,48 +22,36 @@ export default function NavList({
     <>
       {navigationItems
         .map((item) => (
-          <div key={item.label} className={`${isMobile ? "mb-8 text-center" : "relative group"} ${className}`}>
-            {/* メインリンク */}
-            <Link
-              href={item.href}
-              className={
-                isMobile
-                  ? "font-bold tracking-widest text-clr-main-1/60 hover:scale-125 transition-all block text-lg" // スマホ版スタイル
-                  : `font-bold ${navTextColor} tracking-widest hover:scale-105 transition-all flex items-center gap-1` // PC版スタイル
-              }
-            >
-              {item.label}
-              {!isMobile && item.children && <span className="text-xs">▼</span>}
-            </Link>
+<div key={item.label} className="w-full border-b border-clr-main-1/5 last:border-none py-5">
+  {/* メインリンク */}
+  <Link
+    href={item.href}
+    className="font-bold tracking-[0.25em] text-clr-main-1/70 active:text-clr-primary-1 hover:text-clr-main-1 transition-colors block text-base md:text-lg relative group/item"
+  >
+    {item.label}
+    
+    {/* タップ・ホバー時に文字の左に現れるサイバーなアクティブドット */}
+    <span className="absolute -left-3 top-1/2 -translate-y-1/2 w-1 h-1 bg-clr-primary-1 rounded-full opacity-0 scale-0 transition-all group-hover/item:opacity-100 group-hover/item:scale-100 group-active/item:opacity-100 group-active/item:scale-100" />
+  </Link>
 
-            {/* サブメニュー */}
-            {item.children && (
-              <div
-                className={
-                  isMobile
-                    ? "pt-2"
-                    : "absolute left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
-                }
-              >
-                <ul className={isMobile ? "" : "bg-clr-base-1 py-2 min-w-[200px] shadow-xl"}>
-                  {item.children.map((child) => (
-                    <li key={child.label}>
-                      <Link
-                        href={child.href}
-                        className={
-                          isMobile
-                            ? "block py-1 text-sm text-clr-main-1/55 text-center"
-                            : "block px-4 py-2 text-sm text-clr-main-1/55 hover:bg-clr-main-1/55 hover:text-clr-base-2/95 transition-colors"
-                        }
-                      >
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+  {/* サブメニュー */}
+  {item.children && (
+    <div className="mt-3 rounded-lg py-2 pl-4">
+      <ul className="flex flex-col gap-2">
+        {item.children.map((child) => (
+          <li key={child.label}>
+            <Link
+              href={child.href}
+              className="block py-2 text-[14px] md:text-base font-medium tracking-widest text-clr-main-1/45 border-b-2 border-clr-main-1/20 border-dotted hover:text-clr-main-1 active:text-clr-primary-1 transition-colors"
+            >
+              {child.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
         ))}
     </>
   );

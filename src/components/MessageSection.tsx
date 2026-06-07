@@ -86,7 +86,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
         <div className="relative flex items-center gap-4 mb-40" >
 			{/* 1. 左から伸びる線 */}
 			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
-			<FadeIn_02 className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase">
+			<FadeIn_02 className="text-clr-base-1 font-mono text-xs tracking-[0.1em] sm:tracking-[0.4em] uppercase relative z-50">
 				{MESSAGE_CONTENT.mission}
 			</FadeIn_02>
         </div>
@@ -128,14 +128,14 @@ export default function MessageSection({ className }: MessageSectionProps) {
           <FadeIn_02
             className={`relative pt-20 space-y-6`}>
 				<div className="
-  grid 
-  grid-cols-2      /* 📱 スマホ：2列（縦に何行か折り返す） */
-  md:grid-cols-3   /* 📑 タブレット：3列 */
-  lg:grid-cols-4   /* 💻 PC：4列（横一列に綺麗に並ぶ） */
-  gap-4            /* 円と円の間のすき間（お好みで gap-6 などに調整してください） */
-  justify-items-center /* グリッドの中で円を中央に寄せる */
-">
-				{[1, 2, 3, 4].map((index) => {
+						grid 
+						grid-cols-2      /* 📱 スマホ：2列（縦に何行か折り返す） */
+						md:grid-cols-3   /* 📑 タブレット：3列 */
+						lg:grid-cols-4   /* 💻 PC：4列（横一列に綺麗に並ぶ） */
+						gap-4            /* 円と円の間のすき間（お好みで gap-6 などに調整してください） */
+						justify-items-center /* グリッドの中で円を中央に寄せる */
+						">
+					{[1, 2, 3, 4].map((index) => {
 					// オブジェクトから値を取得（もし空なら空文字を返す）
 					const text = (MESSAGE_CONTENT.subText as any)[index];
 

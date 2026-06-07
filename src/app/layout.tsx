@@ -91,8 +91,8 @@ export default function RootLayout({
 			}}>
 				<HeaderNavigation />
         {children}
-		<Footer className="z-60" />
-		<ScrollToTop className="z-60" />
+		<Footer className="z-[30]" />
+		<ScrollToTop className="z-[30]" />
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ interface LogoCIProps {
 	fill?: string;
 	stroke?: string; 
     strokeWidth?: string; 
+	uniqueId?: string;
 }
 
 export default function LogoCI({
@@ -12,6 +13,7 @@ export default function LogoCI({
 		fill = "currentColor",
 		stroke = "none", // デフォルトの色
 		strokeWidth = "0",       // デフォルトの太さ（テキストや塗りを潰さないため）
+		uniqueId = "hero",
   }:LogoCIProps) {
   return (
 <>
@@ -133,11 +135,11 @@ export default function LogoCI({
 			C241.32,35.482,240.33,34.558,239.096,34.558z"/>
 	</g>
 	
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-325.1533" y1="618.5801" x2="-278.4834" y2="618.5801" gradientTransform="matrix(1 0 0 -1 342.5 656)">
+		<linearGradient id={`SVGID_1_${uniqueId}`} gradientUnits="userSpaceOnUse" x1="-325.1533" y1="618.5801" x2="-278.4834" y2="618.5801" gradientTransform="matrix(1 0 0 -1 342.5 656)">
 		<stop  offset="0" style={{ stopColor: `${fill}` }} />
 		<stop  offset="1" style={{ stopColor: `${fill}`, stopOpacity: 0.1 }} />
 	</linearGradient>
-	<path stroke={stroke} strokeWidth={strokeWidth} fill="url(#SVGID_1_)" d="M45.614,15.587c-1.631-0.353-3.298-0.532-4.955-0.532c-10.894,0-20.475,7.738-22.782,18.399
+	<path stroke={stroke} strokeWidth={strokeWidth} fill={`url(#SVGID_1_${uniqueId})`} d="M45.614,15.587c-1.631-0.353-3.298-0.532-4.955-0.532c-10.894,0-20.475,7.738-22.782,18.399
 		c-2.391,11.047,3.511,21.992,13.508,26.33l2.913-6.376c-7.071-3-11.263-10.697-9.58-18.474c1.614-7.463,8.318-12.88,15.94-12.88
 		c1.16,0,2.328,0.126,3.475,0.374c4.263,0.921,7.911,3.448,10.273,7.115c2.362,3.666,3.155,8.033,2.233,12.296
 		c-0.37,1.71-1.019,3.306-1.873,4.761l6.132,3.356c1.173-2.035,2.067-4.258,2.583-6.638c1.318-6.09,0.185-12.328-3.19-17.567

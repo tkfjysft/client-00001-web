@@ -9,6 +9,7 @@ import { HeroAnimatedChar_02 } from "@/components/HeroAnimatedChar_02";
 import { FaceSilhouette } from "@/components/FaceSilhouette";
 import Link from "next/link";
 import CyberCircleD from "@/components/CyberCircleD";
+import CyberCircleE from "@/components/CyberCircleE";
 import CyberCircleF from "@/components/CyberCircleF";
 import LogoCI from "@/components/LogoCI";
 
@@ -93,16 +94,17 @@ useEffect(() => {
 
 return (
 	<>
-  <section data-bg="dark" id="hero-section" className={`relative w-full h-[100dvh] flex items-center justify-center overflow-hidden ${className}`}>
+  <section data-bg="dark" id="hero-section" className={`relative w-full h-[100svh] flex items-center justify-center overflow-hidden ${className}`}>
 
     {isClient && (
     <>
 
-<div className="absolute top-4 left-[2vw] sm:top-10 sm:left-[4vw] w-full max-w-[200px] sm:max-w-[300px] flex flex-col items-center z-[10000] pointer-events-auto">
+<div className="absolute top-4 left-[2vw] sm:top-10 sm:left-[4vw] w-full max-w-[200px] sm:max-w-[300px] flex flex-col items-center pointer-events-auto">
   <Link href="/" className='block w-full h-full relative z-[10001]'>
     <LogoCI className={`text-clr-base-1 overflow-visible`} 
       stroke="currentColor" 
       strokeWidth="0"
+	  uniqueId="hero"
     />
   </Link>
 </div>
@@ -112,11 +114,20 @@ return (
 		${shouldAnimate && isFirstAccess ? "animate-bg-fadein" : "animate-bg-fadein-fast"}
 		`} aria-hidden="true">
 	
-			<CyberCircleF className={`absolute inset-0 m-auto w-fit h-fit`} className_inner="origin-bottom" classNameSvg="size-200 text-clr-primary-1/52 z-20" />
+
+				<div className="block sm:hidden">
+			<CyberCircleE className={`fixed top-[40%] w-fit h-fit`} classNameSvg="size-200 text-clr-primary-1/52 z-20" />
+			</div>
+
+
+	<div className="hidden sm:block">
+			<CyberCircleF className={`fixed inset-0 m-auto w-fit h-fit`} className_inner="origin-bottom" classNameSvg="size-200 text-clr-primary-1/52 z-20" />
+			</div>
+
 
         <div 
           className={`absolute inset-0 bg-clr-main-1 transition-opacity duration-1000 ease-in-out pointer-events-none ${
-            isDark ? 'opacity-50' : 'opacity-0'
+            isDark ? 'opacity-65' : 'opacity-0'
           }`}
         />
 	</div>

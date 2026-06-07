@@ -33,9 +33,9 @@ export const siteConfig = {
   description2: "",
   url: "https://example.com",
   contact: {
-    postcode: "*******",
-    address: "大阪市中央区北浜1丁目1番9号",
-	    tel: "0600000000",
+    postcode: "100-0005",
+    address: "東京都千代田区丸の内１丁目",
+	    tel: "0000000000",
 		// 数字の間に \u200c (ゼロ幅非接合子のコード) を入れる
     	fax: "00\u200c0000\u200c0000",
     	email: "info@example.com",
@@ -44,29 +44,29 @@ export const siteConfig = {
     googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280303808788!2d139.76493611234!3d35.6812361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x44c8309623e03!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1710000000000!5m2!1sja!2sjp",
   },	
   navItems: [
-    { label: "Service", href: "#service", showInNav: true,
+    { label: "Service", href: "b/service", showInNav: true,
 		children: [
-			{label: "Integration", href: "#products", showInNav: true },
-			{label: "Solutions", href: "#products", showInNav: true },
-			{label: "as a Service", href: "#products", showInNav: true },
+			{label: "Integration", href: "b/products", showInNav: true },
+			{label: "Solutions", href: "b/products", showInNav: true },
+			{label: "as a Service", href: "b/products", showInNav: true },
 		]
 	 },
-    { label: "Products", href: "#products", showInNav: true,
+    { label: "Products", href: "b/products", showInNav: true,
 		children: [
-			{label: "Integration", href: "#products", showInNav: true },
-			{label: "Oracle", href: "#products", showInNav: true },
-			{label: "各種ハードウェア", href: "#products", showInNav: true },
+			{label: "Integration", href: "b/products", showInNav: true },
+			{label: "Oracle", href: "b/products", showInNav: true },
+			{label: "各種ハードウェア", href: "b/products", showInNav: true },
 		] },
-    { label: "Company", href: "#company", showInNav: true,
+    { label: "Company", href: "b/company", showInNav: true,
 		children: [
-			{label: "Philosophy", href: "#products", showInNav: true },
-			{label: "overview", href: "#products", showInNav: true },
+			{label: "Philosophy", href: "b/company", showInNav: true },
+			{label: "overview", href: "b/company", showInNav: true },
 		] },
-    { label: "Recruit", href: "#recruit", showInNav: true },
+    { label: "Recruit", href: "b/recruit", showInNav: true },
   ]as NavItem[],
   subNavItems: [
-  { label: "プライバシーポリシー", href: "privacy_policy", showInNav: true },
-  { label: "利用規約", href: "terms", showInNav: true },
+  { label: "プライバシーポリシー", href: "b/privacy_policy", showInNav: true },
+  { label: "利用規約", href: "b/terms", showInNav: true },
   ]as SubNavItem[],
 
   heroImages: [

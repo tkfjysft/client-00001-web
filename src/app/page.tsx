@@ -12,9 +12,9 @@ export default function Home() {
   return (
     <main className="relative w-full">
       <MessageSection />
-      <ServiceSection className="z-8" />
-      <FramerMotionSection className="z-30" />
-      <ProductsSection className="z-50"/>
+      <ServiceSection className="z-[15]" />
+      <FramerMotionSection className="z-[18]" />
+      <ProductsSection className="z-[20]"/>
     </main>
   );
 }

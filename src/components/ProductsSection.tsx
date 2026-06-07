@@ -108,7 +108,7 @@ export default function ProductsSection({
 			<AnimatedLine classNameLine="z-20 w-8 h-[2px] bg-clr-primary-1" />
 
 			<FadeIn_02>
-			<h2 className="text-4xl font-bold tracking-widest  text-clr-main-1/90 md:text-8xl">Products</h2>
+			<h2 className="text-lg md:text-4xl font-light tracking-widest  text-clr-main-1/90">Products</h2>
 			</FadeIn_02>
 			
 		  </div>
@@ -155,20 +155,37 @@ function ProductCard({ product }: { product: typeof PRODUCTS[0] }) {
   return (
 	<>
 	{/* ArrowLink 以外へのホバーを「無効」にする */}
-	<div className={`group/link max-w-[300px] relative flex flex-col space-y-4 pointer-events-none`}>
+	<div className={`group/link relative flex flex-col space-y-4 mb-32 pointer-events-none`}>
 	      {/* 左側のホバー線アクセント */}
       		<div className="absolute -left-3 top-0 bottom-0 w-px bg-gradient-to-b from-clr-primary-1 to-transparent opacity-0 transition-opacity group-hover/link:opacity-100" />
 
 		{/* 写真：枠線を二重にするか、影の代わりに透過色を重ねて奥行きを出す */}
-		<FadeIn_02 className={`relative aspect-square overflow-hidden border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein size-[70vw] md:size-60 lg:w-full lg:h-auto`}>
-			<div className="absolute inset-0 z-10 pointer-events-none" />
-			<Image 
-			src={product.photo} 
-			alt="" 
-			fill
-            sizes="(max-width: 768px) 100vw, 50vw, 25vw"
-			className="h-full w-full object-cover  transition-transform duration-500 ease-out group-hover/link:scale-110" 
-			/>
+		<FadeIn_02 className={`						
+		mx-auto /* 💡 これを足すだけで、すべての画面幅で左右中央に固定されます！ */
+		relative 
+		overflow-hidden 
+		border border-clr-base-1/10 rounded-full bg-clr-base-1/5 js-fadein 
+		aspect-square
+            w-[60vw]       md:w-60       lg:w-[clamp(240px,22vw,300px)]
+            h-[60vw]       md:h-60       lg:h-[clamp(240px,22vw,300px)]
+			`}>
+
+
+
+
+			{/* <div className="absolute inset-0 z-10 pointer-events-none" /> */}
+
+
+
+					<img
+  src={`${process.env.__NEXT_BASE_PATH || ''}${product.photo}`} 
+  alt="" 
+  loading="lazy" 
+  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover/link:scale-110" 
+/>
+
+
+
 		</FadeIn_02>
 		
 		<div className="flex-1 space-y-3">

@@ -28,7 +28,7 @@ export default function ScrollToTop({
 	  //特別仕様に
       const sectionType = (elements.find((el) => el.closest("[id]"))?.closest("[id]"))?.getAttribute("id")?.trim();
 
-      setIsDarkBg(bgType === "dark" && sectionType !== "message-section");
+      setIsDarkBg(bgType === "dark");
     };
 
     // 初期実行とイベント登録
