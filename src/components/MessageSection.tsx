@@ -118,7 +118,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
 			{/* 2. 左から伸びる線 */}
 			<AnimatedLine classNameDot="absolute z-20 top-[-4px] -left-2 size-[8px] bg-clr-base-1/30" classNameLine="absolute z-20 top-0 left-0 w-full h-[1px] bg-clr-base-1/30" />
 				
-              <p className={"text-clr-base-1/80 text-xl font-medium md:text-2xl z-50"}>
+              <p className={"text-clr-base-1/80 text-xl font-medium md:text-2xl relative z-50"}>
                 {MESSAGE_CONTENT.paragraphs[0]}
               </p>
           </div>
