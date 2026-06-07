@@ -63,9 +63,9 @@ export const Header = ({
 	 ${className}`}
   >
     {/* 1. メインバー（ロゴ・PCナビ・ボタン） */}
-    <div className="hidden relative w-full max-w-[1480px] mx-auto px-[8vw] md:px-[60px] xl:px-[100px] flex items-center justify-between h-15 lg:h-15 z-999">
+    {/* <div className="hidden relative w-full max-w-[1480px] mx-auto px-[8vw] md:px-[60px] xl:px-[100px] flex items-center justify-between h-15 lg:h-15 z-999"> */}
       {/* CIロゴ部分 */}
-      <div className="block static relative h-full">
+      {/* <div className="block static relative h-full">
         <Link href="/" className="h-full flex items-start lg:items-center">
           <span className={`font-zen-kaku !leading-[1] ${ciLogoTextColor}`}>
             <span className="text-base !leading-[1] lg:text-lg font-[900] pb-1">
@@ -85,7 +85,7 @@ export const Header = ({
         </nav>
         <ContactButton className="hidden lg:inline-flex" />
       </div>
-    </div>
+    </div> */}
 
     {/* 2. ハンバーガーボタン（header内部に移動） */}
     <HamburgerButton

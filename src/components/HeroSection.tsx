@@ -7,6 +7,7 @@ import { HeroParticles } from "@/components/HeroParticles";
 import { HeroAnimatedChar } from "@/components/HeroAnimatedChar";
 import { HeroAnimatedChar_02 } from "@/components/HeroAnimatedChar_02";
 import { FaceSilhouette } from "@/components/FaceSilhouette";
+import Link from "next/link";
 import CyberCircleD from "@/components/CyberCircleD";
 import CyberCircleF from "@/components/CyberCircleF";
 import LogoCI from "@/components/LogoCI";
@@ -139,10 +140,26 @@ return (
     {isClient && (
     <>
 
+{/* 💡 変更点：z-10000 を z-[10000] に修正し、pointer-events-auto をここにも追加 */}
+<div className="absolute top-4 left-[2vw] sm:top-10 sm:left-[4vw] w-full max-w-[200px] sm:max-w-[300px] flex flex-col items-center z-[10000] pointer-events-auto">
+  {/* 💡 変更点：inline-block を block に変更 */}
+  <Link href="/" className='block w-full h-full relative z-[10001]'>
+    <LogoCI className={`text-clr-base-1 overflow-visible `} 
+      stroke="currentColor" 
+      strokeWidth="0.5"
+    />
+  </Link>
+</div>
+
+
+
     {/* 背景グリッド */}
     <div className={`fixed inset-0 top-0 left-0 w-full h-screen -z-10 overflow-hidden bg-bgclr-startup-dark pointer-events-none
 		${shouldAnimate && isFirstAccess ? "animate-bg-fadein" : "animate-bg-fadein-fast"}
 		`} aria-hidden="true">
+
+
+
 
 
 
@@ -258,12 +275,7 @@ return (
 		{/* <img src={'/images/ci_logo_20.svg'} className={`absolute top-10 left-20 w-100 header-appearance
 			${shouldAnimate && isFirstAccess ? "header-appearance" : "header-appearance-fast"}`} /> */}
 
-      <div className="absolute top-10 left-20 w-100 max-w-[100px] md:max-w-[300px] flex fle-col items-center">
-        <LogoCI className={`text-clr-base-1 overflow-visible ${shouldAnimate && isFirstAccess ? "header-appearance" : "header-appearance-fast"}`} 
-          stroke="currentColor" 
-          strokeWidth="0.5"
-        />
-      </div>
+
 
   </section>
 

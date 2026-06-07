@@ -441,14 +441,14 @@ main .js-fadein,
 /* 例：最小2rem、最大5remの間で、画面幅に合わせて「無段階」に変化させる */
 
 h1 .hero-maintext {
-  font-size: clamp(3.5rem, calc(7vw + 1rem), 12rem);
+  font-size: clamp(3rem, calc(7vw + 1rem), 6rem);
   font-family: var(--font-playfair), serif;
 }
 h1 .hero-big-maintext {
-  font-size: clamp(7rem, calc(14vw + 1rem), 24rem);
+  font-size: clamp(6rem, calc(14vw + 1rem), 12rem);
 }
 h1 .hero-description {
-  font-size: clamp(1rem, calc(2vw + 0.1rem), 3rem);
+  font-size: clamp(1rem, calc(2vw + 0.1rem), 2rem);
   font-family: var(--font-noto-serif), serif;
   text-align: center;
 }

@@ -27,7 +27,7 @@ const HamburgerButton = ({
 }: HamburgerButtonProps) => {
   return (
     // <div className={`lg:hidden fixed left-[80%] w-[20%] px-8 py-4.5 flex justify-end ${className}`}>
-<div className={`fixed top-6 right-8 z-50 flex items-center backdrop-blur-sm rounded-lg py-4 px-4 ${className}`}>
+<div className={`fixed  top-4 right-[2vw] sm:top-8 sm:right-[4vw] z-50 flex items-center backdrop-blur-sm rounded-lg py-4 px-4 ${className}`}>
   {/* 1. Menuのテキスト */}
 
 

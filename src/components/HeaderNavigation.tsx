@@ -22,7 +22,7 @@ export default function HeaderNavigation() {
 
   return (
     <>
-      <Header className="z-100" 
+      <Header className="z-[100]" 
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         isPosTop={isPosTop}
@@ -30,7 +30,7 @@ export default function HeaderNavigation() {
         shouldAnimate={shouldAnimate}
         isFirstAccess={isFirstAccess}
     />
-      <HeroSection className="-z-1"
+      <HeroSection
         shouldAnimate={shouldAnimate}
         isFirstAccess={isFirstAccess}
      />
