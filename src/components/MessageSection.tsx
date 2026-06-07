@@ -43,15 +43,15 @@ const baseDelay = 0.08;
 const layouts = {
   class: {
     headline: "",
-    catchCopy: "col-start-3  col-end-23  row-start-1  row-end-2   z-20",
-    text: "col-start-6 col-end-20  row-start-2  row-end-3  z-20",
-    text_2: "col-start-14 col-end-23  row-start-17  row-end-24  z-20",
-    shapesA: "col-start-15  col-span-17  row-start-1  row-span-25  z-10",
-    shapesB: "col-start-18  col-span-16  row-start-9  row-span-25  z-10",
-    shapesC: "col-start-21  col-span-20  row-start-4  row-span-25  z-10",
-    shapesD: "",
-    shapesE: "",
-    subText: "",
+    catchCopy: "col-start-1   col-end-25  md:col-start-3   md:col-end-23 row-start-1  row-end-2   z-20",
+    text:      "col-start-3   col-end-23   md:col-start-6   md:col-end-20 row-start-2  row-end-3  z-20",
+    text_2:    "col-start-14  col-end-23   row-start-17 row-end-24  z-20",
+    shapesA:   "col-start-15  col-span-17  row-start-1  row-span-25  z-10",
+    shapesB:   "col-start-18  col-span-16  row-start-9  row-span-25  z-10",
+    shapesC:   "col-start-21  col-span-20  row-start-4  row-span-25  z-10",
+    shapesD:   "",
+    shapesE:   "",
+    subText:   "",
   },
   delay: {
     headline:   baseDelay * 1,
@@ -127,16 +127,41 @@ export default function MessageSection({ className }: MessageSectionProps) {
 
           <FadeIn_02
             className={`relative pt-20 space-y-6`}>
-				<div className="flex justify-between">
+				<div className="
+  grid 
+  grid-cols-2      /* 📱 スマホ：2列（縦に何行か折り返す） */
+  md:grid-cols-3   /* 📑 タブレット：3列 */
+  lg:grid-cols-4   /* 💻 PC：4列（横一列に綺麗に並ぶ） */
+  gap-4            /* 円と円の間のすき間（お好みで gap-6 などに調整してください） */
+  justify-items-center /* グリッドの中で円を中央に寄せる */
+">
 				{[1, 2, 3, 4].map((index) => {
 					// オブジェクトから値を取得（もし空なら空文字を返す）
 					const text = (MESSAGE_CONTENT.subText as any)[index];
 
 					return (
 					<p 
-						key={index} 
-						className="flex items-center justify-center text-clr-base-1/80 border border-clr-base-1/30  border-[1px] rounded-full size-[14vw] p-10"
-					>
+  key={index} 
+  className="
+    flex items-center justify-center 
+    text-clr-base-1/80 
+    border border-clr-base-1/30 border-[1px] rounded-full 
+    text-base text-left 
+    p-5 mb-8
+
+    /* 📱 450px未満：今のバッチリなサイズ */
+    w-[clamp(170px,14vw,180px)] 
+    h-[clamp(170px,14vw,180px)] 
+
+    /* 🚀 【新設】450px〜767pxの間：ここで先回りして二周り大きくする！ */
+    min-[450px]:w-[clamp(190px,16vw,230px)] 
+    min-[450px]:h-[clamp(190px,16vw,230px)]
+
+    /* 📑 768px以上：こちらもバッチリだったサイズを維持しつつ調整 */
+    md:w-[clamp(200px,15vw,260px)] 
+    md:h-[clamp(200px,15vw,260px)]
+  "
+>
 						{text}
 					</p>
 					);
