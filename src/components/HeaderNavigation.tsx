@@ -1,5 +1,5 @@
 // src/components/HeaderNavigation.tsx
-"use client"; // 💡これでクライアント側として動くようになります
+"use client";
 
 import { Header } from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
@@ -22,17 +22,16 @@ export default function HeaderNavigation() {
 
   return (
     <>
-        <Header className="z-100" 
-    isOpen={isOpen}
+      <Header className="z-100" 
+        isOpen={isOpen}
         setIsOpen={setIsOpen}
-    isPosTop={isPosTop}
+        isPosTop={isPosTop}
         isDarkBg={isDarkBg}
-
-          shouldAnimate={shouldAnimate}
-      isFirstAccess={isFirstAccess}
+        shouldAnimate={shouldAnimate}
+        isFirstAccess={isFirstAccess}
     />
-        <HeroSection className="-z-1"
-    shouldAnimate={shouldAnimate}
+      <HeroSection className="-z-1"
+        shouldAnimate={shouldAnimate}
         isFirstAccess={isFirstAccess}
      />
     </>
