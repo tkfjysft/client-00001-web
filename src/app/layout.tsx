@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import { siteConfig } from "@/config/site";
 import "@/app/globals.scss";
+import HeaderNavigation from "@/components/HeaderNavigation";
 import { Header } from "@/components/Header";
 import { Jost, Noto_Sans_JP } from "next/font/google";
 import { Playfair_Display, Noto_Serif_JP } from 'next/font/google';
@@ -88,8 +89,7 @@ export default function RootLayout({
 			style={{
 			fontFamily: `${jost.style.fontFamily}, ${notoSansJP.style.fontFamily}, sans-serif`,
 			}}>
-        <Header className="z-100" />
-        <HeroSection className="-z-1" />
+				<HeaderNavigation />
         {children}
 		<Footer className="z-60" />
 		<ScrollToTop className="z-60" />

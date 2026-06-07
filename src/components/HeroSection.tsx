@@ -15,12 +15,16 @@ import LogoCI from "@/components/LogoCI";
 
 interface HeroSectionProps  {
 	className? : string;
+	shouldAnimate: boolean;
+  isFirstAccess: boolean;
 }
 
 
 
 export default function HeroSection ({
-	className
+	className,
+	shouldAnimate,
+	isFirstAccess,
 }: HeroSectionProps) {
   const [isAnimating, setIsAnimating] = useState(true);
   const [isClient, setIsClient] = useState(false);
@@ -45,42 +49,6 @@ export default function HeroSection ({
     "/images/hero_whiteboard.webp",
     "/images/hero_serverroom.webp",
   ];
-
-//Header.tsxの表示がおかしくなるので使わない
-//   if (!isClient) return null; // クライアント側でのみ描画（ハイドレーション対策）
-
-// Gridのクラスを返すヘルパー関数（これでJSXが劇的にスリム化）
-const getGridClass = (idx: number) => {
-//   const classes = [
-//     "col-start-1 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:row-end-9",
-//     "col-start-1 col-end-3 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-10",
-//     "col-start-1 col-end-5 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-1 lg:row-end-12",
-
-//     "col-start-4 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-9 lg:row-end-9",
-//     "col-start-3 col-end-6 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-10 lg:row-end-13",
-//     "col-start-5 col-end-5 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-12 lg:row-end-12",
-
-//     "col-start-4 col-end-8 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-9 lg:row-end-21",
-//     "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-3 lg:col-end-6 lg:row-start-13 lg:row-end-21",
-//     "col-start-5 col-end-8 row-start-12 row-end-21 lg:col-start-6 lg:col-end-8 lg:row-start-12 lg:row-end-21",
-//   ];
-  const classes = [
-    "col-start-1 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-4 lg:row-start-1 lg:row-end-10",
-    "col-start-1 col-end-3 row-start-10 row-end-12  lg:col-start-4 lg:col-end-6 lg:row-start-1 lg:row-end-10",
-    "col-start-1 col-end-5 row-start-12 row-end-21  lg:col-start-6 lg:col-end-8 lg:row-start-1 lg:row-end-10",
-
-    "col-start-4 col-end-4 row-start-1 row-end-10   lg:col-start-1 lg:col-end-4 lg:row-start-10 lg:row-end-13",
-    "col-start-3 col-end-6 row-start-10 row-end-12  lg:col-start-4 lg:col-end-6 lg:row-start-10 lg:row-end-13",
-    "col-start-5 col-end-5 row-start-12 row-end-21  lg:col-start-6 lg:col-end-8 lg:row-start-10 lg:row-end-13",
-
-    "col-start-4 col-end-8 row-start-1 row-end-10   lg:col-start-1 lg:col-end-3 lg:row-start-13 lg:row-end-21",
-    "col-start-6 col-end-8 row-start-10 row-end-12  lg:col-start-3 lg:col-end-5 lg:row-start-13 lg:row-end-21",
-    "col-start-5 col-end-8 row-start-12 row-end-21  lg:col-start-5 lg:col-end-8 lg:row-start-13 lg:row-end-21",
-  ];
-  
-  return classes[idx] || "";
-};
-
 
 
 //スクロールしたら、背景画像のptかつpbの値を動的に変化させる
@@ -120,42 +88,42 @@ useEffect(() => {
   
 
 
-const [shouldAnimate, setShouldAnimate] = useState(false);
+// const [shouldAnimate, setShouldAnimate] = useState(false);
 
-useEffect(() => {
-  // リロードした瞬間のスクロール位置を確認
-  if (window.scrollY === 0) {
-    setShouldAnimate(true);
-  }
-}, []);
-
-
+// useEffect(() => {
+//   // リロードした瞬間のスクロール位置を確認
+//   if (window.scrollY === 0) {
+//     setShouldAnimate(true);
+//   }
+// }, []);
 
 
 
 
-// 初回かどうかを判定するステート（初期値は true = アニメーションする）
-  const [isFirstAccess, setIsFirstAccess] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    // ブラウザ環境（window）が存在するか確認
-    const hasVisited = sessionStorage.getItem("has_seen_hero_anime");
 
-    if (hasVisited) {
-      // 2回目以降アクセスの場合は false にする
-      setIsFirstAccess(false);
-    } else {
-      // 初回アクセスの場合はメモ帳に記録を残し、true にする
-      sessionStorage.setItem("has_seen_hero_anime", "true");
-      setIsFirstAccess(true);
-    }
-  }, []);
+// // 初回かどうかを判定するステート（初期値は true = アニメーションする）
+//   const [isFirstAccess, setIsFirstAccess] = useState<boolean | null>(null);
 
-  // サーバーサイドとクライアントサイドでの表示のズレ（ハイドレーションエラー）を防ぐため、
-  // 状態が確定するまでは要素を隠すか、静的な状態にしておきます
-  if (isFirstAccess === null) {
-    return <div className="min-h-screen bg-black" />; // 読み込み中の一瞬のチラつき防止
-  }
+//   useEffect(() => {
+//     // ブラウザ環境（window）が存在するか確認
+//     const hasVisited = sessionStorage.getItem("has_seen_hero_anime");
+
+//     if (hasVisited) {
+//       // 2回目以降アクセスの場合は false にする
+//       setIsFirstAccess(false);
+//     } else {
+//       // 初回アクセスの場合はメモ帳に記録を残し、true にする
+//       sessionStorage.setItem("has_seen_hero_anime", "true");
+//       setIsFirstAccess(true);
+//     }
+//   }, []);
+
+//   // サーバーサイドとクライアントサイドでの表示のズレ（ハイドレーションエラー）を防ぐため、
+//   // 状態が確定するまでは要素を隠すか、静的な状態にしておきます
+//   if (isFirstAccess === null) {
+//     return <div className="min-h-screen bg-black" />; // 読み込み中の一瞬のチラつき防止
+//   }
 
   // 1回目用の「派手な初期状態」と、2回目用の「最初から表示された初期状態」を切り替える
   const initialAnimation = isFirstAccess

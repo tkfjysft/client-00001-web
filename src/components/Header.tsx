@@ -1,8 +1,8 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
+import { Dispatch, SetStateAction } from "react";
 import { useAutoAnimate } from "./hooks/useAutoAnimate";
-import { useHeaderVisual } from "./hooks/useHeaderVisual"; // 自作フック
 import Link from "next/link";
 import Logo from "./Logo";
 import NavList from "@/components/NavList";
@@ -11,15 +11,26 @@ import HamburgerButton from "@/components/HamburgerButton";
 
 interface HeaderProps  {
 	className? : string;
+		isOpen: boolean;
+        setIsOpen: Dispatch<SetStateAction<boolean>>;
+		isPosTop: boolean;
+        isDarkBg: boolean;
+		shouldAnimate: boolean;
+  isFirstAccess: boolean;
 }
 
 export const Header = ({
-	className
+	className,
+	isOpen,
+    setIsOpen,
+	isPosTop,
+    isDarkBg,
+	shouldAnimate,
+  isFirstAccess,
 }: HeaderProps) => {
   //画面スクロール連動フェードインアニメーション
 //   useAutoAnimate();
 
-  const { isOpen, setIsOpen, isDarkBg, isPosTop, shouldAnimate, isFirstAccess } = useHeaderVisual();
 
   // 色の定義を「変数」としてまとめておくと、JSXがスッキリします
   const navTextColor = isDarkBg ? "text-clr-base-2" : "text-clr-main-1/80";
