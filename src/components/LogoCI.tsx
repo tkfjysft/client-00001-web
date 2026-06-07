@@ -11,8 +11,8 @@ interface LogoCIProps {
 export default function LogoCI({
 		className = "",
 		fill = "currentColor",
-		stroke = "none", // デフォルトの色
-		strokeWidth = "0",       // デフォルトの太さ（テキストや塗りを潰さないため）
+		stroke = "none", 
+		strokeWidth = "0",      
 		uniqueId = "hero",
   }:LogoCIProps) {
   return (
@@ -20,7 +20,7 @@ export default function LogoCI({
 
 <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      xmlnsXlink="http://www.w3.org/1999/xlink" // イラレのクリップパス（xlink:href）をReactで動かすために追加
+      xmlnsXlink="http://www.w3.org/1999/xlink" 
       viewBox="0 0 265 76"
       className={`w-full h-auto ${className}`}
       fill="currentColor"

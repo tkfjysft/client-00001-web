@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import { siteConfig } from "@/config/site";
 import "@/app/globals.scss";
 import HeaderNavigation from "@/components/HeaderNavigation";
@@ -10,10 +9,9 @@ import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import ScrollToTop  from "@/components/ScrollToTop";
 
-// フォント設定
 const jost = Jost({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // 標準、中太、太字
+  weight: ["400", "500", "700"], 
   display: "swap",
 });
 
@@ -37,24 +35,21 @@ const notoSerif = Noto_Serif_JP({
 
 const zenKaku = Zen_Kaku_Gothic_New({
   subsets: ['latin'],
-  weight: ['400', '500', '700', '900'], // 誠実な太さを出すため、太めも含めます
+  weight: ['400', '500', '700', '900'], 
   display: 'swap',
-  variable: '--font-zen-kaku', // CSS変数として定義
+  variable: '--font-zen-kaku', 
 });
 
 
-//メタデータ
 export const metadata = {
   title: {
     default: siteConfig.metaTitle,
     template: `%s | ${siteConfig.metaTitle}`,
   },
   description: siteConfig.metaDescription,
-  // 1. 電話番号の自動リンクを「保険」としてオフにする
   formatDetection: {
     telephone: false,
   },
-  // 2. SNSでシェアされた時の見え方 (OGP)
   openGraph: {
     title: siteConfig.metaTitle,
     description: siteConfig.metaDescription,
@@ -63,7 +58,6 @@ export const metadata = {
     locale: "ja_JP",
     type: "website",
   },
-  // 3. Twitter(X)用の設定
   twitter: {
     card: "summary_large_image",
     title: siteConfig.metaTitle,
@@ -81,7 +75,7 @@ export default function RootLayout({
     <html lang="ja">
 	  {/* - className="antialiased" で文字を滑らかに。
         - style属性で、英字(Jost)を先頭、日本語(Noto Sans)を次に指定。
-        - これにより、英数字はJost、日本語はNoto Sansが自動で適用されます。
+        - これにより、英数字はJost、日本語はNoto Sansが自動で適用。
       */}
 	  <body 
 			className={`${playfair.variable} ${notoSerif.variable} ${zenKaku.variable} font-sans antialiased

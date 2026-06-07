@@ -2,13 +2,13 @@ import React from "react";
 
 interface ContainerProps {
   children: React.ReactNode;
-  as?: "div" | "section" | "article" | "main"; // タグを動的に変更可能に
-  className?: string; // 追加の余白などを外部から足せるように
+  as?: "div" | "section" | "article" | "main"; 
+  className?: string; 
 }
 
 export const Container = ({ 
   children, 
-  as: Component = "div", // デフォルトは div
+  as: Component = "div", 
   className = "" 
 }: ContainerProps) => {
   return (

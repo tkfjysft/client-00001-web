@@ -1,13 +1,11 @@
-// src/config/site.ts
 
 import { label } from "framer-motion/client";
 
 export type NavItem = {
   label: string;
   href: string;
-  // メインメニューへの掲載有無（コンポーネント側のfilter条件に使用）
   showInNav: boolean;
-  children?: readonly { // 「?」をつけることで、あってもなくても良いことになります
+  children?: readonly { 
     label: string;
     href: string;
 	showInNav: boolean;
@@ -17,7 +15,6 @@ export type NavItem = {
 export type SubNavItem = {
   label: string;
   href: string;
-  // メインメニューへの掲載有無（コンポーネント側のfilter条件に使用）
   showInNav: boolean;
 };
 
@@ -25,7 +22,7 @@ export const siteConfig = {
   companyName1: "モーションシンク株式会社",
   companyName2: "モーションシンク\n株式会社",
   enCompamyName: "MotionSync Co., Ltd.",
-  ownerName: "山田 太郎", // ← 追加しました！
+  ownerName: "山田 太郎", 
   metaTitle: "",
   metaDescription: "多様な技術を駆使し、ビジネスの課題をシンプルな解決策へと導くデジタルパートナー。確かな技術力と柔軟な思考で、次世代のスタンダードを共創します。",
   heroTagline: "Mind Shift/ソフトウェアでビジネスの常識を転換する",
@@ -36,7 +33,6 @@ export const siteConfig = {
     postcode: "100-0005",
     address: "東京都千代田区丸の内１丁目",
 	    tel: "0000000000",
-		// 数字の間に \u200c (ゼロ幅非接合子のコード) を入れる
     	fax: "00\u200c0000\u200c0000",
     	email: "info@example.com",
   },
@@ -73,7 +69,7 @@ export const siteConfig = {
     "/images/hero_cording.webp",
     "/images/hero_meeting.webp",
     "/images/hero_office.webp",
-    "/", // あえて空にするセル
+    "/", 
     "/",
     "/",
     "/images/hero_ceo.webp",

@@ -8,7 +8,6 @@ import {
   faGithub 
 } from '@fortawesome/free-brands-svg-icons';
 
-// SNSデータも外に出しておくとスッキリします
 const SNS_LINKS = [
   { icon: faXTwitter, href: "#", label: "X" },
   { icon: faInstagram, href: "#", label: "Instagram" },

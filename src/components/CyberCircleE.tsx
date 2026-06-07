@@ -21,14 +21,13 @@ export default function CyberCircleE({
 
 return (
 	<FadeIn_01
-		className={className} // absolute などの配置クラスを受け取る
-		delay={delay}           // 固定したい delay (layouts.delay.shapesD)
-		speed={speed}           // 固定の speed
- 	    speedX={speedX}           // 固定の speedX
-		stiffness={stiffness}       // 固定の stiffness
+		className={className} 
+		delay={delay}         
+		speed={speed}         
+ 	    speedX={speedX}       
+		stiffness={stiffness} 
 	>
 	<svg viewBox="-20 -20 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${classNameSvg} overflow-visible animate-spin-E`}>
-		{/* 超長角（200度〜300度）のメインラインを多層化 */}
 		<circle cx="100" cy="100" r="97" stroke="currentColor" strokeWidth="11" strokeDasharray="400 200" strokeDashoffset="0" opacity="0.4" />
 		<circle cx="100" cy="100" r="94" stroke="currentColor" strokeWidth="2" strokeDasharray="520 80" strokeDashoffset="300" opacity="0.3" />
 		<circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="11" strokeDasharray="380 220" strokeDashoffset="150" opacity="0.2" />

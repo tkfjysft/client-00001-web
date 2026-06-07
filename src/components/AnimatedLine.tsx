@@ -7,7 +7,7 @@ interface AnimatedLineProps {
   width?: string;
   color?: string;
   dotDelay?: number;
-  showDot?: boolean; // ドットを表示するかどうかのフラグを追加
+  showDot?: boolean; 
 }
 
 export default function AnimatedLine({
@@ -20,7 +20,6 @@ export default function AnimatedLine({
 }: AnimatedLineProps){
   return (
     <>
-      {/* classNameDot が 存在する時だけドットをレンダリングする */}
       {classNameDot !== "" && (
         <motion.div 
           initial={{ opacity: 0, scale: 0 }}
@@ -35,7 +34,6 @@ export default function AnimatedLine({
         />
       )}
 
-      {/* 線は常に表示 */}
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}

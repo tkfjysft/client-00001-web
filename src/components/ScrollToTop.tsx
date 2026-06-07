@@ -14,24 +14,19 @@ export default function ScrollToTop({
 
   useEffect(() => {
     const handleScroll = () => {
-      // 1. 表示/非表示の判定 (300px以上で表示)
       setIsVisible(window.scrollY > 300);
 
-      // 2. 背景色の判定 (画面右下付近の要素をチェック)
-      const x = window.innerWidth / 2; // 右端から少し内側
-      const y = window.innerHeight - 40; // 下端から少し内側
+      const x = window.innerWidth / 2; 
+      const y = window.innerHeight - 40; 
       const elements = document.elementsFromPoint(x, y);
       
       const section = elements.find((el) => el.closest("[data-bg]"))?.closest("[data-bg]");
       const bgType = section?.getAttribute("data-bg")?.trim();
-	  //現在、message-sectionだけ、背景色がヘッダー付近とフッター付近で明暗逆なので
-	  //特別仕様に
       const sectionType = (elements.find((el) => el.closest("[id]"))?.closest("[id]"))?.getAttribute("id")?.trim();
 
       setIsDarkBg(bgType === "dark");
     };
 
-    // 初期実行とイベント登録
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -41,7 +36,6 @@ export default function ScrollToTop({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // 配色パターンの定義
   const colors = isDarkBg
     ? "bg-clr-base-1 text-clr-main-1" 
     : "bg-clr-main-1 text-clr-base-1";

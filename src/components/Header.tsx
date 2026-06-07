@@ -50,7 +50,6 @@ export const Header = ({
 
 useEffect(() => {
   if (isOpen) {
-    // 🚀 <html> タグ全体をロックし、スマホのタッチ操作（スクロール）を根こそぎフリーズさせる
     document.documentElement.classList.add('overflow-hidden', 'touch-none');
   } else {
     document.documentElement.classList.remove('overflow-hidden', 'touch-none');
@@ -93,10 +92,8 @@ useEffect(() => {
     isOpen ? "translate-x-0" : "translate-x-full"
   }`}
 >
-  {/* 背景の極細サイバーノイズライン */}
   <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
 
-  {/* ロゴスペース：画面幅に応じて自然にスケール */}
   <Link
     href="/"
     className="flex flex-col items-center justify-center w-[50vw] sm:w-[40vw] md:w-[30vw] lg:w-[20vw] max-w-[260px] mb-16 overflow-visible transition-transform duration-300 hover:scale-105"
@@ -108,12 +105,10 @@ useEffect(() => {
     />
   </Link>
 
-  {/* ナビゲーションリスト：スクロール可能にして画面縦が狭い端末にも対応 */}
   <div className="w-full max-w-[320px] mb-12 overflow-y-auto max-h-[55vh] px-6">
-    <NavList isMobile={true} /> {/* 💡 常にドロワーなので true で統一します */}
+    <NavList isMobile={true} /> 
   </div>
 
-  {/* コンタクトボタン：常に表示し、クリックしやすい横幅に */}
   <ContactButton className="block mx-auto w-[65%] max-w-[260px] shadow-[0_0_30px_rgba(var(--clr-primary-1-rgb),0.2)] transition-transform active:scale-95"/>
 </div>
   </header>

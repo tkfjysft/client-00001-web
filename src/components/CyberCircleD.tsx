@@ -18,27 +18,23 @@ export default function CyberCircleD({
 	stiffness = 100,
 }:CyberCircleDProps) {
 
-  // ハイドレーションが終わったかどうかを管理するステート
   const [isMounted, setIsMounted] = useState(false);
 
-  // マウント時に一度だけ実行
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // サーバーサイド（またはマウント前）では何も表示しない、
-  // もしくはランダム値を含まないスケルトンを表示する
   if (!isMounted) {
-    return <div className={className} />; // もしくは空の <svg>
+    return <div className={className} />; 
   }
 
   return (
   <FadeIn_01
-    className={className} // absolute などの配置クラスを受け取る
-    delay={delay}           // 固定したい delay (layouts.delay.shapesD)
-    speed={speed}           // 固定の speed
-    speedX={speedX}           // 固定の speedX
-    stiffness={stiffness}       // 固定の stiffness
+    className={className} 
+    delay={delay}         
+    speed={speed}         
+    speedX={speedX}       
+    stiffness={stiffness} 
   >
 	<svg viewBox="-20 -20 240 240" fill="none" xmlns="http://www.w3.org/2000/svg"
 		className={`${classNameSvg} overflow-visible animate-spin-D`}>

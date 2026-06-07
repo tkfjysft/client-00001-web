@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 :root {
-  /* ここに共通変数を置く */
+  // ここに共通変数を置く 
   --color-clr-base-1: #f8fafc;
   --color-clr-base-2: #ffffff;
-  --color-clr-main-1: #020617; // 少し明るく、青みの強いネイビー
+  --color-clr-main-1: #020617; 
   --color-clr-main-2: #383dca;
   --color-clr-main-2-2: #20225b;
   --color-clr-primary-1: #38bdf8;
@@ -13,8 +13,6 @@
   --color-clr-primary-3: #77cff6;
 }
 
-// @themeブロック全体を /* */ で囲むか、
-// または以下のようにCSS変数として直接定義する形に逃がすと波線が消えることがあります
 @theme {
   --color-clr-base-1: var(--color-clr-base-1);
   --color-clr-base-2: var(--color-clr-base-2);
@@ -29,8 +27,7 @@
   //////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////
-  /* ここで md の定義を上書きします */
-  /* v4では、このように CSS 変数形式で指定するのが公式ルールです */
+  // ここで md の定義を上書き
   //   --breakpoint-md: 960px;
 
   //////////////////////////////////////////////////////////
@@ -45,11 +42,11 @@
 
 
 
-  /* ゆっくり回転するカスタムアニメーションを追加 */
+  // ゆっくり回転するカスタムアニメーションを追加 
   --animate-spin-slow: spin 15s linear infinite;
   --animate-spin-moreslow: spin 30s linear infinite;
 
-  /* もし逆回転も作りたい場合はこちら */
+  // 逆回転 
   --animate-spin-reverse: spin 15s linear infinite reverse;
   --animate-spin-reverse-moreslow: spin 30s linear infinite reverse;
 
@@ -61,28 +58,25 @@
 
 
   //現在不使用
-  /* 💡 ここに背景を定義する */
+  // ここに背景を定義する 
   // --background-image-bgclr-dark: radial-gradient(circle at center, var(--color-clr-main-2) 0%, var(--color-clr-main-1) 100%);
 
   //////////////////////////////////////////////////////
   //////////////////////////////////////////////////////
   //////////////////////////////////////////////////////
   //////////////////////////////////////////////////////
-  /* 💡 現在使用中の濃紺グラデーション背景設定 【モバイル設定】*/
+  //  現在使用中の濃紺グラデーション背景設定 【モバイル設定】
   --background-image-bgclr-startup-dark: 
-		/* 1. 右上からのスカイブルー：不透明度を0.4（40%）まで上げ、範囲も60%へ拡大 */
     radial-gradient(
       circle 50vw at 100% 50%,
       color-mix(in srgb, var(--color-clr-primary-1) 20%, transparent),
       transparent 150%
     ),
-    /* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
       radial-gradient(
         circle at 0% 0%,
         color-mix(in srgb, var(--color-clr-main-2) 60%, transparent),
         transparent 50%
       ),
-    /* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
       linear-gradient(
         to bottom right,
         color-mix(in srgb, var(--color-clr-main-1) 95%, transparent),
@@ -91,7 +85,7 @@
 }
 
 //////////////////////////////////////////////////////
-/* 💡 現在使用中の濃紺グラデーション背景設定 【PC設定】*/
+//  現在使用中の濃紺グラデーション背景設定 【PC設定】
 @media screen and (min-width: 960px) {
   :root {
     --background-image-bgclr-startup-dark:
@@ -100,13 +94,11 @@
         color-mix(in srgb, var(--color-clr-primary-1) 38%, transparent),
         transparent 70%
       ),
-      /* 2. 左下からの明るい紺：不透明度を0.5（50%）へ。これでお堅い印象を払拭します */
         radial-gradient(
           circle at 15% 85%,
           color-mix(in srgb, var(--color-clr-main-2) 50%, transparent),
           transparent 70%
         ),
-      /* 3. 土台：真っ黒ではなく、わずかに青みを感じる深い紺 */
         linear-gradient(
           to bottom right,
           color-mix(in srgb, var(--color-clr-main-1) 95%, transparent),
@@ -116,7 +108,6 @@
 }
 
 html {
-  /* 常に縦スクロールバーの領域を確保する */
   overflow-y: scroll;
 }
 
@@ -157,35 +148,27 @@ div {
 
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
-/* 粒子が中心に集まるアニメーション */
-/* 粒子の色も、背景に合わせて少し「発光感」を強めます */
 .particle {
   position: absolute;
   left: 50%;
   top: 50%;
   border-radius: 50%;
-  //   background-color: #fff;
   box-shadow: 0 0 15px var(--color-clr-base-1);
   animation: gathering-animation 1.5s ease-out forwards;
   opacity: 0;
 }
 
-/* 粒子の色の変化（白 → シアン） */
-/* 粒子：外側（大きく）から中心（小さく）へ */
 @keyframes gathering-animation {
   0% {
     opacity: 0;
-    /* 発生時は scale(1.5) くらいで存在感を出す */
     transform: translate(var(--sx), var(--sy)) scale(1);
     background: color-mix(in srgb, var(--color-clr-main-2), white 80%);
   }
   15% {
     opacity: 1;
-    /* 出現直後に少しだけ大きく（1.8倍）してキラッと見せる */
     transform: translate(var(--sx), var(--sy)) scale(1.5);
   }
   100% {
-    /* 中心に向かって scale(0) まで絞り込む */
     transform: translate(var(--ex), var(--ey)) scale(0);
     opacity: 0;
     background: color-mix(in srgb, var(--color-clr-main-2), white 40%);
@@ -195,28 +178,24 @@ div {
 
 /////////////////////////////////////////
 /////////////////////////////////////////
-/* ---  英語メッセージ（heroTagline）の文字飛来アニメーション --- */
 @keyframes char-fly-in {
   0% {
     opacity: 0;
-    /* 画面外の遠く（上下左右ランダム）から、巨大な状態で */
     transform: translate(var(--fx), var(--fy)) scale(10) translateZ(500px);
-    // filter: blur(20px) brightness(2); // 光輝くボケ
+    // filter: blur(20px) brightness(2);
     color: var(--color-clr-base-2);
   }
 
   70% {
     opacity: 1;
-    /* 所定位置へ近づき、サイズを絞り込む */
     transform: translate(0, 0) scale(1.1) translateZ(0px);
     // filter: blur(2px) brightness(1.5);
   }
 
   85% {
-    /* 着弾時の「ブレ」を演出 */
     transform: scale(0.95);
     // filter: blur(0px) brightness(1);
-    color: var(--color-clr-base-2); // 白へ
+    color: var(--color-clr-base-2);
   }
 
   100% {
@@ -226,10 +205,10 @@ div {
     color: var(--color-clr-base-2);
     //   text-shadow:
     // 0 0 20px var(--color-clr-primary-3),
-    // 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
+    // 0 0 30px var(--color-clr-primary-3),   
     // 0 0 10px var(--color-clr-primary-3),
     // 0 0 7px var(--color-clr-primary-2),
-    // 0 0 6px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
+    // 0 0 6px var(--color-clr-main-1);   
   }
 }
 
@@ -237,13 +216,11 @@ div {
   display: inline-block;
   opacity: 0;
   backface-visibility: hidden;
-  /* 1.2s から 0.8s に短縮。さらに急加速するイージングに変更 */
   animation: char-fly-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
-/* --- 日本語メッセージ（下の2行）のアニメーション --- */
 @keyframes char-fade-in {
   0% {
     opacity: 0;
@@ -261,23 +238,20 @@ div {
   display: inline-block;
   opacity: 0;
   animation: char-fade-in 0.8s ease-out forwards;
-  /* 1つ目の影で「光彩」を、2つ目の影で「文字の輪郭」を確保 */
   // text-shadow:
   // 0 0 40px var(--color-clr-primary-3),
-  // 0 0 30px var(--color-clr-primary-3),   /* 文字のすぐ裏にある濃い影 */
+  // 0 0 30px var(--color-clr-primary-3),   
   // 0 0 10px var(--color-clr-primary-3),
   // 0 0 7px var(--color-clr-main-1),
-  // 0 0 4px var(--color-clr-main-1);   /* 文字のすぐ裏にある濃い影 */;
-  /* 
-		もし一斉にふわっと出すのではなく、
-		英語の動きが終わった後に順番に出したい時に備えて 
-	*/
-  /* animation-delay: var(--delay); */
+  // 0 0 4px var(--color-clr-main-1);   
+		// もし一斉にふわっと出すのではなく、
+		// 英語の動きが終わった後に順番に出したい時に備えて 
+  // animation-delay: var(--delay); 
 }
 
 ///////////////////////////////
 ///////////////////////////////
-/// /* ヒーローセクション背景グリッド全体のフェードイン */
+// ヒーローセクション背景グリッド全体のフェードイン 
 @keyframes bg-grid-appearance {
   0% {
     opacity: 0;
@@ -325,7 +299,7 @@ div {
 
 ///////////////////////////////
 ///////////////////////////////
-/// /* ヘッダーのフェードイン */
+//ヘッダーのフェードイン 
 @keyframes header-appearance {
   0% {
     opacity: 0;
@@ -359,13 +333,10 @@ div {
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-/// 【描画最適化】
-///  アニメーションのガタつきを防ぐため、ブラウザにGPU準備を指示します。
-/* 粒子と英字、両方のクラスにこれを追加 */
+
 .particle,
 .animate-char-fly {
   will-change: transform, opacity;
-  /* これが「この後動くから準備して」というブラウザへのサインです */
 }
 
 
@@ -402,8 +373,8 @@ div {
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-/* ロード時、画面を下へスクロールしたときの */
-/* コンテンツのフェードイン設定 */
+// ロード時、画面を下へスクロールしたときの 
+// コンテンツのフェードイン設定 
 //外側記述のdivの枠とズレてアニメーションするのでimgは除けておく
 main h1, 
 main h2, 
@@ -424,12 +395,12 @@ main .js-fadein,
 //     opacity 0.4s ease-out,
 //     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-/////////// /* 例：インライン要素が崩れる場合の対策 */
+/////////// // 例：インライン要素が崩れる場合の対策 
 /////////// main a:not(.c-btn), main span:not(.u-text-accent) {
-///////////   /* ここで transform を無効化するなど */
+///////////   // ここで transform を無効化するなど 
 /////////// }
 
-/*  アニメーション後 */
+//  アニメーション後 
 .is-visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
@@ -438,7 +409,7 @@ main .js-fadein,
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 //ヒーローエリアの文字サイズ関連
-/* 例：最小2rem、最大5remの間で、画面幅に合わせて「無段階」に変化させる */
+// 例：最小2rem、最大5remの間で、画面幅に合わせて「無段階」に変化させる 
 
 h1 .hero-maintext {
   font-size: clamp(3rem, calc(7vw + 1rem), 6rem);
@@ -454,15 +425,12 @@ h1 .hero-description {
 }
 h1 .hero-maintext,
 h1 .hero-big-maintext {
-  line-height: 1; /* 少し詰めるだけで、グッと高級感が出ます */
+  line-height: 1; 
 
-//   /* macOS / iOS でより滑らかにする設定 */
 //   -webkit-font-smoothing: antialiased;
   
-//   /* Firefox でより滑らかにする設定 */
 //   -moz-osx-font-smoothing: grayscale;
 
-//   /* 文字の角を少しだけ丸く見せるための「隠し味」 */
 //   text-shadow: 0 0 1px rgba(0,0,0,0.01);
 
 }

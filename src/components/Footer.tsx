@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import SnsLinks from "@/components/SnsLinks";
 
-// 1. 連絡先情報を表示する小さな部品（ファイル内で定義）
 const ContactInfo = ({ className = "" }: { className?: string }) => (
   <ul className={`${className} text-clr-base-1/80 whitespace-pre-wrap`}>
     <li>〒{siteConfig.contact.postcode}</li>
@@ -26,13 +25,11 @@ export default function Footer({
 
   return (
 	<>
-	{/* グラデ背景は透明が僅かにあるのでそのさらに背景に不透明の色を配置する必要がある */}
     <footer id="footer-section" className={`relative w-full text-clr-base-1 overflow-hidden bg-clr-main-1 ${className}`}
 		  style={{ clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)" }}
 	>
       <div className="fixed inset-0 -z-10 bg-bgclr-startup-dark" />
 
-      {/* 1. Google Maps エリア */}
       <div
         data-bg="light"
         className="relative w-full h-[400px] overflow-hidden grayscale-[0.8] hover:grayscale-0 transition-all duration-700"
@@ -55,9 +52,8 @@ export default function Footer({
 
       <Container>
         <div className="mx-auto py-16" data-bg="dark">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-[60px]"> {/* md:px-15に合わせgapも調整 */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-[60px]"> 
             
-            {/* 2. ロゴ・会社概要 */}
             <div className="md:col-span-5 space-y-6">
               <h2 className="text-lg font-bold">
                 {siteConfig.companyName1}
@@ -70,7 +66,6 @@ export default function Footer({
 
             <div className="md:col-span-1" />
 
-            {/* 3. リンク集 */}
             <div className="md:col-span-6 grid grid-flow-col grid-rows-2 md:gap-y-0 gap-y-8 mt-[-50px] md:mt-0">
               {siteConfig.navItems.map((item) => (
                 <div key={item.label} className="space-y-4">
@@ -100,12 +95,10 @@ export default function Footer({
             </div>
           </div>
 
-		  {/* snsアイコン */}
           <div className="w-full flex justify-start md:justify-end mt-20">
             <SnsLinks />
           </div>
 
-		  {/* サブリンク集 */}
           <div className="flex justify-start md:justify-end gap-4 pt-4">
             {siteConfig.subNavItems.map((item) => (
               <div key={item.label} className="">
@@ -119,7 +112,6 @@ export default function Footer({
             ))}
           </div>
 
-          {/* 4. コピーライト */}
           <div className="mt-20 pt-8 border-t border-clr-base-1/8 w-full flex justify-start md:justify-end text-clr-base-1/50 text-sm font-mono">
             <small>© {currentYear} {siteConfig.enCompamyName.toUpperCase()} <br className="inline-block sm:hidden" />ALL RIGHTS RESERVED.</small>
           </div>
