@@ -118,7 +118,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
 			{/* 2. 左から伸びる線 */}
 			<AnimatedLine classNameDot="absolute z-20 top-[-4px] -left-2 size-[8px] bg-clr-base-1/30" classNameLine="absolute z-20 top-0 left-0 w-full h-[1px] bg-clr-base-1/30" />
 				
-              <p className={"text-clr-base-1/80 text-xl font-medium md:text-2xl relative z-50"}>
+              <p className={"text-clr-base-1/80 text-xl font-medium md:text-2xl"}>
                 {MESSAGE_CONTENT.paragraphs[0]}
               </p>
           </div>
@@ -126,7 +126,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
 
 
           <FadeIn_02
-            className={`relative pt-20 space-y-6`}>
+            className={`relative pt-20 space-y-6 relative z-50`}>
 				<div className="
 						grid 
 						grid-cols-2      /* 📱 スマホ：2列（縦に何行か折り返す） */
@@ -183,7 +183,7 @@ export default function MessageSection({ className }: MessageSectionProps) {
 			{/* 左から伸びる線 */}
 			<AnimatedLine classNameLine="z-20 flex-grow w-22 h-[1px] bg-clr-primary-1/30" />
 
-          <span className="text-clr-base-1 font-mono text-xs italic js-fadein">
+          <span className="text-clr-base-1 font-mono text-xs italic js-fadein relative z-50">
             {MESSAGE_CONTENT.signature}
           </span>
         </div>
