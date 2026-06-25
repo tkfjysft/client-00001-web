@@ -107,8 +107,8 @@ return (
 			</div>
 
 
-	<div className="hidden sm:block">
-			<CyberCircleF className={`fixed inset-0 m-auto w-fit h-fit`} className_inner="origin-bottom" classNameSvg="size-200 text-clr-primary-1/52 z-20" />
+			<div className="hidden sm:flex fixed inset-0 z-20 items-center justify-center pointer-events-none">
+			<CyberCircleF className={`w-fit h-fit`} className_inner="origin-bottom" classNameSvg="size-200 text-clr-primary-1/52" />
 			</div>
 
 
